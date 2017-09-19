@@ -1,12 +1,12 @@
 # project-psaximo -------------
-# True.Psaximo....Full Search!!!
+## True.Psaximo....Full Search!!!
 
 includes:
 
-## .Fornax.Net (full-text/document search engine library) 
-## .Fornax.Psaximo (command line tool {bash & powershell} tool using fornax.net library). 
-## .Fornax.Corvus (gui {desktop application} using fornax.net library). 
-## .Fornax.Corvus.Net (gui {web application} using fornax.net library). 
+#### .Fornax.Net (full-text/document search engine library) 
+#### .Fornax.Psaximo (command line tool {bash & powershell} tool using fornax.net library). 
+#### .Fornax.Corvus (gui {desktop application} using fornax.net library). 
+#### .Fornax.Corvus.Net (gui {web application} using fornax.net library). 
 
 <!---- ARCHITECTURE
 ~ [Fornax.Net] - Core Library.
