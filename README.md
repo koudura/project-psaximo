@@ -23,6 +23,6 @@ includes:
 ~ [Fornax.Net.Util.Runtime.Cache]
 ~ [Fornax.Net.Util.Runtime.Logging]
 --->
-final repository for fornax search engine libraray. [see psaximo.net and true.fornax.net for details.] 
+final repository for fornax search engine libraray. [see psaximo.net and true.fornax.net for details.]. 
 Reach Admin Developer @ kouduraninci@gmail.com for more info
 alternatiive team contact : adulojuolatomiwa@gmail.com.
