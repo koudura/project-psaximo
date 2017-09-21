@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DCSoft_RTF" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\DCSoft.RTF.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dmach_Mail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\dmach.Mail.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentFormat_OpenXml" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\DocumentFormat.OpenXml.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="HtmlAgilityPack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\HtmlAgilityPack.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="HtmlAgilityPack1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\HtmlAgilityPack.XML;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ICSharpCode_SharpZipLib" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ICSharpCode.SharpZipLib.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ICSharpCode_SharpZipLib1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ICSharpCode.SharpZipLib.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="IKVM_AWT_WinForms" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.AWT.WinForms.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Beans" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Beans.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Charsets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Charsets.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Cldrdata" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Cldrdata.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Corba" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Corba.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Core" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Core.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Jdbc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Jdbc.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Localedata" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Localedata.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Management" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Management.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Media" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Media.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Misc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Misc.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Naming" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Naming.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Nashorn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Nashorn.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Remoting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Remoting.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Security" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Security.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_SwingAWT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.SwingAWT.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Text" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Text.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Tools.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_Util" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.Util.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_XML_API" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.XML.API.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_XML_Bind" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.XML.Bind.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_XML_Crypto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.XML.Crypto.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_XML_Parse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.XML.Parse.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_XML_Transform" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.XML.Transform.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_XML_WebServices" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.XML.WebServices.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_OpenJDK_XML_XPath" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.OpenJDK.XML.XPath.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.Runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IKVM_Runtime_JNI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ikvm\IKVM.Runtime.JNI.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="itextsharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\itextsharp.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="iTextSharp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\iTextSharp.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="LumenWorks_Framework_IO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\LumenWorks.Framework.IO.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LumenWorks_Framework_IO1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\LumenWorks.Framework.IO.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Lz4Net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Lz4Net.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Lz4Net1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Lz4Net.XML;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Microsoft_Win32_Primitives" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Microsoft.Win32.Primitives.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MsgReader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\MsgReader.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NPOI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\NPOI.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NPOI_OOXML" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\NPOI.OOXML.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NPOI_OpenXml4Net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\NPOI.OpenXml4Net.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NPOI_OpenXmlFormats" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\NPOI.OpenXmlFormats.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NPOI_ScratchPad_HWPF" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\NPOI.ScratchPad.HWPF.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pdfbox_app_2_0_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>pdfbox\pdfbox-app-2.0.7.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="policy_2_0_taglib_sharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\policy.2.0.taglib-sharp.config;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="policy_2_0_taglib_sharp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\policy.2.0.taglib-sharp.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="protobuf_net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>protobuf-net.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="protobuf_net1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>protobuf-net.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="taglib_sharp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\taglib-sharp.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Thought_vCards" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\Thought.vCards.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TikaOnDotNet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>tika\TikaOnDotNet.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TikaOnDotNet_TextExtraction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>tika\TikaOnDotNet.TextExtraction.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Toxy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>toxy\Toxy.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZeroFormatter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>zero\ZeroFormatter.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZeroFormatterAnalyzer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>zero\ZeroFormatterAnalyzer.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZeroFormatter_Interfaces" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>zero\ZeroFormatter.Interfaces.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

@@ -286,3 +286,9 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+/dist/*.dll
+/dist/*/*.dll
+/dist/*/*/*.dll
+/dist/*/*/*/*.dll
+/dist/*/*/*/*/*.dll
+/src/True.Fornax/Fornax.Net/Lib/system
