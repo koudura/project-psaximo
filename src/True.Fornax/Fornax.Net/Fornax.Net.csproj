@@ -273,6 +273,13 @@
     <Compile Include="Query\Query.cs" />
     <Compile Include="Search\IndexSearcher.cs" />
     <Compile Include="Util\Constants.cs" />
+    <Compile Include="Util\Security\Cryptography\Adler32.cs" />
+    <Compile Include="Util\Security\Cryptography\CRC32.cs" />
+    <Compile Include="Util\Security\Cryptography\CRC64.cs" />
+    <Compile Include="Util\Security\Cryptography\CRC64Iso.cs" />
+    <Compile Include="Util\Security\Cryptography\Default.cs" />
+    <Compile Include="Util\Security\Cryptography\Elf32.cs" />
+    <Compile Include="Util\Security\ICheckSum.cs" />
     <Compile Include="Util\Text\Character.cs" />
     <Compile Include="Util\Text\Extensions.String.cs" />
     <Compile Include="Util\Text\StringTokenizer.cs" />
@@ -289,7 +296,6 @@
     <Folder Include="Util\Linq\" />
     <Folder Include="Util\Runtime\Cache\" />
     <Folder Include="Util\Runtime\Logging\" />
-    <Folder Include="Util\Security\Cryptography\" />
     <Folder Include="Util\System\" />
     <Folder Include="Util\Threading\" />
   </ItemGroup>
