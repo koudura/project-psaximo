@@ -65,6 +65,13 @@ namespace Fornax.Net.Util.Text
             throw new NotImplementedException();
         }
 
+        public virtual int CountTokens() {
+            int count = 0;
+            bool isToken = false;
+
+            return 0;
+        }
+
         public IEnumerator<string> GetEnumerator() {
             throw new NotImplementedException();
         }

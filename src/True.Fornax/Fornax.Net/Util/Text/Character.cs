@@ -143,6 +143,11 @@ namespace Fornax.Net.Util.Text
             return -1;
         }
 
+
+        public static int CharCount(int codepoint) {
+            return codepoint >= MIN_SUPPLEMENTARY_CODE_POINT ? 2 : 1;
+        }
+
         public static int ToChars(int codePoint, char[] dst, int dstIndex) {
             var converted = Unicode.ToCharArray(new[] { codePoint }, 0, 1);
 

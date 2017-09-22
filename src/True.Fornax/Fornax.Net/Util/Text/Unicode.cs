@@ -30,10 +30,24 @@ namespace Fornax.Net.Util.Text
 {
     class Unicode
     {
+       // public static readonly BytesRef BIG_TERM = new BytesRef(new byte[] { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }); // TODO this is unrelated here find a better place for it
 
+        public const int UNI_SUR_HIGH_START = 0xD800;
+        public const int UNI_SUR_HIGH_END = 0xDBFF;
+        public const int UNI_SUR_LOW_START = 0xDC00;
+        public const int UNI_SUR_LOW_END = 0xDFFF;
+        public const int UNI_REPLACEMENT_CHAR = 0xFFFD;
+
+        private const long UNI_MAX_BMP = 0x0000FFFF;
+
+        private const long HALF_SHIFT = 10;
+        private const long HALF_MASK = 0x3FFL;
+
+        private const int SURROGATE_OFFSET = Character.MIN_SUPPLEMENTARY_CODE_POINT - (UNI_SUR_HIGH_START << (int)HALF_SHIFT) - UNI_SUR_LOW_START;
 
 
         internal static char[] ToCharArray(int[] v1, int v2, int v3) {
+            
             //if (count < 0) {
             //    throw new System.ArgumentException();
             //}
