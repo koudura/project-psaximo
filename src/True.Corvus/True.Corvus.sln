@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corvus.2.0", "Corvus.2.0\Corvus.2.0.csproj", "{E4583172-0804-47F0-92F3-ECB8CAF2F83C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corvus.1.0", "Corvus.1.0\Corvus.1.0.csproj", "{9A5049E0-CD92-4B9F-9C38-4376D89EE3C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4583172-0804-47F0-92F3-ECB8CAF2F83C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4583172-0804-47F0-92F3-ECB8CAF2F83C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4583172-0804-47F0-92F3-ECB8CAF2F83C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4583172-0804-47F0-92F3-ECB8CAF2F83C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A5049E0-CD92-4B9F-9C38-4376D89EE3C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A5049E0-CD92-4B9F-9C38-4376D89EE3C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A5049E0-CD92-4B9F-9C38-4376D89EE3C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A5049E0-CD92-4B9F-9C38-4376D89EE3C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9E5290B-A1AA-4040-9719-BF3D5DB18D9F}
+	EndGlobalSection
+EndGlobal
