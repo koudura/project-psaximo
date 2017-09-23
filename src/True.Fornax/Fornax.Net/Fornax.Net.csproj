@@ -212,6 +212,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -251,18 +252,48 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis\AdvancedAnalyzer.cs" />
+    <Compile Include="Analysis\Analyzer.cs" />
+    <Compile Include="Analysis\Filters\ILowerCaseFilter.cs" />
+    <Compile Include="Analysis\Filters\IStemFilter.cs" />
+    <Compile Include="Analysis\Filters\IStopFilter.cs" />
+    <Compile Include="Analysis\SimpleAnalyzer.cs" />
+    <Compile Include="Analysis\StandardAnalyzer.cs" />
+    <Compile Include="Analysis\Tokenization\Token.cs" />
     <Compile Include="Analysis\Tokenization\Tokenizer.cs" />
+    <Compile Include="Analysis\Tokenization\TokenStream.cs" />
     <Compile Include="Bot\Local\DaemonX.cs" />
+    <Compile Include="Bot\Local\DaemonXCrawler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bot\Local\DaemonXCrawler.Designer.cs">
+      <DependentUpon>DaemonXCrawler.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bot\Net\Altair.cs" />
     <Compile Include="Common\SandBox\Contrib.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Contrib.resx</DependentUpon>
     </Compile>
+    <Compile Include="Common\SandBox\ContribPathsHandler.cs" />
+    <Compile Include="config.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>config.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigFactory.cs" />
     <Compile Include="Document\Document.cs" />
     <Compile Include="Document\Field.cs" />
     <Compile Include="enum.cs" />
+    <Compile Include="Index\IO\IndexCompressor.cs" />
+    <Compile Include="Index\Storage\Corpus.cs" />
+    <Compile Include="Index\Storage\FornaxRepository.cs" />
+    <Compile Include="Index\IO\IndexReader.cs" />
+    <Compile Include="Index\IO\InvertedFile.cs" />
+    <Compile Include="Index\IO\SignFile.cs" />
+    <Compile Include="Index\Storage\Repository.cs" />
     <Compile Include="Index\Term.cs" />
+    <Compile Include="Index\TermVector.cs" />
     <Compile Include="Lib\Dependency.cs" />
     <Compile Include="Lib\libraries.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -295,9 +326,15 @@
     <Compile Include="Util\IO\FornaxReader.cs" />
     <Compile Include="Util\IO\FornaxWriter.cs" />
     <Compile Include="Util\IO\PlainReader.cs" />
+    <Compile Include="Util\IO\WordListLoader.cs" />
     <Compile Include="Util\Linq\Extensions.List.cs" />
+    <Compile Include="Util\Linq\Extensions.Set.cs" />
     <Compile Include="Util\Numerics\Maths.cs" />
     <Compile Include="Util\Numerics\Number.cs" />
+    <Compile Include="Util\Runtime\Cache\CacheBook.cs" />
+    <Compile Include="Util\Runtime\Logging\ILoggable.cs" />
+    <Compile Include="Util\Runtime\Logging\Level.cs" />
+    <Compile Include="Util\Runtime\Logging\Logger.cs" />
     <Compile Include="Util\Security\Cryptography\Adler32.cs" />
     <Compile Include="Util\Security\Cryptography\CRC32.cs" />
     <Compile Include="Util\Security\Cryptography\CRC64.cs" />
@@ -305,6 +342,8 @@
     <Compile Include="Util\Security\Cryptography\Default.cs" />
     <Compile Include="Util\Security\Cryptography\Elf32.cs" />
     <Compile Include="Util\Security\ICheckSum.cs" />
+    <Compile Include="Util\Security\ListCompressor.cs" />
+    <Compile Include="Util\System\MemoryModel.cs" />
     <Compile Include="Util\System\OS.cs" />
     <Compile Include="Util\Text\BytesRef.cs" />
     <Compile Include="Util\Text\Character.cs" />
@@ -318,13 +357,8 @@
     <Compile Include="Util\Threading\ReentrantLock.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Analysis\Filters\" />
-    <Folder Include="Index\IO\" />
-    <Folder Include="Index\Storage\" />
     <Folder Include="Search\Models\" />
     <Folder Include="Search\Scoring\" />
-    <Folder Include="Util\Runtime\Cache\" />
-    <Folder Include="Util\Runtime\Logging\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Common\SandBox\Contrib.resx">
@@ -427,6 +461,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Util\Linq\Extensions.Linq.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>config.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -268,11 +268,7 @@ namespace Fornax.Net.Util.Text
             return c1;
         }
 
-
-
-
-
-
+        //TODO: codepointbefore, Tocodepoint
 
         /// <summary>
         /// Search the sorted characters in the string and return the nearest index.

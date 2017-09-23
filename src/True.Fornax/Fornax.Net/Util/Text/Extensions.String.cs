@@ -111,7 +111,7 @@ namespace Fornax.Net.Util.Text
         /// <returns></returns>
         public static bool ContinuesWith(this string str, int index, char[] continuum) {
             int offset = index + 1, lim = str.Length - offset;
-            if (!((offset>= 0) && (offset< str.Length)) || continuum.Length > str.Length) throw new ArgumentException();
+            if (!((offset >= 0) && (offset < str.Length)) || continuum.Length > str.Length) throw new ArgumentException();
             if (str.Substring(offset, lim).Length < continuum.Length) return false;
 
             int i = 0; bool matches = true;
@@ -129,9 +129,28 @@ namespace Fornax.Net.Util.Text
         /// <param name="index">The index to the values.</param>
         /// <returns></returns>
         /// <exception cref="IndexOutOfRangeException">if index is not in string</exception>
-        public static int CodePointAt(this string str ,int index) {
+        public static int CodePointAt(this string str, int index) {
             if ((index < 0) || (index >= str.Length)) throw new IndexOutOfRangeException(nameof(index));
             return Character.CodePointAtImpl(str.ToCharArray(), index, str.Length);
+        }
+
+        /// <summary>
+        /// Cleans the specified string. i.e. Removes all whitespaces in string
+        /// and removes all special characters if and only if
+        /// <paramref name="allowDelimiters"/> is set to <see cref="true"/>.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <returns></returns>
+        public static string Clean(this string str, bool allowDelimiters) {
+            str.Replace(" ", "");
+            char[] buf = str.Trim().ToCharArray();
+            if (!allowDelimiters) {
+                foreach (var item in buf) {
+                    if (!Char.IsLetterOrDigit(item))
+                        str.Replace(item.ToString(), "");
+                }
+            }
+            return str;
         }
 
     }
