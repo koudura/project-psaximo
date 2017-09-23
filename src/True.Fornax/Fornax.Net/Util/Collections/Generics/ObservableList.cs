@@ -24,20 +24,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fornax.Net.Util.Collections.Generics
 {
+    /// <summary>
+    /// A List that can be observed for changed and clear events.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     [Serializable]
     public class ObservableList<T> : IList<T>
     {
         private readonly IList<T> monitoredList;
+
         public event EventHandler<ListChangedEventArgs> ListChanged = delegate { };
         public event EventHandler<ListChangedEventArgs> ListCleared = delegate { };
 
-
+        
         public ObservableList() {
             monitoredList = new List<T>();
         }

@@ -273,8 +273,29 @@
     <Compile Include="Query\Query.cs" />
     <Compile Include="Search\IndexSearcher.cs" />
     <Compile Include="Util\Collections\Arrays.cs" />
+    <Compile Include="Util\Collections\Collections.cs" />
+    <Compile Include="Util\Collections\Equatable.cs" />
+    <Compile Include="Util\Collections\Generics\ConcurrentHashSet.cs" />
+    <Compile Include="Util\Collections\Generics\EquatableList.cs" />
+    <Compile Include="Util\Collections\Generics\EquatableSet.cs" />
+    <Compile Include="Util\Collections\Generics\HashMap.cs" />
+    <Compile Include="Util\Collections\Generics\LurchTable.cs" />
     <Compile Include="Util\Collections\Generics\ObservableList.cs" />
+    <Compile Include="Util\Collections\Generics\ObservableMap.cs" />
+    <Compile Include="Util\Collections\Generics\PriorityQueue.cs" />
+    <Compile Include="Util\Collections\Generics\TreeMap.cs" />
+    <Compile Include="Util\Collections\Generics\TreeSet.cs" />
     <Compile Include="Util\Constants.cs" />
+    <Compile Include="Util\FileFormat.cs" />
+    <Compile Include="Util\FornaxException.cs" />
+    <Compile Include="Util\IO\DocumentReader.cs" />
+    <Compile Include="Util\IO\DomReader.cs" />
+    <Compile Include="Util\IO\FileHandler.cs" />
+    <Compile Include="Util\IO\FornaxFileException.cs" />
+    <Compile Include="Util\IO\FornaxReader.cs" />
+    <Compile Include="Util\IO\FornaxWriter.cs" />
+    <Compile Include="Util\IO\PlainReader.cs" />
+    <Compile Include="Util\Linq\Extensions.List.cs" />
     <Compile Include="Util\Numerics\Maths.cs" />
     <Compile Include="Util\Numerics\Number.cs" />
     <Compile Include="Util\Security\Cryptography\Adler32.cs" />
@@ -288,9 +309,13 @@
     <Compile Include="Util\Text\BytesRef.cs" />
     <Compile Include="Util\Text\Character.cs" />
     <Compile Include="Util\Text\Extensions.String.cs" />
+    <Compile Include="Util\Text\ITokenizer.cs" />
     <Compile Include="Util\Text\StringTokenizer.cs" />
     <Compile Include="Util\Text\Unicode.cs" />
     <Compile Include="Util\Text\WritableArrayAttribute.cs" />
+    <Compile Include="Util\Threading\FornaxThread.cs" />
+    <Compile Include="Util\Threading\IRunnable.cs" />
+    <Compile Include="Util\Threading\ReentrantLock.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Analysis\Filters\" />
@@ -298,10 +323,8 @@
     <Folder Include="Index\Storage\" />
     <Folder Include="Search\Models\" />
     <Folder Include="Search\Scoring\" />
-    <Folder Include="Util\IO\" />
     <Folder Include="Util\Runtime\Cache\" />
     <Folder Include="Util\Runtime\Logging\" />
-    <Folder Include="Util\Threading\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Common\SandBox\Contrib.resx">

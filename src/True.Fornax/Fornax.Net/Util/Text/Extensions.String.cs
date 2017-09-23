@@ -1,4 +1,5 @@
 ﻿/** MIT LICENSE
+ * 
  * Copyright (c) 2017 Koudura Ninci @True.Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -119,6 +120,18 @@ namespace Fornax.Net.Util.Text
                 i++;
             } while (matches && i < continuum.Length);
             return matches;
+        }
+
+        /// <summary>
+        /// Returns the character (Unicode code point) at the specified index.
+        /// </summary>
+        /// <param name="str">The string</param>
+        /// <param name="index">The index to the values.</param>
+        /// <returns></returns>
+        /// <exception cref="IndexOutOfRangeException">if index is not in string</exception>
+        public static int CodePointAt(this string str ,int index) {
+            if ((index < 0) || (index >= str.Length)) throw new IndexOutOfRangeException(nameof(index));
+            return Character.CodePointAtImpl(str.ToCharArray(), index, str.Length);
         }
 
     }

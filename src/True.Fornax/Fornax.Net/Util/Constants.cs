@@ -73,7 +73,7 @@ namespace Fornax.Net.Util
 
         #endregion
 
-        internal const string WS_BROKERS = " \t\n\r\t";
+        internal const string WS_BROKERS = " \t\n\r\f";
 
         #region Methods        
         /// <summary>
