@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Util.Threading
 {
-    interface IRunnable
+    /// <summary>
+    /// Interface to be implemented by classes whose instances are intended to be excecuted by thread.
+    /// </summary>
+    public interface IRunnable
     {
     }
 }

@@ -1,5 +1,4 @@
-﻿/** MIT LICENSE
- * 
+﻿/**
  * Copyright (c) 2017 Koudura Ninci @True.Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -150,11 +149,11 @@ namespace Fornax.Net.Util.IO
         /// <param name="wordsFile">The words file containing new words.</param>
         /// <param name="isBias">if set to <c>true</c> Text Prepocessing is enabled.</param>
         /// <param name="AsSet">if set to <c>true</c> no repeated words allowed.</param>
-        public static void Update(ref ICollection<string> wordList, FileInfo wordsFile, bool isBias, bool AsSet = true) {
+        public static void Update(ref ICollection<string> wordList, FileInfo wordsFile, bool isBias) {
             Contract.Requires(wordList != null || wordsFile != null);
             try {
                 using (var reader = new StreamReader(wordsFile.FullName, Encoding.Default, true)) {
-                    Update(ref wordList, reader, isBias, AsSet);
+                    Update(ref wordList, reader, isBias);
                 }
             } catch (Exception ex) when (ex is ArgumentNullException || ex is ArgumentException || ex is IOException) { }
         }
@@ -167,13 +166,11 @@ namespace Fornax.Net.Util.IO
         /// <param name="wordsFile">The words file containing new words.</param>
         /// <param name="isBias">if set to <c>true</c> Text Prepocessing is enabled.</param>
         /// <param name="AsSet">if set to <c>true</c> no repeated words allowed.</param>
-        public static void Update(ref ICollection<string> wordList, TextReader textReader, bool isBias, bool AsSet = true) {
+        public static void Update(ref ICollection<string> wordList, TextReader textReader, bool isBias) {
             Contract.Requires(wordList != null || textReader != null);
             try {
-                ICollection<string> temp = null;
-                if (AsSet) temp = new HashSet<string>();
-                else temp = new List<string>();
-
+                ICollection<string> temp = new HashSet<string>();
+      
                 string word = null;
                 while ((word = textReader.ReadLine()) != null) {
                     if (isBias)
@@ -192,15 +189,16 @@ namespace Fornax.Net.Util.IO
         /// <param name="wordsFile">The words file containing new words.</param>
         /// <param name="isBias">if set to <c>true</c> Text Prepocessing is enabled.</param>
         /// <param name="AsSet">if set to <c>true</c> no repeated words allowed.</param>
-        public static async Task<ICollection<string>> Update<T>(ICollection<string> wordList, FileInfo wordsFile, bool isBias, bool AsSet = true) {
+        public static async Task<ICollection<string>> UpdateAsync(ICollection<string> wordList, FileInfo wordsFile, bool isBias) {
             Contract.Requires(wordList != null || wordsFile != null);
             try {
                 using (var reader = new StreamReader(wordsFile.FullName, Encoding.Default, true)) {
-                    return await UpdateAsync(wordList, reader, isBias, AsSet);
+                    return await UpdateAsync(wordList, reader, isBias);
                 }
             } catch (Exception ex) when (ex is ArgumentNullException || ex is ArgumentException || ex is IOException) { return wordList; }
 
         }
+
         /// <summary>
         /// Updates the specified <see cref="ICollection{T}"/> word list asynchronuously. by/from a specific Reader
         /// as in <seealso cref="GetWordSet(FileInfo, bool)"/>.
@@ -209,12 +207,10 @@ namespace Fornax.Net.Util.IO
         /// <param name="wordsFile">The words file containing new words.</param>
         /// <param name="isBias">if set to <c>true</c> Text Prepocessing is enabled.</param>
         /// <param name="AsSet">if set to <c>true</c> no repeated words allowed.</param>
-        internal static async Task<ICollection<string>> UpdateAsync(ICollection<string> wordList, TextReader reader, bool isBias, bool AsSet = true) {
+        internal static async Task<ICollection<string>> UpdateAsync(ICollection<string> wordList, TextReader reader, bool isBias) {
             Contract.Requires(wordList != null || reader != null);
             try {
-                ICollection<string> temp = null;
-                if (AsSet) temp = new HashSet<string>();
-                else temp = new List<string>();
+                ICollection<string> temp = new HashSet<string>();
 
                 string word = null;
                 while ((word = await reader.ReadLineAsync()) != null) {
@@ -228,6 +224,11 @@ namespace Fornax.Net.Util.IO
         }
 
         //TODO: Stem dictionary loader , stop words with comment loader(rep comment tag e.g "|")
-        //Create IWordsLoader :  to hold virtual extraction methods.
+
+        //public static IDictionary<string, HashSet<string>> GetStemDictionary(FileInfo file, bool IsBias) {
+
+
+        //}
+
     }
 }

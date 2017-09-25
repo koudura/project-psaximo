@@ -96,5 +96,6 @@ namespace Fornax.Net.Util.Numerics
         public static double ToDegrees(this int radians) {
             return ((double)radians) * 180 / Math.PI;
         }
+
     }
 }

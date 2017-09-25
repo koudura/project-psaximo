@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Analysis.Filters
+namespace Fornax.Net.Query
 {
-   public interface IStopFilter
+    class RegexQuery
     {
-
-
     }
 }

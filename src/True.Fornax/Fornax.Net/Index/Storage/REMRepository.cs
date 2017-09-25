@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Analysis.Filters
+namespace Fornax.Net.Index.Storage
 {
-   public interface IStopFilter
+    class REMRepository
     {
-
-
     }
 }

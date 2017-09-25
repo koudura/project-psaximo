@@ -254,6 +254,7 @@
   <ItemGroup>
     <Compile Include="Analysis\AdvancedAnalyzer.cs" />
     <Compile Include="Analysis\Analyzer.cs" />
+    <Compile Include="Analysis\Explanation.cs" />
     <Compile Include="Analysis\Filters\ILowerCaseFilter.cs" />
     <Compile Include="Analysis\Filters\IStemFilter.cs" />
     <Compile Include="Analysis\Filters\IStopFilter.cs" />
@@ -285,12 +286,18 @@
     <Compile Include="Document\Document.cs" />
     <Compile Include="Document\Field.cs" />
     <Compile Include="enum.cs" />
+    <Compile Include="Index\Enums.cs" />
     <Compile Include="Index\IO\IndexCompressor.cs" />
+    <Compile Include="Index\IO\IndexWriter.cs" />
+    <Compile Include="Index\IO\PerSegmentFile.cs" />
     <Compile Include="Index\Storage\Corpus.cs" />
     <Compile Include="Index\Storage\FornaxRepository.cs" />
     <Compile Include="Index\IO\IndexReader.cs" />
     <Compile Include="Index\IO\InvertedFile.cs" />
     <Compile Include="Index\IO\SignFile.cs" />
+    <Compile Include="Index\Storage\FSRepository.cs" />
+    <Compile Include="Index\Storage\NETRepository.cs" />
+    <Compile Include="Index\Storage\REMRepository.cs" />
     <Compile Include="Index\Storage\Repository.cs" />
     <Compile Include="Index\Term.cs" />
     <Compile Include="Index\TermVector.cs" />
@@ -300,8 +307,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>libraries.resx</DependentUpon>
     </Compile>
+    <Compile Include="Progress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\BooleanQuery.cs" />
+    <Compile Include="Query\Enums.cs" />
+    <Compile Include="Query\FornaxQuery.cs" />
+    <Compile Include="Query\FreeTextQuery.cs" />
+    <Compile Include="Query\FrequencyQuery.cs" />
+    <Compile Include="Query\KeywordQuery.cs" />
+    <Compile Include="Query\PhraseQuery.cs" />
     <Compile Include="Query\Query.cs" />
+    <Compile Include="Query\RangeQuery.cs" />
+    <Compile Include="Query\RegexQuery.cs" />
+    <Compile Include="Query\TruncatedQuery.cs" />
+    <Compile Include="Query\WildCardQuery.cs" />
+    <Compile Include="Query\ZoneQuery.cs" />
     <Compile Include="Search\IndexSearcher.cs" />
     <Compile Include="Util\Collections\Arrays.cs" />
     <Compile Include="Util\Collections\Collections.cs" />
@@ -310,10 +330,12 @@
     <Compile Include="Util\Collections\Generics\EquatableList.cs" />
     <Compile Include="Util\Collections\Generics\EquatableSet.cs" />
     <Compile Include="Util\Collections\Generics\HashMap.cs" />
+    <Compile Include="Util\Collections\Generics\ISubList.cs" />
     <Compile Include="Util\Collections\Generics\LurchTable.cs" />
     <Compile Include="Util\Collections\Generics\ObservableList.cs" />
     <Compile Include="Util\Collections\Generics\ObservableMap.cs" />
     <Compile Include="Util\Collections\Generics\PriorityQueue.cs" />
+    <Compile Include="Util\Collections\Generics\SubList.cs" />
     <Compile Include="Util\Collections\Generics\TreeMap.cs" />
     <Compile Include="Util\Collections\Generics\TreeSet.cs" />
     <Compile Include="Util\Constants.cs" />
