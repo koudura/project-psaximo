@@ -1,4 +1,4 @@
-﻿/** MIT LICENSE
+﻿/** 
 *   Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,68 +22,82 @@
 **/
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 
 namespace Fornax.Net.Util.Text
 {
+    /// <summary>
+    /// Simple utility class for manipulating <see cref="char"/>.
+    /// </summary>
+    [Progress("Unicode",false, Documented = true,Tested = false)]
     class Unicode
     {
-       // public static readonly BytesRef BIG_TERM = new BytesRef(new byte[] { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }); // TODO this is unrelated here find a better place for it
-
-        public const int UNI_SUR_HIGH_START = 0xD800;
-        public const int UNI_SUR_HIGH_END = 0xDBFF;
-        public const int UNI_SUR_LOW_START = 0xDC00;
-        public const int UNI_SUR_LOW_END = 0xDFFF;
-        public const int UNI_REPLACEMENT_CHAR = 0xFFFD;
-
         private const long UNI_MAX_BMP = 0x0000FFFF;
 
         private const long HALF_SHIFT = 10;
         private const long HALF_MASK = 0x3FFL;
 
-        private const int SURROGATE_OFFSET = Character.MIN_SUPPLEMENTARY_CODE_POINT - (UNI_SUR_HIGH_START << (int)HALF_SHIFT) - UNI_SUR_LOW_START;
 
+        private const int LEAD_SURROGATE_SHIFT = 10;
+        private const int TRAIL_SURROGATE_MASK = 0x3FF;
+        private const int TRAIL_SURROGATE_MIN_VALUE = 0xDC00;
+        private const int LEAD_SURROGATE_MIN_VALUE = 0xD800;
+        private const int SUPPLEMENTARY_MIN_VALUE = 0x10000;
 
-        internal static char[] ToCharArray(int[] v1, int v2, int v3) {
-            
-            //if (count < 0) {
-            //    throw new System.ArgumentException();
-            //}
-            //int countThreashold = 1024; // If the number of chars exceeds this, we count them instead of allocating count * 2
+        private static readonly int LEAD_SURROGATE_OFFSET_ = LEAD_SURROGATE_MIN_VALUE - (SUPPLEMENTARY_MIN_VALUE >> LEAD_SURROGATE_SHIFT);
+        
+        /// <summary>
+        /// Converts a specific set of Unicode code-points to their respective <see cref="char"/>[] 
+        /// representation.
+        /// </summary>
+        /// <param name="codePoints">The set of Unicode code-points.</param>
+        /// <param name="offset">The offset.</param>
+        /// <param name="count">The count.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">
+        /// count
+        /// or
+        /// cp
+        /// </exception>
+        public static char[] ToCharArray(int[] codePoints, int offset, int count) {
 
+            if (count < 0) {
+                throw new ArgumentException(nameof(count));
+            }
+            int countThreashold = 1024; 
+            int arrayLength = count * 2;
 
-            //if (count > countThreashold) {
-            //    arrayLength = 0;
-            //    for (int r = offset, e = offset + count; r < e; ++r) {
-            //        arrayLength += codePoints[r] < 0x010000 ? 1 : 2;
-            //    }
-            //    if (arrayLength < 1) {
-            //        arrayLength = count * 2;
-            //    }
-            //}
-            //// Initialize our array to our exact or oversized length.
-            //// It is now safe to assume we have enough space for all of the characters.
+            if (count > countThreashold) {
+                arrayLength = 0;
+                for (int r = offset, e = offset + count; r < e; ++r) {
+                    arrayLength += codePoints[r] < 0x010000 ? 1 : 2;
+                }
+                if (arrayLength < 1) {
+                    arrayLength = count * 2;
+                }
+            }
+            /** 
+             ** Initialize our array to our exact or oversized length.
+             ** It is now safe to assume i  have enough space for all of the characters.
+             **/
+            char[] chars = new char[arrayLength];
+            int w = 0;
+            for (int r = offset, e = offset + count; r < e; ++r) {
+                int cp = codePoints[r];
+                if (cp < 0 || cp > 0x10ffff) {
+                    throw new ArgumentException(nameof(cp));
+                }
+                if (cp < 0x010000) {
+                    chars[w++] = (char)cp;
+                } else {
+                    chars[w++] = (char)(LEAD_SURROGATE_OFFSET_ + (cp >> LEAD_SURROGATE_SHIFT));
+                    chars[w++] = (char)(TRAIL_SURROGATE_MIN_VALUE + (cp & TRAIL_SURROGATE_MASK));
+                }
+            }
 
-            //char[] chars = new char[arrayLength];
-            //int w = 0;
-            //for (int r = offset, e = offset + count; r < e; ++r) {
-            //    int cp = codePoints[r];
-            //    if (cp < 0 || cp > 0x10ffff) {
-            //        throw new System.ArgumentException();
-            //    }
-            //    if (cp < 0x010000) {
-            //        chars[w++] = (char)cp;
-            //    } else {
-            //        chars[w++] = (char)(LEAD_SURROGATE_OFFSET_ + (cp >> LEAD_SURROGATE_SHIFT_));
-            //        chars[w++] = (char)(TRAIL_SURROGATE_MIN_VALUE + (cp & TRAIL_SURROGATE_MASK_));
-            //    }
-            //}
-
-            // var result = new char[w];
-            //   Array.Copy(chars, result, w);
-            return null;
+            var result = new char[w];
+            Array.Copy(chars, result, w);
+            return result;
         }
     }
 }

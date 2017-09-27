@@ -175,40 +175,7 @@ public enum FornaxFormat
     /// </summary>
     Zip
 }
-
-/// <summary>
-/// Enum to manage delegate handlers for loading and preloading Dependencies 
-/// and external libraries. Manages eventHandlers Dynamic assembly runtime resolve.
-/// </summary>
-public enum FornaxDependency
-{
-    /// <summary>
-    /// The load on demand procedure notifies its event handler to load dependency library on demand to embedded memory.
-    /// This Event Listens constantly at runtime for changes made to the default assembly external directory.
-    /// then creates another event handler for - task by user.
-    /// </summary>
-    LoadOnDemand,
-    /// <summary>
-    /// The pre load procedure initializes a function that loads all specified dependency librariies at initialization time.
-    /// This Loads library to embedded resources via memory stream, and clears embedded resources on close or after a specified time by user.
-    /// </summary>
-    PreLoad,
-    /// <summary>
-    /// The register on demand procedure works similar to <see cref="LoadOnDemand"/>, but byte[] representation of dependency library gets 
-    /// gets regisered to the embeded resource. Persistence is thereby ensured. This Event When called once, erradicates the need for another call
-    /// during a separate runtime, because previously loaded library as being registered into [Fornax.Net.Common.SandBox].
-    /// </summary>
-    RegisterOnDemand,
-    /// <summary>
-    /// The register procedure, much like the <seealso cref="PreLoad"/>. But byte[] representation get registered into fornax.net
-    /// see <seealso cref="RegisterOnDemand"/> for more registration details.
-    /// </summary>
-    Register
-
-}
 #endregion
-
-
 
 #region  Misc Enumerations
 /// <summary>

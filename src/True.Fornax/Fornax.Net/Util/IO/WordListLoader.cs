@@ -37,6 +37,7 @@ namespace Fornax.Net.Util.IO
     /// A Loader for Plain-Text(.txt) Files that represent a list of stopwords.
     /// also  to  load stem dictionary text files.
     /// </summary>
+    [Progress("WordListLoader",false, Documented = true,Tested = false)]
     public static class WordListLoader
     {
         /// <summary>

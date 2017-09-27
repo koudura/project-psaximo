@@ -343,7 +343,10 @@
     <Compile Include="Util\FornaxException.cs" />
     <Compile Include="Util\IO\DocumentReader.cs" />
     <Compile Include="Util\IO\DomReader.cs" />
+    <Compile Include="Util\IO\Enums.cs" />
     <Compile Include="Util\IO\FileHandler.cs" />
+    <Compile Include="Util\IO\FornaxAssembly.cs" />
+    <Compile Include="Util\IO\FornaxAssemblyException.cs" />
     <Compile Include="Util\IO\FornaxFileException.cs" />
     <Compile Include="Util\IO\FornaxReader.cs" />
     <Compile Include="Util\IO\FornaxWriter.cs" />
@@ -367,6 +370,7 @@
     <Compile Include="Util\Security\ListCompressor.cs" />
     <Compile Include="Util\System\MemoryModel.cs" />
     <Compile Include="Util\System\OS.cs" />
+    <Compile Include="Util\System\Resource.cs" />
     <Compile Include="Util\Text\BytesRef.cs" />
     <Compile Include="Util\Text\Character.cs" />
     <Compile Include="Util\Text\Extensions.String.cs" />
@@ -489,6 +493,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>config.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Util\System\Extensions.Assembly.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\SandBox\user.plugins" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Lib\LZ4.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

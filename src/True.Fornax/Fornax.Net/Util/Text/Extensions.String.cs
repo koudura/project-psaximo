@@ -1,5 +1,4 @@
-﻿/** MIT LICENSE
- * 
+﻿/** 
  * Copyright (c) 2017 Koudura Ninci @True.Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,8 +29,9 @@ namespace Fornax.Net.Util.Text
 {
     public static partial class Extensions
     {
+        [Obsolete("Use System.String.IsNullOrEmpty(string) instead", false)]
         /// <summary>
-        /// Determines whether [is empty or null].
+        /// Determines whether a string is Empty or null.
         /// </summary>
         /// <param name="str">The string.</param>
         /// <returns>
@@ -96,7 +96,7 @@ namespace Fornax.Net.Util.Text
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
         public static bool ContinuesWith(this string str, int index, string continuum) {
-            Contract.Requires(!continuum.IsEmptyOrNull());
+            Contract.Requires(!string.IsNullOrEmpty(continuum));
             if (!((index + 1 >= 0) && (index + 1 < str.Length)) || continuum.Length > str.Length) throw new ArgumentException();
             return ContinuesWith(str, index, continuum.ToCharArray());
         }

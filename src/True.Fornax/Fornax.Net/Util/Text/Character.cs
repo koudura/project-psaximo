@@ -1,5 +1,4 @@
-﻿/** MIT LICENSE
-*   
+﻿/** 
 *   Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,7 +23,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 using Num = Fornax.Net.Util.Numerics.Number;
 
@@ -35,6 +33,7 @@ namespace Fornax.Net.Util.Text
     /// object. <para></para>
     /// This class also provides methods for determining a characters category and Manipulating characters.
     /// </summary>
+    [Progress("Character",false,Documented = false,Tested = false)]
     public class Character
     {
         #region Character Fields & Consts
@@ -268,7 +267,42 @@ namespace Fornax.Net.Util.Text
             return c1;
         }
 
-        //TODO: codepointbefore, Tocodepoint
+        /// <summary>
+        /// Codes the point before.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="index">The index.</param>
+        /// <returns></returns>
+        public static int CodePointBefore(char[] a, int index) {
+            return CodePointBeforeImpl(a, index, 0);
+        }
+
+        /// <summary>
+        /// Codes the point before.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="index">The index.</param>
+        /// <param name="start">The start.</param>
+        /// <returns></returns>
+        /// <exception cref="IndexOutOfRangeException">index</exception>
+        public static int CodePointBefore(char[] a, int index, int start) {
+            if(index <= start || start< 0 || start >= a.Length) {
+                throw new IndexOutOfRangeException(nameof(index));
+            }
+            return CodePointBeforeImpl(a, index, start);
+        }
+
+        static int CodePointBeforeImpl(char[] a, int index, int start) {
+            char c2 = a[--index];
+            if(Char.IsLowSurrogate(c2) && index > start) {
+                char c1 = a[--index];
+                if (Char.IsHighSurrogate(c1)) {
+                    return ToCodePoint(c1, c2);
+                }
+            }
+            return c2;
+        }
+
 
         /// <summary>
         /// Search the sorted characters in the string and return the nearest index.
@@ -357,7 +391,13 @@ namespace Fornax.Net.Util.Text
         }
 
 
-
+        /// <summary>
+        /// To the chars.
+        /// </summary>
+        /// <param name="codePoint">The code point.</param>
+        /// <param name="dst">The DST.</param>
+        /// <param name="dstIndex">Index of the DST.</param>
+        /// <returns></returns>
         public static int ToChars(int codePoint, char[] dst, int dstIndex) {
             var converted = Unicode.ToCharArray(new[] { codePoint }, 0, 1);
 
@@ -365,11 +405,22 @@ namespace Fornax.Net.Util.Text
             return converted.Length;
         }
 
+        /// <summary>
+        /// To the chars.
+        /// </summary>
+        /// <param name="codePoint">The code point.</param>
+        /// <returns></returns>
         public static char[] ToChars(int codePoint) {
             return Unicode.ToCharArray(new[] { codePoint }, 0, 1);
         }
 
-
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public static int GetHashCode(char value) => value;
 
         #region overrides
@@ -402,8 +453,7 @@ namespace Fornax.Net.Util.Text
         /// </returns>
         public override string ToString() {
             char[] buffer = { this.value };
-            //not too sure of this method. however fast but space consuming.
-            return new StringBuilder(buffer.Length).Append(buffer).ToString();
+            return new string(buffer);
         }
 
         /// <summary>

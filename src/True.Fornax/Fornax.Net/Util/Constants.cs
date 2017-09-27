@@ -75,6 +75,9 @@ namespace Fornax.Net.Util
 
         internal const string WS_BROKERS = " \t\n\r\f";
 
+        internal static readonly string LoggingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+
         #region Methods        
         /// <summary>
         /// Determines whether the specified token is a conjuction operator <c>[AND : &&]</c>.

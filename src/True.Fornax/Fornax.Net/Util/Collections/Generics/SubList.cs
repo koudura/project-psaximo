@@ -35,7 +35,9 @@ namespace Fornax.Net.Util.Collections.Generics
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <seealso cref="System.Collections.Generic.IList{T}" />
+    [Serializable]
     [Progress("SubList<T>",false ,Documented = true, Tested = false)]
+
     public sealed class SubList<T> : IList<T>, ISubList<T>
     {
         private readonly IList<T> list;
