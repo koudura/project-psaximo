@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Util.System
+namespace Fornax.Net.Search.Scoring
 {
-    class OS
+    public class Ranker
     {
     }
 }

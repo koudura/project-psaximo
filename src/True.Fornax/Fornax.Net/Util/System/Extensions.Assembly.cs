@@ -113,4 +113,21 @@ namespace Fornax.Net.Util.System
             return true;
         }
     }
+
+    public static partial class Extensions {
+
+        /// <summary>
+        /// Gets if a Type inherits a generic interface. 
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="interfaceType">Type of the interface.</param>
+        /// <returns></returns>
+        public static bool ImplementsGenericInterface(this Type target, Type interfaceType) {
+            return target.GetTypeInfo().IsGenericType && target.GetGenericTypeDefinition().GetInterfaces().Any(
+                x => x.GetTypeInfo().IsGenericType && interfaceType.IsAssignableFrom(x.GetGenericTypeDefinition())
+            );
+        }
+
+
+    }
 }

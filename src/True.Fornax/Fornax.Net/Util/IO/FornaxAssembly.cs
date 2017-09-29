@@ -1,4 +1,27 @@
-﻿using System;
+﻿/***
+* Copyright (c) 2017 Koudura Ninci @True.Inc
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*
+**/
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
@@ -141,6 +164,10 @@ namespace Fornax.Net.Util.IO
         /// <param name="name">The name.</param>
         /// <returns></returns>
         public static Assembly LoadAssembly(string name) {
+            if (string.IsNullOrEmpty(name)) {
+                throw new ArgumentException("invalid libarary - ", nameof(name));
+            }
+
             if (!resolvedAssemblies.ContainsKey(name)) {
                 using (var stream = GetExecutingAssembly().GetManifestResourceStream(name)) {
                     byte[] temp = new byte[stream.Length];
@@ -194,8 +221,58 @@ namespace Fornax.Net.Util.IO
             }
         }
 
-        public static bool TryResolveAllDependencies() {
-            return Dependency.ResolveAllDefaults();
+        internal static bool TryResolveAllDependencies() {
+            return Dependency.ResolveAll(Dependency.All_deps);
+        }
+
+        internal static bool TryResolveIKVMs() {
+            return Dependency.ResolveAll(Dependency.Get_IKVM_AssemblyNames());
+        }
+
+        internal static bool TryResolveToxy() {
+            return Dependency.ResolveAll(Dependency.Get_Toxy_Names());
+        }
+
+        internal static bool TryResolveTika() {
+            if (Dependency.ResolveAll(Dependency.Get_IKVM_AssemblyNames())) {
+                return Dependency.ResolveAll(Dependency.Get_Tika_Names());
+            }
+            return false;
+        }
+
+        internal static bool TryResolveMisc() {
+            return Dependency.ResolveAll(Dependency.Get_MISC_Names());
+        }
+
+        internal static bool TryResolveLZ4() {
+            return Dependency.ResolveAll(new[] { Dependency.LZ4, Dependency.LZ4NET });
+        }
+
+        internal static bool TryResolveProtoBuf() {
+            return Dependency.ResolveAll(new[] { Dependency.PROTOBUF });
+        }
+
+        internal static bool TryResolveZero() {
+            return Dependency.ResolveAll(Dependency.Get_Zero_Names());
+        }
+
+        internal static bool TryResolvePDFBox() {
+            return Dependency.ResolveAll(new[] { Dependency.PDFBOX});
+        }
+
+        internal static bool TryResolveAllSerializers() {
+            bool proto = TryResolveProtoBuf();
+            bool zero = TryResolveZero();
+
+            return proto && zero;
+        }
+
+        internal static bool TryResolveAnySerializer() {
+            return TryResolveProtoBuf() || TryResolveZero();
+        }
+
+        internal static bool TryResolveHtmlPack() {
+            return Dependency.ResolveAll(new[] { Dependency.HTML_AGILITY_PACK });
         }
 
         #region override

@@ -98,7 +98,7 @@ namespace Fornax.Net.Index
     }
 
     /// <summary>
-    /// Zone is a Searchable <see cref="FieldScope"/>
+    /// Zone is an Indexed Searchable <see cref="FieldScope"/>.
     /// </summary>
     public enum Zone : byte
     {
@@ -123,6 +123,27 @@ namespace Fornax.Net.Index
         /// </summary>
         Custom = 0b0001
 
+    }
+
+    /// <summary>
+    /// <see cref="RepositoryType"/> indicates the type of repository created.
+    /// </summary>
+    public enum RepositoryType : uint
+    {
+        /// <summary>
+        /// The local repository i.e destop file-system repository.
+        /// </summary>
+        Local = 3126236545,
+
+        /// <summary>
+        /// The remote repository for removable drive repositories.
+        /// </summary>
+        Remote = 13687729,
+
+        /// <summary>
+        /// The network repository for online-networked repository.
+        /// </summary>
+        Network = 3479081626
     }
     #endregion
 }

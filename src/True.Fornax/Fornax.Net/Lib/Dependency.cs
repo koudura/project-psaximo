@@ -10,14 +10,13 @@ using DLL = Fornax.Net.Util.IO.FornaxAssembly;
 
 namespace Fornax.Net.Lib
 {
-    [Progress("Dependency",false, Documented = false,Tested = false)]
+    [Progress("Dependency", false, Documented = false, Tested = false)]
     internal class Dependency
     {
         private Dependency() { }
 
         #region IKVM dependencies
 
-        public static bool IsIKVMLoaded { get; set; }
 
         private const string IKVM_WINFORMS = "Fornax.Net.Lib.ikvm.IKVM.AWT.WinForms.dll";
         private const string IKVM_BEANS = "Fornax.Net.Lib.ikvm.IKVM.OpenJDK.Beans.dll";
@@ -48,7 +47,7 @@ namespace Fornax.Net.Lib
         private const string IKVM_XML_WEBSERVICES = "Fornax.Net.Lib.ikvm.IKVM.OpenJDK.XML.WebServices.dll";
         private const string IKVM_XML_XPATH = "Fornax.Net.Lib.ikvm.IKVM.OpenJDK.XML.XPath.dll";
 
-        private static string[] Get_IKVM_AssemblyNames() {
+        internal static string[] Get_IKVM_AssemblyNames() {
             return new[] { IKVM_BEANS,IKVM_CHARSETS,IKVM_CLDRDATA,IKVM_CORBA,IKVM_CORE,
                IKVM_JDBC,IKVM_LOCALEDATA,IKVM_MANAGEMENT,IKVM_MEDIA,IKVM_MISC,IKVM_NAMING,
                IKVM_NASHORN,IKVM_REMOTING,IKVM_RUNTIME,IKVM_RUNTIME_JNI,IKVM_SECURITY,IKVM_SWING_AWT,
@@ -56,6 +55,7 @@ namespace Fornax.Net.Lib
                IKVM_XML_PARSE,IKVM_XML_TRANSFORM,IKVM_XML_WEBSERVICES,IKVM_XML_XPATH
            };
         }
+
         internal static IEnumerable<AssemblyName> Get_IKVM_Names() {
             return DLL.GetNames(Get_IKVM_AssemblyNames());
         }
@@ -72,7 +72,7 @@ namespace Fornax.Net.Lib
         private const string TIKA_TEXTEXTRACTION = "Fornax.Net.Lib.tika.TikaOnDotNet.TextExtraction.dll";
         private const string MICROSOFT_WIN32 = "Fornax.Net.Lib.Microsoft.Win32.Primitives.dll";
 
-        private static string[] Get_Tika_Names() => new[] { TIKA, TIKA_TEXTEXTRACTION, MICROSOFT_WIN32 };
+        internal static string[] Get_Tika_Names() => new[] { TIKA, TIKA_TEXTEXTRACTION, MICROSOFT_WIN32 };
 
         internal static IEnumerable<AssemblyName> GetTikaNames() {
             return DLL.GetNames(Get_Tika_Names());
@@ -104,7 +104,7 @@ namespace Fornax.Net.Lib
         private const string POLICY_TAGLIB_SHARP = "Fornax.Net.Lib.toxy.policy.2.0.taglib-sharp.dll";
         private const string TAGLIB_SHARP = "Fornax.Net.Lib.toxy.taglib-sharp.dll";
         private const string THOUGHT_VCARDS = "Fornax.Net.Lib.toxy.Thought.vCards.dll";
-        private const string HTML_AGILITY_PACK = "Fornax.Net.Lib.toxy.HtmlAgilityPack.dll";
+        internal const string HTML_AGILITY_PACK = "Fornax.Net.Lib.toxy.HtmlAgilityPack.dll";
 
         private const string TOXY = "Fornax.Net.Lib.toxy.Toxy.dll";
 
@@ -139,13 +139,13 @@ namespace Fornax.Net.Lib
         #endregion
 
         #region Misc
-        private const string PDFBOX = "Fornax.Net.Lib.pdfbox.pdfbox-app-2.0.7.dll";
-        private const string SHARPZIPLIB = "Fornax.Net.Lib.ICSharpCode.SharpZipLib.dll";
-        private const string PROTOBUF = "Fornax.Net.Lib.protobuf-net.dll";
-        private const string LZ4NET = "Fornax.Net.Lib.Lz4Net.dll";
-        private const string LZ4 = "Fornax.Net.Lib.LZ4.dll";
+        internal const string PDFBOX = "Fornax.Net.Lib.pdfbox.pdfbox-app-2.0.7.dll";
+        internal const string SHARPZIPLIB = "Fornax.Net.Lib.ICSharpCode.SharpZipLib.dll";
+        internal const string PROTOBUF = "Fornax.Net.Lib.protobuf-net.dll";
+        internal const string LZ4NET = "Fornax.Net.Lib.Lz4Net.dll";
+        internal const string LZ4 = "Fornax.Net.Lib.LZ4.dll";
 
-        internal static string[] Get_MISC_Names() => new[] { PDFBOX, SHARPZIPLIB, PROTOBUF, LZ4NET ,LZ4 };
+        internal static string[] Get_MISC_Names() => new[] { PDFBOX, SHARPZIPLIB, PROTOBUF, LZ4NET, LZ4 };
 
 
         internal static IEnumerable<AssemblyName> GetMiscNames() {
@@ -155,7 +155,7 @@ namespace Fornax.Net.Lib
         #endregion
 
 
-        static string[] all = new[] { IKVM_BEANS,IKVM_CHARSETS,IKVM_CLDRDATA,IKVM_CORBA,IKVM_CORE,
+        static string[] all_deps = new[] { IKVM_BEANS,IKVM_CHARSETS,IKVM_CLDRDATA,IKVM_CORBA,IKVM_CORE,
                IKVM_JDBC,IKVM_LOCALEDATA,IKVM_MANAGEMENT,IKVM_MEDIA,IKVM_MISC,IKVM_NAMING,
                IKVM_NASHORN,IKVM_REMOTING,IKVM_RUNTIME,IKVM_RUNTIME_JNI,IKVM_SECURITY,IKVM_SWING_AWT,
                IKVM_TEXT,IKVM_TOOLS,IKVM_UTIL,IKVM_WINFORMS,IKVM_XML_API,IKVM_XML_BIND,IKVM_XML_CRYPTO,
@@ -165,18 +165,34 @@ namespace Fornax.Net.Lib
                THOUGHT_VCARDS,HTML_AGILITY_PACK,TOXY,ZERO_FORMATTER, ZERO_FORMATTER_ANALYZER, ZERO_FORMATTER_INTERFACES,
                PDFBOX, SHARPZIPLIB, PROTOBUF, LZ4NET,LZ4
        };
+
+        public static string[] All_deps { get => all_deps; set => all_deps = value; }
+
+        static string[] temp = new string[all_deps.Length];
+
         static int i = 0;
-        internal static bool ResolveAllDefaults() {
+        internal static bool ResolveAll(string[] all) {
+            i = 0;
             try {
                 for (i = 0; i < all.Length; i++) {
+                    temp[i] = all[i];
                     AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
                 }
                 return true;
-            } catch { return false; }
+            } catch (Exception) { return false; }
         }
 
         private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args) {
-            return DLL.LoadAssembly(all[i]);
+            return DLL.LoadAssembly(temp[i]);
         }
+
+
+        internal static bool IsIKVMLoaded { get; set; }
+        internal static bool IsToxyLoaded { get; set; }
+        internal static bool IsTikaLoaded { get; set; }
+        internal static bool IsZeroLoaded { get; set; }
+        internal static bool IsLZ4Loaded { get; set; }
+        internal static bool IsHtmlPackLoaded { get; set; }
+        internal static bool IsProtoLoaded { get; set; }
     }
 }

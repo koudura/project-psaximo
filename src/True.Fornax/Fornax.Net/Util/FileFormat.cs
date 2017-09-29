@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Util
 {
-    class FileFormat
+    public static class FileFormat
     {
+
+
     }
 }

@@ -1,31 +1,32 @@
-﻿/**
- * Copyright (c) 2017 Koudura Ninci @True.Inc
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
-***/
+﻿/***
+* Copyright (c) 2017 Koudura Ninci @True.Inc
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*
+**/
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
-namespace Fornax.Net.Util.Collections.Generics
+namespace Fornax.Net.Util.Collections.Generic
 {
 
 
@@ -34,9 +35,9 @@ namespace Fornax.Net.Util.Collections.Generics
     /// The Container of the Sublist is used to create an Instance of a Sublist.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <seealso cref="System.Collections.Generic.IList{T}" />
+    /// <seealso cref="IList{T}" />
     [Serializable]
-    [Progress("SubList<T>",false ,Documented = true, Tested = false)]
+    [Progress("SubList<T>",true ,Documented = true, Tested = true)]
 
     public sealed class SubList<T> : IList<T>, ISubList<T>
     {
@@ -51,6 +52,10 @@ namespace Fornax.Net.Util.Collections.Generics
         /// <param name="fromIndex">The inclusive starting index.</param>
         /// <param name="toIndex">The exclusive ending index.</param>
         public SubList(IList<T> list, int fromIndex, int toIndex) {
+            Contract.Requires(list != null);
+            if (list == null)
+                throw new ArgumentNullException(nameof(list) + " is null");
+
             if (fromIndex < 0)
                 throw new ArgumentOutOfRangeException("fromIndex");
 
@@ -68,9 +73,9 @@ namespace Fornax.Net.Util.Collections.Generics
             this.toIndex = toIndex;
         }
         /// <summary>
-        /// Determines the index of a specific item in the <see cref="SubList{T}`1" />.
+        /// Determines the index of a specific item in the <see cref="SubList{T}" />.
         /// </summary>
-        /// <param name="item">The object to locate in the <see cref="SubList{T}`1" />.</param>
+        /// <param name="item">The object to locate in the <see cref="SubList{T}" />.</param>
         /// <returns>
         /// The index of <paramref name="item" /> if found in the list; otherwise, -1.
         /// </returns>

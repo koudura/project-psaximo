@@ -29,7 +29,7 @@ namespace Fornax.Net.Util
     /// Holds All static representation of constants needed by fornax.
     /// and methods for manipulation and preprocessing of constants.
     /// </summary>
-    public static class Constants
+    internal static class Constants
     {
         #region Char Constants  
 

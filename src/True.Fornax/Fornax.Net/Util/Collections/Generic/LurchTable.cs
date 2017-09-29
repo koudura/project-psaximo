@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Util.Collections.Generics
+namespace Fornax.Net.Util.Collections.Generic
 {
-    class ObservableMap
+    class LurchTable
     {
     }
 }

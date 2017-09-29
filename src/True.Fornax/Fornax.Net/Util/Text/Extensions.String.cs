@@ -137,7 +137,7 @@ namespace Fornax.Net.Util.Text
         /// <summary>
         /// Cleans the specified string. i.e. Removes all whitespaces in string
         /// and removes all special characters if and only if
-        /// <paramref name="allowDelimiters"/> is set to <see cref="true"/>.
+        /// <paramref name="allowDelimiters"/> is set to false
         /// </summary>
         /// <param name="str">The string.</param>
         /// <returns></returns>
