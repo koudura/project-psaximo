@@ -289,6 +289,7 @@
     <Compile Include="Document\Document.cs" />
     <Compile Include="Document\Field.cs" />
     <Compile Include="enum.cs" />
+    <Compile Include="FileFormat.cs" />
     <Compile Include="Index\Enums.cs" />
     <Compile Include="Index\IO\IndexCompressor.cs" />
     <Compile Include="Index\IO\IndexWriter.cs" />
@@ -338,9 +339,9 @@
     <Compile Include="Util\Collections\Generic\SubList.cs" />
     <Compile Include="Util\Collections\SetFromMap.cs" />
     <Compile Include="Util\Constants.cs" />
-    <Compile Include="Util\FileFormat.cs" />
     <Compile Include="Util\FornaxException.cs" />
-    <Compile Include="Util\IO\Readers\BufferedReader.cs" />
+    <Compile Include="Util\IO\Compression\LZ4Compressor.cs" />
+    <Compile Include="Util\IO\Readers\BufferedReaderWrapper.cs" />
     <Compile Include="Util\IO\Readers\DomReader.cs" />
     <Compile Include="Util\IO\Enums.cs" />
     <Compile Include="Util\IO\FornaxAssembly.cs" />
@@ -349,6 +350,7 @@
     <Compile Include="Util\IO\Readers\Enums.cs" />
     <Compile Include="Util\IO\Readers\PlainReader.cs" />
     <Compile Include="Util\IO\Readers\WordReader.cs" />
+    <Compile Include="Util\IO\Writers\ObjectWriter.cs" />
     <Compile Include="Util\Linq\Extensions.List.cs" />
     <Compile Include="Util\Linq\Extensions.Map.cs" />
     <Compile Include="Util\Linq\Extensions.Set.cs" />
@@ -356,6 +358,11 @@
     <Compile Include="Util\Numerics\Functions.cs" />
     <Compile Include="Util\Numerics\Maths.cs" />
     <Compile Include="Util\Numerics\Number.cs" />
+    <Compile Include="Util\Resources\dictionary.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dictionary.resx</DependentUpon>
+    </Compile>
     <Compile Include="Util\Runtime\Cache\CacheBook.cs" />
     <Compile Include="Util\Runtime\Logging\ILoggable.cs" />
     <Compile Include="Util\Runtime\Logging\Level.cs" />
@@ -383,8 +390,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Search\Models\" />
-    <Folder Include="Util\IO\Compression\" />
-    <Folder Include="Util\IO\Writers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Common\SandBox\Contrib.resx">
@@ -394,6 +399,10 @@
     <EmbeddedResource Include="Lib\libraries.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>libraries.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Util\Resources\dictionary.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>dictionary.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -489,17 +498,43 @@
     <Compile Include="Util\Linq\Extensions.Linq.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="config.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>config.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Util\System\Extensions.Assembly.cs" />
+    <None Include="Resources\wn_s.pl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\SandBox\user.plugins" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Lib\LZ4.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\en_stem.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\en_stop.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\en_syns.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\en_voc.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fr_stem.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fr_stop.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fr_stop_cnt.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fr_voc.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

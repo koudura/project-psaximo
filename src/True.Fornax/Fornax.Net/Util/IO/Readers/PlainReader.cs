@@ -58,7 +58,7 @@ namespace Fornax.Net.Util.IO.Readers
                 case Extractor.DOTNET_STREAM:
                     return null;
                 case Extractor.JAVA_BUFFER:
-                    return new BufferedReader(this.name).GetContent();
+                    return new BufferedReaderWrapper(this.name).GetContent();
                 default:
                     return null;
             }

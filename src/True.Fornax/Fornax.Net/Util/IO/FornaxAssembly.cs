@@ -27,8 +27,6 @@ using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 using Dependency = Fornax.Net.Lib.Dependency;
 
@@ -37,9 +35,9 @@ namespace Fornax.Net.Util.IO
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="System.Reflection.Assembly" />
-    /// <seealso cref="System.IDisposable" />
-    [Progress("FornaxAssembly", false, Documented = false, Tested = false)]
+    /// <seealso cref="Assembly" />
+    /// <seealso cref="IDisposable" />
+    [Progress("FornaxAssembly", false, Documented = true, Tested = false)]
     public sealed class FornaxAssembly : Assembly, IDisposable
     {
         private static IDictionary<string, Assembly> resolvedAssemblies;
@@ -159,15 +157,15 @@ namespace Fornax.Net.Util.IO
         }
 
         /// <summary>
-        /// Gets the assembly.
+        /// Loads the assembly.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
+        /// <exception cref="ArgumentException">invalid libarary - - name</exception>
         public static Assembly LoadAssembly(string name) {
             if (string.IsNullOrEmpty(name)) {
                 throw new ArgumentException("invalid libarary - ", nameof(name));
             }
-
             if (!resolvedAssemblies.ContainsKey(name)) {
                 using (var stream = GetExecutingAssembly().GetManifestResourceStream(name)) {
                     byte[] temp = new byte[stream.Length];
@@ -180,10 +178,10 @@ namespace Fornax.Net.Util.IO
         }
 
         /// <summary>
-        /// Loads the specified temporary.
+        /// Loads the specified byte array into memory.
         /// </summary>
         /// <param name="temp">The temporary.</param>
-        /// <returns></returns>
+        /// <returns><see cref="Assembly"/> that represents the <paramref name="temp"/>.</returns>
         public new static Assembly Load(byte[] temp) {
             try {
                 return Assembly.Load(temp);
@@ -191,7 +189,7 @@ namespace Fornax.Net.Util.IO
         }
 
         /// <summary>
-        /// Loads all.
+        /// Loads all byte array collection into memory.
         /// </summary>
         /// <param name="temp">The temporary.</param>
         /// <returns></returns>
@@ -221,43 +219,90 @@ namespace Fornax.Net.Util.IO
             }
         }
 
-        internal static bool TryResolveAllDependencies() {
-            return Dependency.ResolveAll(Dependency.All_deps);
+        /// <summary>
+        /// Tries to resolve all fornax dependencies.
+        /// </summary>
+        /// <returns></returns>
+        public static bool TryResolveAllDependencies() {
+            return (Dependency.IsAllLoaded) ? true :  Dependency.IsAllLoaded = Dependency.ResolveAll(Dependency.All_deps);
         }
 
+        /// <summary>
+        /// Tries to resolve ikv ms.
+        /// </summary>
+        /// <returns></returns>
         internal static bool TryResolveIKVMs() {
-            return Dependency.ResolveAll(Dependency.Get_IKVM_AssemblyNames());
+            return (Dependency.IsIKVMLoaded) ? true : Dependency.IsIKVMLoaded =  Dependency.ResolveAll(Dependency.Get_IKVM_AssemblyNames());
         }
 
+        /// <summary>
+        /// Tries to resolve toxy.
+        /// </summary>
+        /// <returns></returns>
         internal static bool TryResolveToxy() {
-            return Dependency.ResolveAll(Dependency.Get_Toxy_Names());
-        }
-
-        internal static bool TryResolveTika() {
-            if (Dependency.ResolveAll(Dependency.Get_IKVM_AssemblyNames())) {
-                return Dependency.ResolveAll(Dependency.Get_Tika_Names());
+            if (TryResolveHtmlPack()) {
+                return (Dependency.IsToxyLoaded) ? true : Dependency.IsToxyLoaded = Dependency.ResolveAll(Dependency.Get_Toxy_Names());
             }
-            return false;
+            return Dependency.IsToxyLoaded = false;
         }
 
+        /// <summary>
+        /// Tries to resolve tika.
+        /// </summary>
+        /// <returns></returns>
+        internal static bool TryResolveTika() {
+            if (TryResolveIKVMs()) {
+                return (Dependency.IsTikaLoaded) ? true : Dependency.IsTikaLoaded = Dependency.ResolveAll(Dependency.Get_Tika_Names());
+            }
+            return Dependency.IsTikaLoaded = false;
+        }
+
+        /// <summary>
+        /// Tries to resolve miscellenuous.
+        /// </summary>
+        /// <returns></returns>
         internal static bool TryResolveMisc() {
-            return Dependency.ResolveAll(Dependency.Get_MISC_Names());
+            return (Dependency.IsMiscLoaded) ? true : Dependency.IsMiscLoaded = Dependency.ResolveAll(Dependency.Get_MISC_Names());
         }
 
+        /// <summary>
+        /// Tries to resolve lz4.
+        /// </summary>
+        /// <returns></returns>
         internal static bool TryResolveLZ4() {
-            return Dependency.ResolveAll(new[] { Dependency.LZ4, Dependency.LZ4NET });
+            return (Dependency.IsLZ4Loaded)? true : Dependency.IsLZ4Loaded = Dependency.ResolveAll(new[] { Dependency.LZ4, Dependency.LZ4NET });
         }
 
+        /// <summary>
+        /// Tries to resolve proto buf.
+        /// </summary>
+        /// <returns></returns>
         internal static bool TryResolveProtoBuf() {
-            return Dependency.ResolveAll(new[] { Dependency.PROTOBUF });
+            return (Dependency.IsProtoLoaded) ? true : Dependency.IsProtoLoaded = Dependency.ResolveAll(new[] { Dependency.PROTOBUF });
         }
 
+        /// <summary>
+        /// Tries to resolve zero.
+        /// </summary>
+        /// <returns></returns>
         internal static bool TryResolveZero() {
-            return Dependency.ResolveAll(Dependency.Get_Zero_Names());
+            return (Dependency.IsZeroLoaded) ? true : Dependency.IsZeroLoaded = Dependency.ResolveAll(Dependency.Get_Zero_Names());
         }
 
+        /// <summary>
+        /// Tries to resolve PDF box.
+        /// </summary>
+        /// <returns></returns>
         internal static bool TryResolvePDFBox() {
-            return Dependency.ResolveAll(new[] { Dependency.PDFBOX});
+            return (Dependency.IsPdfBoXLoaded) ?  true : Dependency.IsPdfBoXLoaded = Dependency.ResolveAll(new[] { Dependency.PDFBOX});
+        }
+
+        /// <summary>
+        /// Tries to resolve HTML pack.
+        /// </summary>
+        /// <returns></returns>
+        internal static bool TryResolveHtmlPack() {
+            return (Dependency.IsHtmlPackLoaded) ? true : Dependency.IsHtmlPackLoaded =  Dependency.ResolveAll(new[] { Dependency.HTML_AGILITY_PACK });
         }
 
         internal static bool TryResolveAllSerializers() {
@@ -271,15 +316,14 @@ namespace Fornax.Net.Util.IO
             return TryResolveProtoBuf() || TryResolveZero();
         }
 
-        internal static bool TryResolveHtmlPack() {
-            return Dependency.ResolveAll(new[] { Dependency.HTML_AGILITY_PACK });
-        }
-
         #region override
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        public void Dispose() { }
+        public void Dispose() {
+            ((IDisposable)this.assemblies).Dispose();
+            ((IDisposable)this.assembly).Dispose();
+        }
 
         /// <summary>
         /// Tries the resolve.
@@ -290,11 +334,11 @@ namespace Fornax.Net.Util.IO
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+        /// Determines whether the specified <see cref="Object" />, is equal to this instance.
         /// </summary>
-        /// <param name="o">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <param name="o">The <see cref="Object" /> to compare with this instance.</param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="Object" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object o) {
             return assembly.Equals(o);
@@ -352,3 +396,4 @@ namespace Fornax.Net.Util.IO
 
     }
 }
+

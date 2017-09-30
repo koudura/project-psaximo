@@ -21,193 +21,199 @@
 *
 **/
 
+namespace Fornax.Net {
 
-#region IO Enumerations 
-/// <summary>
-/// Caching Mode determines what caching technique should be used. 
-/// </summary>
-public enum CachingMode
-{
+    #region IO Enumerations 
     /// <summary>
-    /// The dynamic caching technique. 
-    /// This technique dynamically stores transactions in cache. 
+    /// Caching Mode determines what caching technique should be used. 
     /// </summary>
-    Dynamic,
+    public enum CachingMode
+    {
+        /// <summary>
+        /// The dynamic caching technique. 
+        /// This technique dynamically stores transactions in cache. 
+        /// </summary>
+        Dynamic,
+        /// <summary>
+        /// The static caching technique. 
+        /// This technique statically s tores transactions in cache.
+        /// </summary>
+        Static,
+        /// <summary> 
+        /// The default caching technique. A fornax.net specific technique.
+        /// </summary>
+        Default
+    }
+
     /// <summary>
-    /// The static caching technique. 
-    /// This technique statically s tores transactions in cache.
+    /// Defines What fornax does when an exception is thrown on retrieval of a file.
     /// </summary>
-    Static,
-    /// <summary> 
-    /// The default caching technique. A fornax.net specific technique.
+    public enum FetchAttribute
+    {
+        /// <summary>
+        /// Continues to retry retrieval until a specified time or file is accessible again.
+        /// possible Reentrancy.
+        /// </summary>
+        Persistent,
+        /// <summary>
+        /// Ignores or skips file on retrieval exception. NoReentrancy
+        /// </summary>
+        Weak
+    }
+
+    /// <summary>
+    ///  Traversal Mode specifies the mode at which fornax network crawler.
+    ///  crawls the web.
     /// </summary>
-    Default
+    public enum TraversalMode
+    {
+        /// <summary>
+        /// The <see cref="Minimal"/> approach rules :
+        /// <list type="Rules">
+        /// <item>No page retrieval scoring & ranking.</item>
+        /// <item>Only gets a [n] number of pages</item><description>
+        /// (where [n] is a specific threshold value that indicates the upper bound
+        /// of the frontier. [Default = 10])
+        /// </description>
+        /// </list>
+        /// </summary>
+        Minimal,
+        /// <summary>
+        /// The <see cref="Detailed"/> retrieval approach rules :
+        /// <list type="Rules">
+        /// <item>Page retrieval scoring & ranking.</item>
+        /// <item>Only Traverses the web graph and retrieves the top ranked documents relative to a link.</item>
+        /// <description>
+        /// (Where the top-ranked is determined by fornax.net, NOTE: the resulting pages may span a huge result.)
+        /// </description>
+        /// </list>
+        /// </summary>
+        Detailed,
+
+        /// <summary>
+        /// The <see cref="Normal"/> retrieval approach rules :
+        /// <list type="Rules">
+        /// <item>Page retrieval scoring & ranking.</item>
+        /// <item>Only gets a [n] number of pages</item><description>
+        /// (where [n] is a specific threshold value that indicates the upper bound
+        /// of the frontier. [Default = 10])
+        /// </description>
+        /// </list>
+        /// </summary>
+        Normal,
+        /// <summary>
+        /// The <see cref="Absolute"/> retrieval approach rules :
+        /// <list type="Rules">
+        /// <item>page retrieval scoring & ranking.</item>
+        /// <item>Traverses the web graph of the given link to the lowest depth.</item><description>
+        /// </description>
+        /// </list>
+        /// </summary>
+        Absolute
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum CacheType
+    {
+
+        Reduced,
+        Verbatim,
+
+
+    }
+    #endregion
+
+    #region Fornax Enumerations 
+
+    /// <summary>
+    /// File Format Categories supported by Fornax.Net
+    /// </summary>
+    public enum FornaxFormat
+    {
+
+        /// <summary>
+        /// The default
+        /// </summary>
+        Default,
+        /// <summary>
+        /// All
+        /// </summary>
+        All,
+        /// <summary>
+        /// The image
+        /// </summary>
+        Image,
+        /// <summary>
+        /// The text
+        /// </summary>
+        Text,
+        /// <summary>
+        /// The slide
+        /// </summary>     
+        Slide,
+        /// <summary>
+        /// The spread sheet
+        /// </summary>
+        SpreadSheet,
+        /// <summary>
+        /// The email
+        /// </summary>
+        Email,
+        /// <summary>
+        /// The DOM
+        /// </summary>
+        DOM,
+        /// <summary>
+        /// The web
+        /// </summary>
+        Web,
+        /// <summary>
+        /// The media
+        /// </summary>
+        Media,
+        /// <summary>
+        /// The plain
+        /// </summary>
+        Plain,
+        /// <summary>
+        /// The zip
+        /// </summary>
+        Zip
+    }
+
+    #endregion
+    #region  Misc Enumerations
+
+    /// <summary>
+    /// Sorter enum for sorting a collection of documents.
+    /// </summary>
+    public enum SortBy
+    {
+
+        /// <summary>
+        /// Sort by The relevance to query. 
+        /// This is the default Sort mode.
+        /// </summary>
+        Relevance,
+        /// <summary>
+        /// Sort by the date last Modified.
+        /// </summary>
+        Modified,
+        /// <summary>
+        /// Sort by the date of creation.
+        /// </summary>
+        Date,
+        /// <summary>
+        /// Sort lexographically by the name or title.
+        /// </summary>
+        Name,
+        /// <summary>
+        /// Sort by the length or size.
+        /// </summary>
+        Size
+    }
+    #endregion
 }
-
-/// <summary>
-/// 
-/// </summary>
-public enum FetchAttribute
-{
-    Persistent,
-    Weak
-}
-
-/// <summary>
-///  Traversal Mode specifies the mode at which fornax network crawler.
-///  crawls the web.
-/// </summary>
-public enum TraversalMode
-{
-    /// <summary>
-    /// The <see cref="Minimal"/> approach rules :
-    /// <list type="Rules">
-    /// <item>No page retrieval scoring & ranking.</item>
-    /// <item>Only gets a [n] number of pages</item><description>
-    /// (where [n] is a specific threshold value that indicates the upper bound
-    /// of the frontier. [Default = 10])
-    /// </description>
-    /// </list>
-    /// </summary>
-    Minimal,
-    /// <summary>
-    /// The <see cref="Detailed"/> retrieval approach rules :
-    /// <list type="Rules">
-    /// <item>Page retrieval scoring & ranking.</item>
-    /// <item>Only Traverses the web graph and retrieves the top ranked documents relative to a link.</item>
-    /// <description>
-    /// (Where the top-ranked is determined by fornax.net, NOTE: the resulting pages may span a huge result.)
-    /// </description>
-    /// </list>
-    /// </summary>
-    Detailed,
-
-    /// <summary>
-    /// The <see cref="Normal"/> retrieval approach rules :
-    /// <list type="Rules">
-    /// <item>Page retrieval scoring & ranking.</item>
-    /// <item>Only gets a [n] number of pages</item><description>
-    /// (where [n] is a specific threshold value that indicates the upper bound
-    /// of the frontier. [Default = 10])
-    /// </description>
-    /// </list>
-    /// </summary>
-    Normal,
-    /// <summary>
-    /// The <see cref="Absolute"/> retrieval approach rules :
-    /// <list type="Rules">
-    /// <item>page retrieval scoring & ranking.</item>
-    /// <item>Traverses the web graph of the given link to the lowest depth.</item><description>
-    /// </description>
-    /// </list>
-    /// </summary>
-    Absolute
-
-}
-
-/// <summary>
-/// 
-/// </summary>
-public enum CacheType
-{
-
-    Reduced,
-    Verbatim,
-
-
-}
-#endregion
-
-#region Fornax Enumerations 
-
-/// <summary>
-/// File Format Categories supported by Fornax.Net
-/// </summary>
-public enum FornaxFormat
-{
-
-    /// <summary>
-    /// The default
-    /// </summary>
-    Default,
-    /// <summary>
-    /// All
-    /// </summary>
-    All,
-    /// <summary>
-    /// The image
-    /// </summary>
-    Image,
-    /// <summary>
-    /// The text
-    /// </summary>
-    Text,
-    /// <summary>
-    /// The slide
-    /// </summary>     
-    Slide,
-    /// <summary>
-    /// The spread sheet
-    /// </summary>
-    SpreadSheet,
-    /// <summary>
-    /// The email
-    /// </summary>
-    Email,
-    /// <summary>
-    /// The DOM
-    /// </summary>
-    DOM,
-    /// <summary>
-    /// The web
-    /// </summary>
-    Web,
-    /// <summary>
-    /// The media
-    /// </summary>
-    Media,
-    /// <summary>
-    /// The plain
-    /// </summary>
-    Plain,
-    /// <summary>
-    /// The zip
-    /// </summary>
-    Zip
-}
-#endregion
-
-#region  Misc Enumerations
-/// <summary>
-/// 
-/// </summary>
-public enum FileExtension { }
-
-/// <summary>
-/// Sorter enum for sorting a collection of documents.
-/// </summary>
-public enum SortBy {
-
-    /// <summary>
-    /// Sort by The relevance to query. 
-    /// This is the default Sort mode.
-    /// </summary>
-    Relevance,
-    /// <summary>
-    /// Sort by the date last Modified.
-    /// </summary>
-    Modified,
-    /// <summary>
-    /// Sort by the date of creation.
-    /// </summary>
-    Date,
-    /// <summary>
-    /// Sort lexographically by the name or title.
-    /// </summary>
-    Name,
-    /// <summary>
-    /// Sort by the length or size.
-    /// </summary>
-    Size
-}
-#endregion

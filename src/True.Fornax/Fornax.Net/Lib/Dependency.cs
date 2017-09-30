@@ -1,11 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿/***
+* Copyright (c) 2017 Koudura Ninci @True.Inc
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*
+**/
 
-using Fornax.Net.Util.System;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+
 using DLL = Fornax.Net.Util.IO.FornaxAssembly;
 
 namespace Fornax.Net.Lib
@@ -168,11 +187,12 @@ namespace Fornax.Net.Lib
 
         public static string[] All_deps { get => all_deps; set => all_deps = value; }
 
-        static string[] temp = new string[all_deps.Length];
+        static string[] temp;
 
         static int i = 0;
         internal static bool ResolveAll(string[] all) {
             i = 0;
+            temp = new string[all.Length];
             try {
                 for (i = 0; i < all.Length; i++) {
                     temp[i] = all[i];
@@ -182,17 +202,19 @@ namespace Fornax.Net.Lib
             } catch (Exception) { return false; }
         }
 
-        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args) {
+        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args) {           
             return DLL.LoadAssembly(temp[i]);
         }
 
-
+        internal static bool IsAllLoaded { get; set; }
         internal static bool IsIKVMLoaded { get; set; }
         internal static bool IsToxyLoaded { get; set; }
         internal static bool IsTikaLoaded { get; set; }
         internal static bool IsZeroLoaded { get; set; }
         internal static bool IsLZ4Loaded { get; set; }
         internal static bool IsHtmlPackLoaded { get; set; }
-        internal static bool IsProtoLoaded { get; set; }
+        internal static bool IsProtoLoaded { get; set; }    
+        internal static bool IsMiscLoaded { get; set; }
+        internal static bool IsPdfBoXLoaded { get; set; }
     }
 }

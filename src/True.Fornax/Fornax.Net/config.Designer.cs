@@ -22,5 +22,401 @@ namespace Fornax.Net {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\")]
+        public string resources_dir {
+            get {
+                return ((string)(this["resources_dir"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\Lib\\")]
+        public string libraries_dir {
+            get {
+                return ((string)(this["libraries_dir"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Wordnet\\prolog\\")]
+        public string prolog_database {
+            get {
+                return ((string)(this["prolog_database"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Wordnet\\prolog\\wn_s.pl")]
+        public string synonyms_file {
+            get {
+                return ((string)(this["synonyms_file"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Box\\en\\")]
+        public string english_database {
+            get {
+                return ((string)(this["english_database"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Box\\en\\en_stop.txt")]
+        public string en_sortedStops_path {
+            get {
+                return ((string)(this["en_sortedStops_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string en_rankedStops_path {
+            get {
+                return ((string)(this["en_rankedStops_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Box\\en\\en_stem.txt")]
+        public string en_sortedStems_path {
+            get {
+                return ((string)(this["en_sortedStems_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Box\\en\\en_voc.txt")]
+        public string en_sortedDictionary_path {
+            get {
+                return ((string)(this["en_sortedDictionary_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Box\\en\\en_syns.txt")]
+        public string en_Synonyms_path {
+            get {
+                return ((string)(this["en_Synonyms_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string en_sortedUnsafeWords_path {
+            get {
+                return ((string)(this["en_sortedUnsafeWords_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Box\\fr\\")]
+        public string french_database {
+            get {
+                return ((string)(this["french_database"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Box\\fr\\fr_stop.txt")]
+        public string fr_sortedStops_path {
+            get {
+                return ((string)(this["fr_sortedStops_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Box\\fr\\fr_stop_cnt.txt")]
+        public string fr_sortedCommentedStops_path {
+            get {
+                return ((string)(this["fr_sortedCommentedStops_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Box\\fr\\fr_stem.txt")]
+        public string fr_sortesStems_path {
+            get {
+                return ((string)(this["fr_sortesStems_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Box\\fr\\fr_voc.txt")]
+        public string fr_sortedDictionary_path {
+            get {
+                return ((string)(this["fr_sortedDictionary_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>.dhtml</string>
+  <string>.fxml</string>
+  <string>.html</string>
+  <string>.shtml</string>
+  <string>.xaml</string>
+  <string>.xhtml</string>
+  <string>.xml</string>
+  <string>.csv</string>
+  <string>.doc</string>
+  <string>.docx</string>
+  <string>.epub</string>
+  <string>.pdf</string>
+  <string>.rtf</string>
+  <string>.eml</string>
+  <string>.msg</string>
+  <string>.vcf</string>
+  <string>.ans</string>
+  <string>.ascii</string>
+  <string>.c</string>
+  <string>.cs</string>
+  <string>.java</string>
+  <string>.txt</string>
+  <string>.gzip</string>
+  <string>.rar</string>
+  <string>.zip</string>
+  <string>.asp</string>
+  <string>.aspx</string>
+  <string>.mp3</string>
+  <string>.mp4</string>
+  <string>.jpeg</string>
+  <string>.jpg</string>
+  <string>.png</string>
+  <string>.tiff</string>
+  <string>.xl</string>
+  <string>.xlr</string>
+  <string>.xls</string>
+  <string>.xlsm</string>
+  <string>.xlsx</string>
+  <string>.ppt</string>
+  <string>.pptx</string>
+  <string>.pub</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection FileFormats {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["FileFormats"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>.dhtml</string>
+  <string>.fxml</string>
+  <string>.html</string>
+  <string>.shtml</string>
+  <string>.xaml</string>
+  <string>.xhtml</string>
+  <string>.xml</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection DOM_format {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["DOM_format"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>.csv</string>
+  <string>.doc</string>
+  <string>.docx</string>
+  <string>.epub</string>
+  <string>.pdf</string>
+  <string>.rtf</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection TEXT_format {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["TEXT_format"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>.eml</string>\r\n  <string>.msg</string>\r\n  <string>.vcf</string>\r\n</ArrayOf" +
+            "String>")]
+        public global::System.Collections.Specialized.StringCollection EMAIL_format {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["EMAIL_format"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>.ans</string>
+  <string>.ascii</string>
+  <string>.c</string>
+  <string>.cs</string>
+  <string>.java</string>
+  <string>.txt</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection PLAIN_format {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["PLAIN_format"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>.gzip</string>\r\n  <string>.rar</string>\r\n  <string>.zip</string>\r\n</ArrayO" +
+            "fString>")]
+        public global::System.Collections.Specialized.StringCollection ZIP_format {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["ZIP_format"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>.asp</string>\r\n  <string>.aspx</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection WEB_format {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["WEB_format"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>.mp3</string>\r\n  <string>.mp4</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection MEDIA_format {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["MEDIA_format"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>.jpeg</string>
+  <string>.jpg</string>
+  <string>.png</string>
+  <string>.tiff</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection IMAGE_format {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["IMAGE_format"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>.xl</string>
+  <string>.xlr</string>
+  <string>.xls</string>
+  <string>.xlsm</string>
+  <string>.xlsx</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection SHEET_format {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["SHEET_format"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>.ppt</string>\r\n  <string>.pptx</string>\r\n  <string>.pub</string>\r\n</ArrayO" +
+            "fString>")]
+        public global::System.Collections.Specialized.StringCollection SLIDE_format {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["SLIDE_format"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection USER_DEFINED {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["USER_DEFINED"]));
+            }
+            set {
+                this["USER_DEFINED"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
+        public global::System.Globalization.CultureInfo FornaxLanguage {
+            get {
+                return ((global::System.Globalization.CultureInfo)(this["FornaxLanguage"]));
+            }
+            set {
+                this["FornaxLanguage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool QueryIsSafeSearch {
+            get {
+                return ((bool)(this["QueryIsSafeSearch"]));
+            }
+            set {
+                this["QueryIsSafeSearch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool QueryIsExpand {
+            get {
+                return ((bool)(this["QueryIsExpand"]));
+            }
+            set {
+                this["QueryIsExpand"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool QueryAutoCorrect {
+            get {
+                return ((bool)(this["QueryAutoCorrect"]));
+            }
+            set {
+                this["QueryAutoCorrect"] = value;
+            }
+        }
     }
 }
