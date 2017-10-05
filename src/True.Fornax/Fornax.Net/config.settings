@@ -32,8 +32,8 @@
     <Setting Name="en_Synonyms_path" Type="System.String" Scope="Application">
       <Value Profile="(Default)">..\..\..\..\..\res\Box\en\en_syns.txt</Value>
     </Setting>
-    <Setting Name="en_sortedUnsafeWords_path" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+    <Setting Name="en_sortedBlackList_path" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">..\..\..\..\..\res\Box\en\en_blacklist.txt</Value>
     </Setting>
     <Setting Name="french_database" Type="System.String" Scope="Application">
       <Value Profile="(Default)">..\..\..\..\..\res\Box\fr\</Value>
@@ -201,6 +201,27 @@
     </Setting>
     <Setting Name="QueryAutoCorrect" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DEFAULT_formats" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;.doc&lt;/string&gt;
+  &lt;string&gt;.docx&lt;/string&gt;
+  &lt;string&gt;.html&lt;/string&gt;
+  &lt;string&gt;.pdf&lt;/string&gt;
+  &lt;string&gt;.ppt&lt;/string&gt;
+  &lt;string&gt;.pptx&lt;/string&gt;
+  &lt;string&gt;.txt&lt;/string&gt;
+  &lt;string&gt;.xls&lt;/string&gt;
+  &lt;string&gt;.xlsx&lt;/string&gt;
+  &lt;string&gt;.xml&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="Fornax_Lang2" Type="System.Globalization.CultureInfo" Scope="User">
+      <Value Profile="(Default)">fr</Value>
+    </Setting>
+    <Setting Name="Fornax_Lang1" Type="System.Globalization.CultureInfo" Scope="User">
+      <Value Profile="(Default)">en</Value>
     </Setting>
   </Settings>
 </SettingsFile>

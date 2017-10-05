@@ -1,4 +1,4 @@
-﻿/** 
+﻿/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -101,27 +101,24 @@ namespace Fornax.Net.Index
     /// Zone is an Indexed Searchable <see cref="FieldScope"/>.
     /// </summary>
     public enum Zone : byte
-    {
-        /// <summary>
-        /// The content. see <seealso cref="FieldScope.Content"/>
-        /// </summary>
-        Content = 0b1111,
-        /// <summary>
-        /// The metadata see <seealso cref="FieldScope.MetaData"/>
-        /// </summary>
-        Metadata = 0b1110,
+    { 
         /// <summary>
         /// The title or name of the document. see <seealso cref="FieldScope.Title"/>
         /// </summary>
         Title = 0b1100,
         /// <summary>
         /// The facet, which is a segment of any searchable fieldscope.
+        /// e.g content, metadata(if present), 
         /// </summary>
         Facet = 0b1000,
         /// <summary>
+        /// <seealso cref="FieldScope.Type"/>
+        /// </summary>
+        Type = 0b0001,
+        /// <summary>
         /// The custom Zone which is to be defined by user.
         /// </summary>
-        Custom = 0b0001
+        Custom = 0b0011
 
     }
 

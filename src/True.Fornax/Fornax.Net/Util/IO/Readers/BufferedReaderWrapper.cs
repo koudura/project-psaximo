@@ -9,7 +9,7 @@ using IO_Exception = java.io.IOException;
 
 namespace Fornax.Net.Util.IO.Readers
 {
-    public class BufferedReaderWrapper
+   internal class BufferedReaderWrapper
     {
         private string file;
         private string content;
@@ -28,8 +28,6 @@ namespace Fornax.Net.Util.IO.Readers
             
             this.file = filename;
         }
-
-
 
         public string CurrentContent { get => this.content; set => this.content = value; }
 

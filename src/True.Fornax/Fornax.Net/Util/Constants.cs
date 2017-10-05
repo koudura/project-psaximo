@@ -1,5 +1,5 @@
-﻿/** MIT LICENSE
-*   Copyright (c) 2017 Koudura Ninci @True.Inc
+﻿/***
+* Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,7 @@
 **/
 
 using System;
+using System.IO;
 
 namespace Fornax.Net.Util
 {
@@ -38,6 +39,10 @@ namespace Fornax.Net.Util
         /// </summary>
         public const char _WS_ = ' ';
 
+        /// <summary>
+        /// The whitespace string brokers
+        /// </summary>
+        public const string WS_BROKERS = " \t\n\r\f";
 
 
         #endregion
@@ -56,7 +61,7 @@ namespace Fornax.Net.Util
         /// <summary>
         /// Represents the Boolean Rule of Disjunction (OR).
         /// </summary>
-        public const string OR= "OR";
+        public const string OR = "OR";
         /// <summary>
         /// Represents the Boolean rule of Disjunction (||).
         /// </summary>
@@ -73,9 +78,86 @@ namespace Fornax.Net.Util
 
         #endregion
 
-        internal const string WS_BROKERS = " \t\n\r\f";
 
-        internal static readonly string LoggingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        internal static string LoggingDirectory => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        internal static string TempPath => Path.GetTempPath();
+
+        internal static string TempFile => Path.GetTempFileName();
+
+        #region Fornax FileTypeExtensions
+
+        internal const string CmpTxtfile = @".ztxt";
+        internal const string CmpInvFile = @".zinx";
+        internal const string CmpTrieFile = @".ztrx";
+        internal const string CmpDictFile = @".zdix";
+        internal const string CmpDataFile = @".z4nax";
+
+        /***All this fornax file type would be stored in a compressed folder.
+         * each file has name&ext as => __.4nax, _.4cache...
+         * 
+         * **/
+
+        /// <summary>
+        /// fornax inverted index file, this file would have variants depending on the type of repository to be indexed.
+        /// </summary>
+        internal const string ExtInvFile = @".4nax";
+        /// <summary>
+        /// fornax index segment/part file, for storing segments of index during indexing before being moved to the inverted file.
+        /// it also stores a position-offset flag during indexing, in case any crash occurs. the flag can be used to resume index from 
+        /// crash point.
+        /// </summary>
+        internal const string ExtPartFile = @".4prt";
+        /// <summary>
+        /// fornax repository file for storing list of names raw files to be extracted, and their relative tags and attributes
+        /// </summary>
+        internal const string ExtRepoFile = @".4rep";
+        /// <summary>
+        ///  fornax cache file for storing short term data input e.g last query input(as char[]) and respective top 5-10 documents.
+        ///  ,documents found with changes by the crawler. (attributes of query and results are also stored.)
+        /// </summary>
+        internal const string ExtCacheFile = @".4cache";
+        /// <summary>
+        /// fornax temporary storage file for disk-read/write opearations that take long processing time.
+        /// e.g indexing a large corpus.
+        /// </summary>
+        internal const string ExtTempFile = @".4temp";
+        /// <summary>
+        /// fornax data file stores query history in a structured format, corpus history, suggestion history, 
+        /// and long-term data from the cache file are moved here.
+        /// </summary>
+        internal const string ExtDataFile = @".4dat";
+        /// <summary>
+        /// fornax deletes file, stores the same data as repo-file <see cref="ExtRepoFile"/> only for file marked as to be deleted from 
+        /// the index and fornax database by the crawler.
+        /// </summary>
+        internal const string ExtDelsFile = @".4del";
+
+        #endregion
+
+        #region query opeartors
+
+        internal static string[] Query_Boolean => new[] { "&&", "AND", "&", "||", "OR", "NOT", "!" };
+        internal static string[] Query_Boolean_OR => new[] { "||", "OR" };
+        internal static string[] Query_Boolean_AND => new[] { "&", "&&", "AND" };
+        internal static string[] Query_Boolean_NOT => new[] { "!", "NOT " };
+
+        internal static char Query_Phrase => '"';
+        internal static char Query_Zone => ':';
+        internal static char Query_Wildcard => '*';
+        internal static char Query_Truncated => '?';
+        internal static char Query_Proximity_Dist => '%';
+        internal static char Query_Proximity_Adj => '$';
+        internal static char Query_Frequency => '>';
+
+        internal static char OP_Leading => '(';
+        internal static char OP_Trailing => ')';
+
+        internal static string[] All_Query_Ops => new[] { "OR", "||", "NOT", "!", "AND", "&&", "&", "\"", ":", "*", "?", "%", "$", ">", "(", ")"};
+
+        #endregion
+
+
+
 
 
         #region Methods        
@@ -106,8 +188,8 @@ namespace Fornax.Net.Util
         /// </returns>
         public static bool IsNOT(string token) => (token.Equals(NOT) || token.Equals(NOT_0));
 
-        public static string GetQueryOperators() {
-            return null;
+        public static string[] GetQueryOperators() {
+            return All_Query_Ops;
         }
 
 

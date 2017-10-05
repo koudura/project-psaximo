@@ -115,10 +115,10 @@ namespace Fornax.Net {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string en_sortedUnsafeWords_path {
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\res\\Box\\en\\en_blacklist.txt")]
+        public string en_sortedBlackList_path {
             get {
-                return ((string)(this["en_sortedUnsafeWords_path"]));
+                return ((string)(this["en_sortedBlackList_path"]));
             }
         }
         
@@ -416,6 +416,51 @@ namespace Fornax.Net {
             }
             set {
                 this["QueryAutoCorrect"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>.doc</string>
+  <string>.docx</string>
+  <string>.html</string>
+  <string>.pdf</string>
+  <string>.ppt</string>
+  <string>.pptx</string>
+  <string>.txt</string>
+  <string>.xls</string>
+  <string>.xlsx</string>
+  <string>.xml</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection DEFAULT_formats {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["DEFAULT_formats"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("fr")]
+        public global::System.Globalization.CultureInfo Fornax_Lang2 {
+            get {
+                return ((global::System.Globalization.CultureInfo)(this["Fornax_Lang2"]));
+            }
+            set {
+                this["Fornax_Lang2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("en")]
+        public global::System.Globalization.CultureInfo Fornax_Lang1 {
+            get {
+                return ((global::System.Globalization.CultureInfo)(this["Fornax_Lang1"]));
+            }
+            set {
+                this["Fornax_Lang1"] = value;
             }
         }
     }

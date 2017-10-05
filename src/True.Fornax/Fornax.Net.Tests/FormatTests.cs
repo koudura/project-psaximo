@@ -1,20 +1,17 @@
-﻿
-using System;
+﻿using System;
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Fornax.Net;
-
 
 namespace Fornax.Net.Tests
 {
     /// <summary>
-    /// Summary description for FornaxFormat
+    /// Summary description for FormatTests
     /// </summary>
     [TestClass]
-    public class FornaxFormat
+    public class FormatTests
     {
-        public FornaxFormat() {
+        public FormatTests() {
             //
             // TODO: Add constructor logic here
             //
@@ -57,15 +54,17 @@ namespace Fornax.Net.Tests
         //
         #endregion
 
-        [TestMethod]    
+        [TestMethod]
         public void TestMethod1() {
-            string f = getString(FileFormat.SHtml);
-            Console.WriteLine(f);
-            Assert.AreEqual(".shtml", f);
+            FornaxFormat format = FileFormat.Xaml.GetFornaxFormat();
+            Assert.AreEqual(FornaxFormat.Dom, format);
         }
 
-        public string getString(FileFormat f) {
-            return f.GetString();
+        [TestMethod]
+        public void FornaxFormatTestMethod() {
+            foreach (var item in FornaxFormat.Text.GetFormats()) {
+                Console.WriteLine(item.ToString());
+            }
         }
     }
 }

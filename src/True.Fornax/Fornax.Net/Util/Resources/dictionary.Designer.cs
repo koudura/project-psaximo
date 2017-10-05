@@ -61,6 +61,77 @@ namespace Fornax.Net.Util.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 4r5e
+        ///5h1t
+        ///5hit
+        ///a55
+        ///anal
+        ///anus
+        ///ar5e
+        ///arrse
+        ///arse
+        ///ass
+        ///ass-fucker
+        ///asses
+        ///assfucker
+        ///assfukka
+        ///asshole
+        ///assholes
+        ///asswhole
+        ///a_s_s
+        ///b!tch
+        ///b00bs
+        ///b17ch
+        ///b1tch
+        ///ballbag
+        ///balls
+        ///ballsack
+        ///bastard
+        ///beastial
+        ///beastiality
+        ///bellend
+        ///bestial
+        ///bestiality
+        ///bi+ch
+        ///biatch
+        ///bitch
+        ///bitcher
+        ///bitchers
+        ///bitches
+        ///bitchin
+        ///bitching
+        ///bloody
+        ///blow
+        ///job
+        ///blowjob
+        ///blowjobs
+        ///boiolas
+        ///bollock
+        ///bollok
+        ///boner
+        ///boob
+        ///boobs
+        ///booobs
+        ///boooobs
+        ///booooobs
+        ///booooooobs
+        ///breasts
+        ///buceta
+        ///bugger
+        ///bum
+        ///bunny
+        ///fucker
+        ///butt
+        ///butthole
+        ///buttmuch [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string en_blacklist {
+            get {
+                return ResourceManager.GetString("en_blacklist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1	first
         ///10	tenth
         ///100	hundredth

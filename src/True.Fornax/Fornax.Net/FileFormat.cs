@@ -21,6 +21,9 @@
 *
 **/
 
+using System;
+using Fornax.Net.Util.Text;
+
 namespace Fornax.Net
 {
 
@@ -82,11 +85,11 @@ namespace Fornax.Net
         /// </summary>
         Rtf,
         /// <summary>
-        /// The eml (electronic mail file)
+        /// The eml (electronic mail format) file.
         /// </summary>
         Eml,
         /// <summary>
-        /// The MSG
+        /// Microsoft Outlook <c>MSG</c> (Mail message format) file.
         /// </summary>
         Msg,
         /// <summary>
@@ -94,23 +97,23 @@ namespace Fornax.Net
         /// </summary>
         Pst,
         /// <summary>
-        /// The VCF
+        /// <c>VCF</c> (Variant call format) email/contact file.
         /// </summary>
         Vcf,
         /// <summary>
-        /// The ans
+        /// <c>ANS</c> encoded plain-text file.
         /// </summary>
         Ans,
         /// <summary>
-        /// The ASCII
+        /// <c>ASCII</c> encoded plain-text file.
         /// </summary>
         Ascii,
         /// <summary>
-        /// The c
+        /// c program source code file.
         /// </summary>
         C,
         /// <summary>
-        /// The c-sharp source code file.
+        /// c-sharp source code file.
         /// </summary>
         Cs,
         /// <summary>
@@ -138,31 +141,31 @@ namespace Fornax.Net
         /// </summary>
         Asp,
         /// <summary>
-        /// The aspx
+        ///  microsoft aspx web server page.
         /// </summary>
         Aspx,
         /// <summary>
-        /// The MP3
+        ///  MP3 media file.
         /// </summary>
         Mp3,
         /// <summary>
-        /// The MP4
+        ///  MP4 media file.
         /// </summary>
         Mp4,
         /// <summary>
-        /// The JPEG
+        ///  JPEG image file.
         /// </summary>
         Jpeg,
         /// <summary>
-        /// The JPG
+        ///  JPG image file.
         /// </summary>
         Jpg,
         /// <summary>
-        /// The PNG (portable network graphics) file.
+        /// PNG (portable network graphics) file.
         /// </summary>
         Png,
         /// <summary>
-        /// The tiff 
+        ///  tiff web image format file. 
         /// </summary>
         Tiff,
         /// <summary>
@@ -182,19 +185,19 @@ namespace Fornax.Net
         /// </summary>
         Xlsm,
         /// <summary>
-        /// The XLSX (microsoft excel spread-shheet (2007+)) document/file.
+        /// The XLSX (Microsoft excel spread-shheet (2007+)) document/file.
         /// </summary>
         Xlsx,
         /// <summary>
-        /// The PPT (microsoft power-point slides (97-2003)) document/file.
+        /// The PPT (Microsoft power-point slides (97-2003)) document/file.
         /// </summary>
         Ppt,
         /// <summary>
-        /// The PPTX (microsoft power-point slides (2007+)) document/file. 
+        /// The PPTX (Microsoft power-point slides (2007+)) document/file. 
         /// </summary>
         Pptx,
         /// <summary>
-        /// The microsoft publisher document/file.
+        /// Microsoft publisher document/file.
         /// </summary>
         Pub
     }
@@ -211,13 +214,49 @@ namespace Fornax.Net
         /// </summary>
         /// <param name="format">The format.</param>
         /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
+        /// A <see cref="string" /> that represents this instance.
         /// </returns>
         internal static string GetString(this FileFormat format) {
             return format.ToString().Trim().ToLower().Insert(0, ".");
         }
 
+        /// <summary>
+        /// Gets the fornax format category <see cref="FornaxFormat"/>.
+        /// </summary>
+        /// <param name="format">The file format type.</param>
+        /// <returns><see cref="FornaxFormat"/> that  <paramref name="format"/> belongs to.</returns>
+        public static FornaxFormat GetFornaxFormat(this FileFormat format) {
+            foreach (var item in ConfigFactory.FornaxFormatTable) {
+                if (item.Value.Contains(format.GetString()))
+                    return item.Key;                  
+            }
+            return FornaxFormat.Default;
+        }
 
+        /// <summary>
+        /// Gets the <see cref="FileFormat"/> array of all the extension format in the 
+        /// (<see cref="FornaxFormat"/>) <paramref name="fornaxFormat"/> category.
+        /// </summary>
+        /// <param name="fornaxFormat">The fornax format.</param>
+        /// <returns>an array of all formats in <paramref name="fornaxFormat"/> category.</returns>
+        public static FileFormat[] GetFormats(this FornaxFormat fornaxFormat) {
+            var strs = ConfigFactory.FornaxFormatTable[fornaxFormat];
+            FileFormat[] formats = new FileFormat[strs.Count];
+            int i = 0;
+            foreach (var item in strs) {
+                formats[i] = Parse(item);
+                i++;
+            }
+            return formats;
+        }
 
+        private static FileFormat Parse(string form) {
+            form = form.Trim().Remove(0, 1);
+            if(Char.TryParse((form[0] + "").ToUpper(), out char res)) {
+                form = form.ReplaceAt(0, res);
+                return (FileFormat)Enum.Parse(typeof(FileFormat), form);
+            }
+            throw new InvalidCastException();
+        }
     }
 }

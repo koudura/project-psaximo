@@ -21,37 +21,26 @@
 *
 **/
 
-
-using System.IO;
-
-namespace Fornax.Net.Util.IO.Readers
+namespace Fornax.Net.Util.Text
 {
     /// <summary>
-    /// Specification of the type of extractor to use for extraction.
+    /// Represents conversion functions for encoding and decoding <see cref="string"/> 
+    /// and <see cref="byte"/> respectively.
     /// </summary>
-    public enum Extractor
+    public interface IEncoder
     {
         /// <summary>
-        /// Use <see cref="Toxy"/> Parsers to extract file.
+        /// Encodes the specified bytes.
         /// </summary>
-        TOXY_PARSER,
+        /// <param name="bytes">The bytes.</param>
+        /// <returns></returns>
+        string Encode(byte[] bytes);
 
         /// <summary>
-        /// USe <see cref="TikaOnDotNet.TextExtraction"/> Parser to extract file.
+        /// Decodes the specified string.
         /// </summary>
-        TIKA_PARSER,
-
-        /// <summary>
-        /// Use <see cref="StreamReader"/> to extract file.
-        /// </summary>
-        DOTNET_STREAM,
-
-        /// <summary>
-        /// Use <see cref="java.io.BufferedReader"/> and  <see cref="java.io.BufferedInputStream"/> to extract
-        /// file.
-        /// </summary>
-        JAVA_BUFFER
-
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        byte[] Decode(string input);
     }
-
 }

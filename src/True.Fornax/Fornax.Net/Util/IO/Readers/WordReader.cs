@@ -38,7 +38,7 @@ namespace Fornax.Net.Util.IO.Readers
     /// A Loader for Plain-Text(.txt) Files that represent a list of stopwords.
     /// also to load stem dictionary text files.
     /// </summary>
-    [Progress("WordListLoader", false, Documented = true, Tested = false)]
+    [Progress("WordListLoader", true, Documented = true, Tested = true)]
     public static class WordReader
     {
         #region sync-reader
@@ -46,7 +46,7 @@ namespace Fornax.Net.Util.IO.Readers
         /// <summary>
         /// Gets the word set, from a plain-text file <see cref="FileInfo"/> and adds every line as an entry to a <see cref="HashSet{T}"/>.
         /// (ommiting leading and trailing whitespaces).
-        /// <para>NOTE: Every Line of the file should contain a word, if <paramref name="isBias"/> is set to true then 
+        /// <para>NOTE: Every Line of the file should contain a word, if <paramref name="isBias"/> is set to false then 
         ///  all then words are preprocessed before entry. Preprocessing includes: lowercasing and removing illegal
         ///  whitespaces.
         /// </para>
@@ -69,7 +69,7 @@ namespace Fornax.Net.Util.IO.Readers
         /// <summary>
         /// Gets the word set, from a Reader <see cref="TextReader" /> and adds every line as an entry to a <see cref="HashSet{T}" />.
         /// (ommiting leading and trailing whitespaces).
-        /// <para>NOTE: Every Line of the file should contain a word, if <paramref name="isBias" /> is set to true then
+        /// <para>NOTE: Every Line of the file should contain a word, if <paramref name="isBias" /> is set to false then
         /// all then words are preprocessed before entry. Preprocessing includes: lowercasing and removing illegal
         /// whitespaces.
         /// </para>
@@ -103,7 +103,7 @@ namespace Fornax.Net.Util.IO.Readers
         /// </summary>
         /// <param name="wordList">The current word list.</param>
         /// <param name="wordsFile">The words file containing new words.</param>
-        /// <param name="isBias">if set to <c>true</c> Text Prepocessing is enabled.</param>
+        /// <param name="isBias">if set to <c>true</c> Text Prepocessing is disabled.</param>
         /// <exception cref="ArgumentNullException"></exception>
         public static void Update(ref ICollection<string> wordList, FileInfo wordsFile, bool isBias) {
             Contract.Requires(wordList != null && wordsFile != null);
@@ -124,7 +124,7 @@ namespace Fornax.Net.Util.IO.Readers
         /// </summary>
         /// <param name="wordList">The current word list.</param>
         /// <param name="textReader">The text reader.</param>
-        /// <param name="isBias">if set to <c>true</c> Text Prepocessing is enabled.</param>
+        /// <param name="isBias">if set to <c>true</c> Text Prepocessing is disabled.</param>
         /// <exception cref="ArgumentNullException"></exception>
         public static void Update(ref ICollection<string> wordList, TextReader textReader, bool isBias) {
             Contract.Requires(wordList != null && textReader != null);
@@ -149,7 +149,7 @@ namespace Fornax.Net.Util.IO.Readers
         /// <pre>stem<b>\t</b>word</pre>
         /// </summary>
         /// <param name="wordStemFile">The file containing stem-words dictionary</param>
-        /// <param name="isBias">if set to <c>true</c>Text Prepocessing is enabled.</param>
+        /// <param name="isBias">if set to <c>true</c>Text Prepocessing is disabled.</param>
         /// <returns>stem dictionary that overrules the stemming algorithm. </returns>
         /// <exception cref="ArgumentNullException">wordStemFile</exception>
         public static IDictionary<string,string> GetStemTable(FileInfo wordStemFile, bool isBias) {
@@ -167,7 +167,7 @@ namespace Fornax.Net.Util.IO.Readers
                         char[] delim = { '\t' };
                         while((line = br.ReadLine()) != null) {
                             string[] stemMap = line.Split(delim, 2);
-                            Console.WriteLine(stemMap[1]);
+
                             if (isBias) result[stemMap[1]] = stemMap[0];
                             else result[stemMap[1].ToLower().Clean(true)] = stemMap[0].ToLower().Clean(true);
                         }
@@ -188,7 +188,7 @@ namespace Fornax.Net.Util.IO.Readers
         /// <summary>
         /// Gets the word set asynchronuously, from a plain-text file <see cref="FileInfo" /> and adds every line as an entry to a <see cref="HashSet{T}" />.
         /// (ommiting leading and trailing whitespaces).
-        /// <para>NOTE: Every Line of the file should contain a word, if <paramref name="isBias" /> is set to true then
+        /// <para>NOTE: Every Line of the file should contain a word, if <paramref name="isBias" /> is set to false then
         /// all then words are preprocessed before entry. Preprocessing includes: lowercasing and removing illegal
         /// whitespaces.
         /// </para>
@@ -240,12 +240,12 @@ namespace Fornax.Net.Util.IO.Readers
         }
 
         /// <summary>
-        /// Updates the specified <see cref="ICollection{T}" /> word list asynchronously. From a specific word File.
+        /// Updates the specified <see cref="ICollection{T}" /> word list asynchronously, From a specific word File.
         /// as in <seealso cref="GetWordSet(FileInfo, bool)" />.
         /// </summary>
         /// <param name="wordList">The current word list.</param>
         /// <param name="wordsFile">The words file containing new words.</param>
-        /// <param name="isBias">if set to <c>true</c> Text Prepocessing is enabled.</param>
+        /// <param name="isBias">if set to <c>true</c> Text Prepocessing is disabled.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         public static async Task<ICollection<string>> UpdateAsync(ICollection<string> wordList, FileInfo wordsFile, bool isBias) {
@@ -262,12 +262,12 @@ namespace Fornax.Net.Util.IO.Readers
         }
 
         /// <summary>
-        /// Updates the specified <see cref="ICollection{T}" /> word list asynchronuously. by/from a specific Reader
+        /// Updates the specified <see cref="ICollection{T}" /> word list asynchronuously, by/from a specific Reader
         /// as in <seealso cref="GetWordSet(FileInfo, bool)" />.
         /// </summary>
         /// <param name="wordList">The current word list.</param>
         /// <param name="reader">The reader.</param>
-        /// <param name="isBias">if set to <c>true</c> Text Prepocessing is enabled.</param>
+        /// <param name="isBias">if set to <c>true</c> Text Prepocessing is disabled.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         public static async Task<ICollection<string>> UpdateAsync(ICollection<string> wordList, TextReader reader, bool isBias) {
@@ -295,7 +295,7 @@ namespace Fornax.Net.Util.IO.Readers
         /// Gets the stem table asynchronously
         /// </summary>
         /// <param name="wordStemFile">The file containing stem-words dictionary.</param>
-        /// <param name="isBias">if set to <c>true</c> Text Prepocessing is enabled.</param>
+        /// <param name="isBias">if set to <c>true</c> Text Prepocessing is disabled.</param>
         /// <returns>stem dictionary that overrules the stemming algorithm.</returns>
         /// <exception cref="ArgumentNullException">wordStemFile</exception>
         public static async Task<IDictionary<string, string>> GetStemTableAsync(FileInfo wordStemFile, bool isBias) {

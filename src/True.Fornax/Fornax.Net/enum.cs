@@ -135,56 +135,58 @@ namespace Fornax.Net {
     {
 
         /// <summary>
-        /// The default
+        /// Default supported types on settings
+        /// (.pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx, .txt, .html, .xml)
         /// </summary>
         Default,
         /// <summary>
-        /// All
+        /// All supported types.
         /// </summary>
         All,
         /// <summary>
-        /// The image
+        /// Supported Images files (.jpg, .png, .jpeg)
         /// </summary>
         Image,
         /// <summary>
-        /// The text
+        ///  Supported Raw-text files. (.pdf, .docx)
         /// </summary>
         Text,
         /// <summary>
-        /// The slide
+        /// Microsoft  Power point slides (.ppt, .pptx)
         /// </summary>     
         Slide,
         /// <summary>
-        /// The spread sheet
+        /// Microsoft Spread sheet files (.xls, .xlsx)
         /// </summary>
-        SpreadSheet,
+        Sheet,
         /// <summary>
-        /// The email
+        ///  Email/Contact files (.msg, .eml)
         /// </summary>
         Email,
         /// <summary>
-        /// The DOM
+        /// DOM (document object model) files (.html, .xml)
         /// </summary>
-        DOM,
+        Dom,
         /// <summary>
-        /// The web
+        /// Supported Web server files (.asp , .aspx)
         /// </summary>
         Web,
         /// <summary>
-        /// The media
+        /// Supported Media files. (.mp3, .mp4)
         /// </summary>
         Media,
         /// <summary>
-        /// The plain
+        ///  Plain-text files. (.ans, .ascii, .txt)
         /// </summary>
         Plain,
         /// <summary>
-        /// The zip
+        ///  Zipped/Compressed files. (.zip, .rar)
         /// </summary>
         Zip
     }
 
     #endregion
+
     #region  Misc Enumerations
 
     /// <summary>

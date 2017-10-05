@@ -1,4 +1,4 @@
-﻿/**
+﻿/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy

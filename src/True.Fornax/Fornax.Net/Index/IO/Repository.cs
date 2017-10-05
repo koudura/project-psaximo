@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Util.IO.Readers
+namespace Fornax.Net.Index.IO
 {
-    class DomReader
+    class Repository
     {
     }
 }

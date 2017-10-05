@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Util.Security
+namespace Fornax.Net.Util.IO.Readers
 {
-    class ListCompressor
+    public sealed class ZipReader 
     {
     }
 }
