@@ -1,4 +1,4 @@
-﻿/** 
+﻿/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,6 +20,10 @@
 * SOFTWARE.
 *
 **/
+
+using Fornax.Net.Index;
+using Fornax.Net.Index.Storage;
+using Fornax.Net.Util;
 
 namespace Fornax.Net.Query
 {
@@ -59,7 +63,7 @@ namespace Fornax.Net.Query
         /// <para></para>
         /// e.g <code> string naturalQuery = "give me all my comics"" </code>. 
         /// <see cref="Natural"/> interpretes the query into ["give"[verb] , "all"[quantity-all] , "comics"(noun-query)]...This format is then returned
-        /// for further analysis by fornax, afterwards fornax inturn works a retrieval of documents  with ("comic": in all <see cref="FieldScope"/>s and see<see cref="Zones"/>)
+        /// for further analysis by fornax, afterwards fornax inturn works a retrieval of documents  with ("comic": in all <see cref="FieldScope"/>s and see<see cref="Zone"/>)
         /// as well as doucuments with <see cref="FornaxFormat"/> as comicbook.
         /// <br>  NOTE: Only Use this option if and only if a natural language exclusive search is needed 
         /// i.e. <see cref="Natural"/> never process a query as <see cref="Free"/> or <see cref="Native"/> do.</br>
@@ -110,7 +114,7 @@ namespace Fornax.Net.Query
     {
 
         /// <summary>
-        /// The Free Text or multi-term Query</summary.<br></br>
+        /// The Free Text or multi-term Query.<br></br>
         /// e.g "Fornax is awesome";
         /// </summary>
         Free = 00,
@@ -196,5 +200,23 @@ namespace Fornax.Net.Query
         /// </summary>
         OFF = ~ON
     }
+
     #endregion
+
+    internal static class QExt
+    {
+        internal static bool IsExpandable(this Expand expand) {
+            switch (expand) {
+                case Expand.YES:
+                    return true;
+                case Expand.NO:
+                    return false;
+                case Expand.AUTO:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    }
+
 }

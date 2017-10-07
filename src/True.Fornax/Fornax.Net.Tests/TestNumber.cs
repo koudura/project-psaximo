@@ -72,15 +72,15 @@ namespace Fornax.Net.Tests
 
         [TestMethod]
         public void StemTest() {
-            string word = "sifting";
+            string word = "finlands";
             string word1 = "abaisserai";
 
             FornaxStemmer stemmer = new FornaxStemmer();
-            Console.WriteLine(stemmer.StemWord(word1));
+            Console.WriteLine(stemmer.StemWord(word));
            FrenchStemmer porter = new FrenchStemmer();
             Console.WriteLine(porter.Stem(word1));
 
-            Assert.AreEqual("sift", stemmer.StemWord(word));
+          //  Assert.AreEqual("", stemmer.StemWord(word));
             Assert.AreEqual("abaiss", porter.Stem(word1));
         }
 

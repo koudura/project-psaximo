@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Index.Storage
 {
-    class Repository
+    public abstract class Repository : FornaxRepository
     {
     }
 }

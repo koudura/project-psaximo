@@ -22,6 +22,7 @@
 **/
 
 using System;
+using Fornax.Net.Util.IO;
 using Fornax.Net.Util.Text;
 
 namespace Fornax.Net
@@ -228,7 +229,7 @@ namespace Fornax.Net
         public static FornaxFormat GetFornaxFormat(this FileFormat format) {
             foreach (var item in ConfigFactory.FornaxFormatTable) {
                 if (item.Value.Contains(format.GetString()))
-                    return item.Key;                  
+                    return item.Key;
             }
             return FornaxFormat.Default;
         }
@@ -250,13 +251,13 @@ namespace Fornax.Net
             return formats;
         }
 
-        private static FileFormat Parse(string form) {
+        internal static FileFormat Parse(string form) {
             form = form.Trim().Remove(0, 1);
-            if(Char.TryParse((form[0] + "").ToUpper(), out char res)) {
+            if (Char.TryParse((form[0] + "").ToUpper(), out char res)) {
                 form = form.ReplaceAt(0, res);
                 return (FileFormat)Enum.Parse(typeof(FileFormat), form);
             }
-            throw new InvalidCastException();
+            throw new InvalidCastException(); throw new FornaxFormatException();
         }
     }
 }

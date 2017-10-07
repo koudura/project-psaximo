@@ -21,6 +21,7 @@
 *
 **/
 
+
 namespace Fornax.Net {
 
     #region IO Enumerations 
@@ -68,43 +69,70 @@ namespace Fornax.Net {
     public enum TraversalMode
     {
         /// <summary>
-        /// The <see cref="Minimal"/> approach rules :
+        /// The <see cref="Minimal"/> approach rules : <para>
         /// <list type="Rules">
-        /// <item>No page retrieval scoring & ranking.</item>
+        /// <item>No page retrieval scoring and ranking.</item>
         /// <item>Only gets a [n] number of pages</item><description>
         /// (where [n] is a specific threshold value that indicates the upper bound
-        /// of the frontier. [Default = 10])
-        /// </description>
+        /// of the frontier. [Default = 10]).
+        /// </description><para></para>
+        /// <item>Only gets pages relative to the absolute link/page as inputed by user.</item>
+        /// <description>this option doesn't initiate branching from the hostname.</description>
         /// </list>
+        /// </para>
         /// </summary>
+        /// <remarks>
+        /// All there is to Minimal includes:
+        /// 1. no ranking on retrieval.
+        /// 2. a specified maximum of [byte.MaxValue] number of pages can only be traversed and fetched.
+        /// 3. Traversion begins from the specified page instead of from hostname as in <see cref="Absolute"/>
+        /// and <see cref="Detailed"/>.
+        /// </remarks>
         Minimal,
+
         /// <summary>
-        /// The <see cref="Detailed"/> retrieval approach rules :
+        /// The <see cref="Normal"/> retrieval approach rules : <para>
         /// <list type="Rules">
-        /// <item>Page retrieval scoring & ranking.</item>
+        /// <item>Page retrieval scoring and ranking.</item>
+        /// <item>Only gets a [n] number of pages</item><description>
+        /// (where [n] is a specific threshold value that indicates the upper bound
+        /// of the frontier. [Default = 15]).
+        /// </description><para></para>
+        /// <item>Only gets pages relative to the absolute link/page as inputed by user.</item>
+        /// <description>this option doesn't initiate branching from the hostname.</description>
+        /// </list>
+        /// </para>
+        /// </summary>
+        /// <remarks>
+        /// All there is to Normal includes:
+        /// 1. Ranking on retrieval.
+        /// 2. a specified maximum of [byte.MaxValue] number of pages can only be traversed and fetched.
+        /// 3. Traversion begins from the specified page instead of from hostname as in <see cref="Absolute"/>
+        /// and <see cref="Detailed"/>.
+        /// </remarks>
+        Normal,
+
+        /// <summary>
+        /// The <see cref="Detailed"/> retrieval approach rules : <para>
+        /// <list type="Rules">
+        /// <item>Page retrieval scoring and ranking.</item>
         /// <item>Only Traverses the web graph and retrieves the top ranked documents relative to a link.</item>
         /// <description>
         /// (Where the top-ranked is determined by fornax.net, NOTE: the resulting pages may span a huge result.)
         /// </description>
+        /// <item>
+        ///  Traversion of pages also include Host-name as root. i.e the hostname serves as root for this traversion.
+        ///  NOTE: This occurs on a separate thread.
+        /// </item>
         /// </list>
+        /// </para>
         /// </summary>
         Detailed,
 
         /// <summary>
-        /// The <see cref="Normal"/> retrieval approach rules :
-        /// <list type="Rules">
-        /// <item>Page retrieval scoring & ranking.</item>
-        /// <item>Only gets a [n] number of pages</item><description>
-        /// (where [n] is a specific threshold value that indicates the upper bound
-        /// of the frontier. [Default = 10])
-        /// </description>
-        /// </list>
-        /// </summary>
-        Normal,
-        /// <summary>
         /// The <see cref="Absolute"/> retrieval approach rules :
         /// <list type="Rules">
-        /// <item>page retrieval scoring & ranking.</item>
+        /// <item>page retrieval scoring and ranking.</item>
         /// <item>Traverses the web graph of the given link to the lowest depth.</item><description>
         /// </description>
         /// </list>
@@ -118,10 +146,14 @@ namespace Fornax.Net {
     /// </summary>
     public enum CacheType
     {
-
+        /// <summary>
+        /// The reduced type is as static-compressed cache.
+        /// </summary>
         Reduced,
+        /// <summary>
+        /// The verbatim type is as dynamic-buffer cache.
+        /// </summary>
         Verbatim,
-
 
     }
     #endregion

@@ -197,7 +197,7 @@ namespace Fornax.Net.Util.Collections.Generic
         public IList<T> Container => this.list;
 
         /// <summary>
-        /// Removes the first occurrence of a specific object from the <see cref="SubList{T}`1" />.
+        /// Removes the first occurrence of a specific object from the <see cref="SubList{T}" />.
         /// </summary>
         /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
         /// <returns>

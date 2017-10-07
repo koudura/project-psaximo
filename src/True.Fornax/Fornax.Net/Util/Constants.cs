@@ -81,7 +81,6 @@ namespace Fornax.Net.Util
 
         internal static string LoggingDirectory => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         internal static string TempPath => Path.GetTempPath();
-
         internal static string TempFile => Path.GetTempFileName();
 
         #region Fornax FileTypeExtensions
@@ -155,9 +154,6 @@ namespace Fornax.Net.Util
         internal static string[] All_Query_Ops => new[] { "OR", "||", "NOT", "!", "AND", "&&", "&", "\"", ":", "*", "?", "%", "$", ">", "(", ")"};
 
         #endregion
-
-
-
 
 
         #region Methods        

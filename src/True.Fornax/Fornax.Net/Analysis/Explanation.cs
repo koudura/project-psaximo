@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Analysis
 {
-    class Explanation
+    internal class Explanation
     {
+
+
+
     }
 }

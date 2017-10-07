@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Query
 {
-    class FornaxQuery
+    public abstract class FornaxQuery
     {
+        public virtual bool IsExpandable { get; protected set;}
+
+
     }
 }

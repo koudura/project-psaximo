@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Index
+namespace Fornax.Net.Index.Storage
 {
-    class FornaxRepository
+    public class FornaxRepository
     {
     }
 }
