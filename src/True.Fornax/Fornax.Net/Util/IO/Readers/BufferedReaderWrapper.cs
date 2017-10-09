@@ -23,23 +23,23 @@ namespace Fornax.Net.Util.IO.Readers
 
         public BufferedReaderWrapper(string filename) {
             if (string.IsNullOrEmpty(filename)) {
-                throw new ArgumentException("message", nameof(filename));
+                throw new ArgumentException("Should not be null or empty !!.", nameof(filename));
             }
             
             this.file = filename;
+            BuildContent();
         }
 
-        public string CurrentContent { get => this.content; set => this.content = value; }
+        public string Text { get => this.content; private set => this.content = value; }
 
-        public string GetContent() {
+        public void BuildContent() {
             StringBuilder builder = new StringBuilder();
-
             try {
                 using (FileReader reader = new FileReader(this.file)) {
                     using (BuffReader bread = new BuffReader(reader)) {
                         string line;
                         while ((line = bread.readLine()) != null) {
-                            builder.AppendFormat($"{line}{Environment.NewLine}");
+                            builder.AppendLine(line);
                         }
                     }
                 }
@@ -48,7 +48,7 @@ namespace Fornax.Net.Util.IO.Readers
                 this.content = null;
             }
             this.content = builder.ToString();
-            return this.content;
+            return;
         }
 
         static BufferedReaderWrapper() {

@@ -23,7 +23,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using System.Text;
 using Fornax.Net.Util.Collections.Generic;
 
 namespace Fornax.Net.Util.Linq
@@ -119,5 +119,21 @@ namespace Fornax.Net.Util.Linq
             list[indexB] = tmp;
         }
 
+        /// <summary>
+        /// Binds the specified list as into a string, using the specified separator
+        /// as separator between each item in the list as string.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list">The list.</param>
+        /// <param name="separator">The separator.</param>
+        /// <returns>a concatenated string representation of items in the <paramref name="list"/>.</returns>
+        public static string Concat<T>(this IList<T> list, string separator = " ") {
+            if (list == null) { list = new List<T>(); }
+            var data = new StringBuilder();
+            foreach (var item in list) { 
+                data.Append(item + separator);
+            }
+            return data.ToString();
+        }
     }
 }

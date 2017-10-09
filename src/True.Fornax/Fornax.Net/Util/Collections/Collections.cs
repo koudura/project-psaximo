@@ -500,7 +500,7 @@ namespace Fornax.Net.Util.Collections
                 it.MoveNext();
                 while (true) {
                     T e = it.Current;
-                    sb.Append(object.ReferenceEquals(e, collection) ? "(this Collection)" : (isValueType ? e.ToString() : ToString(e)));
+                    sb.Append(ReferenceEquals(e, collection) ? "(this Collection)" : (isValueType ? e.ToString() : ToString(e)));
                     if (!it.MoveNext()) {
                         return sb.Append(']').ToString();
                     }
@@ -563,7 +563,6 @@ namespace Fornax.Net.Util.Collections
         }
 
         #endregion ReverseComparer
-
 
         #region ReverseComparer2
 

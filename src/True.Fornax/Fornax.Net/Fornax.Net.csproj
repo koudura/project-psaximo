@@ -33,182 +33,231 @@
   <ItemGroup>
     <Reference Include="DCSoft.RTF">
       <HintPath>Lib\toxy\DCSoft.RTF.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="dmach.Mail">
       <HintPath>Lib\toxy\dmach.Mail.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>Lib\toxy\HtmlAgilityPack.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>Lib\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.AWT.WinForms">
       <HintPath>Lib\ikvm\IKVM.AWT.WinForms.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Beans">
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Beans.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Charsets">
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Charsets.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Cldrdata, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Cldrdata.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Corba, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Corba.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Core, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Jdbc, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Jdbc.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Localedata, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Localedata.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Management, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Management.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Media, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Media.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Misc, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Misc.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Naming, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Naming.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Nashorn, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Nashorn.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Remoting, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Remoting.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Security, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Security.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.SwingAWT, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.SwingAWT.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Text, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Text.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Tools, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Tools.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Util, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.Util.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.API, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.XML.API.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.Bind, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.XML.Bind.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.Crypto, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.Parse, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.XML.Parse.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.Transform, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.XML.Transform.dll</HintPath>
+      <Private>False</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.WebServices, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.XML.WebServices.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.XML.XPath, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.OpenJDK.XML.XPath.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.Runtime, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.Runtime.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="IKVM.Runtime.JNI, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ikvm\IKVM.Runtime.JNI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\itextsharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\LumenWorks.Framework.IO.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="LZ4">
       <HintPath>Lib\LZ4.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Lz4Net, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\Lz4Net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives">
       <HintPath>Lib\Microsoft.Win32.Primitives.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MsgReader, Version=1.9.6.0, Culture=neutral, PublicKeyToken=47f99f3a9a2648df, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\MsgReader.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NPOI, Version=2.2.0.2, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\NPOI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NPOI.OOXML, Version=2.2.0.2, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\NPOI.OOXML.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net, Version=2.2.0.2, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats, Version=2.2.0.2, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NPOI.ScratchPad.HWPF, Version=1.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\NPOI.ScratchPad.HWPF.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="pdfbox-app-2.0.7, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\pdfbox\pdfbox-app-2.0.7.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="policy.2.0.taglib-sharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\policy.2.0.taglib-sharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net, Version=2.3.2.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\protobuf-net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -221,34 +270,42 @@
     <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\taglib-sharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Thought.vCards, Version=0.4.0.0, Culture=neutral, PublicKeyToken=48d3dbd26ddb59c9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\Thought.vCards.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="TikaOnDotNet, Version=1.16.0.0, Culture=neutral, PublicKeyToken=fd70f0f601f583f3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\tika\TikaOnDotNet.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="TikaOnDotNet.TextExtraction, Version=1.16.0.0, Culture=neutral, PublicKeyToken=fd70f0f601f583f3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\tika\TikaOnDotNet.TextExtraction.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Toxy, Version=1.6.1.0, Culture=neutral, PublicKeyToken=48d3dbd26ddb59c9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\toxy\Toxy.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ZeroFormatter, Version=1.6.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\zero\ZeroFormatter.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ZeroFormatter.Interfaces, Version=1.6.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\zero\ZeroFormatter.Interfaces.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ZeroFormatterAnalyzer, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\zero\ZeroFormatterAnalyzer.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -349,8 +406,10 @@
     <Compile Include="Util\IO\FornaxAssembly.cs" />
     <Compile Include="Util\IO\FornaxAssemblyException.cs" />
     <Compile Include="Util\IO\FornaxFileException.cs" />
+    <Compile Include="Util\IO\Readers\doc.cs" />
     <Compile Include="Util\IO\Readers\Enums.cs" />
     <Compile Include="Util\IO\Readers\FornaxReader.cs" />
+    <Compile Include="Util\IO\Readers\IReader.cs" />
     <Compile Include="Util\IO\Readers\WordReader.cs" />
     <Compile Include="Util\IO\Readers\ZipReader.cs" />
     <Compile Include="Util\IO\Writers\ObjectWriter.cs" />
@@ -435,69 +494,191 @@
     <EmbeddedResource Include="Lib\system\System.Security.Cryptography.X509Certificates.dll" />
     <EmbeddedResource Include="Lib\system\System.Text.RegularExpressions.dll" />
     <EmbeddedResource Include="Lib\system\System.Xml.ReaderWriter.dll" />
-    <EmbeddedResource Include="Lib\toxy\DocumentFormat.OpenXml.dll" />
-    <EmbeddedResource Include="Lib\toxy\HtmlAgilityPack.dll" />
-    <EmbeddedResource Include="Lib\toxy\HtmlAgilityPack.XML" />
-    <EmbeddedResource Include="Lib\ICSharpCode.SharpZipLib.dll" />
-    <EmbeddedResource Include="Lib\ICSharpCode.SharpZipLib.xml" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.AWT.WinForms.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Beans.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Charsets.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Cldrdata.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Corba.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Core.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Jdbc.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Localedata.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Management.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Media.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Misc.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Naming.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Nashorn.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Remoting.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Security.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.SwingAWT.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Text.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Tools.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Util.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.API.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.Bind.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.Crypto.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.Parse.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.Transform.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.WebServices.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.XPath.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.Runtime.dll" />
-    <EmbeddedResource Include="Lib\ikvm\IKVM.Runtime.JNI.dll" />
-    <EmbeddedResource Include="Lib\toxy\itextsharp.dll" />
-    <EmbeddedResource Include="Lib\toxy\iTextSharp.xml" />
-    <EmbeddedResource Include="Lib\toxy\LumenWorks.Framework.IO.dll" />
-    <EmbeddedResource Include="Lib\toxy\LumenWorks.Framework.IO.xml" />
-    <EmbeddedResource Include="Lib\Lz4Net.dll" />
-    <EmbeddedResource Include="Lib\Lz4Net.XML" />
-    <EmbeddedResource Include="Lib\Microsoft.Win32.Primitives.dll" />
-    <EmbeddedResource Include="Lib\pdfbox\pdfbox-app-2.0.7.dll" />
-    <EmbeddedResource Include="Lib\protobuf-net.dll" />
-    <EmbeddedResource Include="Lib\protobuf-net.xml" />
-    <EmbeddedResource Include="Lib\tika\TikaOnDotNet.dll" />
-    <EmbeddedResource Include="Lib\tika\TikaOnDotNet.TextExtraction.dll" />
-    <EmbeddedResource Include="Lib\toxy\DCSoft.RTF.dll" />
-    <EmbeddedResource Include="Lib\toxy\dmach.Mail.dll" />
-    <EmbeddedResource Include="Lib\toxy\MsgReader.dll" />
-    <EmbeddedResource Include="Lib\toxy\NPOI.dll" />
-    <EmbeddedResource Include="Lib\toxy\NPOI.OOXML.dll" />
-    <EmbeddedResource Include="Lib\toxy\NPOI.OpenXml4Net.dll" />
-    <EmbeddedResource Include="Lib\toxy\NPOI.OpenXmlFormats.dll" />
-    <EmbeddedResource Include="Lib\toxy\NPOI.ScratchPad.HWPF.dll" />
-    <EmbeddedResource Include="Lib\toxy\policy.2.0.taglib-sharp.dll" />
-    <EmbeddedResource Include="Lib\toxy\taglib-sharp.dll" />
-    <EmbeddedResource Include="Lib\toxy\Thought.vCards.dll" />
-    <EmbeddedResource Include="Lib\toxy\Toxy.dll" />
-    <EmbeddedResource Include="Lib\zero\ZeroFormatter.dll" />
-    <EmbeddedResource Include="Lib\zero\ZeroFormatter.Interfaces.dll" />
-    <EmbeddedResource Include="Lib\zero\ZeroFormatterAnalyzer.dll" />
+    <EmbeddedResource Include="Lib\toxy\DocumentFormat.OpenXml.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\HtmlAgilityPack.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\HtmlAgilityPack.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ICSharpCode.SharpZipLib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ICSharpCode.SharpZipLib.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.AWT.WinForms.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Beans.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Charsets.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Cldrdata.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Corba.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Jdbc.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Localedata.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Management.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Media.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Misc.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Naming.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Nashorn.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Remoting.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Security.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.SwingAWT.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Text.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Tools.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.Util.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.API.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.Bind.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.Crypto.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.Parse.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.Transform.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.WebServices.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.OpenJDK.XML.XPath.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.Runtime.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\ikvm\IKVM.Runtime.JNI.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\itextsharp.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\iTextSharp.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\LumenWorks.Framework.IO.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\LumenWorks.Framework.IO.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\Lz4Net.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\Lz4Net.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\Microsoft.Win32.Primitives.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\pdfbox\pdfbox-app-2.0.7.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\protobuf-net.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\protobuf-net.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\tika\TikaOnDotNet.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\tika\TikaOnDotNet.TextExtraction.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\DCSoft.RTF.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\dmach.Mail.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\MsgReader.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\NPOI.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\NPOI.OOXML.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\NPOI.OpenXml4Net.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\NPOI.OpenXmlFormats.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\NPOI.ScratchPad.HWPF.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\policy.2.0.taglib-sharp.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\taglib-sharp.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\Thought.vCards.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\toxy\Toxy.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\zero\ZeroFormatter.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\zero\ZeroFormatter.Interfaces.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\zero\ZeroFormatterAnalyzer.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Lib\toxy\policy.2.0.taglib-sharp.config" />
+    <EmbeddedResource Include="Lib\toxy\policy.2.0.taglib-sharp.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Util\Linq\Extensions.Linq.cs" />
@@ -515,7 +696,9 @@
     <None Include="Common\SandBox\user.plugins" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Lib\LZ4.dll" />
+    <EmbeddedResource Include="Lib\LZ4.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\en_stem.txt" />

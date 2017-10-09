@@ -119,7 +119,7 @@ namespace Fornax.Net.Util.Collections
         /// <param name="length">The length.</param>
         /// <param name="radix">The radix.</param>
         /// <returns></returns>
-        /// <exception cref="System.FormatException">
+        /// <exception cref="FormatException">
         /// chars
         /// or
         /// chars
@@ -176,7 +176,7 @@ namespace Fornax.Net.Util.Collections
         /// <param name="minTargetSize">Minimum size of the target.</param>
         /// <param name="bytesPerElement">The bytes per element.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentException">invalid array size " + minTargetSize</exception>
+        /// <exception cref="ArgumentException">invalid array size " + minTargetSize</exception>
         public static int Oversize(int minTargetSize, int bytesPerElement) {
             if (minTargetSize < 0) {
                 // catch usage that accidentally overflows int

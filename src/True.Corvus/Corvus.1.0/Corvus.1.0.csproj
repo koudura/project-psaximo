@@ -32,6 +32,152 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DCSoft.RTF">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\DCSoft.RTF.dll</HintPath>
+    </Reference>
+    <Reference Include="dmach.Mail">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\dmach.Mail.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Fornax.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Fornax.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.AWT.WinForms">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.AWT.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Beans">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Beans.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Charsets">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Charsets.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Cldrdata">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Cldrdata.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Corba">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Corba.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Jdbc">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Jdbc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Localedata">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Localedata.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Management">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Media">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Misc">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Misc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Naming">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Naming.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Nashorn">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Nashorn.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Remoting">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Remoting.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Security">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.SwingAWT">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.SwingAWT.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Text">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Tools">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Util">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.API">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.XML.API.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Bind">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.XML.Bind.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Crypto">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Parse">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.XML.Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Transform">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.XML.Transform.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.WebServices">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.XML.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.XPath">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.OpenJDK.XML.XPath.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime.JNI">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\ikvm\IKVM.Runtime.JNI.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LumenWorks.Framework.IO">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\LumenWorks.Framework.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="LZ4">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="Lz4Net">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\Lz4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="MsgReader">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\MsgReader.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.ScratchPad.HWPF">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\NPOI.ScratchPad.HWPF.dll</HintPath>
+    </Reference>
+    <Reference Include="pdfbox-app-2.0.7">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\pdfbox\pdfbox-app-2.0.7.dll</HintPath>
+    </Reference>
+    <Reference Include="policy.2.0.taglib-sharp">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\policy.2.0.taglib-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\protobuf-net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,6 +189,30 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="taglib-sharp">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\taglib-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Thought.vCards">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\Thought.vCards.dll</HintPath>
+    </Reference>
+    <Reference Include="TikaOnDotNet">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\tika\TikaOnDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="TikaOnDotNet.TextExtraction">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\tika\TikaOnDotNet.TextExtraction.dll</HintPath>
+    </Reference>
+    <Reference Include="Toxy">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\toxy\Toxy.dll</HintPath>
+    </Reference>
+    <Reference Include="ZeroFormatter">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\zero\ZeroFormatter.dll</HintPath>
+    </Reference>
+    <Reference Include="ZeroFormatter.Interfaces">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\zero\ZeroFormatter.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ZeroFormatterAnalyzer">
+      <HintPath>..\..\True.Fornax\Fornax.Net\bin\Debug\Lib\zero\ZeroFormatterAnalyzer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form1.cs">
