@@ -49,7 +49,7 @@ namespace Fornax.Net.Util.System
         public override bool Equals(object obj) {
             if (!(obj is Resource)) return false;
             var other = obj as Resource;
-            return (this.type.Equals(other.type) && (this.name.Equals(other.name)));
+            return (type.Equals(other.type) && (name.Equals(other.name)));
         }
 
         /// <summary>
@@ -58,7 +58,9 @@ namespace Fornax.Net.Util.System
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
         /// </returns>
-        public override int GetHashCode() => (this.type.GetHashCode() ^ this.name.GetHashCode());
+        public override int GetHashCode() {
+            return (type.GetHashCode() ^ name.GetHashCode());
+        }
 
         /// <summary>
         /// Returns a <see cref="string" /> that represents this <see cref="Resource"/>.

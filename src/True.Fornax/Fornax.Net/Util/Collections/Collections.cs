@@ -167,6 +167,19 @@ namespace Fornax.Net.Util.Collections
         }
 
         /// <summary>
+        /// Gets an Unmodifiable (i.e.ReadOnly <see cref="IList{T}" />) with initial capacity
+        /// equals to return value of <paramref name="method"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="method">The predicate.</param>
+        /// <returns>
+        /// a new <see cref="UnmodifiableList{T}(IList{T})" />.
+        /// </returns>
+        public static IList<T> UnmodifiableList<T>(Func<IList<T>> method) {
+            return new UnmodifiableListImpl<T>(method.Invoke());
+        }
+
+        /// <summary>
         /// Gets an Unmodifiable (i.e.ReadOnly <see cref="IDictionary{TKey, TValue}"/>) with initial capacity
         /// equals to <paramref name="d"/>.
         /// </summary>
@@ -179,16 +192,40 @@ namespace Fornax.Net.Util.Collections
         }
 
         /// <summary>
+        /// Gets an Unmodifiable (i.e.ReadOnly <see cref="IDictionary{TKey, TValue}" />) with initial capacity
+        /// equals to <paramref name="method" />.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="method">The initial dictionary method holder.</param>
+        /// <returns>
+        /// a new <see cref="UnmodifiableMap{TKey, TValue}(IDictionary{TKey, TValue})" />.
+        /// </returns>
+        public static IDictionary<TKey, TValue> UnmodifiableMap<TKey, TValue>(Func<IDictionary<TKey, TValue>> method) {
+            return new UnmodifiableDictionary<TKey, TValue>(method.Invoke());
+        }
+
+        /// <summary>
         /// Gets an Unmodifiable (i.e.ReadOnly <see cref="ISet{T}"/>) with initial capacity
         /// equals to <paramref name="set"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="set">The intitial set.</param>
-        /// <returns>A new <see cref="UnmodifiableList{T}(IList{T})"/></returns>
+        /// <returns>A new <see cref="UnmodifiableSet{T}(ISet{T})"/></returns>
         public static ISet<T> UnmodifiableSet<T>(ISet<T> set) {
             return new UnmodifiableSetImpl<T>(set);
         }
 
+        /// <summary>
+        /// Gets an Unmodifiable (i.e.ReadOnly <see cref="ISet{T}" />) with initial capacity
+        /// equals to return of <paramref name="method"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="method">The method.</param>
+        /// <returns>A new <see cref="UnmodifiableSet{T}(ISet{T})"/></returns>
+        public static ISet<T> UnmodifiableSet<T>(Func<ISet<T>> method) {
+            return new UnmodifiableSetImpl<T>(method.Invoke());
+        }
 
         /// <summary>
         /// The same implementation of GetHashCode from Java's AbstractList

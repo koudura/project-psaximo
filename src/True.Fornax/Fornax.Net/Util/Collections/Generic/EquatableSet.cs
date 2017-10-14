@@ -38,6 +38,7 @@ namespace Fornax.Net.Util.Collections.Generic
     /// </summary>
     /// <typeparam name="T">The type of elements in the list.</typeparam>
     [Serializable]
+    [Progress("EquatableSet",true,Documented = true,Tested = true)]
     public class EquatableSet<T> : ISet<T>, IEquatable<ISet<T>>, ICloneable
     {
         private ISet<T> set;

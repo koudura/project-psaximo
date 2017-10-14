@@ -32,6 +32,7 @@ namespace Fornax.Net.Util.Collections.Generic
     /// </summary>
     /// <typeparam name="T"></typeparam>
     [Serializable]
+    [Progress("ObservableList",true,Documented = true,Tested = true)]
     public class ObservableList<T> : IList<T>
     {
         private readonly IList<T> monitoredList;
@@ -49,7 +50,7 @@ namespace Fornax.Net.Util.Collections.Generic
         /// Initializes a new instance of the <see cref="ObservableList{T}"/> class.
         /// </summary>
         public ObservableList() {
-            monitoredList = new List<T>();
+            this.monitoredList = new List<T>();
         }
 
         /// <summary>
@@ -278,37 +279,5 @@ namespace Fornax.Net.Util.Collections.Generic
             /// </summary>
             public virtual ListOperation ChangeType => this.operation;
         }
-    }
-    /// <summary>
-    /// Signified the type of change operation carried out the observable list,
-    /// <seealso cref="ObservableList{T}"/>.
-    /// </summary>
-    public enum ListOperation
-    {
-        /// <summary>
-        /// An item Was Added to the <see cref="ObservableList{T}"/>.
-        /// </summary>
-        Add,
-        /// <summary>
-        /// An item was removed at a specified index from <see cref="ObservableList{T}"/>.
-        /// </summary>
-        RemoveAt,
-        /// <summary>
-        /// The first occurence of an item was removed from <see cref="ObservableList{T}"/>.
-        /// </summary>
-        Remove,
-        /// <summary>
-        /// An item was Inserted into <see cref="ObservableList{T}"/>.
-        /// </summary>
-        Insert,
-        /// <summary>
-        /// The <see cref="ObservableList{T}"/> was cleared.
-        /// This resetsa all index and Item to default values. 
-        /// </summary>
-        Clear,
-        /// <summary>
-        /// An Item was set in the <see cref="ObservableList{T}"/>. 
-        /// </summary>
-        Set
     }
 }

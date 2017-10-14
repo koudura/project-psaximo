@@ -1,10 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/***
+* Copyright (c) 2017 Koudura Ninci @True.Inc
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*
+**/
+
+using System;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Fornax.Net.Util.System
 {
@@ -69,22 +88,17 @@ namespace Fornax.Net.Util.System
         /// uiCulture
         /// </exception>
         public CultureContext(CultureInfo culture, CultureInfo uiCulture) {
-            if (culture == null)
-                throw new ArgumentNullException("culture");
-            if (uiCulture == null)
-                throw new ArgumentNullException("uiCulture");
-
-            this.currentThread = Thread.CurrentThread;
-
-            /** Record the current culture settings so they can be restored later.**/
-            this.originalCulture = CultureInfo.CurrentCulture;
-            this.originalUICulture = CultureInfo.CurrentUICulture;
-
-            /**
+            /***
              *Setting both ui and current culture for this thread. 
              **/
-            Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = uiCulture;
+            Thread.CurrentThread.CurrentCulture = culture ?? throw new ArgumentNullException("culture");
+            Thread.CurrentThread.CurrentUICulture = uiCulture ?? throw new ArgumentNullException("uiCulture");
+
+            currentThread = Thread.CurrentThread;
+
+            /*** Record the current culture settings so they can be restored later.**/
+            originalCulture = CultureInfo.CurrentCulture;
+            originalUICulture = CultureInfo.CurrentUICulture;
 
         }
 
@@ -98,9 +112,7 @@ namespace Fornax.Net.Util.System
         /// <value>
         /// The original culture.
         /// </value>
-        public CultureInfo OriginalCulture {
-            get { return this.originalCulture; }
-        }
+        public CultureInfo OriginalCulture => originalCulture;
 
         /// <summary>
         /// Gets the original UI culture.
@@ -108,9 +120,7 @@ namespace Fornax.Net.Util.System
         /// <value>
         /// The original UI culture.
         /// </value>
-        public CultureInfo OriginalUICulture {
-            get { return this.originalUICulture; }
-        }
+        public CultureInfo OriginalUICulture => originalUICulture;
 
         /// <summary>
         /// Restores the original culture.
@@ -123,7 +133,7 @@ namespace Fornax.Net.Util.System
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources
-        /// of <see cref="CultureContext"/> by <see cref="RestoreOriginalCulture"/>.
+        /// of <see cref="CultureContext" /> by <see cref="RestoreOriginalCulture" />.
         /// </summary>
         public void Dispose() {
             RestoreOriginalCulture();

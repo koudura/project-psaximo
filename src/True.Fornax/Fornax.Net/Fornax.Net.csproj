@@ -389,12 +389,22 @@
     <Compile Include="Util\Collections\Arrays.cs" />
     <Compile Include="Util\Collections\Collections.cs" />
     <Compile Include="Util\Collections\Equatable.cs" />
+    <Compile Include="Util\Collections\Generic\enum.cs" />
+    <Compile Include="Util\Collections\Generic\Enumerator.cs" />
     <Compile Include="Util\Collections\Generic\EquatableList.cs" />
     <Compile Include="Util\Collections\Generic\EquatableSet.cs" />
+    <Compile Include="Util\Collections\Generic\HashUtilities.cs" />
+    <Compile Include="Util\Collections\Generic\ICreateOrUpdateValue.cs" />
+    <Compile Include="Util\Collections\Generic\ICreateValue.cs" />
+    <Compile Include="Util\Collections\Generic\IRemoveValue.cs" />
     <Compile Include="Util\Collections\Generic\ISubList.cs" />
+    <Compile Include="Util\Collections\Generic\IUpdateValue.cs" />
+    <Compile Include="Util\Collections\Generic\KeyCollection.cs" />
     <Compile Include="Util\Collections\Generic\LurchTable.cs" />
+    <Compile Include="Util\Collections\Generic\LurchCorruptionException.cs" />
     <Compile Include="Util\Collections\Generic\ObservableList.cs" />
     <Compile Include="Util\Collections\Generic\SubList.cs" />
+    <Compile Include="Util\Collections\Generic\ValueCollection.cs" />
     <Compile Include="Util\Collections\SetFromMap.cs" />
     <Compile Include="Util\Constants.cs" />
     <Compile Include="Util\FornaxException.cs" />
@@ -425,7 +435,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dictionary.resx</DependentUpon>
     </Compile>
-    <Compile Include="Util\Resources\FornaxVocabulary.cs" />
+    <Compile Include="Util\Resources\Vocabulary.cs" />
     <Compile Include="Util\Runtime\Cache\CacheBook.cs" />
     <Compile Include="Util\Runtime\Logging\ILoggable.cs" />
     <Compile Include="Util\Runtime\Logging\Level.cs" />
@@ -438,6 +448,7 @@
     <Compile Include="Util\Security\Cryptography\Elf32.cs" />
     <Compile Include="Util\Security\Cryptography\Murmur3_x86.cs" />
     <Compile Include="Util\Security\ICheckSum.cs" />
+    <Compile Include="Util\System\FornaxLanguage.cs" />
     <Compile Include="Util\System\MemoryModel.cs" />
     <Compile Include="Util\System\CultureContext.cs" />
     <Compile Include="Util\System\Resource.cs" />

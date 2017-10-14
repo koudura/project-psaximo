@@ -374,12 +374,12 @@ namespace Fornax.Net {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
-        public global::System.Globalization.CultureInfo FornaxLanguage {
+        public global::System.Globalization.CultureInfo Language {
             get {
-                return ((global::System.Globalization.CultureInfo)(this["FornaxLanguage"]));
+                return ((global::System.Globalization.CultureInfo)(this["Language"]));
             }
             set {
-                this["FornaxLanguage"] = value;
+                this["Language"] = value;
             }
         }
         
@@ -440,27 +440,21 @@ namespace Fornax.Net {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("fr")]
         public global::System.Globalization.CultureInfo Fornax_Lang2 {
             get {
                 return ((global::System.Globalization.CultureInfo)(this["Fornax_Lang2"]));
             }
-            set {
-                this["Fornax_Lang2"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("en")]
         public global::System.Globalization.CultureInfo Fornax_Lang1 {
             get {
                 return ((global::System.Globalization.CultureInfo)(this["Fornax_Lang1"]));
-            }
-            set {
-                this["Fornax_Lang1"] = value;
             }
         }
     }

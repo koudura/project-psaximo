@@ -30,16 +30,16 @@ namespace Fornax.Net.Util.Collections.Generic
     /// An Interface for wrapping the <see cref="SubList{T}"/> class.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal interface ISubList<T>
+    public interface ISubList<T>
     {
         /// <summary>
-        /// Gets or sets the item <see cref="T"/>  at the specified index.
+        /// Gets or sets the item at the specified index.
         /// </summary>
         /// <value>
-        /// The <see cref="T"/>.
+        /// The <c>T</c> data.
         /// </value>
         /// <param name="index">The index.</param>
-        /// <returns> an item of <see cref="T"/> at <paramref name="index"/></returns>
+        /// <returns> an item of <c>T</c> at <paramref name="index"/></returns>
         /// <exception cref="IndexOutOfRangeException">
         /// </exception>
         T this[int index] { get; set; }

@@ -140,9 +140,10 @@ namespace Fornax.Net.Util.Text
         /// <summary>
         /// Cleans the specified string. i.e. Removes all whitespaces in string
         /// and removes all special characters if and only if
-        /// <paramref name="allowDelimiters"/> is set to false
+        /// <paramref name="allowDelimiters" /> is set to false
         /// </summary>
         /// <param name="str">The string.</param>
+        /// <param name="allowDelimiters">if set to <c>true</c> [allow delimiters].</param>
         /// <returns></returns>
         public static string Clean(this string str, bool allowDelimiters) {
             str.Replace(" ", "");

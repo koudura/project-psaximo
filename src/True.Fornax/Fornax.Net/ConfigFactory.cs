@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using Fornax.Net.Util;
+using Fornax.Net.Util.Resources;
+using Fornax.Net.Util.System;
 using StringSet = System.Collections.Specialized.StringCollection;
 
 namespace Fornax.Net
@@ -13,7 +16,15 @@ namespace Fornax.Net
         #region dir-configs
         internal static IReadOnlyDictionary<FornaxFormat, StringSet> FornaxFormatTable { get; private set; }
 
+        internal static CultureInfo english = config.Default.Fornax_Lang1;
+        internal static CultureInfo french = config.Default.Fornax_Lang2;
+        internal static CultureInfo current = config.Default.Language;
+
         internal static StringSet UserDefinedFormats => config.Default.USER_DEFINED ?? throw new FornaxException();
+
+        internal static bool IsSafeSearchable = config.Default.QueryIsSafeSearch;
+        internal static bool IsExpandable = config.Default.QueryIsExpand;
+        internal static bool IsAutoCorrectable = config.Default.QueryAutoCorrect;
         #endregion
 
 
@@ -21,9 +32,21 @@ namespace Fornax.Net
             return null;
         }
 
-
         internal static void SaveSettings() {
             config.Default.Save();
+        }
+
+        public static Configuration Create() {
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the vocabulary from fornax.net. 
+        /// </summary>
+        /// <param name="language">The language.</param>
+        /// <returns></returns>
+        public static Vocabulary GetVocabulary(FornaxLanguage language) {
+            return new Vocabulary(language);
         }
 
         static ConfigFactory() {
@@ -42,12 +65,6 @@ namespace Fornax.Net
             {FornaxFormat.Zip, config.Default.ZIP_format ?? throw new FornaxException()}
         };
 
-
-
-        }
-
-        public static Configuration Create() {
-            return null;
         }
     }
 }

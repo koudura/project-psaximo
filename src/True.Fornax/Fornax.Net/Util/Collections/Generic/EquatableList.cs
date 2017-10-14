@@ -37,10 +37,10 @@ namespace Fornax.Net.Util.Collections.Generic
     /// other functionality.
     /// </summary>
     /// <typeparam name="T">The type of elements in the list.</typeparam>
-    /// <seealso cref="System.Collections.Generic.IList{T}" />
-    /// <seealso cref="System.IEquatable{T}" />
+    /// <seealso cref="IList{T}" />
+    /// <seealso cref="IEquatable{T}" />
     [Serializable]
-    [Progress("EquatableList<T>", false, Documented = true, Tested = false)]
+    [Progress("EquatableList<T>", true, Documented = true, Tested = true)]
     public class EquatableList<T> : IList<T>, IEquatable<IList<T>>, ICloneable
     {
         private readonly IList<T> list;

@@ -31,10 +31,12 @@ namespace Fornax.Net.Util.Collections.Generic
 
 
     /// <summary>
-    /// A Sub-List that is contained in a <see cref="IList{T}"/> .
-    /// The Container of the Sublist is used to create an Instance of a Sublist.
+    /// A Sub-List that is contained in a <see cref="IList{T}" /> .
+    /// The Container of the Sublist is used to create an Instance of a Sub-routine list.
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    /// <seealso cref="IList{T}" />
+    /// <seealso cref="Generic.ISubList{T}" />
     /// <seealso cref="IList{T}" />
     [Serializable]
     [Progress("SubList<T>",true ,Documented = true, Tested = true)]
@@ -46,11 +48,23 @@ namespace Fornax.Net.Util.Collections.Generic
         private int toIndex;
 
         /// <summary>
-        /// Creates a ranged view of the given <paramref name="list"/>.
+        /// Creates a ranged view of the given <paramref name="list" />.
         /// </summary>
         /// <param name="list">The original list to view.</param>
         /// <param name="fromIndex">The inclusive starting index.</param>
         /// <param name="toIndex">The exclusive ending index.</param>
+        /// <exception cref="ArgumentNullException">
+        /// list
+        /// or
+        /// list
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// fromIndex
+        /// or
+        /// toIndex
+        /// or
+        /// toIndex
+        /// </exception>
         public SubList(IList<T> list, int fromIndex, int toIndex) {
             Contract.Requires(list != null);
             if (list == null)
@@ -72,6 +86,7 @@ namespace Fornax.Net.Util.Collections.Generic
             this.fromIndex = fromIndex;
             this.toIndex = toIndex;
         }
+
         /// <summary>
         /// Determines the index of a specific item in the <see cref="SubList{T}" />.
         /// </summary>
@@ -95,17 +110,17 @@ namespace Fornax.Net.Util.Collections.Generic
         }
 
         /// <summary>
-        /// Inserts an item to the <see cref="SubList{T}`1" /> at the specified index.
+        /// Inserts an item to the <see cref="SubList{T}" /> at the specified index.
         /// </summary>
         /// <param name="index">The zero-based index at which <paramref name="item" /> should be inserted.</param>
-        /// <param name="item">The object to insert into the <see cref = "SubList{T}`1" />.</param>
+        /// <param name="item">The object to insert into the <see cref="SubList{T}" />.</param>
         /// <exception cref="NotSupportedException"></exception>
         public void Insert(int index, T item) {
             this.list.Insert(this.fromIndex + index, item);
         }
 
         /// <summary>
-        /// Removes the <see cref="SubList{T}`1" /> item at the specified index.
+        /// Removes the <see cref="SubList{T}" /> item at the specified index.
         /// </summary>
         /// <param name="index">The zero-based index of the item to remove.</param>
         public void RemoveAt(int index) {
@@ -114,13 +129,13 @@ namespace Fornax.Net.Util.Collections.Generic
         }
 
         /// <summary>
-        /// Gets or sets the item <see cref="T"/>  at the specified index.
+        /// Gets or sets the item <c>T</c> at the specified index.
         /// </summary>
         /// <value>
-        /// The <see cref="T"/>.
+        /// The <c>T</c> value.
         /// </value>
         /// <param name="index">The index.</param>
-        /// <returns> an item of <see cref="T"/> at <paramref name="index"/></returns>
+        /// <returns> an item of <c>T</c> at <paramref name="index"/></returns>
         /// <exception cref="IndexOutOfRangeException">
         /// </exception>
         public T this[int index] {
@@ -137,15 +152,15 @@ namespace Fornax.Net.Util.Collections.Generic
         }
 
         /// <summary>
-        /// Adds an item to the <see cref="SubList{T}`1" />.
+        /// Adds an item to the <see cref="SubList{T}" />.
         /// </summary>
-        /// <param name="item">The object to add to the <see cref="SubList{T}`1" />.</param>
+        /// <param name="item">The object to add to the <see cref="SubList{T}" />.</param>
         public void Add(T item) {
             this.list.Insert(this.toIndex - 1, item);
         }
 
         /// <summary>
-        /// Removes all items from the <see cref="SubList{T}`1" />.
+        /// Removes all items from the <see cref="SubList{T}" />.
         /// </summary>
         public void Clear() {
             for (int i = this.toIndex - 1; i >= this.fromIndex; i--) {
@@ -155,20 +170,20 @@ namespace Fornax.Net.Util.Collections.Generic
         }
 
         /// <summary>
-        /// Determines whether the <see cref="SubList{T}`1" /> contains a specific value.
+        /// Determines whether the <see cref="SubList{T}" /> contains a specific value.
         /// </summary>
-        /// <param name="item">The object to locate in the <see cref="SubList{T}`1" />.</param>
+        /// <param name="item">The object to locate in the <see cref="SubList{T}" />.</param>
         /// <returns>
-        ///   <see langword="true" /> if <paramref name="item" /> is found in the <see cref="SubList{T}`1" />; otherwise, <see langword="false" />.
+        ///   <see langword="true" /> if <paramref name="item" /> is found in the <see cref="SubList{T}" />; otherwise, <see langword="false" />.
         /// </returns>
         public bool Contains(T item) {
             return IndexOf(item) >= 0;
         }
 
         /// <summary>
-        /// Copies the elements of the <see cref="SubList{T}`1" /> to an <see cref="T:System.Array" />, starting at a particular <see cref="T:System.Array" /> index.
+        /// Copies the elements of the <see cref="SubList{T}" /> to an <see cref="T:System.Array" />, starting at a particular <see cref="T:System.Array" /> index.
         /// </summary>
-        /// <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from <see cref="SubList{T}`1" />. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
+        /// <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from <see cref="SubList{T}" />. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
         public void CopyTo(T[] array, int arrayIndex) {
             int count = array.Length - arrayIndex;
@@ -201,7 +216,7 @@ namespace Fornax.Net.Util.Collections.Generic
         /// </summary>
         /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
         /// <returns>
-        ///   <see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="SubList{T}`1" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.
+        ///   <see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="SubList{T}" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </returns>
         public bool Remove(T item) {
             var index = IndexOf(item);
@@ -233,11 +248,11 @@ namespace Fornax.Net.Util.Collections.Generic
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+        /// Determines whether the specified <see cref="object" />, is equal to this instance.
         /// </summary>
-        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <param name="obj">The <see cref="object" /> to compare with this instance.</param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj) {
             var list = obj as SubList<T>;

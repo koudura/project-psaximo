@@ -44,7 +44,7 @@ namespace Fornax.Net.Util
         /// </summary>
         public const string WS_BROKERS = " \t\n\r\f";
 
-
+        public static char[] Brokers => new[] { ' ','\n','\t','\r','\f'};
         #endregion
 
         #region Boolean Constants 

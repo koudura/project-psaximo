@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Analysis.Tokenization
 {
-    class Token
+    public class Token
     {
+        public Token(string token) {
+                    
+        }
+
+
     }
 }
