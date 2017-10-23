@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Analysis.Filters
 {
-    interface IStemFilter
+    class StopsFilter
     {
     }
 }

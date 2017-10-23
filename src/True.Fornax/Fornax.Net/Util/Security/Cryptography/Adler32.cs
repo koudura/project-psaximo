@@ -28,16 +28,26 @@ using System.IO;
 namespace Fornax.Net.Util.Security.Cryptography
 {
     /// <summary>
-    /// 
+    /// Adler-32 Hash Algorithm handler. 
     /// </summary>
     public static class Adler32
     {
         internal const uint ADLER_MOD = 65521;
 
+        /// <summary>
+        /// Computes the Adler-32 specified buffer context.
+        /// </summary>
+        /// <param name="bufferContext">The buffer context as string.</param>
+        /// <returns></returns>
         public static ulong Compute(string bufferContext) {
             return Compute(bufferContext.ToCharArray());
         }
 
+        /// <summary>
+        /// Computes the Adler-32 hash code for the specified buffer context.
+        /// </summary>
+        /// <param name="bufferContext">The buffer context as array of characters.</param>
+        /// <returns></returns>
         public static ulong Compute(char[] bufferContext) {
             uint A = 1, B = 0;
 
@@ -49,13 +59,27 @@ namespace Fornax.Net.Util.Security.Cryptography
             return (B << 16) | A;
         }
 
+        /// <summary>
+        /// Computes the Adler-32 hash code for the specified context reader's
+        /// text.
+        /// </summary>
+        /// <param name="bufferContextreader">The buffer contextreader.</param>
+        /// <returns></returns>
         public static ulong Compute(StringReader bufferContextreader) {
             string context = bufferContextreader.ReadToEnd();
             bufferContextreader.Close();
             return Compute(context);
         }
 
-
+        /// <summary>
+        /// Computes the Adler-32 hash code for the specified range in string
+        /// <paramref name="bufferContext"/>.
+        /// </summary>
+        /// <param name="bufferContext">The buffer context as string.</param>
+        /// <param name="startindex">The startindex.</param>
+        /// <param name="endindex">The endindex.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException">startindex</exception>
         public static ulong ComputeRange(string bufferContext, int startindex, int endindex) {
             if (!(startindex >= 0 && startindex < bufferContext.Length) || !((endindex >= 0 && endindex < bufferContext.Length)))
                 throw new ArgumentOutOfRangeException(nameof(startindex));

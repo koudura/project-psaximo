@@ -22,8 +22,11 @@
 **/
 
 using System;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
+
+using Fornax.Net.Util.IO.Writers;
 using LZ4;
 
 
@@ -38,34 +41,31 @@ namespace Fornax.Net.Util.IO.Compression
         internal static bool IsSafeLoad { get; private set; }
 
         /// <summary>
-        /// Compresses the <paramref name="inputFile"/> and writes to
-        /// <paramref name="outputFile"/>.
+        /// Compresses the <paramref name="inputFile" /> and writes to
+        /// <paramref name="outputFile" />.
         /// </summary>
         /// <param name="inputFile">The input file.</param>
         /// <param name="outputFile">The output file.</param>
         /// <param name="HighCompression">if set to <c>true</c> [high compression].</param>
         /// <exception cref="ArgumentNullException">inputFile</exception>
         /// <exception cref="InvalidDataException">Extension</exception>
-        public static void CompressWriteFile(FileInfo inputFile, FileInfo outputFile, bool HighCompression = false) {
+        public static void Compress(FileInfo inputFile, FileInfo outputFile, bool HighCompression = false) {
+            Contract.Requires(inputFile != null && outputFile != null);
             if (inputFile == null || !inputFile.Exists) {
                 throw new ArgumentNullException(nameof(inputFile));
             }
-
-            //if (!inputFile.Extension.Equals(FileFormat.Txt.GetString())) 
-            //throw new InvalidDataException($"Not a valid Text File : {nameof(inputFile.Extension)} is now .txt");
-
             LZ4StreamFlags lz4Mode;
 
             if (HighCompression) lz4Mode = LZ4StreamFlags.HighCompression;
             else lz4Mode = LZ4StreamFlags.Default;
 
-            using (var filestream = new FileStream(outputFile.FullName, FileMode.Create)) {
-                using (var lz4stream = new LZ4Stream(filestream, LZ4StreamMode.Compress, lz4Mode)) {
-                    using (var writer = new StreamWriter(lz4stream)) {
-                        writer.Write(ReadString(inputFile));
+                using (var filestream = new FileStream(outputFile.FullName, FileMode.Create)) {
+                    using (var lz4stream = new LZ4Stream(filestream, LZ4StreamMode.Compress, lz4Mode,10485760)) {
+                        using (var writer = new StreamWriter(lz4stream)) {
+                            writer.Write(ReadString(inputFile));
+                        }
                     }
                 }
-            }
         }
 
         /// <summary>
@@ -75,48 +75,81 @@ namespace Fornax.Net.Util.IO.Compression
         /// <param name="inputFile">The input file.</param>
         /// <param name="outputFile">The output file.</param>
         /// <param name="HighCompression">if set to <c>true</c> [high compression].</param>
-        public static void CompressWriteFile(string inputFile, string outputFile, bool HighCompression = false) {
-            CompressWriteFile(new FileInfo(inputFile), new FileInfo(outputFile), HighCompression);
+        public static void Compress(string inputFile, string outputFile, bool HighCompression = false) {
+            Compress(new FileInfo(inputFile), new FileInfo(outputFile), HighCompression);
         }
 
         /// <summary>
         /// Decompresses and reads text file.
         /// </summary>
         /// <param name="compressedInputFile">The compressed input file.</param>
-        /// <returns></returns>
-        public static string DecompressReadTxtFile(string compressedInputFile) {
-            return DecompressReadTxtFile(new FileInfo(compressedInputFile));
+        /// <returns>string content of the decompressed file.</returns>
+        public static string Decompress(string compressedInputFile) {
+            return Decompress(new FileInfo(compressedInputFile));
         }
 
         /// <summary>
         /// Decompresses and reads text file.
         /// </summary>
         /// <param name="zipFile">The zip file.</param>
-        /// <returns></returns>
+        /// <returns>string content of the decompressed file.</returns>
         /// <exception cref="ArgumentNullException">zipFile</exception>
-        public static string DecompressReadTxtFile(FileInfo zipFile) {
+        public static string Decompress(FileInfo zipFile) {
+            Contract.Requires(zipFile != null);
             if (zipFile == null || !zipFile.Exists) {
                 throw new ArgumentNullException(nameof(zipFile));
             }
-            StringBuilder output = new StringBuilder();
+            lock (zipFile) {
+                StringBuilder output = new StringBuilder();
 
-            using (var filestream = new FileStream(zipFile.FullName, FileMode.Open)) {
-                using (var lz4stream = new LZ4Stream(filestream, LZ4StreamMode.Decompress)) {
-                    using (var reader = new StreamReader(lz4stream)) {
-                        string line;
-                        while ((line = reader.ReadLine()) != null) {
-                            output.AppendLine(line);
+                using (var filestream = new FileStream(zipFile.FullName, FileMode.Open)) {
+                    using (var lz4stream = new LZ4Stream(filestream, LZ4StreamMode.Decompress)) {
+                        using (var reader = new StreamReader(lz4stream)) {
+                            string line;
+                            while ((line = reader.ReadLine()) != null) {
+                                output.AppendLine(line);
+                            }
                         }
                     }
                 }
+                return output.ToString();
             }
-            return output.ToString();
+        }
+
+        /// <summary>
+        /// Decompresses the specified object file.
+        /// </summary>
+        /// <typeparam name="TObj">The type of the object.</typeparam>
+        /// <param name="file">The file.</param>
+        /// <returns>the instance of the object representation in file.</returns>
+        /// <exception cref="ArgumentNullException">file</exception>
+        public static TObj Decompress<TObj>(FileInfo file) where TObj : new() {
+            Contract.Requires(file != null);
+            if (file == null || !file.Exists) throw new ArgumentNullException(nameof(file));
+            
+            lock (file) {
+                using (var filestream = new FileStream(file.FullName, FileMode.Open)) {
+                    using (var lz4stream = new LZ4Stream(filestream, LZ4StreamMode.Decompress, LZ4StreamFlags.IsolateInnerStream)) {
+                        return FornaxWriter.Read<TObj>(lz4stream);
+                    }
+                }
+            }
         }
 
         internal static string ReadString(FileInfo file) {
+            Contract.Requires(file != null);
             try {
                 return File.ReadAllText(file.FullName);
             } catch (IOException) { return null; }
+        }
+
+        internal static byte[] ReadByte(FileInfo file) {
+            Contract.Requires(file != null);
+            try {
+                return File.ReadAllBytes(file.FullName);
+            } catch (IOException) {
+                return null;
+            }
         }
 
         static LZ4Compressor() {

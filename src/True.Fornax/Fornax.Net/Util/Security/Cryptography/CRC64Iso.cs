@@ -40,20 +40,41 @@ namespace Fornax.Net.Util.Security.Cryptography
     {
         internal static UInt64[] Table;
 
+        /// <summary>
+        /// The iso3309 polynomial
+        /// </summary>
         public const UInt64 Iso3309Polynomial = 0xD800000000000000;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CRC64Iso"/> class.
+        /// </summary>
         public CRC64Iso()
             : base(Iso3309Polynomial) {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CRC64Iso"/> class.
+        /// </summary>
+        /// <param name="seed">The seed.</param>
         public CRC64Iso(UInt64 seed)
             : base(Iso3309Polynomial, seed) {
         }
 
+        /// <summary>
+        /// Computes the specified buffer.
+        /// </summary>
+        /// <param name="buffer">The buffer.</param>
+        /// <returns></returns>
         public static UInt64 Compute(byte[] buffer) {
             return Compute(DefaultSeed, buffer);
         }
 
+        /// <summary>
+        /// Computes the hashcode for the specified buffer using the specified seed.
+        /// </summary>
+        /// <param name="seed">The seed.</param>
+        /// <param name="buffer">The buffer.</param>
+        /// <returns></returns>
         public static UInt64 Compute(UInt64 seed, byte[] buffer) {
             if (Table == null)
                 Table = CreateTable(Iso3309Polynomial);

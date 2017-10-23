@@ -40,34 +40,76 @@ namespace Fornax.Net.Util.Security.Cryptography
     {
         UInt32 hash;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Elf32"/> class.
+        /// </summary>
         public Elf32() {
             hash = 0;
         }
 
+        /// <summary>
+        /// Initializes an implementation of the <see cref="T:System.Security.Cryptography.HashAlgorithm" /> class.
+        /// </summary>
         public override void Initialize() {
             hash = 0;
         }
 
+        /// <summary>
+        /// When overridden in a derived class, routes data written to the object into the hash algorithm for computing the hash.
+        /// </summary>
+        /// <param name="array">The input to compute the hash code for.</param>
+        /// <param name="ibStart">The offset into the byte array from which to begin using data.</param>
+        /// <param name="cbSize">The number of bytes in the byte array to use as data.</param>
         protected override void HashCore(byte[] array, int ibStart, int cbSize) {
             hash = CalculateHash(hash, array, ibStart, cbSize);
         }
 
+        /// <summary>
+        /// When overridden in a derived class, finalizes the hash computation after the last data is processed by the cryptographic stream object.
+        /// </summary>
+        /// <returns>
+        /// The computed hash code.
+        /// </returns>
         protected override byte[] HashFinal() {
             var hashBuffer = UInt32ToBigEndianBytes(hash);
             HashValue = hashBuffer;
             return hashBuffer;
         }
 
+        /// <summary>
+        /// Gets the size, in bits, of the computed hash code.
+        /// </summary>
         public override int HashSize { get { return 32; } }
 
+        /// <summary>
+        /// Computes the elf-32 hash code for the specified buffer using default polynomial and seed.
+        /// </summary>
+        /// <param name="buffer">The buffer.</param>
+        /// <returns>a 32-bit integer hash code.</returns>
         public static UInt32 Compute(byte[] buffer) {
             return CalculateHash(0, buffer, 0, buffer.Length);
         }
 
+        /// <summary>
+        /// Computes the elf-32 hash code for the specified buffer using the provided 
+        /// polynomial and seed.
+        /// </summary>
+        /// <param name="polynomial">The polynomial.</param>
+        /// <param name="seed">The seed.</param>
+        /// <param name="buffer">The buffer.</param>
+        /// <returns>a 32-bit integer hash code.</returns>
         public static UInt32 Compute(UInt32 polynomial, UInt32 seed, byte[] buffer) {
             return CalculateHash(seed, buffer, 0, buffer.Length);
         }
 
+        /// <summary>
+        /// Calculates the hash code.
+        /// </summary>
+        /// <param name="seed">The seed.</param>
+        /// <param name="buffer">The buffer.</param>
+        /// <param name="start">The start.</param>
+        /// <param name="size">The size.</param>
+        /// <returns></returns>
         static UInt32 CalculateHash(UInt32 seed, IList<byte> buffer, int start, int size) {
             var hash = seed;
             for (var i = start; i < start + size; i++) {

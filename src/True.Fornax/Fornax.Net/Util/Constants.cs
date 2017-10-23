@@ -188,7 +188,9 @@ namespace Fornax.Net.Util
             return All_Query_Ops;
         }
 
-
+        internal static string ErrorMessage<S,D>(Exception ex, S source, D destination) {
+            return string.Format($"[{nameof(source)} failed to serialize {nameof(destination)} to file]....Exception thrown @...\n{ex.StackTrace}");
+        }
 
         #endregion
 

@@ -32,7 +32,7 @@ namespace Fornax.Net.Util.Text
     /// </summary>
     public static partial class Extensions
     {
-        [Obsolete("Use System.String.IsNullOrEmpty(string) instead", false)]
+
         /// <summary>
         /// Determines whether a string is Empty or null.
         /// </summary>
@@ -40,6 +40,7 @@ namespace Fornax.Net.Util.Text
         /// <returns>
         ///   <c>true</c> if [is empty or null] [the specified string]; otherwise, <c>false</c>.
         /// </returns>
+        [Obsolete("Use System.String.IsNullOrEmpty(string) instead", false)]
         public static bool IsEmptyOrNull(this string str) {
             return (str.Equals(string.Empty) || str == null);
         }
@@ -146,6 +147,9 @@ namespace Fornax.Net.Util.Text
         /// <param name="allowDelimiters">if set to <c>true</c> [allow delimiters].</param>
         /// <returns></returns>
         public static string Clean(this string str, bool allowDelimiters) {
+            Contract.Requires(str != null);
+            if (str == null)  throw new ArgumentNullException(nameof(str));
+
             str.Replace(" ", "");
             char[] buf = str.Trim().ToCharArray();
             if (!allowDelimiters) {
@@ -166,10 +170,36 @@ namespace Fornax.Net.Util.Text
         /// <param name="value">The new character to be inserted.</param>
         /// <returns>A string with character at <paramref name="index"/> replaced with <paramref name="value"/>.</returns>
         public static string ReplaceAt(this string str, int index, char value) {
+            if (str == null) throw new ArgumentNullException(nameof(str));
+
             char[] stch = str.ToCharArray();
             stch[index] = value;
             return new string(stch);
         }
 
+        /// <summary>
+        /// Determines whether this instance of string is a valid word.
+        /// Word is a string that does not contains only [a-zA-Z] regular expression.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified string is word; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsWord(this string str) {
+            foreach (var ch in str.ToCharArray()) {
+                if (!char.IsLetter(ch)) return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Splits a string into substrings that are based on the characters in the separators.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <param name="separators">The separators.</param>
+        /// <returns>an array of substrings.</returns>
+        public static string[] Split(this string str, string separators) {
+            return str.Split(separators.ToCharArray());
+        }
     }
 }

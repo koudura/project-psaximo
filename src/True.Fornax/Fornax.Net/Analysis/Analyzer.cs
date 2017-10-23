@@ -7,6 +7,9 @@ using Fornax.Net.Query;
 
 namespace Fornax.Net.Analysis
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class Analyzer
     {
 

@@ -14,5 +14,8 @@ namespace Fornax.Net.Analysis
         public AdvancedAnalyzer(SearchMode modeOfsearch) {
             this.modeOfsearch = modeOfsearch;
         }
+
+
+
     }
 }

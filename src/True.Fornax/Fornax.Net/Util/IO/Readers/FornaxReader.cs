@@ -1,4 +1,27 @@
-﻿using System;
+﻿/***
+* Copyright (c) 2017 Koudura Ninci @True.Inc
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*
+**/
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -40,8 +63,8 @@ namespace Fornax.Net.Util.IO.Readers
         /// <exception cref="ArgumentNullException">file</exception>
         public FornaxReader(FileInfo file) {
             this.file = file ?? throw new ArgumentNullException(nameof(file));
-            this.format = FormatExt.Parse(file.Extension);
-            this.category = format.GetFornaxFormat();
+            format = FormatExt.Parse(file.Extension);
+            category = format.GetFornaxFormat();
         }
 
         /// <summary>
@@ -64,7 +87,7 @@ namespace Fornax.Net.Util.IO.Readers
         /// </returns>
         /// <exception cref="FornaxFormatException">category</exception>
         public (string Name, string Text, string InnerText, string NodeString, Dictionary<string, string> Attributes) ToxyDomRead() {
-            if (this.category != FornaxFormat.Dom)
+            if (category != FornaxFormat.Dom)
                 throw new FornaxFormatException($"{nameof(category)} is not a Dom file.");
             IDomParser parser = ParserFactory.CreateDom(new ParserContext(this.file.FullName));
             var dom = parser.Parse().Root; var attribs = dom.Attributes.ToDictionary(Name, Value);
@@ -80,7 +103,7 @@ namespace Fornax.Net.Util.IO.Readers
         /// </returns>
         /// <exception cref="FornaxFormatException">file</exception>
         public (string Note, string Text) ToxySlideRead() {
-            if (this.category != FornaxFormat.Slide)
+            if (category != FornaxFormat.Slide)
                 throw new FornaxFormatException($"{nameof(this.file)} is not a slideshow file.");
             var text = new StringBuilder(); var note = new StringBuilder();
             var content = ParserFactory.CreateSlideshow(new ParserContext(this.file.FullName)).Parse();
@@ -101,7 +124,7 @@ namespace Fornax.Net.Util.IO.Readers
         /// </returns>
         /// <exception cref="FornaxFormatException">file</exception>
         public string ToxyTextRead() {
-            if (this.category != FornaxFormat.Text || this.category != FornaxFormat.Plain)
+            if (category != FornaxFormat.Text || category != FornaxFormat.Plain)
                 throw new FornaxFormatException($"{nameof(this.file)} is neither a plain-text nor a raw-text file.");
             var content = ParserFactory.CreateText(new ParserContext(this.file.FullName)).Parse();
             return content;
@@ -114,9 +137,9 @@ namespace Fornax.Net.Util.IO.Readers
         /// <returns>content details of the email file</returns>
         /// <exception cref="FornaxFormatException">file</exception>
         public (string Attributes, string Text) ToxyEmailRead() {
-            if (this.category != FornaxFormat.Email)
-                throw new FornaxFormatException($"{nameof(this.file)} is not an Email file");
-            if (this.format == FileFormat.Vcf) {
+            if (category != FornaxFormat.Email)
+                throw new FornaxFormatException($"{nameof(file)} is not an Email file");
+            if (format == FileFormat.Vcf) {
                 return ToxyVCardRead();
             }
             var details = new StringBuilder();
@@ -133,7 +156,7 @@ namespace Fornax.Net.Util.IO.Readers
         /// <returns>content details of the vcf file.</returns>
         /// <exception cref="FornaxFormatException">file</exception>
         public (string Attributes, string Text) ToxyVCardRead() {
-            if (this.format != FileFormat.Vcf)
+            if (format != FileFormat.Vcf)
                 throw new FornaxFormatException($"{nameof(file)} is not a Vcard file.");
             var details = new StringBuilder(); var texts = new StringBuilder();
             var card = ParserFactory.CreateVCard(new ParserContext(file.FullName)).Parse();
@@ -201,6 +224,21 @@ namespace Fornax.Net.Util.IO.Readers
         public (string ContentType, string Text, IDictionary<string, string> Metadata) TikaRead() {
             var res = new TextExtractor().Extract(this.file.FullName);
             return (res.ContentType, res.Text, res.Metadata);
+        }
+
+        /// <summary>
+        /// Use Stream reader to read file.
+        /// </summary>
+        /// <returns></returns>
+        public string StreamRead() {
+            var output = new StringBuilder();
+            using(var stream = new StreamReader(file.FullName)) {
+                string line;
+                while ((line = stream.ReadLine()) != null) {
+                    output.AppendLine(line);
+                }
+            }
+            return output.ToString();
         }
 
         private string Name(ToxyAttribute attribute) => attribute.Name;
@@ -277,21 +315,6 @@ namespace Fornax.Net.Util.IO.Readers
         public async Task<string> XmlReadAsync() {
             if (format != FileFormat.Xml)
                 throw new FornaxFormatException();
-
-            //StringBuilder builder = new StringBuilder();
-            //using (var stream = new FileStream(this.file.FullName, FileMode.Open, FileAccess.Read)) {
-            //    using (XmlTextReader reader = new XmlTextReader(stream)) {
-            //        var r = reader.ReadAsync();
-            //        while (r.Result) {
-            //            switch (reader.NodeType) {
-            //                case XmlNodeType.Text:
-            //                    builder.AppendLine(await reader.GetValueAsync());
-            //                    break;
-            //            }
-            //        }
-            //    }
-            //}
-            //return builder.ToString();
             return await Task.Factory.StartNew(XmlRead);
         }
 
@@ -310,6 +333,21 @@ namespace Fornax.Net.Util.IO.Readers
         /// <returns>String Text content of the specified file.</returns>
         public async Task<string> BufferReadAsync() {
             return await Task.Factory.StartNew(BufferRead);
+        }
+
+        /// <summary>
+        /// Use Stream reader to read file asynchronuously.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> StreamReadAsync() {
+            var output = new StringBuilder();
+            using (var stream = new StreamReader(file.FullName)) {
+                string line;
+                while ((line = await stream.ReadLineAsync()) != null) {
+                    output.AppendLine(line);
+                }
+            }
+            return output.ToString();
         }
 
         #endregion

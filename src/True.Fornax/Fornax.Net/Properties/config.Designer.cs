@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fornax.Net {
+namespace Fornax.Net.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

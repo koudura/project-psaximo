@@ -24,7 +24,7 @@
 using System;
 using Fornax.Net.Common.Snowball.en;
 
-namespace Fornax.Net.Analysis.Normalization
+namespace Fornax.Net.Analysis.Tools
 {
 
     /// <summary>
@@ -38,6 +38,7 @@ namespace Fornax.Net.Analysis.Normalization
     /// var stemmer = new PorterStemmer();
     /// var stem = stemmer.StemWord(word);
     /// </example>
+    [Progress("FornaxStemmer",true, Documented = true, Tested = true)]
     public class FornaxStemmer : PorterStemmer
     {
         /// <summary>

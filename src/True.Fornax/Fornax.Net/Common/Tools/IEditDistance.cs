@@ -21,17 +21,22 @@
 *
 **/
 
-namespace Fornax.Net.Util.Threading
+namespace Fornax.Net.Common.Tools
 {
     /// <summary>
-    /// Interface to be implemented by classes whose instances are intended to be excecuted by thread.
+    /// Interface for Retrieving edit-distance between two strings.
     /// </summary>
-    public interface IRunnable
+    public interface IEditDistance
     {
+
         /// <summary>
-        /// this method has to be implemented in order that starting of the thread causes the object's
-        /// run method to be called in that separately executing thread.
+        /// Returns a float between 0 and 1 based on how similar the specified strings are to one another.  
+        /// Returning a value of 1 means the specified strings are identical and 0 means the
+        /// string are absolutely different.
         /// </summary>
-        void Run();
+        /// <param name="str1">The First string.</param>
+        /// <param name="str2">The Second string.</param>
+        /// <returns>a float between 0 and 1 based on how similar the specified strings are to one another.</returns>
+        float GetDistance(string str1, string str2);
     }
 }

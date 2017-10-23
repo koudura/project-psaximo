@@ -50,31 +50,67 @@ namespace Fornax.Net.Util.Security.Cryptography
         readonly UInt64 seed;
         UInt64 hash;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CRC64"/> class.
+        /// </summary>
+        /// <param name="polynomial">The polynomial.</param>
         public CRC64(UInt64 polynomial)
             : this(polynomial, DefaultSeed) {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CRC64"/> class.
+        /// </summary>
+        /// <param name="polynomial">The polynomial.</param>
+        /// <param name="seed">The seed.</param>
         public CRC64(UInt64 polynomial, UInt64 seed) {
             table = InitializeTable(polynomial);
             this.seed = hash = seed;
         }
 
+        /// <summary>
+        /// Initializes an implementation of the <see cref="T:HashAlgorithm" /> class.
+        /// </summary>
         public override void Initialize() {
             hash = seed;
         }
 
+        /// <summary>
+        /// When overridden in a derived class, routes data written to the object into the hash algorithm for computing the hash.
+        /// </summary>
+        /// <param name="array">The input to compute the hash code for.</param>
+        /// <param name="ibStart">The offset into the byte array from which to begin using data.</param>
+        /// <param name="cbSize">The number of bytes in the byte array to use as data.</param>
         protected override void HashCore(byte[] array, int ibStart, int cbSize) {
             hash = CalculateHash(hash, table, array, ibStart, cbSize);
         }
 
+        /// <summary>
+        /// When overridden in a derived class, finalizes the hash computation after the last data is processed by the cryptographic stream object.
+        /// </summary>
+        /// <returns>
+        /// The computed hash code.
+        /// </returns>
         protected override byte[] HashFinal() {
             var hashBuffer = UInt64ToBigEndianBytes(hash);
             HashValue = hashBuffer;
             return hashBuffer;
         }
 
+        /// <summary>
+        /// Gets the size, in bits, of the computed hash code.
+        /// </summary>
         public override int HashSize { get { return 64; } }
 
+        /// <summary>
+        /// Calculates the hash.
+        /// </summary>
+        /// <param name="seed">The seed.</param>
+        /// <param name="table">The table.</param>
+        /// <param name="buffer">The buffer.</param>
+        /// <param name="start">The start.</param>
+        /// <param name="size">The size.</param>
+        /// <returns></returns>
         protected static UInt64 CalculateHash(UInt64 seed, UInt64[] table, IList<byte> buffer, int start, int size) {
             var hash = seed;
             for (var i = start; i < start + size; i++)
@@ -105,6 +141,11 @@ namespace Fornax.Net.Util.Security.Cryptography
             return createTable;
         }
 
+        /// <summary>
+        /// Creates the table.
+        /// </summary>
+        /// <param name="polynomial">The polynomial.</param>
+        /// <returns></returns>
         protected static ulong[] CreateTable(ulong polynomial) {
             var createTable = new UInt64[256];
             for (var i = 0; i < 256; ++i) {

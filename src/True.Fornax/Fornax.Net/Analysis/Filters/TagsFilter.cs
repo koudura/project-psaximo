@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Util.System
+namespace Fornax.Net.Analysis.Filters
 {
-    class MemoryModel
+    class TagsFilter
     {
     }
 }

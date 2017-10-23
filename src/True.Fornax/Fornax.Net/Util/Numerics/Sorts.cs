@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Util.Runtime.Logging
+namespace Fornax.Net.Util.Numerics
 {
-    internal class Level
+    public static class Sorts
     {
     }
 }

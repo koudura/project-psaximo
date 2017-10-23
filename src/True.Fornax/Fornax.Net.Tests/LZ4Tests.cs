@@ -3,6 +3,12 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fornax.Net.Util.IO.Compression;
+using System.IO;
+using Fornax.Net.Util.System;
+using Fornax.Net.Util.Resources;
+using Fornax.Net.Tests.Tools;
+using Fornax.Net.Util.IO.Writers;
+using System.Threading.Tasks;
 
 namespace Fornax.Net.Tests
 {
@@ -55,10 +61,39 @@ namespace Fornax.Net.Tests
         //
         #endregion
 
-        [TestMethod]
-        public void TestMethod1() {
-          //  LZ4Compressor.CompressWriteFile();
+        static FileInfo trie_file = new FileInfo(@"..\en_trie.tnx");
+        static FileInfo trie_Zip = new FileInfo(@"..\en_trie.ztnx");
+        BufferTrie trie = new BufferTrie();
 
+       // [TestMethod]
+        public void SerializeCompressTrie() {
+            FornaxLanguage lang = FornaxLanguage.English;
+            Vocabulary vocab = ConfigFactory.GetVocabulary(lang);
+
+            foreach (var word in vocab.Dictionary) {
+                trie.Insert(word);
+            }
+            Assert.IsNotNull(trie);
+
+           // FornaxWriter.Write(trie, trie_file);
+        //     LZ4Compressor.Compress(trie_file, trie_Zip);
+            
+        }
+
+        [TestMethod]
+        public void DecompressReadTrie() {
+            Task.WaitAll(GetTrie());
+            Assert.IsNotNull(trie);
+
+            Console.WriteLine(trie.Search("abasements"));
+            Console.WriteLine(trie.Search("shipplane"));
+            Console.WriteLine(trie.Search("zwanziger"));
+            Assert.AreEqual(true, trie.Search("hypochaeris"));
+        }
+
+
+        public async Task GetTrie() {
+            trie =  await FornaxWriter.ReadAsync<BufferTrie>(trie_file);
         }
     }
 }

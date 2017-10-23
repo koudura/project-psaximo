@@ -1,6 +1,6 @@
 ﻿namespace Fornax.Net.Tests.Tools
 {
-    public interface ITrie<T>
+    public interface ITrie<T> 
     {
         bool Delete(T[] word);
         bool Delete(string word);

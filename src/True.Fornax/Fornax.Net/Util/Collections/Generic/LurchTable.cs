@@ -949,6 +949,7 @@ namespace Fornax.Net.Util.Collections.Generic
             _entries[index >> _shift][index & _shiftMask].Value = default(TValue);
             Interlocked.Exchange(ref _entries[index >> _shift][index & _shiftMask].Link, 0);
 
+
             int slot = (ver & int.MaxValue) % FreeSlots;
             int prev = Interlocked.Exchange(ref _free[slot].Tail, index);
 

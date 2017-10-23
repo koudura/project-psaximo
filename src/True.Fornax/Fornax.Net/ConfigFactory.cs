@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+
+using Fornax.Net.Properties;
 using Fornax.Net.Util;
 using Fornax.Net.Util.Resources;
 using Fornax.Net.Util.System;
+
 using StringSet = System.Collections.Specialized.StringCollection;
 
 namespace Fornax.Net

@@ -114,20 +114,18 @@ namespace Fornax.Net.Util.Collections.Generic
         /// <summary>
         /// Gets the number of elements contained in the <see cref="EquatableList{T}"/>.
         /// </summary>
-        public virtual int Count => this.list.Count;
+        public virtual int Count => list.Count;
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="EquatableList{T}"/> is read-only.
         /// </summary>
-        public virtual bool IsReadOnly => this.list.IsReadOnly;
+        public virtual bool IsReadOnly => list.IsReadOnly;
 
         /// <summary>
         /// Adds an item to the <see cref="EquatableList{T}" />.
         /// </summary>
-        /// <param name="item">The object to add to the <see cref="EquatableList{T} />.</param>
-        public virtual void Add(T item) {
-            this.list.Add(item);
-        }
+        /// <param name="item">The object to add to the Equatable list.</param>
+        public virtual void Add(T item) => list.Add(item);
 
         /// <summary>
         /// Removes all items from the <see cref="EquatableList{T}"/>.
@@ -217,6 +215,13 @@ namespace Fornax.Net.Util.Collections.Generic
         /// is the same as this one.</returns>
         public virtual bool Equals(IList<T> other) => Collections.Equals(this, other);
 
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance of equatable
+        /// list.
+        /// </summary>
+        /// <returns>
+        /// A new object that is a copy of this instance.
+        /// </returns>
         public virtual object Clone() {
             return new EquatableList<T>(this);
         }
@@ -233,19 +238,20 @@ namespace Fornax.Net.Util.Collections.Generic
         }
 
         /// <summary>
-        /// If the object passed implements <see cref="IList{T}"/>,
-        /// compares this sequence to <paramref name="other"/>, returning <c>true</c> if they 
+        /// If the object passed implements <see cref="IList{T}" />,
+        /// compares this sequence to <paramref name="obj" />, returning <c>true</c> if they
         /// are equal, <c>false</c> otherwise.
-        /// <para/>
+        /// <para />
         /// The comparison takes into consideration any values in this collection and values
         /// of any nested collections, but does not take into consideration the data type.
-        /// Therefore, <see cref="EquatableList{T}"/> can equal any <see cref="IList{T}"/>
+        /// Therefore, <see cref="EquatableList{T}" /> can equal any <see cref="IList{T}" />
         /// with the exact same values in the same order.
         /// </summary>
-        /// <param name="other">The other object
-        /// to compare against.</param>
-        /// <returns><c>true</c> if the sequence in <paramref name="other"/>
-        /// is the same as this one.</returns>
+        /// <param name="obj">The <see cref="object" /> to compare with this instance.</param>
+        /// <returns>
+        /// <c>true</c> if the sequence in <paramref name="obj" />
+        /// is the same as this one.
+        /// </returns>
         public override bool Equals(object obj) {
             if (!(obj is IList<T>)) {
                 return false;

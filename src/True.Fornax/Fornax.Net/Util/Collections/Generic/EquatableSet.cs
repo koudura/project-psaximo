@@ -299,17 +299,12 @@ namespace Fornax.Net.Util.Collections.Generic
         #region Eqautables overrides  & Clone        
 
         /// <summary>
-        /// Compares this sequence to <paramref name="other"/>, returning <c>true</c> if they 
-        /// are equal, <c>false</c> otherwise.
-        /// <para/>
-        /// The comparison takes into consideration any values in this collection and values
-        /// of any nested collections, but does not take into consideration the data type.
-        /// Therefore, <see cref="EquatableSet{T}"/> can equal any <see cref="ISet{T}"/>
-        /// with the exact same values (in any order).
+        /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
-        /// <param name="other">The other object
-        /// to compare against.</param>
-        /// <returns><c>true</c> if the sequence in <paramref name="other"/>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>
+        ///   <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.
+        /// </returns>
         /// <exception cref="ArgumentNullException">other</exception>
         public virtual  bool Equals(ISet<T> other) {
             if (other == null) {
@@ -319,10 +314,16 @@ namespace Fornax.Net.Util.Collections.Generic
             return Collections.Equals(this, other);
         }
 
-        /// <summary>Clones the <see cref="EquatableSet{T}"/>.</summary>
-        /// <remarks>This is a shallow clone.</remarks>
-        /// <returns>A new shallow clone of this
-        /// <see cref="EquatableSet{T}"/>.</returns>
+        /// <summary>
+        /// Clones the <see cref="EquatableSet{T}" />.
+        /// </summary>
+        /// <returns>
+        /// A new shallow clone of this
+        /// <see cref="EquatableSet{T}" />.
+        /// </returns>
+        /// <remarks>
+        /// This is a shallow clone.
+        /// </remarks>
         public virtual object Clone() {
             return new EquatableSet<T>(this);
         }
@@ -340,7 +341,7 @@ namespace Fornax.Net.Util.Collections.Generic
 
         /// <summary>
         /// If the object passed implements <see cref="IList{T}"/>,
-        /// compares this sequence to <paramref name="other"/>, returning <c>true</c> if they 
+        /// compares this sequence to <paramref name="obj"/>, returning <c>true</c> if they 
         /// are equal, <c>false</c> otherwise.
         /// <para/>
         /// The comparison takes into consideration any values in this collection and values
@@ -348,9 +349,9 @@ namespace Fornax.Net.Util.Collections.Generic
         /// Therefore, <see cref="EquatableSet{T}"/> can equal any <see cref="ISet{T}"/>
         /// with the exact same values (in any order).
         /// </summary>
-        /// <param name="other">The other object
+        /// <param name="obj">The other object
         /// to compare against.</param>
-        /// <returns><c>true</c> if the sequence in <paramref name="other"/>
+        /// <returns><c>true</c> if the sequence in <paramref name="obj"/>
         /// is the same as this one.</returns>
         /// <exception cref="ArgumentNullException">collection</exception>
         public override bool Equals(object obj) {

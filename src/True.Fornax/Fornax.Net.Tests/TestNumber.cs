@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fornax.Net.Util.Numerics;
-using Fornax.Net.Analysis.Normalization;
+using Fornax.Net.Analysis.Tools;
 using Fornax.Net.Common.Snowball.en;
 using Fornax.Net.Common.Snowball.fr;
 using Fornax.Net.Util.IO.Readers;

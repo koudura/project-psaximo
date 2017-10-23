@@ -29,7 +29,7 @@ using Num = Fornax.Net.Util.Numerics.Number;
 namespace Fornax.Net.Util.Text
 {
     /// <summary>
-    /// The <see cref="Character"/> class wraps a value of a primitive type <see cref="(char)"/> in an
+    /// The <see cref="Character"/> class wraps a value of a primitive type <see cref="Char"/> in an
     /// object. <para></para>
     /// This class also provides methods for determining a characters category and Manipulating characters.
     /// </summary>
@@ -50,12 +50,12 @@ namespace Fornax.Net.Util.Text
         /// </summary>
         public const int MinRadix = 2;
         /// <summary>
-        /// The constant value of this field is the smallest value of type <see cref="(char)"/>,
+        /// The constant value of this field is the smallest value of type <see cref="Char"/>,
         /// <code>'\u005Cu0000'</code>.
         /// </summary>
         public const char MinValue = '\u0000';
         /// <summary>
-        /// The constant value of this field is the largest value of type <see cref="(char)"/>,
+        /// The constant value of this field is the largest value of type <see cref="Char"/>,
         /// <code>'\u005CuFFFF'</code>.
         /// </summary>
         public const char MaxValue = '\uFFFF';
@@ -143,7 +143,12 @@ namespace Fornax.Net.Util.Text
             this.value = value;
         }
 
-        public char CharValue() => this.value;
+        /// <summary>
+        /// returns a character representation of 
+        /// the specified value.
+        /// </summary>
+        /// <returns></returns>
+        public char CharValue() => value;
         #endregion
 
 
@@ -174,10 +179,10 @@ namespace Fornax.Net.Util.Text
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents a specified character.
+        /// Returns a <see cref="string" /> that represents a specified character.
         /// </summary>
         /// <returns>
-        /// A <see cref="System.String" /> that represents <paramref name="c"/>.
+        /// A <see cref="string" /> that represents <paramref name="c"/>.
         /// </returns>
         public static string ToString(char c) {
             return char.ToString(c);
@@ -333,7 +338,7 @@ namespace Fornax.Net.Util.Text
         /// <param name="radix">The radix.</param>
         /// <returns></returns>
         public static char ForDigit(int digit, int radix) {
-            /**
+            /***
              * Check Range of digit and radix.
              */
             if (radix < MinRadix)
@@ -353,20 +358,20 @@ namespace Fornax.Net.Util.Text
 
         /// <summary>
         /// Convenience method to determine the value of the specified character
-        /// <paramref name="c"/> in the supplied radix. The value of <paramref name="radix"/> must be
-        /// between <see cref="MinRadix"/> and <see cref="MaxRadix"/>.
+        /// <paramref name="c" /> in the supplied radix. The value of <paramref name="radix" /> must be
+        /// between <see cref="MinRadix" /> and <see cref="MaxRadix" />.
         /// </summary>
         /// <param name="c">The character to determine the value of.</param>
         /// <param name="radix">The radix.</param>
         /// <returns>
-        /// The value of <paramref name="c"/> in <paramref name="radix"/> if <paramref name="radix"/> lies
-        /// between <see cref="MinRadix"/> and <see cref="MaxRadix"/>; -1 otherwise.
+        /// The value of <paramref name="c" /> in <paramref name="radix" /> if <paramref name="radix" /> lies
+        /// between <see cref="MinRadix" /> and <see cref="MaxRadix" />; -1 otherwise.
         /// </returns>
         public static int Digit(char c, int radix) {
             int result = -1;
             if (radix >= MinRadix && radix <= MaxRadix) {
                 if (c < 128) {
-                    /**
+                    /***
                      * Optimized for ASCII
                      **/
                     if ('0' <= c && c <= '9') {
@@ -425,11 +430,11 @@ namespace Fornax.Net.Util.Text
 
         #region overrides
         /// <summary>
-        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+        /// Determines whether the specified <see cref="object" />, is equal to this instance.
         /// </summary>
-        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <param name="obj">The <see cref="object" /> to compare with this instance.</param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj) {
             var character = obj as Character;
@@ -443,13 +448,13 @@ namespace Fornax.Net.Util.Text
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
         /// </returns>
-        public override int GetHashCode() => GetHashCode(this.value);
+        public override int GetHashCode() => GetHashCode(value);
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
         /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
+        /// A <see cref="string" /> that represents this instance.
         /// </returns>
         public override string ToString() {
             char[] buffer = { this.value };
