@@ -21,7 +21,7 @@
 *
 **/
 
-namespace Fornax.Net.Common.Tools
+namespace Fornax.Net.Common.Similarity
 {
     /// <summary>
     /// Interface for Retrieving edit-distance between two strings.

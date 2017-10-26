@@ -22,77 +22,65 @@
 **/
 
 using System;
+using Fornax.Net.Common.Similarity;
 
-namespace Fornax.Net.Common.Tools
+namespace Fornax.Net.Analysis.Tools
 {
     /// <summary>
-    /// Levenshtein Edit Distance class.
+    /// The Fornax.Net specific levenshtein edit distance class. 
     /// </summary>
-    /// <seealso cref="IEditDistance" />
-    public sealed class LevenshteinEdit : IEditDistance
+    /// <seealso cref="Fornax.Net.Common.Similarity.IEditDistance" />
+    public sealed class FornaxLevenshteinEdit : IEditDistance
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LevenshteinEdit"/> class.
-        /// For calculating the edit distance between two strings using the Levenshtein edit algorithm.
+        /// Initializes a new instance of the <see cref="FornaxLevenshteinEdit"/> class.
+        /// This Implementation is relatively less memory friendly that the forward impl.
+        /// Fornax.Net implementation f the Levenshtein edit distance algorithm. 
         /// </summary>
-        public LevenshteinEdit() { }
-
+        public FornaxLevenshteinEdit() {
+        }
 
         /// <summary>
-        /// Returns a float between 0 and 1 based on how similar the specified strings are to one another.
+        /// Returns a float between 0 and 1 based on how similar the specified strings are to one another.  
         /// Returning a value of 1 means the specified strings are identical and 0 means the
         /// string are absolutely different.
         /// </summary>
-        /// <param name="target">The target string.</param>
-        /// <param name="source">The source string.</param>
-        /// <returns>
-        /// a float between 0 and 1 based on how similar the specified strings are to one another.
-        /// </returns>
-        public float GetDistance(string target, string source) {
+        /// <param name="str1">The First string.</param>
+        /// <param name="str2">The Second string.</param>
+        /// <returns>a float between 0 and 1 based on how similar the specified strings are to one another.</returns>
+        public float GetDistance(string source, string target) {
+            int source_len = source.Length;
+            int target_len = target.Length;
+            int cost;
 
-            char[] sa;
-            int n;
-            int[] p;  
-            int[] d;   
-            int[] _d; 
+            if (source_len == 0 || target_len == 0) { return (source_len == target_len) ? 1 : 0; }
 
-            sa = target.ToCharArray();
-            n = sa.Length;
-            p = new int[n + 1];
-            d = new int[n + 1];
+            Int32[,] levTable = new Int32[target_len, source_len];
 
-            int m = source.Length;
-            if (n == 0 || m == 0) {
-                if (n == m) {
-                    return 1;
-                } else {
-                    return 0;
+            for (Int32 i = 0; i < source_len; i++) { levTable[0, i] = i; }
+            for (Int32 i = 0; i < target_len; i++) { levTable[i, 0] = i; }
+
+            char s_i; char t_j;
+
+            for (int j = 1; j < target_len; j++) {
+
+                t_j = target[j];
+
+                for (int i = 1; i < source_len; i++) {
+
+                    s_i = source[i];
+                    cost = (s_i == t_j) ? 0 : 1;
+
+                    levTable[j, i] = Min((levTable[j - 1, i] + 1), (levTable[j, i - 1] + 1), (levTable[j - 1, i - 1] + cost));
                 }
             }
-            int i;
-            int j; 
+            float @out = 1.0f - ((float)levTable[target_len - 1, source_len - 1] / Math.Max(source.Length, target.Length));
+            return @out;
+        }
 
-            char t_j; 
 
-            int cost; 
-
-            for (i = 0; i <= n; i++) {
-                p[i] = i;
-            }
-
-            for (j = 1; j <= m; j++) {
-                t_j = source[j - 1];
-                d[0] = j;
-
-                for (i = 1; i <= n; i++) {
-                    cost = sa[i - 1] == t_j ? 0 : 1;
-                    d[i] = Math.Min(Math.Min(d[i - 1] + 1, p[i] + 1), p[i - 1] + cost);
-                }
-                _d = p;
-                p = d;
-                d = _d;
-            }
-            return 1.0f - ((float)p[n] / Math.Max(source.Length, sa.Length));
+        private static Int32 Min(int val1, int val2, int val3) {
+            return Math.Min(Math.Min(val1, val2), val3);
         }
 
         /// <summary>
@@ -125,7 +113,7 @@ namespace Fornax.Net.Common.Tools
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
         public override string ToString() {
-            return "Levenshtein Edit Distance.";
+            return "Fornax.Net : [Levenshtein Edit Distance].";
         }
     }
 }

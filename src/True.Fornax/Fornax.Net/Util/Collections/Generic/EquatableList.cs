@@ -25,6 +25,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using ProtoBuf;
 
 namespace Fornax.Net.Util.Collections.Generic
 {
@@ -39,10 +40,11 @@ namespace Fornax.Net.Util.Collections.Generic
     /// <typeparam name="T">The type of elements in the list.</typeparam>
     /// <seealso cref="IList{T}" />
     /// <seealso cref="IEquatable{T}" />
-    [Serializable]
+    [Serializable,ProtoContract]
     [Progress("EquatableList<T>", true, Documented = true, Tested = true)]
     public class EquatableList<T> : IList<T>, IEquatable<IList<T>>, ICloneable
     {
+        [ProtoMember(1)]
         private readonly IList<T> list;
 
         #region ctor        
@@ -76,8 +78,8 @@ namespace Fornax.Net.Util.Collections.Generic
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection) + " is null");
 
-            if (wrap) this.list = collection;
-            else this.list = new List<T>(collection);
+            if (wrap) list = collection;
+            else list = new List<T>(collection);
         }
 
         /// <summary>
@@ -92,7 +94,7 @@ namespace Fornax.Net.Util.Collections.Generic
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection) + " is null");
 
-            this.list = new List<T>(collection);
+            list = new List<T>(collection);
         }
 
         /// <summary>Initializes a new instance of the <see cref="EquatableList{T}"/>

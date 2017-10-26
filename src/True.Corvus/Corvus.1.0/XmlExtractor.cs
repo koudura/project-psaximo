@@ -11,11 +11,11 @@ using Fornax.Net.Util.IO.Readers;
 
 namespace Corvus._1._0
 {
-    public partial class Form1 : Form
+    public partial class XmlExtractor : Form
     {
         IReader reader;
         
-        public Form1() {
+        public XmlExtractor() {
             InitializeComponent();
         }
 
@@ -25,7 +25,7 @@ namespace Corvus._1._0
             var t = ExtractText();
             richTextBox1.Text = t;
             double end = Environment.TickCount;
-            label1.Text = " Completed in " + ((end - start) / 1000).ToString() +"ms";
+            label1.Text = " Completed in " + ((end - start) / 1000).ToString() +"s";
         }
 
 

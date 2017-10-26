@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace Fornax.Net.Util.IO.Writers
 {
@@ -24,7 +22,7 @@ namespace Fornax.Net.Util.IO.Writers
         /// <param name="fileName">Name of the file.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">fileName</exception>
-        public static TObject Read<TObject>(string fileName) where TObject : new() {
+        public static TObject Read<TObject>(string fileName) where TObject : class {
             Contract.Requires(fileName != null);
             if (fileName == null) throw new ArgumentNullException(nameof(fileName));
             return Read<TObject>(new FileInfo(fileName));
@@ -37,7 +35,7 @@ namespace Fornax.Net.Util.IO.Writers
         /// <param name="file">The file.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">file</exception>
-        public static TObject Read<TObject>(FileInfo file) where TObject : new() {
+        public static TObject Read<TObject>(FileInfo file) where TObject : class {
             Contract.Requires(file != null && file.Exists);
             if (file == null || !file.Exists) {
                 throw new ArgumentNullException(nameof(file));
@@ -56,7 +54,7 @@ namespace Fornax.Net.Util.IO.Writers
         /// <param name="stream">The stream.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">stream</exception>
-        public static TObject Read<TObject>(Stream stream) where TObject : new() {
+        public static TObject Read<TObject>(Stream stream) where TObject : class {
             Contract.Requires(stream != null);
             if (stream == null) throw new ArgumentNullException(nameof(stream));
 
@@ -78,7 +76,7 @@ namespace Fornax.Net.Util.IO.Writers
         /// <param name="object">The object.</param>
         /// <param name="fileName">Name of the file.</param>
         /// <exception cref="ArgumentNullException">fileName</exception>
-        public static void Write<TObject>(TObject @object, string fileName) where TObject : new() {
+        public static void Write<TObject>(TObject @object, string fileName) where TObject : class {
             Contract.Requires(fileName != null);
             if (fileName == null) throw new ArgumentNullException(nameof(fileName));
             Write(@object, new FileInfo(fileName));
@@ -91,7 +89,7 @@ namespace Fornax.Net.Util.IO.Writers
         /// <param name="object">The object.</param>
         /// <param name="file">The file.</param>
         /// <exception cref="ArgumentNullException">file</exception>
-        public static void Write<TObject>(TObject @object, FileInfo file) where TObject : new() {
+        public static void Write<TObject>(TObject @object, FileInfo file) where TObject : class {
             Contract.Requires(file != null);
             if (file == null) {
                 throw new ArgumentNullException(nameof(file));
@@ -110,7 +108,7 @@ namespace Fornax.Net.Util.IO.Writers
         /// <param name="object">The object to be written to file.</param>
         /// <param name="stream">The open File-Stream.</param>
         /// <exception cref="ArgumentNullException">stream</exception>
-        public static void Write<TObject>(TObject @object, Stream stream) where TObject : new() {
+        public static void Write<TObject>(TObject @object, Stream stream) where TObject : class {
             Contract.Requires(stream != null);
             if (stream == null) throw new ArgumentNullException(nameof(stream));
 
@@ -123,13 +121,27 @@ namespace Fornax.Net.Util.IO.Writers
             }
         }
 
-        public static async Task<TObject> ReadAsync<TObject>(string fileName) where TObject : new() {
+        public static async Task<TObject> ReadAsync<TObject>(string fileName) where TObject :class {
             return await Task.Factory.StartNew(() => Read<TObject>(fileName));
         }
 
-        public static async Task<TObject> ReadAsync<TObject>(FileInfo file) where TObject : new() {
+        public static async Task<TObject> ReadAsync<TObject>(FileInfo file) where TObject : class {
             return await Task.Factory.StartNew(() => Read<TObject>(file));
         }
+
+        public static void ProtoWrite<TObject> (TObject @object, string file) where TObject : class {
+
+        }
+
+        public static void ProtoWrite<TObject>(TObject @object, FileInfo file) where TObject : class {
+
+        }
+
+        public static void ProtoWrite<TObject>(TObject @object, Stream stream) where TObject : class {
+            Contract.Requires(stream != null);
+            if (stream == null) throw new ArgumentNullException(nameof(stream));
+        }
+
 
         public static void BufferWrite() { }
         public static void ZeroWrite() { }

@@ -26,7 +26,7 @@ using System;
 using Fornax.Net.Util.Collections;
 using Fornax.Net.Util.Numerics;
 
-namespace Fornax.Net.Common.Tools
+namespace Fornax.Net.Common.Similarity
 {
     /// <summary>
     /// The Jaro-Winkler Edit distance class.

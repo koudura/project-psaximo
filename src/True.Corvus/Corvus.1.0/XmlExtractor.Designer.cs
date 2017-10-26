@@ -1,6 +1,6 @@
 ﻿namespace Corvus._1._0
 {
-    partial class Form1
+    partial class XmlExtractor
     {
         /// <summary>
         /// Required designer variable.

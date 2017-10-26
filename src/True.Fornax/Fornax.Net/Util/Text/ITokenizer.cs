@@ -63,11 +63,5 @@ namespace Fornax.Net.Util.Text
         ///   ; otherwise, <c>false</c>.
         /// </returns>
         bool HasMoreTokens();
-        /// <summary>
-        /// Returns the next tokens afer changing the delimiters.
-        /// </summary>
-        /// <param name="delim">The new delimiters.</param>
-        /// <returns></returns>
-        string NextToken(string delim);
     }
 }

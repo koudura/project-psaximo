@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -84,7 +85,7 @@ namespace Fornax.Net.Util.Collections
         /// <param name="destination">The destination character array.</param>
         /// <param name="destinationStart">The destination start.</param>
         /// <returns></returns>
-        public static bool CopyInTo(ref char[] destination, string sourceString, int sourceStart, int sourceEnd, int destinationStart) {
+        public static bool CopyInto(ref char[] destination, string sourceString, int sourceStart, int sourceEnd, int destinationStart) {
             try {
                 int sourceCounte = sourceStart;
                 int destcounter = destinationStart;
@@ -884,6 +885,47 @@ namespace Fornax.Net.Util.Collections
             return objects.ToList();
         }
 
+        /// <summary>
+        /// Removes an element at given index from the specified array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array">The array.</param>
+        /// <param name="position">The position of element to be removed.</param>
+        /// <exception cref="ArgumentOutOfRangeException">position</exception>
+        public static void RemoveAt<T>(ref T[] array, int position) {
+            Contract.Requires(position < array.Length && position >= 0 && array != null);
+            if (!(position < array.Length) || (position < 0)) throw new ArgumentOutOfRangeException(nameof(position));
+
+            int len = array.Length; int end = array.Length - 1;
+            T[] temp = new T[len - 1];
+            for (int i = 0; i < position; i++) {
+                temp[i] = array[i];
+            }
+            if (position < end) {
+                int start = position + 1;
+                Array.Copy(array, start, temp, position, len - start);
+            }
+            Array.Resize(ref array, temp.Length);
+            array = temp;
+        }
+
+        /// <summary>
+        /// Removes all specified elements of type from th given array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array">The array.</param>
+        /// <param name="element">The element.</param>
+        public static void RemoveAll<T>(ref T[] array, T element) {
+            int i = 0;
+            while (i < array.Length) {
+                if (array[i].Equals(element)) {
+                    RemoveAt(ref array, i);
+                    continue;
+                }
+                i++;
+            }
+            Contract.Ensures(array != null);
+        }
     }
 }
 

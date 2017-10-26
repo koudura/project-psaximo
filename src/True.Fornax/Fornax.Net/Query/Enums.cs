@@ -173,16 +173,16 @@ namespace Fornax.Net.Query
         /// <summary>
         /// Expand Query. 
         /// </summary>
-        YES,
+        Phonetic,
         /// <summary>
         /// Do not expand query.
         /// </summary>
-        NO,
+        Default,
         /// <summary>
         /// let fornax decide if query should be expanded.
         /// this method is based of many heuristics such {e.g number of results is lowe than fornax preset.}
         /// </summary>
-        AUTO
+        Inflexive
     }
 
     /// <summary>
@@ -207,11 +207,11 @@ namespace Fornax.Net.Query
     {
         internal static bool IsExpandable(this Expand expand) {
             switch (expand) {
-                case Expand.YES:
+                case Expand.Phonetic:
                     return true;
-                case Expand.NO:
+                case Expand.Default:
                     return false;
-                case Expand.AUTO:
+                case Expand.Inflexive:
                     return true;
                 default:
                     return false;

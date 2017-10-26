@@ -8,7 +8,7 @@ using Fornax.Net.Util.IO;
 
 namespace Fornax.Net.Index.Storage
 {
-    public class NETRepository : Repository
+    class RAMRepository : Repository
     {
         private FileInfo[] files;
         private FileFormat[] formats;
@@ -17,25 +17,25 @@ namespace Fornax.Net.Index.Storage
         private string[] files2;
         private DirectoryInfo directory;
 
-        public NETRepository(FileInfo[] files, FileFormat[] formats, Configuration config) {
+        public RAMRepository(FileInfo[] files, FileFormat[] formats, Configuration config) {
             this.files = files;
             this.formats = formats;
             this.config = config;
         }
 
-        public NETRepository(FileWrapper[] files1, FileFormat[] formats, Configuration config) {
+        public RAMRepository(FileWrapper[] files1, FileFormat[] formats, Configuration config) {
             this.files1 = files1;
             this.formats = formats;
             this.config = config;
         }
 
-        public NETRepository(string[] files2, FileFormat[] formats, Configuration config) {
+        public RAMRepository(string[] files2, FileFormat[] formats, Configuration config) {
             this.files2 = files2;
             this.formats = formats;
             this.config = config;
         }
 
-        public NETRepository(DirectoryInfo directory, FileFormat[] formats, Configuration config) {
+        public RAMRepository(DirectoryInfo directory, FileFormat[] formats, Configuration config) {
             this.directory = directory;
             this.formats = formats;
             this.config = config;

@@ -12,17 +12,19 @@ namespace Fornax.Net.Analysis
     /// </summary>
     public abstract class Analyzer
     {
-
-        internal virtual Explanation Rule { get; private set;}
+        protected SearchMode modeOfsearch;
+        internal virtual Explanation Rule => GetExplanation(this);
         internal virtual QueryType TypeOfQuery { get; private set; }
-
-
-
 
         internal static QueryMode GetMode(Analyzer anna) {
             if (anna is AdvancedAnalyzer) return QueryMode.Advanced;
             else if (anna is StandardAnalyzer) return QueryMode.Standard;
             else return QueryMode.Simple;
         }
+
+        private Explanation GetExplanation(Analyzer anal) {
+            return new Explanation(GetMode(anal), modeOfsearch);
+        }
+        
     }
 }

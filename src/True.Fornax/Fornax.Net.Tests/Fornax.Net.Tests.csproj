@@ -120,6 +120,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analysis\Tools\SynonymsTest.cs" />
+    <Compile Include="Analysis\Tools\SoundexTests.cs" />
+    <Compile Include="Analysis\UnitTest1.cs" />
     <Compile Include="FormatTests.cs" />
     <Compile Include="FornaxReaderTests.cs" />
     <Compile Include="LZ4Tests.cs" />

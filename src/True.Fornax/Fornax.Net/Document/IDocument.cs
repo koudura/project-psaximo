@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Query
+namespace Fornax.Net.Document
 {
-    class ZoneQuery
+    public interface IDocument
     {
     }
 }

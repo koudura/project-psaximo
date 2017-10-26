@@ -123,7 +123,7 @@ namespace Fornax.Net.Util.IO.Compression
         /// <param name="file">The file.</param>
         /// <returns>the instance of the object representation in file.</returns>
         /// <exception cref="ArgumentNullException">file</exception>
-        public static TObj Decompress<TObj>(FileInfo file) where TObj : new() {
+        public static TObj Decompress<TObj>(FileInfo file) where TObj :class {
             Contract.Requires(file != null);
             if (file == null || !file.Exists) throw new ArgumentNullException(nameof(file));
             

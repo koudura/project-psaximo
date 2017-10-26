@@ -21,31 +21,41 @@
 *
 **/
 
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Fornax.Net.Util.Text;
+using Cst = Fornax.Net.Util.Constants;
 
 namespace Fornax.Net.Analysis.Tokenization
 {
-    public abstract class Tokenizer : ITokenizer
+    /// <summary>
+    /// WhiteSpace Tokenizer class for exclusive tokenization of strings by whitespaces, tabs, and newlines.
+    /// </summary>
+    /// <seealso cref="Fornax.Net.Analysis.Tokenization.Tokenizer" />
+    /// <seealso cref="Fornax.Net.Util.Text.ITokenizer" />
+    public sealed class WhitespaceTokenizer : Tokenizer, ITokenizer
     {
-        protected string text;
-        protected bool returnDelim1;
+        private StringTokenizer stringTokenizer;
+        private readonly string operators = Cst.WS_BROKERS;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tokenizer"/> class.
+        /// Initializes a new instance of the <see cref="WhitespaceTokenizer"/> class.
+        /// for whitespace, tabs and newline tokenization.
         /// </summary>
         /// <param name="text">The text.</param>
-        /// <param name="returnDelim1">if set to <c>true</c> [return delim1].</param>
-        protected Tokenizer(string text, bool returnDelim1) : this(text) {
-            this.returnDelim1 = returnDelim1;
+        public WhitespaceTokenizer(string text) : this(text, false) {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tokenizer"/> class.
+        /// Initializes a new instance of the <see cref="WhitespaceTokenizer"/> class.
+        /// for whitespace, tabs and newline tokenization.
         /// </summary>
-        /// <param name="text">The text to be tokenized.</param>
-        protected Tokenizer(string text) {
+        /// <param name="text">The text.</param>
+        /// <param name="returnDelim">if set to <c>true</c>delimiters are returned as tokens.</param>
+        public WhitespaceTokenizer(string text, bool returnDelim) : base(text, returnDelim) {
             this.text = text;
-            returnDelim1 = false;
+            stringTokenizer = new StringTokenizer(text, returnDelim);
         }
 
         /// <summary>
@@ -53,20 +63,23 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <see cref="object"/> rather than <see cref="string"/>.
         /// </summary>
         /// <returns>the next token in the string. <seealso cref="ITokenizer"/> , <seealso cref="CurrentToken"/></returns>
-        public abstract object CurrentElement { get; }
+        public override object CurrentElement => stringTokenizer.CurrentElement;
 
         /// <summary>
         /// Returns the current token from this whitespace tokenizer.
         /// </summary>
         /// <returns>the current token from this whitespace tokenizer.</returns>
-        public abstract string CurrentToken { get; }
+        public override string CurrentToken => stringTokenizer.CurrentToken;
 
         /// <summary>
         /// Calculates the number of times that this tokenizer's <code>NextToken</code> method can be called before
         /// it generates an exception. The current position is not advanced.
         /// </summary>
         /// <returns>the number of tokens remaining in the string using the current delimiter set. <seealso cref="CurrentToken"/>.</returns>
-        public abstract int CountTokens();
+        public override int CountTokens() {
+            return stringTokenizer.CountTokens();
+        }
+
 
         /// <summary>
         /// Returns the same value as the <see cref="HasMoreTokens()"/> method.
@@ -74,7 +87,9 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <returns>
         ///   <c>true</c> if there are more tokens; otherwise, <c>false</c>.
         /// </returns>
-        public abstract bool HasMoreElements();
+        public override bool HasMoreElements() {
+            return stringTokenizer.HasMoreElements();
+        }
 
         /// <summary>
         /// Tests if there are more tokens available from this tokenizer's string.
@@ -85,13 +100,27 @@ namespace Fornax.Net.Analysis.Tokenization
         ///   <c>true</c> if and only if there is at least one token in the string after the current position
         ///   ; otherwise, <c>false</c>.
         /// </returns>
-        public abstract bool HasMoreTokens();
+        public override bool HasMoreTokens() {
+            return stringTokenizer.HasMoreTokens();
+        }
 
         /// <summary>
         /// Gets the tokenstream of tokens.
         /// </summary>
-        /// <returns>Token stream of tokens by this tokenizer.</returns>
-        public abstract TokenStream GetTokens();
+        /// <returns>
+        /// Token stream of tokens by this tokenizer.
+        /// </returns>
+        public override TokenStream GetTokens() {
+            return new TokenStream(Tokenize());
+        }
 
+        private IEnumerable<Token> Tokenize() {
+            string regex = @"[\S]+";
+            var tokens = Regex.Matches(text, regex, RegexOptions.Compiled);
+            foreach (Match exact in tokens) {
+                    int start = exact.Index; int end = start + exact.Length - 1;
+                    yield return new Token(start, end, text);
+            }
+        }
     }
 }

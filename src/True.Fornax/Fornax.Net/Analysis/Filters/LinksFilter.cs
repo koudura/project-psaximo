@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Index.Storage
+namespace Fornax.Net.Analysis.Filters
 {
-    public class FornaxRepository
+    public class LinksFilter
     {
     }
 }

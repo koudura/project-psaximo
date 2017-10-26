@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Document
 {
-    class Corpus
+    public class Corpus
     {
     }
 }

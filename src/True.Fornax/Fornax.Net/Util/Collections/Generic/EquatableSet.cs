@@ -25,6 +25,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using ProtoBuf;
 
 namespace Fornax.Net.Util.Collections.Generic
 {
@@ -37,11 +38,12 @@ namespace Fornax.Net.Util.Collections.Generic
     /// other functionality.
     /// </summary>
     /// <typeparam name="T">The type of elements in the list.</typeparam>
-    [Serializable]
-    [Progress("EquatableSet",true,Documented = true,Tested = true)]
+    [Serializable, ProtoContract]
+    [Progress("EquatableSet", true, Documented = true, Tested = true)]
     public class EquatableSet<T> : ISet<T>, IEquatable<ISet<T>>, ICloneable
     {
-        private ISet<T> set;
+        [ProtoMember(1)]
+        private readonly ISet<T> set;
 
         /// <summary>Initializes a new instance of the
         /// <see cref="EquatableSet{T}"/> class that is empty and has the
@@ -306,7 +308,7 @@ namespace Fornax.Net.Util.Collections.Generic
         ///   <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.
         /// </returns>
         /// <exception cref="ArgumentNullException">other</exception>
-        public virtual  bool Equals(ISet<T> other) {
+        public virtual bool Equals(ISet<T> other) {
             if (other == null) {
                 throw new ArgumentNullException(nameof(other));
             }
@@ -402,7 +404,7 @@ namespace Fornax.Net.Util.Collections.Generic
         /// <param name="y">The <see cref="IEnumerable{T}"/> to compare
         /// against <paramref name="x"/>.</param>
         /// <returns>True if the instances are not equal, false otherwise.</returns>
-        public static bool operator != (EquatableSet<T> x, IEnumerable<T> y) {
+        public static bool operator !=(EquatableSet<T> x, IEnumerable<T> y) {
             return !(x == y);
         }
         #endregion

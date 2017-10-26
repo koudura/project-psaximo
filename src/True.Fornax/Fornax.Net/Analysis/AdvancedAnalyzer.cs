@@ -9,10 +9,9 @@ namespace Fornax.Net.Analysis
 {
     class AdvancedAnalyzer : Analyzer
     {
-        private SearchMode modeOfsearch;
 
         public AdvancedAnalyzer(SearchMode modeOfsearch) {
-            this.modeOfsearch = modeOfsearch;
+            base.modeOfsearch = modeOfsearch;
         }
 
 

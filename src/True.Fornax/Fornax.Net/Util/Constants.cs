@@ -22,7 +22,9 @@
 **/
 
 using System;
+using System.Diagnostics.Contracts;
 using System.IO;
+using System.Security.Permissions;
 
 namespace Fornax.Net.Util
 {
@@ -43,8 +45,12 @@ namespace Fornax.Net.Util
         /// The whitespace string brokers
         /// </summary>
         public const string WS_BROKERS = " \t\n\r\f";
+        internal const string Num_Brokers = ".0123456789";
+        internal const string GenOp_Brokers = " `^+=\\{};<,/[]@#\t\n\r\f";
+        internal const string QueryOP_Broker = " &|\":*?%!>[]$~()";
+        internal const string DocOP_Broker = "-.'";
 
-        public static char[] Brokers => new[] { ' ','\n','\t','\r','\f'};
+        public static char[] Brokers => new[] { ' ', '\n', '\t', '\r', '\f' };
         #endregion
 
         #region Boolean Constants 
@@ -78,10 +84,25 @@ namespace Fornax.Net.Util
 
         #endregion
 
-
+        internal static string FornaxDir => string.Format("{0}{1}", LoggingDirectory, @"\Fornax");
         internal static string LoggingDirectory => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         internal static string TempPath => Path.GetTempPath();
         internal static string TempFile => Path.GetTempFileName();
+
+        internal static DirectoryInfo BaseDirectory => GetBaseDir();
+
+        [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
+        private static DirectoryInfo GetBaseDir() {
+
+            DirectoryInfo basedir = null;
+            try {
+                basedir = new DirectoryInfo(FornaxDir);
+                if (!basedir.Exists) basedir.Create();
+                return basedir;
+            } catch (Exception) { }
+            Contract.Ensures(basedir != null);
+            throw new NotImplementedException();
+        }
 
         #region Fornax FileTypeExtensions
 
@@ -151,7 +172,7 @@ namespace Fornax.Net.Util
         internal static char OP_Leading => '(';
         internal static char OP_Trailing => ')';
 
-        internal static string[] All_Query_Ops => new[] { "OR", "||", "NOT", "!", "AND", "&&", "&", "\"", ":", "*", "?", "%", "$", ">", "(", ")"};
+        internal static string[] All_Query_Ops => new[] { "OR", "||", "NOT", "!", "AND", "&&", "&", "\"", ":", "*", "?", "%", "$", ">", "(", ")" };
 
         #endregion
 
@@ -188,7 +209,7 @@ namespace Fornax.Net.Util
             return All_Query_Ops;
         }
 
-        internal static string ErrorMessage<S,D>(Exception ex, S source, D destination) {
+        internal static string ErrorMessage<S, D>(Exception ex, S source, D destination) {
             return string.Format($"[{nameof(source)} failed to serialize {nameof(destination)} to file]....Exception thrown @...\n{ex.StackTrace}");
         }
 

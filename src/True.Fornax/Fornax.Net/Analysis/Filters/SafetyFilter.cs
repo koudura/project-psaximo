@@ -1,34 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Fornax.Net.Properties;
 using Fornax.Net.Util.Resources;
 using Fornax.Net.Util.System;
 using Fornax.Net.Util.Text;
 
 namespace Fornax.Net.Analysis.Filters
 {
-    public sealed class StopsFilter : Filter
+    public class SafetyFilter : Filter
     {
-        private static FornaxLanguage language;
+        static FornaxLanguage fornaxLanguage;
 
-        public StopsFilter(string text) : base(text) {
-        }
-
-        public StopsFilter(FornaxLanguage lang, string text) : base(text) {
+        public SafetyFilter(FornaxLanguage language, string text) : base(text) {
             Contract.Requires(language != null);
-           language = lang; 
-                                                                                                                                                     
+            fornaxLanguage = language;
         }
 
-        private static Vocabulary Vocabs => ConfigFactory.GetVocabulary(language);
+        public SafetyFilter(string text) : this(FornaxLanguage.English, text) {
+
+        }
+
+        private static Vocabulary Vocabs => ConfigFactory.GetVocabulary(fornaxLanguage);
 
         public override IEnumerable<string> Accepts(IEnumerable<string> collection) {
-            foreach (var item in collection) {
-                if (!IsStop(item)) {
-                    yield return item;
+            foreach (var word in collection) {
+                if (!IsUnsafeWord(word)) {
+                    yield return word;
                 }
             }
         }
@@ -37,14 +39,14 @@ namespace Fornax.Net.Analysis.Filters
             var tokenizer = new StringTokenizer(text, new string(delimiters));
             while (tokenizer.HasMoreTokens()) {
                 var token = tokenizer.CurrentToken;
-                if (!IsStop(token)) {
+                if (!IsUnsafeWord(token)) {
                     yield return token;
                 }
             }
         }
 
-        private static bool IsStop(string word) {
-            return Vocabs.StopWords.Contains(word);
+        public bool IsUnsafeWord(string word) {
+            return Vocabs.BadWords.Contains(word.ToLower());
         }
 
         public override string Accepts(char[] delimiters) {
@@ -52,29 +54,17 @@ namespace Fornax.Net.Analysis.Filters
             var tokenizer = new StringTokenizer(text, new string(delimiters));
             while (tokenizer.HasMoreTokens()) {
                 var token = tokenizer.CurrentToken;
-                if (!IsStop(token)) {
+                if (!IsUnsafeWord(token)) {
                     output.Append(token + " ");
                 }
             }
             return output.ToString().Trim();
         }
 
-        public override bool Equals(object obj) {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode() {
-            return base.GetHashCode();
-        }
-
-        public override string ToString() {
-            return base.ToString();
-        }
-
         public override IEnumerable<string> Accepts(IEnumerable<string> collection, FornaxLanguage language) {
-            var stopWords = ConfigFactory.GetVocabulary(language).StopWords;
+            var badWords = ConfigFactory.GetVocabulary(language).BadWords;
             foreach (var item in collection) {
-                if (!stopWords.Contains(item)) {
+                if (!badWords.Contains(item)) {
                     yield return item;
                 }
             }

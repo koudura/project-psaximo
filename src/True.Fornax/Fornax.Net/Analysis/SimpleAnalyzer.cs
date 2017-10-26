@@ -9,10 +9,8 @@ namespace Fornax.Net.Analysis
 {
     class SimpleAnalyzer : Analyzer
     {
-        private SearchMode free;
-
         public SimpleAnalyzer(SearchMode free) {
-            this.free = free;
+            base.modeOfsearch = free;
         }
 
         public SimpleAnalyzer() { }

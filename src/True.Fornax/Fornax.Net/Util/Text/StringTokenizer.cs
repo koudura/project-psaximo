@@ -28,10 +28,10 @@ using CST = Fornax.Net.Util.Constants;
 namespace Fornax.Net.Util.Text
 {
     /// <summary> The <see cref="StringTokenizer"/> class alows an application to break a string 
-    /// into tokens by performing code point comparison. <para></para>The <see cref="StringTokenizer"/> ethods do not distinguish 
-    /// among identifiers, numbers, and quated strings, nor do they recognize and skip comments.
+    /// into tokens by performing code point comparison. <para></para>The <see cref="StringTokenizer"/> methods do not distinguish 
+    /// among identifiers, numbers, and quoted strings, nor do they recognize and skip comments.
     /// </summary>
-    public sealed class StringTokenizer : ITokenizer
+    internal sealed class StringTokenizer : ITokenizer
     {
         private int currentPosition;
         private int newPosition;
@@ -100,7 +100,7 @@ namespace Fornax.Net.Util.Text
         /// </summary>
         /// <param name="str">The string to tokenize.</param>
         /// <param name="delim">The delimiters as string.</param>
-        /// <param name="returnDelim">if set to <c>true</c> [return delimiter].</param>
+        /// <param name="returnDelim">if set to <c>true</c> delimiters are returned as tokens.</param>
         /// <exception cref="ArgumentNullException">str</exception>
         public StringTokenizer(string str, string delim, bool returnDelim) {
             if (str != null) {
@@ -114,6 +114,16 @@ namespace Fornax.Net.Util.Text
                 SetMaxDelimCodePoint();
             } else throw new ArgumentNullException(nameof(str));
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StringTokenizer" /> class.
+        /// Using Default delimiter set, which is <code>(" ";\t;\n;\r;\f")</code>.
+        /// <paramref name="returnDelim" /> determines if delimiters are treated as tokens.
+        /// </summary>
+        /// <param name="str">The string to tokenize.</param>
+        /// <param name="returnDelim">if set to <c>true</c> [return delimiter].</param>
+        /// <exception cref="ArgumentNullException">str</exception>
+        public StringTokenizer(string str, bool returnDelim) : this(str, CST.WS_BROKERS,returnDelim){ }
 
         /// <summary>
         /// Skips the delimiters.
@@ -214,7 +224,7 @@ namespace Fornax.Net.Util.Text
         /// Returns the next tokens afer changing the delimiters.
         /// </summary>
         /// <param name="delim">The new delimiters.</param>
-        /// <returns></returns>
+        /// <returns>the next toke in enumeration.</returns>
         public string NextToken(string delim) {
             delimiters = delim;
 

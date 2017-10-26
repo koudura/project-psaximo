@@ -67,6 +67,7 @@ namespace Fornax.Net.Analysis.Tools
         /// <value>
         /// The word at which the synonyms would be returned.
         /// </value>
+        [ProtoMember(1)]
         public string Word => primeWord;
 
         /// <summary>
@@ -75,11 +76,12 @@ namespace Fornax.Net.Analysis.Tools
         /// <value>
         /// The synonyms of a word.
         /// </value>
+        [ProtoMember(2)]
         public IEnumerable<string> Synonyms => synoyms = Get();
 
         private ISet<string> Get() {
             var syns = from ln in index
-                       where  Regex.IsMatch(ln,string.Format($"[\\W]+{primeWord}[\\W]+"))
+                       where Regex.IsMatch(ln, string.Format($"[\\W]+{primeWord}[\\W]+"))
                        select ln;
 
             StringTokenizer tokenizer; ISet<string> synonyms = new HashSet<string>();

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Query
+namespace Fornax.Net.Document
 {
-    class TruncatedQuery
+    [Serializable]
+    public class FSDocument : IDocument
     {
+
+
+
     }
 }

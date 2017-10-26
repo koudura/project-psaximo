@@ -37,7 +37,7 @@ namespace Fornax.Net {
         Dynamic,
         /// <summary>
         /// The static caching technique. 
-        /// This technique statically s tores transactions in cache.
+        /// This technique statically stores transactions in cache.
         /// </summary>
         Static,
         /// <summary> 
@@ -153,7 +153,7 @@ namespace Fornax.Net {
         /// <summary>
         /// The verbatim type is as dynamic-buffer cache.
         /// </summary>
-        Verbatim,
+        Verbatim
 
     }
     #endregion
