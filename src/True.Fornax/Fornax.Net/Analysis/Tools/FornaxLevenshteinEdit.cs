@@ -30,6 +30,7 @@ namespace Fornax.Net.Analysis.Tools
     /// The Fornax.Net specific levenshtein edit distance class. 
     /// </summary>
     /// <seealso cref="Fornax.Net.Common.Similarity.IEditDistance" />
+    [Progress("FornaxLevenshteinEdit", true, Documented = true, Tested = true)]
     public sealed class FornaxLevenshteinEdit : IEditDistance
     {
         /// <summary>

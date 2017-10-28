@@ -46,7 +46,7 @@ namespace Fornax.Net.Util.Collections.Generic
     /// <seealso cref="IDisposable" />
     [Serializable]
     [Progress("LurchTable",false,Documented = true,Tested = false)]
-    public partial class LurchTable<TKey, TValue> : IDictionary<TKey, TValue>, IDisposable
+    public partial class LurchTable<TKey, TValue> : IDictionary<TKey, TValue>, IDisposable , java.io.Serializable.__Interface
     {
 
         /// <summary>

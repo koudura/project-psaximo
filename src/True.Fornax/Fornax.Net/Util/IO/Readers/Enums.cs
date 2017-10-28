@@ -22,35 +22,46 @@
 **/
 
 
-using System.IO;
+using System;
 
 namespace Fornax.Net.Util.IO.Readers
 {
     /// <summary>
     /// Specification of the type of extractor to use for extraction.
     /// </summary>
+    [Serializable]
     public enum Extractor
     {
         /// <summary>
-        /// Use <see cref="Toxy"/> Parsers to extract file.
+        /// Fornax Managed Extraction protocol for file text-extraction.
+        /// This Protocol observes the file format to decide whhich suitable extractor to apply
+        /// to text-extraction.<para></para>
+        /// This Protocol could be most expensive.
         /// </summary>
-        TOXY_PARSER,
+        Managed,
 
         /// <summary>
-        /// USe <see cref="TikaOnDotNet.TextExtraction"/> Parser to extract file.
+        /// Fornax Default Extraction Protocol for file text-extraction.
+        /// Simple text-extraction protocol.
+        ///<para>This Protocol is of medium expense.</para>
         /// </summary>
-        TIKA_PARSER,
+        Default,
 
         /// <summary>
-        /// Use <see cref="StreamReader"/> to extract file.
+        /// Fornax Minimal Extraction protocol for plain and dom files-text extension.
+        /// If used on a DOM type file, tokenization would cause short-term expenses on the quality of extraction.
+        /// <para>This Protocol should be used on Palin Text Files (<seealso cref="FornaxFormat.Plain"/>) for reduced expenses.</para>
         /// </summary>
-        DOTNET_STREAM,
+        Minimal,
 
         /// <summary>
+        /// Fornax Buffered Extraction Protocol for file text-extraction.
+        /// This Protocol implements the JDK 7.0 Buffered reader to extract text content files.
         /// Use <see cref="java.io.BufferedReader"/> and  <see cref="java.io.BufferedInputStream"/> to extract
         /// file.
+        /// <para>This Protocol Should be used if and only if knowledge of the buffered stream requirements are possessed.</para>
         /// </summary>
-        JAVA_BUFFER
+        Buffered
 
     }
 

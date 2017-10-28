@@ -22,12 +22,15 @@
 **/
 
 
+using System;
+
 namespace Fornax.Net {
 
     #region IO Enumerations 
     /// <summary>
     /// Caching Mode determines what caching technique should be used. 
     /// </summary>
+    [Serializable]
     public enum CachingMode
     {
         /// <summary>
@@ -49,6 +52,7 @@ namespace Fornax.Net {
     /// <summary>
     /// Defines What fornax does when an exception is thrown on retrieval of a file.
     /// </summary>
+    [Serializable]
     public enum FetchAttribute
     {
         /// <summary>
@@ -66,6 +70,7 @@ namespace Fornax.Net {
     ///  Traversal Mode specifies the mode at which fornax network crawler.
     ///  crawls the web.
     /// </summary>
+    [Serializable]
     public enum TraversalMode
     {
         /// <summary>
@@ -144,6 +149,7 @@ namespace Fornax.Net {
     /// <summary>
     /// 
     /// </summary>
+    [Serializable]
     public enum CacheType
     {
         /// <summary>
@@ -163,6 +169,7 @@ namespace Fornax.Net {
     /// <summary>
     /// File Format Categories supported by Fornax.Net
     /// </summary>
+    [Serializable]
     public enum FornaxFormat
     {
 
@@ -224,6 +231,7 @@ namespace Fornax.Net {
     /// <summary>
     /// Sorter enum for sorting a collection of documents.
     /// </summary>
+    [Serializable]
     public enum SortBy
     {
 

@@ -29,7 +29,7 @@ namespace Fornax.Net.Util.Collections.Generic
     /// </summary>
     /// <typeparam name="TKey">The type of the key.</typeparam>
     /// <typeparam name="TValue">The type of the value.</typeparam>
-    public interface ICreateValue<TKey, TValue>
+    public interface ICreateValue<TKey, TValue> 
     {
         /// <summary>
         /// Called when the key was not found within the dictionary to produce a new value that can be added.

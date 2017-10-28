@@ -57,6 +57,7 @@ namespace Fornax.Net.Index.Common
         public SoundexFactory(FileInfo file) {
             Contract.Requires(file != null && file.Exists);
             words_file = file ?? throw new ArgumentNullException(nameof(file));
+            words_index = GetIndex();
         }
 
         /// <summary>

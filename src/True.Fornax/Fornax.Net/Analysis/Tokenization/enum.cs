@@ -21,8 +21,11 @@
 *
 **/
 
+using System;
+
 namespace Fornax.Net.Analysis.Tokenization
 {
+    [Serializable]
     public enum TokenAttribute : int
     {
         /// <summary>

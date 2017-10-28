@@ -31,6 +31,7 @@ namespace Fornax.Net
     /// <summary>
     /// File Formats Supported by Fornax.Net .
     /// </summary>
+    [Serializable]
     public enum FileFormat
     {
         /// <summary>
@@ -251,7 +252,14 @@ namespace Fornax.Net
             return formats;
         }
 
-        internal static FileFormat Parse(string form) {
+        /// <summary>
+        /// Parses the specified string format extension to recognizable fornax format. 
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <returns></returns>
+        /// <exception cref="InvalidCastException"></exception>
+        /// <exception cref="FornaxFormatException"></exception>
+        public static FileFormat Parse(string form) {
             form = form.Trim().Remove(0, 1);
             if (Char.TryParse((form[0] + "").ToUpper(), out char res)) {
                 form = form.ReplaceAt(0, res);

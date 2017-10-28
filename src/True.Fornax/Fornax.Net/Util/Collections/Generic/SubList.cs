@@ -41,7 +41,7 @@ namespace Fornax.Net.Util.Collections.Generic
     [Serializable]
     [Progress("SubList<T>",true ,Documented = true, Tested = true)]
 
-    public sealed class SubList<T> : IList<T>, ISubList<T>
+    public sealed class SubList<T> : IList<T>, ISubList<T> , java.io.Serializable.__Interface
     {
         private readonly IList<T> list;
         private readonly int fromIndex;

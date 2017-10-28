@@ -33,7 +33,7 @@ namespace Fornax.Net.Util.Collections.Generic
     /// <typeparam name="T"></typeparam>
     [Serializable]
     [Progress("ObservableList",true,Documented = true,Tested = true)]
-    public class ObservableList<T> : IList<T>
+    public class ObservableList<T> : IList<T> , java.io.Serializable.__Interface
     {
         private readonly IList<T> monitoredList;
 

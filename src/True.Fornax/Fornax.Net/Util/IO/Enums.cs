@@ -21,12 +21,15 @@
 *
 **/
 
+using System;
+
 namespace Fornax.Net.Util.IO
 {
     /// <summary>
     /// Enum to manage delegate handlers for loading and preloading Dependencies 
     /// and external libraries. Manages eventHandlers Dynamic assembly runtime resolve.
     /// </summary>
+    [Serializable]
     public enum FornaxDependency {
         /// <summary>
         /// The load on demand procedure notifies its event handler to load dependency library on demand to embedded memory.

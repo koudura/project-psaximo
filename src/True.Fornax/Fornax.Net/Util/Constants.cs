@@ -45,10 +45,10 @@ namespace Fornax.Net.Util
         /// The whitespace string brokers
         /// </summary>
         public const string WS_BROKERS = " \t\n\r\f";
-        internal const string Num_Brokers = ".0123456789";
-        internal const string GenOp_Brokers = " `^+=\\{};<,/[]@#\t\n\r\f";
+        internal const string Num_Brokers = " 0123456789";
+        internal const string GenOp_Brokers = " `^+=\\{};<,/[]#\t\n\r\f";
         internal const string QueryOP_Broker = " &|\":*?%!>[]$~()";
-        internal const string DocOP_Broker = "-.'";
+        internal const string DocOP_Broker = "-.@'_";
 
         public static char[] Brokers => new[] { ' ', '\n', '\t', '\r', '\f' };
         #endregion
@@ -84,10 +84,33 @@ namespace Fornax.Net.Util
 
         #endregion
 
-        internal static string FornaxDir => string.Format("{0}{1}", LoggingDirectory, @"\Fornax");
+        internal static string FornaxDir => string.Format("{0}{1}", LoggingDirectory, "\\Fornax");
         internal static string LoggingDirectory => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         internal static string TempPath => Path.GetTempPath();
         internal static string TempFile => Path.GetTempFileName();
+        internal static DirectoryInfo GetCurrentDirectory(string name) {
+            DirectoryInfo currdir = null;
+            try {
+                string dirPath = Path.Combine(BaseDirectory.FullName, name);
+                currdir = new DirectoryInfo(dirPath);
+                if (!currdir.Exists) currdir.Create();
+                return currdir;
+            } catch (Exception) { }
+            Contract.Ensures(currdir != null);
+            return currdir;
+        }
+
+        internal static FileInfo GetCurrentFile(DirectoryInfo dir, string name) {
+            FileInfo currfile = null;
+            try {
+                string dirPath = Path.Combine(dir.FullName, name);
+                currfile = new FileInfo(dirPath);
+                if (!currfile.Exists) currfile.Create();
+                return currfile;
+            } catch (Exception) { }
+            Contract.Ensures(currfile != null);
+            return currfile;
+        }
 
         internal static DirectoryInfo BaseDirectory => GetBaseDir();
 

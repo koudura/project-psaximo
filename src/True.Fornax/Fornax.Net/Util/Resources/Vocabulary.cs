@@ -21,6 +21,7 @@
 *
 **/
 
+using System;
 using System.Collections.Generic;
 using Fornax.Net.Util.System;
 using Fornax.Net.Util.Text;
@@ -32,6 +33,7 @@ namespace Fornax.Net.Util.Resources
     /// <summary>
     /// Fornax Vocabulary Handler.
     /// </summary>
+    [Serializable]
     public sealed class Vocabulary
     {
         FornaxLanguage language;

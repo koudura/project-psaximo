@@ -30,7 +30,7 @@ namespace Fornax.Net.Util.Collections.Generic
     /// An Interface for wrapping the <see cref="SubList{T}"/> class.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface ISubList<T>
+    public interface ISubList<T> :  java.io.Serializable.__Interface
     {
         /// <summary>
         /// Gets or sets the item at the specified index.

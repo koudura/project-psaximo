@@ -25,18 +25,42 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Fornax.Net.Util.Collections.Generic;
+using ProtoBuf;
 
 namespace Fornax.Net.Analysis.Tokenization
 {
+    [Serializable, ProtoContract]
     public class TokenStream : IEnumerator<Token>, ICloneable
     {
+        [ProtoMember(1)]
         private readonly EquatableList<Token> list;
+        [ProtoMember(2)]
         private IEnumerator<Token> tok;
 
         internal TokenStream(IEnumerable<Token> tokens) {
             list = new EquatableList<Token>(tokens);
             tok = list.GetEnumerator();
         }
+
+        /// <summary>
+        /// Gets the <see cref="Token"/> at the specified index.
+        /// </summary>
+        /// <value>
+        /// The <see cref="Token"/>.
+        /// </value>
+        /// <param name="index">The index.</param>
+        /// <returns></returns>
+        public Token this[int index] => list[index];
+
+        /// <summary>
+        /// Gets the number of tokens in this token stream.
+        /// </summary>
+        /// <value>
+        /// The count.
+        /// </value>
+        public int Size => list.Count;
+
+
 
         /// <summary>
         /// Gets the element in the collection at the current position of the enumerator.
@@ -76,7 +100,7 @@ namespace Fornax.Net.Analysis.Tokenization
             if (obj == null) return false;
             if (obj == this) return true;
 
-            if(obj is TokenStream) {
+            if (obj is TokenStream) {
                 var ts = obj as TokenStream;
                 return (ts.list == list);
             }

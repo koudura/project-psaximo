@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace Fornax.Net.Index.Common
 {
@@ -12,11 +13,11 @@ namespace Fornax.Net.Index.Common
     /// index => gram => {word1, word2...}.
     /// </summary>
     /// <seealso cref="System.Collections.Generic.IDictionary{System.String, System.Collections.Generic.IList{System.String}}" />
-    [Serializable]
-    public class GramIndex : IDictionary<string, ISet<string>>
+    [Serializable,ProtoContract]
+    public class GramIndex : IDictionary<string, ISet<string>>, java.io.Serializable.__Interface
     {
-
-        private IDictionary<string, ISet<string>> database;
+        [ProtoMember(1)]
+        private readonly IDictionary<string, ISet<string>> database;
 
         /// <summary>
         /// Gets or sets the <see cref="ISet{System.String}"/> with the specified key.

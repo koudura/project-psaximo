@@ -36,7 +36,7 @@ namespace Fornax.Net.Util.Collections.Generic
     [global::System.Diagnostics.DebuggerNonUserCode]
     [global::System.Runtime.CompilerServices.CompilerGenerated]
     [global::System.CodeDom.Compiler.GeneratedCode("CSharpTest.Net.Generators", "2.13.222.435")]
-    public partial class LurchCorruptionException : Exception
+    public partial class LurchCorruptionException : Exception, ISerializable,java.io.Serializable.__Interface
     {
 
         /// <summary>

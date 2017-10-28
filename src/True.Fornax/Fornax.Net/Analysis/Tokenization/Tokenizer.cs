@@ -21,14 +21,23 @@
 *
 **/
 
+using System;
 using Fornax.Net.Util.Text;
+using ProtoBuf;
 
 namespace Fornax.Net.Analysis.Tokenization
 {
+    /// <summary>
+    /// Text Tokenizer object for Pre/Post Processing of string text.
+    /// </summary>
+    /// <seealso cref="Fornax.Net.Util.Text.ITokenizer" />
+    [Serializable, ProtoContract]
     public abstract class Tokenizer : ITokenizer
     {
-        protected string text;
-        protected bool returnDelim1;
+        [ProtoMember(1)]
+        protected internal string text;
+        [ProtoMember(2)]
+        protected internal bool returnDelim1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tokenizer"/> class.
@@ -47,6 +56,8 @@ namespace Fornax.Net.Analysis.Tokenization
             this.text = text;
             returnDelim1 = false;
         }
+
+        protected Tokenizer() { text = string.Empty ; }
 
         /// <summary>
         /// Returns the value as the <code>NextToken</code> method, except that its declared value is

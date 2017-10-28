@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Index.IO
 {
-    class SignFile
+    class Segment
     {
     }
 }

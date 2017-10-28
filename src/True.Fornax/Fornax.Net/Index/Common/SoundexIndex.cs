@@ -43,12 +43,12 @@ namespace Fornax.Net.Index.Common
     /// seeking to match names for wanted criminals despite the names being
     /// spelled differentlyin differentcountries.It is mainly used to correct phonetic
     /// misspellings in proper nouns.</remarks>
-    [Serializable,ProtoContract]
-    [Progress("SoundexIndex",true,Documented = true,Tested = true)]
-    public class SoundexIndex : IDictionary<Soundex, IList<string>>, IDisposable, IEnumerable<KeyValuePair<Soundex,IList<string>>>
+    [Serializable, ProtoContract]
+    [Progress("SoundexIndex", true, Documented = true, Tested = true)]
+    public class SoundexIndex : IDictionary<Soundex, IList<string>>, IDisposable, IEnumerable<KeyValuePair<Soundex, IList<string>>>, java.io.Serializable.__Interface
     {
         [ProtoMember(1)]
-        private IDictionary<Soundex, IList<string>> s_index;
+        private readonly IDictionary<Soundex, IList<string>> s_index;
 
         /// <summary>
         /// Gets an <see cref="ICollection{T}" /> containing the keys of the <see cref="SoundexIndex" />.

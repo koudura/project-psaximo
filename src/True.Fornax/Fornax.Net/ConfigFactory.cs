@@ -23,9 +23,11 @@
 
 using System.Collections.Generic;
 using System.Globalization;
-
+using System.IO;
+using Fornax.Net.Analysis.Tokenization;
 using Fornax.Net.Properties;
 using Fornax.Net.Util;
+using Fornax.Net.Util.IO.Writers;
 using Fornax.Net.Util.Resources;
 using Fornax.Net.Util.System;
 
@@ -53,13 +55,59 @@ namespace Fornax.Net
         internal static bool IsAutoCorrectable = config.Default.QueryAutoCorrect;
         #endregion
 
-
-        public static Configuration SetConfiguration(FetchAttribute fetchattribute, CachingMode cacheMode, params FileFormat[] fileFormats) {
-            if(fileFormats.Length <= 0) { fileFormats[0] = FileFormat.Txt; }
-            return new Configuration(fetchattribute, cacheMode, fileFormats);
+        /// <summary>
+        /// Gets the configuration to be used for all continouos functions of fornax.net.
+        /// </summary>
+        /// <param name="fetchattribute">The fetchattribute.</param>
+        /// <param name="cacheMode">The cache mode.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="fileFormats">The file formats.</param>
+        /// <returns></returns>
+        public static Configuration GetConfiguration(FetchAttribute fetchattribute, CachingMode cacheMode, FornaxLanguage language, Tokenizer tokenizer, params FileFormat[] fileFormats) {
+            if (fileFormats.Length <= 0) { fileFormats[0] = FileFormat.Txt; }
+            return new Configuration(fetchattribute, cacheMode, fileFormats, tokenizer, language);
         }
 
-        internal static void SaveSettings() {
+        /// <summary>
+        /// Gets the configuration to be used for all continouos functions of fornax.net.
+        /// This Returns Configuration with Default settings.
+        /// </summary>
+        /// <returns>Configuration for fornax.net</returns>
+        public static Configuration Default => GetConfiguration(new CharTokenizer());
+
+        static Configuration GetConfiguration(Tokenizer tokenizer) {
+            return new Configuration(tokenizer);
+        }
+
+        /// <summary>
+        /// Gets the configuration to be used for all continouos functions of fornax.net.
+        /// </summary>
+        /// <param name="fetchAttribute">The fetch attribute.</param>
+        /// <param name="cachingMode">The caching mode.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="fileFormatCategory">The file format category.</param>
+        /// <returns>A Configuatio for fornax.net</returns>
+        public static Configuration GetConfiguration(FetchAttribute fetchAttribute, CachingMode cachingMode, FornaxLanguage language, Tokenizer tokenizer, FornaxFormat fileFormatCategory) {
+            return new Configuration(fetchAttribute, cachingMode, fileFormatCategory, tokenizer, language);
+        }
+
+        /// <summary>
+        /// Opens the configuration from an existing config id.
+        /// </summary>
+        /// <param name="ID">The identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="FileNotFoundException">ID</exception>
+        /// <exception cref="FileLoadException">ID</exception>
+        public static Configuration OpenConfiguration(string ID) {
+            var pattern = new FileInfo(Path.Combine(Constants.BaseDirectory.FullName, $"User[{ID}].config", "_.config"));
+            try {
+                if (pattern.Exists)
+                    return FornaxWriter.Read<Configuration>(pattern);
+                else throw new FileNotFoundException($"Configuration data with {nameof(ID)} = {ID} does not exist;");
+            } catch { throw new FileLoadException($"Configuration data withh {nameof(ID)} = {ID} is probably corrupted."); }
+        }
+
+        public static void SaveSettings() {
             config.Default.Save();
         }
 

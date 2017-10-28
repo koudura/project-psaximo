@@ -40,6 +40,7 @@ namespace Fornax.Net.Util.IO.Readers
     /// FornaxReader for Extraction of Text-Content from files.
     /// </summary>
     /// <seealso cref="IDisposable" />
+    [Serializable]
     public class FornaxReader : IReader
     {
         private FileInfo file;

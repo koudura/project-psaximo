@@ -128,14 +128,9 @@ namespace Fornax.Net.Index
     public enum RepositoryType : uint
     {
         /// <summary>
-        /// The local repository i.e destop file-system repository.
+        /// The local repository i.e desktop file-system repository.
         /// </summary>
         Local = 3126236545,
-
-        /// <summary>
-        /// The remote repository for removable drive repositories.
-        /// </summary>
-        Remote = 13687729,
 
         /// <summary>
         /// The network repository for online-networked repository.

@@ -35,7 +35,7 @@ namespace Fornax.Net.Util.Collections.Generic
     /// Generally implemented as a struct and passed by ref to save stack space and to retrieve the values
     /// that where inserted or updated.
     /// </remarks>
-    public interface ICreateOrUpdateValue<TKey, TValue> : ICreateValue<TKey, TValue>, IUpdateValue<TKey, TValue>
+    public interface ICreateOrUpdateValue<TKey, TValue> : ICreateValue<TKey, TValue>, IUpdateValue<TKey, TValue> , java.io.Serializable.__Interface
     {
     }
 

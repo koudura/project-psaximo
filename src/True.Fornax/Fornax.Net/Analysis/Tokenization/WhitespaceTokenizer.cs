@@ -24,7 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+
 using Fornax.Net.Util.Text;
+using ProtoBuf;
+
 using Cst = Fornax.Net.Util.Constants;
 
 namespace Fornax.Net.Analysis.Tokenization
@@ -34,10 +37,13 @@ namespace Fornax.Net.Analysis.Tokenization
     /// </summary>
     /// <seealso cref="Fornax.Net.Analysis.Tokenization.Tokenizer" />
     /// <seealso cref="Fornax.Net.Util.Text.ITokenizer" />
+    [Serializable, ProtoContract]
     public sealed class WhitespaceTokenizer : Tokenizer, ITokenizer
     {
+        [ProtoMember(3)]
         private StringTokenizer stringTokenizer;
-        private readonly string operators = Cst.WS_BROKERS;
+        [ProtoMember(4)]
+        internal readonly string operators = Cst.WS_BROKERS;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WhitespaceTokenizer"/> class.
@@ -54,10 +60,12 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <param name="text">The text.</param>
         /// <param name="returnDelim">if set to <c>true</c>delimiters are returned as tokens.</param>
         public WhitespaceTokenizer(string text, bool returnDelim) : base(text, returnDelim) {
-            this.text = text;
             stringTokenizer = new StringTokenizer(text, returnDelim);
         }
 
+        public WhitespaceTokenizer() : base() {
+            stringTokenizer = new StringTokenizer(text);
+        }
         /// <summary>
         /// Returns the value as the <code>NextToken</code> method, except that its declared value is
         /// <see cref="object"/> rather than <see cref="string"/>.
@@ -114,12 +122,12 @@ namespace Fornax.Net.Analysis.Tokenization
             return new TokenStream(Tokenize());
         }
 
-        private IEnumerable<Token> Tokenize() {
-            string regex = @"[\S]+";
+        IEnumerable<Token> Tokenize() {
+            string regex = @"[^\s\t\n\f\v]+";
             var tokens = Regex.Matches(text, regex, RegexOptions.Compiled);
             foreach (Match exact in tokens) {
-                    int start = exact.Index; int end = start + exact.Length - 1;
-                    yield return new Token(start, end, text);
+                int start = exact.Index;
+                yield return new Token(start, exact.Length, text);
             }
         }
     }

@@ -110,13 +110,15 @@ namespace Fornax.Net.Util.Text
         /// after the <paramref name="index"/> in string <paramref name="str"/>.
         /// </summary>
         /// <param name="str">The string.</param>
-        /// <param name="index">The offset value, ranges from [-1 to length of string <paramref name="str"/>]</param>
+        /// <param name="index">The offset value, ranges from [-1 to length of string <paramref name="str"/>] 
+        ///  NOTE: (index = -1 is the same as string.StartsWSith()).
+        /// </param>
         /// <param name="continuum">The set of characters to match.</param>
         /// <returns></returns>
         public static bool ContinuesWith(this string str, int index, char[] continuum) {
             int offset = index + 1, lim = str.Length - offset;
-            if (!((offset >= 0) && (offset < str.Length)) || continuum.Length > str.Length) throw new ArgumentException();
-            if (str.Substring(offset, lim).Length < continuum.Length) return false;
+            if (!((offset >= 0) && (offset < str.Length))) throw new ArgumentException();
+            if (continuum.Length > str.Length || str.Substring(offset, lim).Length < continuum.Length) return false;
 
             int i = 0; bool matches = true;
             do {

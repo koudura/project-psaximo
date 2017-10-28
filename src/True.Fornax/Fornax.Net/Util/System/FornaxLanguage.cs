@@ -21,15 +21,19 @@
 *
 **/
 
+using System;
 using System.Globalization;
+using ProtoBuf;
 
 namespace Fornax.Net.Util.System
 {
     /// <summary>
     /// Represents a placeholder class for fornax.net language utilities.
     /// </summary>
+    [Serializable, ProtoContract]
     public sealed class FornaxLanguage
     {
+        [ProtoMember(1)]
         private string lang_tag;
 
         private FornaxLanguage() {

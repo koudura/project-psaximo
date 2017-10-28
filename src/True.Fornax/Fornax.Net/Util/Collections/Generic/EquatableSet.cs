@@ -40,7 +40,7 @@ namespace Fornax.Net.Util.Collections.Generic
     /// <typeparam name="T">The type of elements in the list.</typeparam>
     [Serializable, ProtoContract]
     [Progress("EquatableSet", true, Documented = true, Tested = true)]
-    public class EquatableSet<T> : ISet<T>, IEquatable<ISet<T>>, ICloneable
+    public class EquatableSet<T> : ISet<T>, IEquatable<ISet<T>>, ICloneable , java.io.Serializable.__Interface
     {
         [ProtoMember(1)]
         private readonly ISet<T> set;

@@ -25,6 +25,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Fornax.Net.Util.Collections;
+using ProtoBuf;
 
 namespace Fornax.Net.Index.Common
 {
@@ -32,10 +33,12 @@ namespace Fornax.Net.Index.Common
     /// Synoynym(s) Index for fornax.net.
     /// </summary>
     /// <seealso cref="ISet{T}" />
-    [Serializable][Progress("SynsetIndex",true,Documented = true, Tested = true)]
-    public class SynsetIndex : ISet<string>
+    [Serializable,ProtoContract]
+    [Progress("SynsetIndex", true, Documented = true, Tested = true)]
+    public class SynsetIndex : ISet<string>, java.io.Serializable.__Interface
     {
-        private ISet<string> index = new HashSet<string>();
+        [ProtoMember(1)]
+        private readonly ISet<string> index = new HashSet<string>();
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="SynsetIndex" />.

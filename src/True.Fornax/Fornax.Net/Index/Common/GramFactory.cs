@@ -10,6 +10,13 @@ namespace Fornax.Net.Index.Common
 {
     public static class GramFactory
     {
+        /// <summary>
+        /// Gets the index of the k gram.
+        /// </summary>
+        /// <param name="tokenStream">The token stream.</param>
+        /// <param name="size">The size.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">tokenStream</exception>
         public static GramIndex GetKGramIndex(TokenStream tokenStream, uint size) {
             if (tokenStream == null) throw new ArgumentNullException(nameof(tokenStream));
             GramIndex index = new GramIndex();
@@ -26,7 +33,13 @@ namespace Fornax.Net.Index.Common
             return index;
         }
 
-
+        /// <summary>
+        /// Gets the index of the k gram.
+        /// </summary>
+        /// <param name="words">The words.</param>
+        /// <param name="size">The size.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">words</exception>
         public static GramIndex GetKGramIndex(IEnumerable<string> words, uint size) {
             if (words == null) throw new ArgumentNullException(nameof(words));
             GramIndex index = new GramIndex();
@@ -37,7 +50,6 @@ namespace Fornax.Net.Index.Common
                     Add(gram, word, ref index);
                 }
             }
-
             return index;
         }
 

@@ -42,7 +42,7 @@ namespace Fornax.Net.Util.Collections.Generic
     /// <seealso cref="IEquatable{T}" />
     [Serializable,ProtoContract]
     [Progress("EquatableList<T>", true, Documented = true, Tested = true)]
-    public class EquatableList<T> : IList<T>, IEquatable<IList<T>>, ICloneable
+    public class EquatableList<T> : IList<T>, IEquatable<IList<T>>, ICloneable , java.io.Serializable.__Interface
     {
         [ProtoMember(1)]
         private readonly IList<T> list;

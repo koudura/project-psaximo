@@ -35,7 +35,7 @@ namespace Fornax.Net.Util.Collections.Generic
         /// </summary>
         /// <seealso cref="IDictionary{TKey, TValue}" />
         /// <seealso cref="IDisposable" />
-        public class ValueCollection : ICollection<TValue>
+        public class ValueCollection : ICollection<TValue> , java.io.Serializable.__Interface
         {
             private readonly LurchTable<TKey, TValue> _owner;
 

@@ -22,7 +22,7 @@
 **/
 
 using System;
-
+using ProtoBuf;
 using CST = Fornax.Net.Util.Constants;
 
 namespace Fornax.Net.Util.Text
@@ -31,20 +31,31 @@ namespace Fornax.Net.Util.Text
     /// into tokens by performing code point comparison. <para></para>The <see cref="StringTokenizer"/> methods do not distinguish 
     /// among identifiers, numbers, and quoted strings, nor do they recognize and skip comments.
     /// </summary>
+    [Serializable, ProtoContract]
     internal sealed class StringTokenizer : ITokenizer
     {
+        [ProtoMember(1)]
         private int currentPosition;
+        [ProtoMember(2)]
         private int newPosition;
+        [ProtoMember(3)]
         private int maxPosition;
 
+        [ProtoMember(4)]
         private string text;
+        [ProtoMember(5)]
         private string delimiters;
 
+        [ProtoMember(6)]
         private bool retDelimiters;
+        [ProtoMember(7)]
         private bool delimsChanged;
 
+        [ProtoMember(8)]
         private int maxDelimCodePoint;
+        [ProtoMember(9)]
         private bool hasSurrogatees = false;
+        [ProtoMember(10)]
         private int[] delimiterCodepoints;
 
         /// <summary>
@@ -123,7 +134,7 @@ namespace Fornax.Net.Util.Text
         /// <param name="str">The string to tokenize.</param>
         /// <param name="returnDelim">if set to <c>true</c> [return delimiter].</param>
         /// <exception cref="ArgumentNullException">str</exception>
-        public StringTokenizer(string str, bool returnDelim) : this(str, CST.WS_BROKERS,returnDelim){ }
+        public StringTokenizer(string str, bool returnDelim) : this(str, CST.WS_BROKERS, returnDelim) { }
 
         /// <summary>
         /// Skips the delimiters.

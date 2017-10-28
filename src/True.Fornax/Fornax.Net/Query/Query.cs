@@ -33,27 +33,10 @@ namespace Fornax.Net.Query
     /// <seealso cref="FornaxQuery" />
     public sealed class Query : FornaxQuery
     {
-
-        private string queryString;
-        private Analyzer analyzer;
-        private QueryMode Querymode;
-        private Expand expansion;
-
         private static QueryType type  { get; set; }
 
-        private Query() { }
-
-        internal Query(string query, Analyzer analyzer, Repository repo, Expand expansion) {
-            this.queryString = query;
-            this.analyzer = analyzer;
-            this.expansion = expansion;
-            this.Querymode = Analyzer.GetMode(analyzer);
+        internal Query(string query, Analyzer analyzer, Repository repo, Expand expansion) : base (query,analyzer,repo,expansion) {
         }
-
-        internal string RawQuery => this.queryString;
-        internal QueryMode Mode => this.Querymode;
-        internal Analyzer AnalysisTool => analyzer;
-
 
         /// <summary>
         /// Creates the specified query.

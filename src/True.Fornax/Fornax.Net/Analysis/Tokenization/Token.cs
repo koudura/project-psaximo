@@ -29,24 +29,35 @@ using Fornax.Net.Util.Text;
 using ProtoBuf;
 
 using IGrammable = Fornax.Net.Index.Common.IGrammable;
+using Const = Fornax.Net.Util.Constants;
+using Language = Fornax.Net.Util.System.FornaxLanguage;
 using Adler = Fornax.Net.Util.Security.Cryptography.Adler32;
+using Fornax.Net.Index;
 
 namespace Fornax.Net.Analysis.Tokenization
 {
     /// <summary>
     /// Represents a token in a filed of text, stores the attributes and position of a token in a field.
     /// position of string can be used later in highlighting of token in field.
+    /// Note: A <see cref="Token"/> may represent more than words from text fields, but also
+    /// things like dates, email addresses, urls, etc.
     /// </summary>
     [Serializable, ProtoContract]
     [Progress("Token", false, Documented = true, Tested = false)]
-    public class Token
+    public sealed class Token
     {
+        [ProtoMember(1)]
         private readonly string value;
+        [ProtoMember(2)]
         private int startoffset;
+        [ProtoMember(3)]
         private int endoffset;
-        private int length;
+        [ProtoMember(4)]
         private TokenAttribute type;
+        [ProtoMember(5)]
         private ulong flags;
+        [ProtoMember(6)]
+        private int _length;
 
         /// <summary>
         /// Gets the value of the token.
@@ -54,7 +65,6 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <value>
         /// The value.
         /// </value>
-        [ProtoMember(1)]
         internal string Value => value;
 
         /// <summary>
@@ -63,7 +73,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <value>
         /// The end.
         /// </value>
-        [ProtoMember(2)]
+
         public int End => endoffset;
 
         /// <summary>
@@ -72,7 +82,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <value>
         /// The start.
         /// </value>
-        [ProtoMember(3)]
+
         public int Start => startoffset;
 
         /// <summary>
@@ -81,7 +91,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <value>
         /// The type.
         /// </value>
-        [ProtoMember(4)]
+
         public TokenAttribute Type => type;
 
         /// <summary>
@@ -90,7 +100,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <value>
         /// The flag.
         /// </value>
-        [ProtoMember(5)]
+
         public ulong Flag => flags;
 
         /// <summary>
@@ -99,90 +109,82 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <value>
         /// The length.
         /// </value>
-        [ProtoMember(6)]
-        public int Length => Value.Length;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Token"/> class.
-        /// </summary>
-        /// <param name="offset">The offset.</param>
-        /// <param name="fullText">The full text.</param>
-        /// <param name="type">The type attribute of the token</param>
-        public Token(int offset, string fullText, TokenAttribute type = TokenAttribute.Unknown) : this(offset, ToEnd(offset, fullText), fullText, type) { }
+        public int Length => _length;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Token"/> class.
         /// </summary>
         /// <param name="start">The start index.</param>
-        /// <param name="end">The end index inclusive.</param>
+        /// <param name="end">The end index exclusive.</param>
         /// <param name="fullText">The full text.</param>
         /// <param name="type">The type.</param>
-        public Token(int start, int end, string fullText, TokenAttribute type = TokenAttribute.Unknown) {
+        public Token(int start, string text, string fullText, TokenAttribute type = TokenAttribute.Unknown) {
             startoffset = start;
-            endoffset = end;
-            value = GetValue(fullText);
+            endoffset = start + text.Length - 1;
+            value = text;
             flags = Adler.Compute(value);
             this.type = (type.Equals(TokenAttribute.Unknown)) ? DetectType(value) : type;
+            _length = value.Length;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Token"/> class.
         /// </summary>
         /// <param name="start">The start.</param>
-        /// <param name="end">The end index inclusive</param>
+        /// <param name="end">The end index clusive</param>
         /// <param name="text">The text.</param>
         /// <param name="fullText">The full text.</param>
         /// <param name="type">The type.</param>
-        internal Token(int start, int end, string text, string fullText, TokenAttribute type = TokenAttribute.Unknown) {
+        public Token(int start, int length, string fullText, TokenAttribute type = TokenAttribute.Unknown) {
             startoffset = start;
-            endoffset = end;
-            value = text;
+            endoffset = start + length - 1;
+            value = fullText.Substring(start, length);
             flags = Adler.Compute(value);
             this.type = (type.Equals(TokenAttribute.Unknown)) ? DetectType(value) : type;
+            _length = value.Length;
         }
 
         private TokenAttribute DetectType(string value) {
             TokenAttribute attrib = TokenAttribute.Unknown;
-            if (Regex.IsMatch(value, @"[\s\S]", RegexOptions.Compiled) && value.Length == 1) {
+            if (Regex.IsMatch(value, @"^[A-Za-z ]\b$", RegexOptions.Compiled) && value.Length == 1) {
                 attrib = TokenAttribute.Character;
-            }
-            if (Regex.IsMatch(value, @"[\d]+[.]?[\d]+", RegexOptions.Compiled)) {
+            } else if (Regex.IsMatch(value, @"^[\d]+\.?\d*$", RegexOptions.Compiled)) {
                 attrib = TokenAttribute.Number;
-            }
-            if (Regex.IsMatch(value, @"[\w]+@[\w]+[.][\w]+", RegexOptions.Compiled)) {
+            } else if (IsEmail(value)) {
                 attrib = TokenAttribute.Email;
-            }
-            if (DateTime.TryParse(value, out DateTime res)) {
+            } else if (DateTime.TryParse(value, out DateTime res)) {
                 attrib = TokenAttribute.Date;
-            }
-            if (value.IsWord() || Regex.IsMatch(value, @"[\w]+", RegexOptions.Compiled)) {
+            } else if (value.IsWord() || Regex.IsMatch(value, @"^(?!.*(.)\1)[a-zA-Z][a-zA-Z\d_-]*$", RegexOptions.Compiled)) {
                 attrib = TokenAttribute.Word;
-            }
-            if (Regex.IsMatch(value, @"[A-Z0-9]+[.][A-Z0-9]+[.][A-Z0-9]+", RegexOptions.Compiled)) {
+            } else if (Regex.IsMatch(value, @"^[A-Z]+[.][A-Z]+[.]$", RegexOptions.Compiled)) {
                 attrib = TokenAttribute.Acronym;
-            }
-            if (Regex.IsMatch(value, @"[\W]+", RegexOptions.Compiled)) {
+            } else if (IsOperator(value)) {
                 attrib = TokenAttribute.Operator;
-            }
-            if (Uri.IsWellFormedUriString(value, UriKind.RelativeOrAbsolute)) {
+            } else if (Uri.IsWellFormedUriString(value, UriKind.Absolute)) {
                 attrib = TokenAttribute.Link;
             }
             return attrib;
         }
 
-        private string GetValue(string fullText) {
-            int flen = fullText.Length;
-            return fullText.Substring(startoffset, flen - endoffset);
-        }
-
-        private static int ToEnd(int offset, string fullText) {
-            int count = offset;
-            for (int i = offset; i < fullText.Length; i++) {
-                if (Char.IsWhiteSpace(fullText[i])) {
-                    return i - 1;
+       internal static bool IsOperator(string str) {
+            foreach (var ch in str) {
+                if (Char.IsLetterOrDigit(ch) || Char.IsWhiteSpace(ch) || Char.IsSeparator(ch) || Char.IsNumber(ch)) {
+                    return false;
                 }
             }
-            return fullText.Length;
+            return true;
+        }
+
+        internal static bool IsAcronym(string value) {
+            if (Regex.IsMatch(value, @"(^[A-Z]+[.][A-Z]+[.]$)|(^[A-Z]+[.][A-Z]+$)|(^[A-Z]+[.][A-Z]+[.][A-Z]+$)|(^[A-Z]+[.][A-Z]+[.][A-Z]+[.][A-Z]$)", RegexOptions.Compiled)) {
+                return true;
+            }
+            return false;
+        }
+
+        internal static bool IsEmail(string value) {
+            return ((Regex.IsMatch(value, @"^[\w]+@[\w]+[.][a-z0-9]+$", RegexOptions.Compiled) ||
+                (Regex.IsMatch(value, @"^[\w]+[.][a-z0-9]+$", RegexOptions.Compiled))));
         }
 
         /// <summary>
@@ -190,14 +192,12 @@ namespace Fornax.Net.Analysis.Tokenization
         /// </summary>
         /// <param name="size">The size.</param>
         /// <returns></returns>
-        public IGrammable GetGram(uint size) {
-            IGrammable grammer;
-            if (value.Contains(" ")) {
-                grammer = new NGram(value, size);
-            }else {
-                grammer = new KGram(value, size);
-            }
-            return grammer;
+        public IGrammable GetKGram(uint size) {
+            return new KGram(value, size);
+        }
+
+        public IGrammable GetNGram(uint size) {
+            return new NGram(value, size);
         }
 
         /// <summary>
@@ -231,6 +231,15 @@ namespace Fornax.Net.Analysis.Tokenization
         /// </returns>
         public override int GetHashCode() {
             return value.GetHashCode();
+        }
+
+        /// <summary>
+        /// Converts this token to a normalized term. 
+        /// A term includes the rooted,lemmatized or normalized form of a token.
+        /// </summary>
+        /// <returns></returns>
+        public Term AsTerm(Language language) {
+            return new Term(this, language);
         }
     }
 }

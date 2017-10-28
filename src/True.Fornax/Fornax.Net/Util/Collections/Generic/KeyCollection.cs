@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace Fornax.Net.Util.Collections.Generic
 {
-    public partial class LurchTable<TKey, TValue> {
+    public partial class LurchTable<TKey, TValue>  {
 
         /// <summary>
         /// Provides the collection of Keys for the LurchTable

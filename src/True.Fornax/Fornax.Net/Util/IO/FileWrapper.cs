@@ -23,6 +23,7 @@
 
 using System;
 using System.IO;
+using ProtoBuf;
 using JFile = java.io.File;
 
 
@@ -32,8 +33,10 @@ namespace Fornax.Net.Util.IO
     /// Represents a wrapper class for the java.io.File from
     /// the jdk realm.
     /// </summary>
+    [Serializable, ProtoContract]
     public sealed class FileWrapper
     {
+        [ProtoMember(1)]
         JFile file;
 
         /// <summary>

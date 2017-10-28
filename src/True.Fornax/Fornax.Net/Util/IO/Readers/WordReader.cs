@@ -38,7 +38,7 @@ namespace Fornax.Net.Util.IO.Readers
     /// A Loader for Plain-Text(.txt) Files that represent a list of stopwords.
     /// also to load stem dictionary text files.
     /// </summary>
-    [Progress("WordListLoader", true, Documented = true, Tested = true)]
+    [Serializable,Progress("WordListLoader", true, Documented = true, Tested = true)]
     public static class WordReader
     {
         #region sync-reader
