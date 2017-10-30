@@ -1,4 +1,17 @@
-﻿/***
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Kodex Zone
+// Created          : 10-24-2017
+//
+// Last Modified By : Kodex Zone
+// Last Modified On : 10-29-2017
+// ***********************************************************************
+// <copyright file="IGrammable.cs" company="Microsoft">
+//     Copyright © Microsoft 2017
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,42 +46,32 @@ namespace Fornax.Net.Index.Common
         /// <summary>
         /// Gets the grams of a specific text.
         /// </summary>
-        /// <value>
-        /// The grams.
-        /// </value>
+        /// <value>The grams.</value>
         IEnumerable<string> Grams { get; }
 
         /// <summary>
         /// Gets or sets the size of the grams.
         /// </summary>
-        /// <value>
-        /// The size.
-        /// </value>
+        /// <value>The size.</value>
         int Size { get; set; }
 
         /// <summary>
         /// Determines whether the specified <see cref="object" />, is equal to this instance.
         /// </summary>
         /// <param name="obj">The <see cref="object" /> to compare with this instance.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
-        /// </returns>
+        /// <returns><c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
         bool Equals(object obj);
 
         /// <summary>
         /// Returns a hash code for this instance.
         /// </summary>
-        /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
-        /// </returns>
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
         int GetHashCode();
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
+        /// <returns>A <see cref="string" /> that represents this instance.</returns>
         string ToString();
     }
 }

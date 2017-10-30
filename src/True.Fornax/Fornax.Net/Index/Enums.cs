@@ -1,4 +1,19 @@
-﻿/***
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Kodex Zone
+// Created          : 09-25-2017
+//
+// Last Modified By : Kodex Zone
+// Last Modified On : 10-27-2017
+// ***********************************************************************
+// <copyright file="Enums.cs" company="Microsoft">
+//     Copyright © Microsoft 2017
+//  
+//
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,6 +36,9 @@
 *
 **/
 
+/// <summary>
+/// The Index namespace.
+/// </summary>
 namespace Fornax.Net.Index
 {
     #region Index Enumerations
@@ -54,9 +72,9 @@ namespace Fornax.Net.Index
     }
 
     /// <summary>
-    ///  <see cref="FieldScope"/> defines a fieldbased query. 
-    ///  Scope to field implementation used here.
-    ///  Field Scope is an attribute or property of a file that can be extracted or retreived by fornax.net.
+    /// <see cref="FieldScope" /> defines a fieldbased query.
+    /// Scope to field implementation used here.
+    /// Field Scope is an attribute or property of a file that can be extracted or retreived by fornax.net.
     /// </summary>
     public enum FieldScope : sbyte
     {
@@ -91,28 +109,28 @@ namespace Fornax.Net.Index
         Type = 0x0005,
 
         /// <summary>
-        /// The meta data
+        /// The meta data of the document.
         /// </summary>
         MetaData = 0x0006
 
     }
 
     /// <summary>
-    /// Zone is an Indexed Searchable <see cref="FieldScope"/>.
+    /// Zone is an Indexed Searchable <see cref="FieldScope" />.
     /// </summary>
     public enum Zone : byte
-    { 
+    {
         /// <summary>
-        /// The title or name of the document. see <seealso cref="FieldScope.Title"/>
+        /// The title or name of the document. see <seealso cref="FieldScope.Title" />
         /// </summary>
         Title = 0b1100,
         /// <summary>
         /// The facet, which is a segment of any searchable fieldscope.
-        /// e.g content, metadata(if present), 
+        /// e.g content, metadata(if present),
         /// </summary>
         Facet = 0b1000,
         /// <summary>
-        /// <seealso cref="FieldScope.Type"/>
+        /// <seealso cref="FieldScope.Type" />
         /// </summary>
         Type = 0b0001,
         /// <summary>
@@ -123,7 +141,7 @@ namespace Fornax.Net.Index
     }
 
     /// <summary>
-    /// <see cref="RepositoryType"/> indicates the type of repository created.
+    /// <see cref="RepositoryType" /> indicates the type of repository created.
     /// </summary>
     public enum RepositoryType : uint
     {

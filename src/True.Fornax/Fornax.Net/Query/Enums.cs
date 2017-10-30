@@ -89,6 +89,7 @@ namespace Fornax.Net.Query
     {
         /// <summary>
         /// The advanced querymode represents a query that can hold all <see cref="QueryType"/>s in fornax.net
+        /// {exclusive advanced queries include : Wildcard,frequency,proximity, }
         /// <seealso cref="QueryType"/> for all query types.
         /// </summary>
         Advanced,
@@ -151,6 +152,7 @@ namespace Fornax.Net.Query
         /// e.g "check $1 mate"[adjacency] , "check %2 mate"[fuzzy]
         /// </summary>
         Proximity = 21,
+
         /// <summary>
         /// The regex query type. 
         /// e.g "%d+[querystring]*"
@@ -160,7 +162,12 @@ namespace Fornax.Net.Query
         /// The wild card query.
         /// e.g "mo*e*" => {money,morsel,...}
         /// </summary>
-        WildCard = 23
+        WildCard = 23,
+        /// <summary>
+        /// The truncated query type.
+        /// i.e "term?" where '?' is the truncation symbol.
+        /// </summary>
+        Truncated  = 24//would be treated as wildcard with only 1 eqd range.
 
 
     }
@@ -171,16 +178,17 @@ namespace Fornax.Net.Query
     public enum Expand
     {
         /// <summary>
-        /// Expand Query. 
+        /// Use explicit context-free phonetic expansion of query terms.
         /// </summary>
         Phonetic,
+
         /// <summary>
-        /// Do not expand query.
+        /// No expansion of query terms.
         /// </summary>
         Default,
+
         /// <summary>
-        /// let fornax decide if query should be expanded.
-        /// this method is based of many heuristics such {e.g number of results is lowe than fornax preset.}
+        /// Use explicit conntext-free word inflexion (such as synonyms,homonyms...) to expand query terms.
         /// </summary>
         Inflexive
     }

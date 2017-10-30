@@ -48,7 +48,7 @@ namespace Fornax.Net.Index.Common
     public class SoundexIndex : IDictionary<Soundex, IList<string>>, IDisposable, IEnumerable<KeyValuePair<Soundex, IList<string>>>, java.io.Serializable.__Interface
     {
         [ProtoMember(1)]
-        private readonly IDictionary<Soundex, IList<string>> s_index;
+        internal readonly IDictionary<Soundex, IList<string>> s_index;
 
         /// <summary>
         /// Gets an <see cref="ICollection{T}" /> containing the keys of the <see cref="SoundexIndex" />.

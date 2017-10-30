@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Search
 {
-    class IndexSearcher
+    public sealed class IndexSearcher
     {
+
+        public IndexSearcher() {
+
+        }
+
     }
 }

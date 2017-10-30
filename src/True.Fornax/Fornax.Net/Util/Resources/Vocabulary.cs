@@ -1,4 +1,13 @@
-﻿/***
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Habuto Koudura
+// Created          : 10-03-2017
+//
+// Last Modified By : Habuto Koudura
+// Last Modified On : 10-28-2017
+// ***********************************************************************
+// <copyright file="Vocabulary.cs" company="Microsoft">
+/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,6 +29,10 @@
 * SOFTWARE.
 *
 **/
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
 
 using System;
 using System.Collections.Generic;
@@ -28,6 +41,9 @@ using Fornax.Net.Util.Text;
 
 using Collection = Fornax.Net.Util.Collections.Collections;
 
+/// <summary>
+/// The Resources namespace.
+/// </summary>
 namespace Fornax.Net.Util.Resources
 {
     /// <summary>
@@ -36,14 +52,37 @@ namespace Fornax.Net.Util.Resources
     [Serializable]
     public sealed class Vocabulary
     {
+        /// <summary>
+        /// The language
+        /// </summary>
         FornaxLanguage language;
+        /// <summary>
+        /// The infix
+        /// </summary>
         string infix;
+        /// <summary>
+        /// The stopwords
+        /// </summary>
         private ISet<string> stopwords;
+        /// <summary>
+        /// The badwords
+        /// </summary>
         private ISet<string> badwords;
+        /// <summary>
+        /// The dicts
+        /// </summary>
         private ISet<string> dicts;
+        /// <summary>
+        /// The stemtable
+        /// </summary>
         private IDictionary<string, string> stemtable;
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Vocabulary"/> class.
+        /// </summary>
+        /// <param name="culture">The culture.</param>
+        /// <exception cref="FornaxException">culture</exception>
         internal Vocabulary(FornaxLanguage culture) {
             language = culture ?? throw new FornaxException($"{nameof(culture)} is not-supported.");
             infix = Infix();
@@ -55,36 +94,38 @@ namespace Fornax.Net.Util.Resources
         }
 
         /// <summary>
-        /// Gets the dictionary. i.e a comprehensive set of words from a 
+        /// Gets the dictionary. i.e a comprehensive set of words from a
         /// atandard dictionary of the specified language.S
         /// </summary>
-        /// <value>
-        /// The dictionary.
-        /// </value>
+        /// <value>The dictionary.</value>
         public ISet<string> Dictionary => dicts;
 
         /// <summary>
-        /// Gets the stop words. i.e a set of stop words by fornax for the specified 
+        /// Gets the stop words. i.e a set of stop words by fornax for the specified
         /// language.
         /// </summary>
-        /// <value>
-        /// The stop words.
-        /// </value>
+        /// <value>The stop words.</value>
         public ISet<string> StopWords => stopwords;
 
         /// <summary>
         /// Gets the bad words. i.e the blacklisted words for the specified
         /// language.
         /// </summary>
-        /// <value>
-        /// The bad words.
-        /// </value>
+        /// <value>The bad words.</value>
         public ISet<string> BadWords => badwords;
 
+        /// <summary>
+        /// Infixes this instance.
+        /// </summary>
+        /// <returns>System.String.</returns>
         private string Infix() {
             return (language.IsEnglish) ? "en" : "fr";
         }
 
+        /// <summary>
+        /// Dictses this instance.
+        /// </summary>
+        /// <returns>ISet&lt;System.String&gt;.</returns>
         private ISet<string> Dicts() {
             ISet<string> dict = new HashSet<string>();
             if (language.IsEnglish)
@@ -95,6 +136,10 @@ namespace Fornax.Net.Util.Resources
             return dict;
         }
 
+        /// <summary>
+        /// Badses this instance.
+        /// </summary>
+        /// <returns>ISet&lt;System.String&gt;.</returns>
         private ISet<string> Bads() {
             ISet<string> bads = new HashSet<string>();
             if (language.IsEnglish)
@@ -105,7 +150,11 @@ namespace Fornax.Net.Util.Resources
                 return bads;
         }
 
-        private  ISet<string> Stops() {
+        /// <summary>
+        /// Stopses this instance.
+        /// </summary>
+        /// <returns>ISet&lt;System.String&gt;.</returns>
+        private ISet<string> Stops() {
             ISet<string> stops = new HashSet<string>();
             if (language.IsEnglish) 
                Process(dictionary.en_stop.Split(Constants.Brokers),ref stops); 
@@ -115,12 +164,20 @@ namespace Fornax.Net.Util.Resources
             return stops;
         }
 
+        /// <summary>
+        /// Processes the specified STRS.
+        /// </summary>
+        /// <param name="strs">The STRS.</param>
+        /// <param name="set">The set.</param>
         private void Process(string[] strs, ref ISet<string> set) {
             foreach (var str in strs) {
                 set.Add(str.Clean(true));
             }
         }
 
+        /// <summary>
+        /// Initializes static members of the <see cref="Vocabulary"/> class.
+        /// </summary>
         static Vocabulary() {
 
         }

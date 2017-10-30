@@ -98,6 +98,12 @@ namespace Fornax.Net.Analysis.Tools
         public IEnumerable<string> Grams => GetGrams();
 
         /// <summary>
+        /// Gets the text.
+        /// </summary>
+        /// <value>The word.</value>
+        public string Word => word;
+
+        /// <summary>
         /// Gets or sets the size of the grams.
         /// </summary>
         /// <value>

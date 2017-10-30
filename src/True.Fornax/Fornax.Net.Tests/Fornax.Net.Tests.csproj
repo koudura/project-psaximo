@@ -234,6 +234,7 @@
     <Compile Include="Tools\ClusterTrie.cs" />
     <Compile Include="TrieTests.cs" />
     <Compile Include="RegexTests.cs" />
+    <Compile Include="EditsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

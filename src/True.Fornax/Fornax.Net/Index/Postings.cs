@@ -1,4 +1,17 @@
-﻿/***
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Kodex Zone
+// Created          : 10-27-2017
+//
+// Last Modified By : Kodex Zone
+// Last Modified On : 10-28-2017
+// ***********************************************************************
+// <copyright file="Postings.cs" company="Microsoft">
+//     Copyright © Microsoft 2017
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,14 +44,24 @@ namespace Fornax.Net.Index
     /// <summary>
     /// Postings list representation for fornax.net
     /// </summary>
-    /// <seealso cref="System.Collections.IEnumerable" />
-    /// <seealso cref="System.IComparable{Fornax.Net.Index.Postings}" />
-    /// <seealso cref="System.Collections.Generic.IDictionary{System.UInt64, Fornax.Net.Index.TermVector}" />
+    /// <seealso cref="java.io.Serializable.__Interface" />
+    /// <seealso cref="IEnumerable" />
+    /// <seealso cref="System.IComparable{Postings}" />
+    /// <seealso cref="System.Collections.Generic.IDictionary{System.UInt64, TermVector}" />
     [Serializable]
     public class Postings : IEnumerable, IComparable<Postings>, IDictionary<ulong, TermVector>, java.io.Serializable.__Interface
     {
+        /// <summary>
+        /// The postdictionary
+        /// </summary>
         private readonly IDictionary<ulong, TermVector> Postdictionary;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Postings"/> class.
+        /// </summary>
+        /// <param name="term">The term.</param>
+        /// <param name="Docid">The docid.</param>
+        /// <param name="init_position">The initialize position.</param>
         internal Postings(Term term, ulong Docid, long init_position) {
             Postdictionary = new Dictionary<ulong, TermVector> {
                 { Docid, new TermVector(term,init_position) }
@@ -48,40 +71,39 @@ namespace Fornax.Net.Index
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys of the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
+        /// <value>The keys.</value>
         public ICollection<ulong> Keys => Postdictionary.Keys;
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
+        /// <value>The values.</value>
         public ICollection<TermVector> Values => Postdictionary.Values;
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </summary>
+        /// <value>The count.</value>
         public int Count => Postdictionary.Count;
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
         /// </summary>
+        /// <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
         public bool IsReadOnly => Postdictionary.IsReadOnly;
 
         /// <summary>
-        /// Gets or sets the <see cref="TermVector"/> with the specified key.
+        /// Gets or sets the <see cref="TermVector" /> with the specified key.
         /// </summary>
-        /// <value>
-        /// The <see cref="TermVector"/>.
-        /// </value>
         /// <param name="key">The key.</param>
-        /// <returns></returns>
+        /// <returns>TermVector.</returns>
         public TermVector this[ulong key] { get => Postdictionary[key]; set => Postdictionary[key] = value; }
 
         /// <summary>
         /// Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
         /// </summary>
         /// <param name="other">An object to compare with this instance.</param>
-        /// <returns>
-        /// A value that indicates the relative order of the objects being compared. The return value has these meanings: Value Meaning Less than zero This instance precedes <paramref name="other" /> in the sort order.  Zero This instance occurs in the same position in the sort order as <paramref name="other" />. Greater than zero This instance follows <paramref name="other" /> in the sort order.
-        /// </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings: Value Meaning Less than zero This instance precedes <paramref name="other" /> in the sort order.  Zero This instance occurs in the same position in the sort order as <paramref name="other" />. Greater than zero This instance follows <paramref name="other" /> in the sort order.</returns>
         /// <exception cref="NotImplementedException"></exception>
         public int CompareTo(Postings other) {
             throw new NotImplementedException();
@@ -90,9 +112,7 @@ namespace Fornax.Net.Index
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
-        /// <returns>
-        /// An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
-        /// </returns>
+        /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
         public IEnumerator GetEnumerator() {
             return ((IEnumerable)Postdictionary).GetEnumerator();
         }
@@ -101,9 +121,7 @@ namespace Fornax.Net.Index
         /// Determines whether the specified <see cref="object" />, is equal to this instance.
         /// </summary>
         /// <param name="obj">The <see cref="object" /> to compare with this instance.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
-        /// </returns>
+        /// <returns><c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj) {
             if (ReferenceEquals(this, obj)) {
                 return true;
@@ -119,9 +137,7 @@ namespace Fornax.Net.Index
         /// <summary>
         /// Returns a hash code for this instance.
         /// </summary>
-        /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
-        /// </returns>
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
         /// <exception cref="NotImplementedException"></exception>
         public override int GetHashCode() {
             return Collections.GetHashCode(Postdictionary);
@@ -131,9 +147,7 @@ namespace Fornax.Net.Index
         /// Determines whether the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the specified key.
         /// </summary>
         /// <param name="key">The key to locate in the <see cref="T:System.Collections.Generic.IDictionary`2" />.</param>
-        /// <returns>
-        ///   <see langword="true" /> if the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the key; otherwise, <see langword="false" />.
-        /// </returns>
+        /// <returns><see langword="true" /> if the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the key; otherwise, <see langword="false" />.</returns>
         public bool ContainsKey(ulong key) {
             return Postdictionary.ContainsKey(key);
         }
@@ -151,9 +165,7 @@ namespace Fornax.Net.Index
         /// Removes the element with the specified key from the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <param name="key">The key of the element to remove.</param>
-        /// <returns>
-        ///   <see langword="true" /> if the element is successfully removed; otherwise, <see langword="false" />.  This method also returns <see langword="false" /> if <paramref name="key" /> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2" />.
-        /// </returns>
+        /// <returns><see langword="true" /> if the element is successfully removed; otherwise, <see langword="false" />.  This method also returns <see langword="false" /> if <paramref name="key" /> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2" />.</returns>
         public bool Remove(ulong key) {
             return Postdictionary.Remove(key);
         }
@@ -163,9 +175,7 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.</param>
-        /// <returns>
-        ///   <see langword="true" /> if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the specified key; otherwise, <see langword="false" />.
-        /// </returns>
+        /// <returns><see langword="true" /> if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the specified key; otherwise, <see langword="false" />.</returns>
         public bool TryGetValue(ulong key, out TermVector value) {
             return Postdictionary.TryGetValue(key, out value);
         }
@@ -189,9 +199,7 @@ namespace Fornax.Net.Index
         /// Determines whether the <see cref="T:System.Collections.Generic.ICollection`1" /> contains a specific value.
         /// </summary>
         /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
-        /// <returns>
-        ///   <see langword="true" /> if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />.
-        /// </returns>
+        /// <returns><see langword="true" /> if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />.</returns>
         public bool Contains(KeyValuePair<ulong, TermVector> item) {
             return Postdictionary.Contains(item);
         }
@@ -209,9 +217,7 @@ namespace Fornax.Net.Index
         /// Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </summary>
         /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
-        /// <returns>
-        ///   <see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.
-        /// </returns>
+        /// <returns><see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
         public bool Remove(KeyValuePair<ulong, TermVector> item) {
             return Postdictionary.Remove(item);
         }
@@ -219,9 +225,7 @@ namespace Fornax.Net.Index
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
-        /// <returns>
-        /// An enumerator that can be used to iterate through the collection.
-        /// </returns>
+        /// <returns>An enumerator that can be used to iterate through the collection.</returns>
         IEnumerator<KeyValuePair<ulong, TermVector>> IEnumerable<KeyValuePair<ulong, TermVector>>.GetEnumerator() {
             return Postdictionary.GetEnumerator();
         }
@@ -231,9 +235,7 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
-        /// <returns>
-        /// The result of the operator.
-        /// </returns>
+        /// <returns>The result of the operator.</returns>
         public static bool operator ==(Postings left, Postings right) {
             if (ReferenceEquals(left, null)) {
                 return ReferenceEquals(right, null);
@@ -247,9 +249,7 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
-        /// <returns>
-        /// The result of the operator.
-        /// </returns>
+        /// <returns>The result of the operator.</returns>
         public static bool operator !=(Postings left, Postings right) {
             return !(left == right);
         }
@@ -259,9 +259,7 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
-        /// <returns>
-        /// The result of the operator.
-        /// </returns>
+        /// <returns>The result of the operator.</returns>
         public static bool operator <(Postings left, Postings right) {
             return left.Count < right.Count;
         }
@@ -271,9 +269,7 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
-        /// <returns>
-        /// The result of the operator.
-        /// </returns>
+        /// <returns>The result of the operator.</returns>
         public static bool operator <=(Postings left, Postings right) {
             return left.Count <= right.Count;
         }
@@ -283,9 +279,7 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
-        /// <returns>
-        /// The result of the operator.
-        /// </returns>
+        /// <returns>The result of the operator.</returns>
         public static bool operator >(Postings left, Postings right) {
             return left.Count > right.Count;
         }
@@ -295,9 +289,7 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
-        /// <returns>
-        /// The result of the operator.
-        /// </returns>
+        /// <returns>The result of the operator.</returns>
         public static bool operator >=(Postings left, Postings right) {
             return left.Count >= right.Count;
         }

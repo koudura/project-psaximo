@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Index.IO
 {
-    class Segment
+    public class Segment
     {
+        internal static string segx = ".seg";
+
+        internal Segment() { }
+
     }
 }

@@ -220,6 +220,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -262,6 +264,7 @@
   <ItemGroup>
     <Compile Include="Analysis\AdvancedAnalyzer.cs" />
     <Compile Include="Analysis\Analyzer.cs" />
+    <Compile Include="Analysis\Automaton.cs" />
     <Compile Include="Analysis\Explanation.cs" />
     <Compile Include="Analysis\Filters\Filter.cs" />
     <Compile Include="Analysis\Filters\LinksFilter.cs" />
@@ -285,6 +288,7 @@
     <Compile Include="Analysis\Tools\FornaxStemmer.cs" />
     <Compile Include="Analysis\Tools\ITrie.cs" />
     <Compile Include="Analysis\Tools\KGram.cs" />
+    <Compile Include="Analysis\Tools\NaiveTrie.cs" />
     <Compile Include="Analysis\Tools\NGram.cs" />
     <Compile Include="Analysis\Tools\Node.cs" />
     <Compile Include="Analysis\Tools\Soundex.cs" />
@@ -310,6 +314,7 @@
     <Compile Include="Document\Snippet.cs" />
     <Compile Include="enum.cs" />
     <Compile Include="FileFormat.cs" />
+    <Compile Include="Index\Common\EditFactory.cs" />
     <Compile Include="Index\Common\EditIndex.cs" />
     <Compile Include="Index\Common\GramFactory.cs" />
     <Compile Include="Index\Common\GramIndex.cs" />
