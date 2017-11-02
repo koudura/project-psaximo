@@ -1,4 +1,13 @@
-﻿/***
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Koudura Mazou
+// Created          : 10-29-2017
+//
+// Last Modified By : Koudura Mazou
+// Last Modified On : 10-29-2017
+// ***********************************************************************
+// <copyright file="Maths.cs" company="True.inc">
+/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,10 +29,17 @@
 * SOFTWARE.
 *
 **/
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
 
 using System;
 
 
+/// <summary>
+/// The Numerics namespace.
+/// </summary>
 namespace Fornax.Net.Util.Numerics
 {
     /// <summary>
@@ -33,7 +49,7 @@ namespace Fornax.Net.Util.Numerics
     {
 
         /// <summary>
-        /// Converts an angle measured in degrees to an approximately equivalent angle 
+        /// Converts an angle measured in degrees to an approximately equivalent angle
         /// measured in radians. The conversion from degrees to radians is generally inexact.
         /// </summary>
         /// <param name="degrees">An angle in degrees to convert to radians</param>
@@ -43,7 +59,7 @@ namespace Fornax.Net.Util.Numerics
         }
 
         /// <summary>
-        /// Converts an angle measured in degrees to an approximately equivalent angle 
+        /// Converts an angle measured in degrees to an approximately equivalent angle
         /// measured in radians. The conversion from degrees to radians is generally inexact.
         /// </summary>
         /// <param name="degrees">An angle in degrees to convert to radians</param>
@@ -53,7 +69,7 @@ namespace Fornax.Net.Util.Numerics
         }
 
         /// <summary>
-        /// Converts an angle measured in degrees to an approximately equivalent angle 
+        /// Converts an angle measured in degrees to an approximately equivalent angle
         /// measured in radians. The conversion from degrees to radians is generally inexact.
         /// </summary>
         /// <param name="degrees">An angle in degrees to convert to radians</param>
@@ -63,8 +79,8 @@ namespace Fornax.Net.Util.Numerics
         }
 
         /// <summary>
-        /// Converts an angle measured in radians to an approximately equivalent angle 
-        /// measured in degrees. The conversion from radians to degrees is generally 
+        /// Converts an angle measured in radians to an approximately equivalent angle
+        /// measured in degrees. The conversion from radians to degrees is generally
         /// inexact; users should not expect Cos((90.0).ToRadians()) to exactly equal 0.0.
         /// </summary>
         /// <param name="radians">An angle in radians to convert to radians</param>
@@ -75,8 +91,8 @@ namespace Fornax.Net.Util.Numerics
         }
 
         /// <summary>
-        /// Converts an angle measured in radians to an approximately equivalent angle 
-        /// measured in degrees. The conversion from radians to degrees is generally 
+        /// Converts an angle measured in radians to an approximately equivalent angle
+        /// measured in degrees. The conversion from radians to degrees is generally
         /// inexact; users should not expect Cos((90.0).ToRadians()) to exactly equal 0.0.
         /// </summary>
         /// <param name="radians">An angle in radians to convert to radians</param>
@@ -86,8 +102,8 @@ namespace Fornax.Net.Util.Numerics
         }
 
         /// <summary>
-        /// Converts an angle measured in radians to an approximately equivalent angle 
-        /// measured in degrees. The conversion from radians to degrees is generally 
+        /// Converts an angle measured in radians to an approximately equivalent angle
+        /// measured in degrees. The conversion from radians to degrees is generally
         /// inexact; users should not expect Cos((90.0).ToRadians()) to exactly equal 0.0.
         /// </summary>
         /// <param name="radians">An angle in radians to convert to radians</param>
@@ -103,14 +119,13 @@ namespace Fornax.Net.Util.Numerics
         /// <summary>
         /// Math operations utility functions
         /// </summary>
+        /// <value>The function.</value>
         public static Functions Function => func;
 
         /// <summary>
         /// Gets the sloppy maths operations utility functions that trade of accuracy for speed.
         /// </summary>
-        /// <value>
-        /// The sloppy function.
-        /// </value>
+        /// <value>The sloppy function.</value>
         public static FastFunctions SloppyFunction => ffunc;
 
         static Maths() {

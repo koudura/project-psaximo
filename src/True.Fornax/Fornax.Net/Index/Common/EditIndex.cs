@@ -50,7 +50,7 @@ namespace Fornax.Net.Index.Common
     /// <seealso cref="System.Collections.Generic.IComparer{KeyValuePair{string, float}}" />
     /// <seealso cref="System.Collections.Generic.IDictionary{List{string}, SortedList{float, List{int}}}" />
     [Serializable]
-    public sealed class EditIndex : IDictionary<string, SortedList<float, List<int>>> , IComparer<KeyValuePair<string,float>>
+    public sealed class EditIndex :IEnumerable, IComparer<KeyValuePair<string,float>>, IDisposable
     {
         /// <summary>
         /// The edit index
@@ -62,19 +62,19 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns>SortedList&lt;System.Single, List&lt;System.Int32&gt;&gt;.</returns>
-        public SortedList<float, List<int>> this[string key] { get => edit_index[key]; set => edit_index[key] = value; }
+        internal SortedList<float, List<int>> this[string key] { get => edit_index[key]; set => edit_index[key] = value; }
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys of the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <value>The keys.</value>
-        public ICollection<string> Keys => edit_index.Keys;
+        internal ICollection<string> Keys => edit_index.Keys;
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <value>The values.</value>
-        public ICollection<SortedList<float, List<int>>> Values => edit_index.Values;
+        internal ICollection<SortedList<float, List<int>>> Values => edit_index.Values;
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
@@ -86,14 +86,14 @@ namespace Fornax.Net.Index.Common
         /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
         /// </summary>
         /// <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
-        public bool IsReadOnly => edit_index.IsReadOnly;
+        internal bool IsReadOnly => edit_index.IsReadOnly;
 
         /// <summary>
         /// Adds an element with the provided key and value to the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <param name="key">The object to use as the key of the element to add.</param>
         /// <param name="value">The object to use as the value of the element to add.</param>
-        public void Add(string key, SortedList<float, List<int>> value) {
+        internal void Add(string key, SortedList<float, List<int>> value) {
             edit_index.Add(key, value);
         }
 
@@ -101,14 +101,14 @@ namespace Fornax.Net.Index.Common
         /// Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </summary>
         /// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
-        public void Add(KeyValuePair<string, SortedList<float, List<int>>> item) {
+        internal void Add(KeyValuePair<string, SortedList<float, List<int>>> item) {
             edit_index.Add(item);
         }
 
         /// <summary>
         /// Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </summary>
-        public void Clear() {
+        internal void Clear() {
             edit_index.Clear();
         }
 
@@ -122,8 +122,8 @@ namespace Fornax.Net.Index.Common
         /// <paramref name="x" /> equals <paramref name="y" />.Greater than zero
         /// <paramref name="x" /> is greater than <paramref name="y" />.</returns>
         public int Compare(KeyValuePair<string, float> x, KeyValuePair<string, float> y) {
-            if (x.Value > y.Value) return 1;
-            if (y.Value > x.Value) return -1;
+            if (x.Value > y.Value) return -1;
+            if (y.Value > x.Value) return 1;
             return 0;
         }
 
@@ -132,7 +132,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
         /// <returns><see langword="true" /> if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />.</returns>
-        public bool Contains(KeyValuePair<string, SortedList<float, List<int>>> item) {
+        internal bool Contains(KeyValuePair<string, SortedList<float, List<int>>> item) {
             return edit_index.Contains(item);
         }
 
@@ -141,7 +141,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="key">The key to locate in the <see cref="T:System.Collections.Generic.IDictionary`2" />.</param>
         /// <returns><see langword="true" /> if the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the key; otherwise, <see langword="false" />.</returns>
-        public bool ContainsKey(string key) {
+        internal bool ContainsKey(string key) {
             return edit_index.ContainsKey(key);
         }
 
@@ -150,7 +150,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from <see cref="T:System.Collections.Generic.ICollection`1" />. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
-        public void CopyTo(KeyValuePair<string, SortedList<float, List<int>>>[] array, int arrayIndex) {
+        internal void CopyTo(KeyValuePair<string, SortedList<float, List<int>>>[] array, int arrayIndex) {
             edit_index.CopyTo(array, arrayIndex);
         }
 
@@ -189,7 +189,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="key">The key of the element to remove.</param>
         /// <returns><see langword="true" /> if the element is successfully removed; otherwise, <see langword="false" />.  This method also returns <see langword="false" /> if <paramref name="key" /> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2" />.</returns>
-        public bool Remove(string key) {
+        internal bool Remove(string key) {
             return edit_index.Remove(key);
         }
 
@@ -198,7 +198,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
         /// <returns><see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
-        public bool Remove(KeyValuePair<string, SortedList<float, List<int>>> item) {
+        internal bool Remove(KeyValuePair<string, SortedList<float, List<int>>> item) {
             return edit_index.Remove(item);
         }
 
@@ -217,7 +217,7 @@ namespace Fornax.Net.Index.Common
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.</param>
         /// <returns><see langword="true" /> if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the specified key; otherwise, <see langword="false" />.</returns>
-        public bool TryGetValue(string key, out SortedList<float, List<int>> value) {
+        internal bool TryGetValue(string key, out SortedList<float, List<int>> value) {
             return edit_index.TryGetValue(key, out value);
         }
 
@@ -227,6 +227,11 @@ namespace Fornax.Net.Index.Common
         /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
         IEnumerator IEnumerable.GetEnumerator() {
             return edit_index.GetEnumerator();
+        }
+
+        public void Dispose()
+        {
+            ((IDisposable)(edit_index)).Dispose();
         }
     }
 }

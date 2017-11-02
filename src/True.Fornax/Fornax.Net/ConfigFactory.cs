@@ -24,11 +24,12 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+
 using Fornax.Net.Analysis.Tokenization;
 using Fornax.Net.Properties;
 using Fornax.Net.Util;
 using Fornax.Net.Util.IO.Writers;
-using Fornax.Net.Util.Resources;
+using Fornax.Net.Util.Text;
 using Fornax.Net.Util.System;
 
 using StringSet = System.Collections.Specialized.StringCollection;

@@ -29,6 +29,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Fornax.Net.Analysis.Tokenization;
+using Fornax.Net.Index;
 using Fornax.Net.Util.Collections;
 using Fornax.Net.Util.IO;
 using Fornax.Net.Util.IO.Readers;
@@ -106,6 +107,8 @@ namespace Fornax.Net.Document
         public string Name => throw new NotImplementedException();
 
         public TokenStream Tokens => throw new NotImplementedException();
+
+        public TermVector Terms => throw new NotImplementedException();
 
         private IEnumerable<Uri> GetLinks() {
             var links = from lnk in document.DocumentNode.Descendants()

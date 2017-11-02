@@ -60,7 +60,7 @@ namespace Fornax.Net.Util
         /// <summary>
         /// The whitespace string brokers
         /// </summary>
-        public const string WS_BROKERS = " \t\n\r\f";
+        public const string WS_BROKERS = " \t\n\r\f\v";
         /// <summary>
         /// The number brokers
         /// </summary>
@@ -142,31 +142,31 @@ namespace Fornax.Net.Util
         /// <summary>
         /// The fornax gram file
         /// </summary>
-        internal static FileInfo FornaxGramFile = GetCurrentFile(BaseDirectory, "_grams_.4dat");
+        internal static FileInfo FornaxGramFile = GetCurrentFile(BaseDirectory, "__.gmx");
         /// <summary>
         /// The fornax edit file
         /// </summary>
-        internal static FileInfo FornaxEditFile = GetCurrentFile(BaseDirectory, "_edits_.4dat");
+        internal static FileInfo FornaxEditFile = GetCurrentFile(BaseDirectory, "__.edx");
         /// <summary>
         /// The fornax logs file
         /// </summary>
-        internal static FileInfo FornaxLogsFile = GetCurrentFile(BaseDirectory, "_logs_.4dat");
+        internal static FileInfo FornaxLogsFile = GetCurrentFile(BaseDirectory, "__.lgx");
         /// <summary>
         /// The fornax compressed gram file
         /// </summary>
-        internal static FileInfo FornaxCompressedGramFile = GetCurrentFile(BaseDirectory, "_edits_.zdix");
+        internal static FileInfo FornaxCompressedGramFile = GetCurrentFile(BaseDirectory, "__.zgmx");
         /// <summary>
         /// The fornax trie file
         /// </summary>
-        internal static FileInfo FornaxTrieFile = GetCurrentFile(BaseDirectory, "_tries_.4dat");
+        internal static FileInfo FornaxTrieFile = GetCurrentFile(BaseDirectory, "__.trx");
         /// <summary>
         /// The fornax mod file
         /// </summary>
-        internal static FileInfo FornaxModFile = GetCurrentFile(BaseDirectory, "_mod_.mdx");
+        internal static FileInfo FornaxModFile = GetCurrentFile(BaseDirectory, "__.mdx");
         /// <summary>
         /// The fornax vocab file
         /// </summary>
-        internal static FileInfo FornaxVocabFile = GetCurrentFile(BaseDirectory, "_voc.zdix");
+        internal static FileInfo FornaxVocabFile = GetCurrentFile(BaseDirectory, "__.dix");
 
         #endregion 
 
@@ -266,11 +266,11 @@ namespace Fornax.Net.Util
         /// it also stores a position-offset flag during indexing, in case any crash occurs. the flag can be used to resume index from
         /// crash point.
         /// </summary>
-        internal const string ExtPartFile = @".4prt";
+        internal const string ExtPartFile = @".prtx";
         /// <summary>
         /// fornax repository file for storing list of names raw files to be extracted, and their relative tags and attributes
         /// </summary>
-        internal const string ExtRepoFile = @".4rep";
+        internal const string ExtRepoFile = @".repx";
         /// <summary>
         /// fornax cache file for storing short term data input e.g last query input(as char[]) and respective top 5-10 documents.
         /// ,documents found with changes by the crawler. (attributes of query and results are also stored.)
@@ -280,17 +280,17 @@ namespace Fornax.Net.Util
         /// fornax temporary storage file for disk-read/write opearations that take long processing time.
         /// e.g indexing a large corpus.
         /// </summary>
-        internal const string ExtTempFile = @".4temp";
+        internal const string ExtTempFile = @".tempx";
         /// <summary>
         /// fornax data file stores query history in a structured format, corpus history, suggestion history,
         /// and long-term data from the cache file are moved here.
         /// </summary>
-        internal const string ExtDataFile = @".4dat";
+        internal const string ExtDataFile = @".datx";
         /// <summary>
         /// fornax deletes file, stores the same data as repo-file <see cref="ExtRepoFile" /> only for file marked as to be deleted from
         /// the index and fornax database by the crawler.
         /// </summary>
-        internal const string ExtDelsFile = @".4del";
+        internal const string ExtDelsFile = @".delx";
 
         #endregion
 

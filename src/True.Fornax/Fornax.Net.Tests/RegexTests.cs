@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Fornax.Net.Tests
 {
-    [TestClass]
+    //[TestClass]
     internal class RegexTests
     {
         [TestMethod]

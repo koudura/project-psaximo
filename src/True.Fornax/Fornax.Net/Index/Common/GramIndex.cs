@@ -50,36 +50,36 @@ namespace Fornax.Net.Index.Common
     /// GramIndex From Holding the gram to words for fornax.net
     /// index =&gt; gram =&gt; {word1, word2...}.
     /// </summary>
-    /// <seealso cref="System.Collections.Generic.IDictionary{System.String, System.Collections.Generic.ISet{System.String}}" />
+    /// <seealso cref="System.Collections.Generic.IDictionary{System.String, System.Collections.Generic.SortedSet{System.String}}" />
     /// <seealso cref="java.io.Serializable.__Interface" />
     /// <seealso cref="System.Collections.Generic.IDictionary{System.String, System.Collections.Generic.IList{System.String}}" />
     [Serializable,ProtoContract]
-    public class GramIndex : IDictionary<string, ISet<string>>, java.io.Serializable.__Interface
+    public class GramIndex : java.io.Serializable.__Interface , IEnumerable
     {
         /// <summary>
         /// The database
         /// </summary>
         [ProtoMember(1)]
-        private readonly IDictionary<string, ISet<string>> database;
+        private readonly IDictionary<string, SortedSet<string>> database = new Dictionary<string, SortedSet<string>>();
 
         /// <summary>
-        /// Gets or sets the <see cref="ISet{System.String}" /> with the specified key.
+        /// Gets or sets the <see cref="SortedSet{System.String}" /> with the specified key.
         /// </summary>
         /// <param name="key">The key.</param>
-        /// <returns>ISet&lt;System.String&gt;.</returns>
-        public ISet<string> this[string key] { get => database[key]; set => database[key] = value; }
+        /// <returns>SortedSet&lt;System.String&gt;.</returns>
+        internal SortedSet<string> this[string key] { get => database[key]; set => database[key] = value; }
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys of the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <value>The keys.</value>
-        public ICollection<string> Keys => database.Keys;
+        internal ICollection<string> Keys => database.Keys;
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <value>The values.</value>
-        public ICollection<ISet<string>> Values => database.Values;
+        internal ICollection<SortedSet<string>> Values => database.Values;
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
@@ -91,14 +91,14 @@ namespace Fornax.Net.Index.Common
         /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
         /// </summary>
         /// <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
-        public bool IsReadOnly => database.IsReadOnly;
+        internal bool IsReadOnly => database.IsReadOnly;
 
         /// <summary>
         /// Adds an element with the provided key and value to the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <param name="key">The object to use as the key of the element to add.</param>
         /// <param name="value">The object to use as the value of the element to add.</param>
-        public void Add(string key, ISet<string> value) {
+        internal void Add(string key, SortedSet<string> value) {
             database.Add(key, value);
         }
 
@@ -106,14 +106,14 @@ namespace Fornax.Net.Index.Common
         /// Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </summary>
         /// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
-        public void Add(KeyValuePair<string, ISet<string>> item) {
+        internal void Add(KeyValuePair<string, SortedSet<string>> item) {
             database.Add(item);
         }
 
         /// <summary>
         /// Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </summary>
-        public void Clear() {
+        internal void Clear() {
             database.Clear();
         }
 
@@ -122,7 +122,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
         /// <returns><see langword="true" /> if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />.</returns>
-        public bool Contains(KeyValuePair<string, ISet<string>> item) {
+        internal bool Contains(KeyValuePair<string, SortedSet<string>> item) {
             return database.Contains(item);
         }
 
@@ -131,7 +131,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="key">The key to locate in the <see cref="T:System.Collections.Generic.IDictionary`2" />.</param>
         /// <returns><see langword="true" /> if the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the key; otherwise, <see langword="false" />.</returns>
-        public bool ContainsKey(string key) {
+        internal bool ContainsKey(string key) {
             return database.ContainsKey(key);
         }
 
@@ -140,7 +140,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from <see cref="T:System.Collections.Generic.ICollection`1" />. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
-        public void CopyTo(KeyValuePair<string, ISet<string>>[] array, int arrayIndex) {
+        internal void CopyTo(KeyValuePair<string, SortedSet<string>>[] array, int arrayIndex) {
             database.CopyTo(array, arrayIndex);
         }
 
@@ -148,7 +148,7 @@ namespace Fornax.Net.Index.Common
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>An enumerator that can be used to iterate through the collection.</returns>
-        public IEnumerator<KeyValuePair<string, ISet<string>>> GetEnumerator() {
+        public IEnumerator<KeyValuePair<string, SortedSet<string>>> GetEnumerator() {
             return database.GetEnumerator();
         }
 
@@ -157,7 +157,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="key">The key of the element to remove.</param>
         /// <returns><see langword="true" /> if the element is successfully removed; otherwise, <see langword="false" />.  This method also returns <see langword="false" /> if <paramref name="key" /> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2" />.</returns>
-        public bool Remove(string key) {
+        internal bool Remove(string key) {
             return database.Remove(key);
         }
 
@@ -166,7 +166,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
         /// <returns><see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
-        public bool Remove(KeyValuePair<string, ISet<string>> item) {
+        internal bool Remove(KeyValuePair<string, SortedSet<string>> item) {
             return database.Remove(item);
         }
 
@@ -176,7 +176,7 @@ namespace Fornax.Net.Index.Common
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.</param>
         /// <returns><see langword="true" /> if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the specified key; otherwise, <see langword="false" />.</returns>
-        public bool TryGetValue(string key, out ISet<string> value) {
+        internal bool TryGetValue(string key, out SortedSet<string> value) {
             return database.TryGetValue(key, out value);
         }
 

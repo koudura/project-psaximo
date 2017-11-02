@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fornax.Net.Util.IO.Compression;
 using System.IO;
 using Fornax.Net.Util.System;
-using Fornax.Net.Util.Resources;
+using Fornax.Net.Util.Text;
 using Fornax.Net.Tests.Tools;
 using Fornax.Net.Util.IO.Writers;
 using System.Threading.Tasks;
@@ -93,7 +93,7 @@ namespace Fornax.Net.Tests
 
 
         public async Task GetTrie() {
-            trie =  await FornaxWriter.ReadAsync<BufferTrie>(trie_file);
+            trie =  await FornaxWriter.BufferReadAsync<BufferTrie>(trie_file);
         }
     }
 }

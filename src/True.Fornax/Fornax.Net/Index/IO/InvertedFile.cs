@@ -50,7 +50,7 @@ namespace Fornax.Net.Index.IO
     /// <seealso cref="System.ICloneable" />
     /// <seealso cref="System.Collections.Generic.IDictionary{Fornax.Net.Index.Term, Fornax.Net.Index.Postings}" />
     [Serializable, ProtoContract]
-    public class InvertedFile : IDictionary<Term, Postings>, ICloneable
+    public class InvertedFile : ICloneable , IEnumerable
     {
         /// <summary>
         /// The index
@@ -63,19 +63,19 @@ namespace Fornax.Net.Index.IO
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns>Postings.</returns>
-        public Postings this[Term key] { get => index[key]; set => index[key] = value; }
+        internal Postings this[Term key] { get => index[key]; set => index[key] = value; }
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys of the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <value>The keys.</value>
-        public ICollection<Term> Keys => index.Keys;
+        internal ICollection<Term> Keys => index.Keys;
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <value>The values.</value>
-        public ICollection<Postings> Values => index.Values;
+        internal ICollection<Postings> Values => index.Values;
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
@@ -87,14 +87,14 @@ namespace Fornax.Net.Index.IO
         /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
         /// </summary>
         /// <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
-        public bool IsReadOnly => index.IsReadOnly;
+        internal bool IsReadOnly => index.IsReadOnly;
 
         /// <summary>
         /// Adds an element with the provided key and value to the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <param name="key">The object to use as the key of the element to add.</param>
         /// <param name="value">The object to use as the value of the element to add.</param>
-        public void Add(Term key, Postings value) {
+        internal void Add(Term key, Postings value) {
             index.Add(key, value);
         }
 
@@ -102,14 +102,14 @@ namespace Fornax.Net.Index.IO
         /// Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </summary>
         /// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
-        public void Add(KeyValuePair<Term, Postings> item) {
+        internal void Add(KeyValuePair<Term, Postings> item) {
             index.Add(item);
         }
 
         /// <summary>
         /// Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </summary>
-        public void Clear() {
+        internal void Clear() {
             index.Clear();
         }
 
@@ -127,7 +127,7 @@ namespace Fornax.Net.Index.IO
         /// </summary>
         /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
         /// <returns><see langword="true" /> if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />.</returns>
-        public bool Contains(KeyValuePair<Term, Postings> item) {
+        internal bool Contains(KeyValuePair<Term, Postings> item) {
             return index.Contains(item);
         }
 
@@ -136,7 +136,7 @@ namespace Fornax.Net.Index.IO
         /// </summary>
         /// <param name="key">The key to locate in the <see cref="T:System.Collections.Generic.IDictionary`2" />.</param>
         /// <returns><see langword="true" /> if the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the key; otherwise, <see langword="false" />.</returns>
-        public bool ContainsKey(Term key) {
+        internal bool ContainsKey(Term key) {
             return index.ContainsKey(key);
         }
 
@@ -145,7 +145,7 @@ namespace Fornax.Net.Index.IO
         /// </summary>
         /// <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from <see cref="T:System.Collections.Generic.ICollection`1" />. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
-        public void CopyTo(KeyValuePair<Term, Postings>[] array, int arrayIndex) {
+        internal void CopyTo(KeyValuePair<Term, Postings>[] array, int arrayIndex) {
             index.CopyTo(array, arrayIndex);
         }
 
@@ -162,7 +162,7 @@ namespace Fornax.Net.Index.IO
         /// </summary>
         /// <param name="key">The key of the element to remove.</param>
         /// <returns><see langword="true" /> if the element is successfully removed; otherwise, <see langword="false" />.  This method also returns <see langword="false" /> if <paramref name="key" /> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2" />.</returns>
-        public bool Remove(Term key) {
+        internal bool Remove(Term key) {
             return index.Remove(key);
         }
 
@@ -171,7 +171,7 @@ namespace Fornax.Net.Index.IO
         /// </summary>
         /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
         /// <returns><see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
-        public bool Remove(KeyValuePair<Term, Postings> item) {
+        internal bool Remove(KeyValuePair<Term, Postings> item) {
             return index.Remove(item);
         }
 
@@ -181,7 +181,7 @@ namespace Fornax.Net.Index.IO
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.</param>
         /// <returns><see langword="true" /> if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the specified key; otherwise, <see langword="false" />.</returns>
-        public bool TryGetValue(Term key, out Postings value) {
+        internal bool TryGetValue(Term key, out Postings value) {
             return index.TryGetValue(key, out value);
         }
 

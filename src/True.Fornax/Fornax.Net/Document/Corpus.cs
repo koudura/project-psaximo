@@ -14,7 +14,7 @@ namespace Fornax.Net.Document
     /// <seealso cref="System.Collections.Generic.IDictionary{System.UInt64, System.String}" />
     /// <seealso cref="java.io.Serializable.__Interface" />
     [Serializable]
-    public class Corpus : IDictionary<ulong, string>, java.io.Serializable.__Interface 
+    public class Corpus : IEnumerable<KeyValuePair<ulong, string>>, java.io.Serializable.__Interface
     {
 
         private readonly IDictionary<ulong, string> corpus = new SortedList<ulong, string>();
@@ -27,58 +27,69 @@ namespace Fornax.Net.Document
         /// </value>
         /// <param name="key">The key.</param>
         /// <returns></returns>
-        public string this[ulong key] { get => corpus[key]; set => corpus[key] = value; }
+        internal string this[ulong key] { get => corpus[key]; set => corpus[key] = value; }
 
 
-        public ICollection<ulong> Keys => corpus.Keys;
+        internal ICollection<ulong> Keys => corpus.Keys;
 
-        public ICollection<string> Values => corpus.Values;
+        internal ICollection<string> Values => corpus.Values;
 
         public int Count => corpus.Count;
 
-        public bool IsReadOnly => corpus.IsReadOnly;
+        internal bool IsReadOnly => corpus.IsReadOnly;
 
-        public void Add(ulong key, string value) {
+        internal void Add(ulong key, string value)
+        {
             corpus.Add(key, value);
         }
 
-        public void Add(KeyValuePair<ulong, string> item) {
+        internal void Add(KeyValuePair<ulong, string> item)
+        {
             corpus.Add(item);
         }
 
-        public void Clear() {
+        internal void Clear()
+        {
             corpus.Clear();
         }
 
-        public bool Contains(KeyValuePair<ulong, string> item) {
+        internal bool Contains(KeyValuePair<ulong, string> item)
+        {
             return corpus.Contains(item);
         }
 
-        public bool ContainsKey(ulong key) {
+        internal bool ContainsKey(ulong key)
+        {
             return corpus.ContainsKey(key);
         }
 
-        public void CopyTo(KeyValuePair<ulong, string>[] array, int arrayIndex) {
+        internal void CopyTo(KeyValuePair<ulong, string>[] array, int arrayIndex)
+        {
             corpus.CopyTo(array, arrayIndex);
         }
 
-        public IEnumerator<KeyValuePair<ulong, string>> GetEnumerator() {
+        public IEnumerator<KeyValuePair<ulong, string>> GetEnumerator()
+        {
             return corpus.GetEnumerator();
         }
 
-        public bool Remove(ulong key) {
+        internal bool Remove(ulong key)
+        {
             return corpus.Remove(key);
         }
 
-        public bool Remove(KeyValuePair<ulong, string> item) {
+        internal bool Remove(KeyValuePair<ulong, string> item)
+        {
             return corpus.Remove(item);
         }
 
-        public bool TryGetValue(ulong key, out string value) {
+        internal bool TryGetValue(ulong key, out string value)
+        {
             return corpus.TryGetValue(key, out value);
         }
 
-        IEnumerator IEnumerable.GetEnumerator() {
+        IEnumerator IEnumerable.GetEnumerator()
+        {
             return corpus.GetEnumerator();
         }
     }

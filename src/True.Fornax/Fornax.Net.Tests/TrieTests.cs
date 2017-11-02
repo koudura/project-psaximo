@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fornax.Net.Tests.Tools;
-using Fornax.Net.Util.Resources;
+using Fornax.Net.Util.Text;
 using Fornax.Net.Util.System;
 using Fornax.Net.Util.Collections.Generic;
 using System.IO;

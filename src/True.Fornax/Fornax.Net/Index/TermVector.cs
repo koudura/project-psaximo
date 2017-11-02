@@ -49,13 +49,13 @@ namespace Fornax.Net.Index
     /// Represents a positional posting of a term and all its relative position of
     /// occurence.
     /// </summary>
-    /// <seealso cref="System.Collections.Generic.IDictionary{Fornax.Net.Index.Term, Fornax.Net.Search.Vector}" />
-    /// <seealso cref="System.Collections.Generic.IDictionary{Fornax.Net.Index.Term, System.Collections.Generic.ISet{System.Int64}}" />
+    /// <seealso cref="System.Collections.Generic.IDictionary{Term, Vector}" />
+    /// <seealso cref="System.Collections.Generic.IDictionary{Term, ISet{long}}" />
     /// <seealso cref="java.io.Serializable.__Interface" />
-    /// <seealso cref="System.Collections.Generic.IDictionary{Fornax.Net.Index.Term, System.Collections.Generic.ISet{System.UInt64}}" />
-    /// <seealso cref="System.Collections.Generic.IEnumerable{Fornax.Net.Index.Term}" />
+    /// <seealso cref="System.Collections.Generic.IDictionary{Term, ISet{ulong}}" />
+    /// <seealso cref="System.Collections.Generic.IEnumerable{Term}" />
     [Serializable, ProtoContract]
-    public class TermVector : IDictionary<Term, Vector>, IEnumerable<Term>, java.io.Serializable.__Interface
+    public class TermVector : IEnumerable<KeyValuePair<Term,Vector>>, java.io.Serializable.__Interface
     {
         /// <summary>
         /// The true vector
@@ -72,7 +72,8 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="term">The term.</param>
         /// <param name="position">The position.</param>
-        internal TermVector(Term term, long position) {
+        internal TermVector(Term term, long position)
+        {
             var set = new HashSet<double> {
                 position
             };
@@ -84,19 +85,19 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns>Vector.</returns>
-        public Vector this[Term key] { get => true_vector[key]; set => true_vector[key] = value; }
+        internal Vector this[Term key] { get => true_vector[key]; set => true_vector[key] = value; }
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys of the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <value>The keys.</value>
-        public ICollection<Term> Keys => true_vector.Keys;
+        internal ICollection<Term> Keys => true_vector.Keys;
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <value>The values.</value>
-        public ICollection<Vector> Values => true_vector.Values;
+        internal ICollection<Vector> Values => true_vector.Values;
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
@@ -108,14 +109,15 @@ namespace Fornax.Net.Index
         /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
         /// </summary>
         /// <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
-        public bool IsReadOnly => true_vector.IsReadOnly;
+        internal bool IsReadOnly => true_vector.IsReadOnly;
 
         /// <summary>
         /// Adds an element with the provided key and value to the <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </summary>
         /// <param name="key">The object to use as the key of the element to add.</param>
         /// <param name="value">The object to use as the value of the element to add.</param>
-        public void Add(Term key, Vector value) {
+        internal void Add(Term key, Vector value)
+        {
             true_vector.Add(key, value);
         }
 
@@ -123,14 +125,16 @@ namespace Fornax.Net.Index
         /// Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </summary>
         /// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
-        public void Add(KeyValuePair<Term, Vector> item) {
+        internal void Add(KeyValuePair<Term, Vector> item)
+        {
             true_vector.Add(item);
         }
 
         /// <summary>
         /// Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </summary>
-        public void Clear() {
+        internal void Clear()
+        {
             true_vector.Clear();
         }
 
@@ -139,7 +143,8 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
         /// <returns><see langword="true" /> if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />.</returns>
-        public bool Contains(KeyValuePair<Term, Vector> item) {
+        internal bool Contains(KeyValuePair<Term, Vector> item)
+        {
             return true_vector.Contains(item);
         }
 
@@ -148,7 +153,8 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="key">The key to locate in the <see cref="T:System.Collections.Generic.IDictionary`2" />.</param>
         /// <returns><see langword="true" /> if the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the key; otherwise, <see langword="false" />.</returns>
-        public bool ContainsKey(Term key) {
+        internal bool ContainsKey(Term key)
+        {
             return true_vector.ContainsKey(key);
         }
 
@@ -157,7 +163,8 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from <see cref="T:System.Collections.Generic.ICollection`1" />. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
-        public void CopyTo(KeyValuePair<Term, Vector>[] array, int arrayIndex) {
+        internal void CopyTo(KeyValuePair<Term, Vector>[] array, int arrayIndex)
+        {
             true_vector.CopyTo(array, arrayIndex);
         }
 
@@ -165,7 +172,8 @@ namespace Fornax.Net.Index
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>An enumerator that can be used to iterate through the collection.</returns>
-        public IEnumerator<KeyValuePair<Term, Vector>> GetEnumerator() {
+       public IEnumerator<KeyValuePair<Term, Vector>> GetEnumerator()
+        {
             return true_vector.GetEnumerator();
         }
 
@@ -174,7 +182,8 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="key">The key of the element to remove.</param>
         /// <returns><see langword="true" /> if the element is successfully removed; otherwise, <see langword="false" />.  This method also returns <see langword="false" /> if <paramref name="key" /> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2" />.</returns>
-        public bool Remove(Term key) {
+        internal bool Remove(Term key)
+        {
             return true_vector.Remove(key);
         }
 
@@ -183,7 +192,8 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
         /// <returns><see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
-        public bool Remove(KeyValuePair<Term, Vector> item) {
+        internal bool Remove(KeyValuePair<Term, Vector> item)
+        {
             return true_vector.Remove(item);
         }
 
@@ -193,24 +203,18 @@ namespace Fornax.Net.Index
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.</param>
         /// <returns><see langword="true" /> if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the specified key; otherwise, <see langword="false" />.</returns>
-        public bool TryGetValue(Term key, out Vector value) {
+        internal bool TryGetValue(Term key, out Vector value)
+        {
             return true_vector.TryGetValue(key, out value);
         }
 
-
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>An enumerator that can be used to iterate through the collection.</returns>
-        IEnumerator<Term> IEnumerable<Term>.GetEnumerator() {
-            return Keys.GetEnumerator();
+        IEnumerator<KeyValuePair<Term, Vector>> IEnumerable<KeyValuePair<Term, Vector>>.GetEnumerator()
+        {
+            return true_vector.GetEnumerator();
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through a collection.
-        /// </summary>
-        /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
-        IEnumerator IEnumerable.GetEnumerator() {
+        IEnumerator IEnumerable.GetEnumerator()
+        {
             return true_vector.GetEnumerator();
         }
     }

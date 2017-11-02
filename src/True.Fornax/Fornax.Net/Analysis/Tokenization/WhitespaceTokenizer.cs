@@ -64,7 +64,7 @@ namespace Fornax.Net.Analysis.Tokenization
         }
 
         public WhitespaceTokenizer() : base() {
-            stringTokenizer = new StringTokenizer(text);
+            stringTokenizer = null;
         }
         /// <summary>
         /// Returns the value as the <code>NextToken</code> method, except that its declared value is
@@ -123,12 +123,14 @@ namespace Fornax.Net.Analysis.Tokenization
         }
 
         IEnumerable<Token> Tokenize() {
+            IList<Token> tks = new List<Token>();
             string regex = @"[^\s\t\n\f\v]+";
             var tokens = Regex.Matches(text, regex, RegexOptions.Compiled);
             foreach (Match exact in tokens) {
                 int start = exact.Index;
-                yield return new Token(start, exact.Length, text);
+               tks.Add(new Token(start, exact.Length, text));
             }
+            return tks;
         }
     }
 }

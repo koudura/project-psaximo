@@ -34,7 +34,7 @@ namespace Fornax.Net.Query
         private IList<string> Terms => _terms = ProcessTerms();
 
         private IList<string> ProcessTerms() {
-            throw new NotImplementedException();
+            return query.Split().ToList();
         }
     }
 }

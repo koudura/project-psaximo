@@ -50,12 +50,12 @@ namespace Fornax.Net.Analysis.Tokenization
         /// Returns the value as the <code>NextToken</code> method, except that its declared value is
         /// <see cref="object" /> rather than <see cref="string" />.
         /// </summary>
-        public override object CurrentElement => Filter(((string)tokenizer.CurrentElement).ToLower());
+        public override object CurrentElement => Filter(((string)tokenizer.CurrentElement));
 
         /// <summary>
         /// Returns the current token from this whitespace tokenizer.
         /// </summary>
-        public override string CurrentToken => Filter(tokenizer.CurrentToken.ToLower());
+        public override string CurrentToken => Filter(tokenizer.CurrentToken);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BiasTokenizer"/> class.
@@ -145,18 +145,19 @@ namespace Fornax.Net.Analysis.Tokenization
         /// </summary>
         /// <returns></returns>
         IEnumerable<Token> Tokenizer() {
-            string regex = (returnDelim1) ? @"[\S]+" : @"[A-Za-z0-9_@\p{Pd}\'\.]+";
+            string regex = (returnDelim1) ? @"[\S]+" : @"[\S]+";
             var strbuilder = new StringBuilder();
-            var tkner = new StringTokenizer(text, Delimiters, returnDelim1);
+            var tkner = new BiasTokenizer(text, Delimiters, returnDelim1);
             
             while (tkner.HasMoreTokens()) {
                 var str = tkner.CurrentToken;
-                strbuilder.Append(Filter(str)).Append(" ");
+                strbuilder.Append(str).Append(" ");         
             }
+
             var nestr = strbuilder.ToString().Trim();
             Console.WriteLine(nestr);
 
-            var tokens = Regex.Matches(nestr, regex, RegexOptions.Multiline);
+            var tokens = Regex.Matches(nestr, regex, RegexOptions.Compiled);
             foreach (Match exact in tokens) {
                 int start = exact.Index;
                 yield return new Token(start, exact.Length, text);
@@ -172,7 +173,7 @@ namespace Fornax.Net.Analysis.Tokenization
             wrd = wrd.Trim(Constants.DocOP_Broker.ToCharArray());
             string wrrrd = Regex.Replace(wrd, @"[\-\']+", "");
             if (wrrrd.Contains(".") && !double.TryParse(wrrrd, out double n)) {
-                if (!Token.IsEmail(wrrrd) || !Token.IsAcronym(wrrrd)) {
+                if (!Token.IsEmail(wrrrd) | !Token.IsAcronym(wrrrd)) {
                     wrrrd = Regex.Replace(wrrrd, "[.]+", " ");
                 }
             }

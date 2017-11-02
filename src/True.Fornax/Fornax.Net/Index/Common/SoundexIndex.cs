@@ -45,7 +45,7 @@ namespace Fornax.Net.Index.Common
     /// misspellings in proper nouns.</remarks>
     [Serializable, ProtoContract]
     [Progress("SoundexIndex", true, Documented = true, Tested = true)]
-    public class SoundexIndex : IDictionary<Soundex, IList<string>>, IDisposable, IEnumerable<KeyValuePair<Soundex, IList<string>>>, java.io.Serializable.__Interface
+    public class SoundexIndex : IDisposable, IEnumerable<KeyValuePair<Soundex, IList<string>>>, java.io.Serializable.__Interface
     {
         [ProtoMember(1)]
         internal readonly IDictionary<Soundex, IList<string>> s_index;
@@ -53,12 +53,12 @@ namespace Fornax.Net.Index.Common
         /// <summary>
         /// Gets an <see cref="ICollection{T}" /> containing the keys of the <see cref="SoundexIndex" />.
         /// </summary>
-        public ICollection<Soundex> Keys => s_index.Keys;
+        internal ICollection<Soundex> Keys => s_index.Keys;
 
         /// <summary>
         /// Gets an <see cref="ICollection{T}" /> containing the values in the <see cref="SoundexIndex" />.
         /// </summary>
-        public ICollection<IList<string>> Values => s_index.Values;
+        internal ICollection<IList<string>> Values => s_index.Values;
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="SoundexIndex" />.
@@ -68,7 +68,7 @@ namespace Fornax.Net.Index.Common
         /// <summary>
         /// Gets a value indicating whether the <see cref="SoundexIndex" /> is read-only.
         /// </summary>
-        public bool IsReadOnly => s_index.IsReadOnly;
+        internal bool IsReadOnly => s_index.IsReadOnly;
 
         /// <summary>
         /// Gets or sets the <see cref="IList{System.String}"/> with the specified key.
@@ -78,7 +78,7 @@ namespace Fornax.Net.Index.Common
         /// </value>
         /// <param name="key">The key.</param>
         /// <returns></returns>
-        public IList<string> this[Soundex key] { get => s_index[key]; set => s_index[key] = value; }
+        internal IList<string> this[Soundex key] { get => s_index[key]; set => s_index[key] = value; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SoundexIndex"/> class.
@@ -118,7 +118,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if the <see cref="SoundexIndex" /> contains an element with the key; otherwise, <see langword="false" />.
         /// </returns>
-        public bool ContainsKey(Soundex key) {
+        internal bool ContainsKey(Soundex key) {
             return s_index.ContainsKey(key);
         }
 
@@ -127,7 +127,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="key">The object to use as the key of the element to add.</param>
         /// <param name="value">The object to use as the value of the element to add.</param>
-        public void Add(Soundex key, IList<string> value) {
+        internal void Add(Soundex key, IList<string> value) {
             s_index.Add(key, value);
         }
 
@@ -138,7 +138,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if the element is successfully removed; otherwise, <see langword="false" />.  This method also returns <see langword="false" /> if <paramref name="key" /> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2" />.
         /// </returns>
-        public bool Remove(Soundex key) {
+        internal bool Remove(Soundex key) {
             return s_index.Remove(key);
         }
 
@@ -150,7 +150,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if the object that implements <see cref="IDictionary{TKey, TValue}" /> contains an element with the specified key; otherwise, <see langword="false" />.
         /// </returns>
-        public bool TryGetValue(Soundex key, out IList<string> value) {
+        internal bool TryGetValue(Soundex key, out IList<string> value) {
             return s_index.TryGetValue(key, out value);
         }
 
@@ -158,14 +158,14 @@ namespace Fornax.Net.Index.Common
         /// Adds an item to the <see cref="SoundexIndex" />.
         /// </summary>
         /// <param name="item">The object to add to the <see cref="SoundexIndex" />.</param>
-        public void Add(KeyValuePair<Soundex, IList<string>> item) {
+        internal void Add(KeyValuePair<Soundex, IList<string>> item) {
             s_index.Add(item);
         }
 
         /// <summary>
         /// Removes all items from the <see cref="SoundexIndex" />.
         /// </summary>
-        public void Clear() {
+        internal void Clear() {
             s_index.Clear();
         }
 
@@ -176,7 +176,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if <paramref name="item" /> is found in the <see cref="ICollection{T}" />; otherwise, <see langword="false" />.
         /// </returns>
-        public bool Contains(KeyValuePair<Soundex, IList<string>> item) {
+        internal bool Contains(KeyValuePair<Soundex, IList<string>> item) {
             return s_index.Contains(item);
         }
 
@@ -185,7 +185,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="array">The one-dimensional <see cref="Array" /> that is the destination of the elements copied from <see cref="ICollection{T}" />. The <see cref="Array" /> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
-        public void CopyTo(KeyValuePair<Soundex, IList<string>>[] array, int arrayIndex) => s_index.CopyTo(array, arrayIndex);
+        internal void CopyTo(KeyValuePair<Soundex, IList<string>>[] array, int arrayIndex) => s_index.CopyTo(array, arrayIndex);
 
         /// <summary>
         /// Removes the first occurrence of a specific object from the <see cref="ICollection{T}" />.
@@ -194,7 +194,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="ICollection{T}" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </returns>
-        public bool Remove(KeyValuePair<Soundex, IList<string>> item) {
+        internal bool Remove(KeyValuePair<Soundex, IList<string>> item) {
             return s_index.Remove(item);
         }
 

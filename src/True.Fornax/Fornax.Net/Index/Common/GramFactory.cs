@@ -25,18 +25,20 @@ namespace Fornax.Net.Index.Common
         /// <param name="size">The size.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">tokenStream</exception>
-        public static GramIndex GetKGramIndex(TokenStream tokenStream, uint size) {
+        public static GramIndex GetNgramIndex(TokenStream tokenStream, uint size, NgramModel model)
+        {
             if (tokenStream == null) throw new ArgumentNullException(nameof(tokenStream));
             GramIndex index = new GramIndex();
 
-            while (tokenStream.MoveNext()) {
+            while (tokenStream.MoveNext())
+            {
                 var token = tokenStream.Current;
-                var kgrams = new KGram(token, size).Grams;
-                foreach (var gram in kgrams) {
+                var kgrams = new Ngram(token.Value, size, model, true).Grams;
+                foreach (var gram in kgrams)
+                {
                     Add(gram, token.Value, ref index);
                 }
             }
-
             tokenStream.Reset();
             return index;
         }
@@ -48,13 +50,16 @@ namespace Fornax.Net.Index.Common
         /// <param name="size">The size.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">words</exception>
-        public static GramIndex GetKGramIndex(IEnumerable<string> words, uint size) {
+        public static GramIndex GetNgramIndex(IEnumerable<string> words, uint size, NgramModel model)
+        {
             if (words == null) throw new ArgumentNullException(nameof(words));
             GramIndex index = new GramIndex();
 
-            foreach (var word in words) {
-                var kgrams = new KGram(word, size).Grams;
-                foreach (var gram in kgrams) {
+            foreach (var word in words)
+            {
+                var kgrams = new Ngram(word, size, model, true).Grams;
+                foreach (var gram in kgrams)
+                {
                     Add(gram, word, ref index);
                 }
             }
@@ -62,11 +67,15 @@ namespace Fornax.Net.Index.Common
         }
 
 
-        private static void Add(string key, string value, ref GramIndex index) {
-            if (index.TryGetValue(key, out ISet<string> vals)) {
+        private static void Add(string key, string value, ref GramIndex index)
+        {
+            if (index.TryGetValue(key, out SortedSet<string> vals))
+            {
                 vals.Add(value);
-            } else {
-               index.Add(key, new HashSet<string>() { { value } });
+            }
+            else
+            {
+                index.Add(key, new SortedSet<string>() { { value } });
             }
         }
 
@@ -77,13 +86,16 @@ namespace Fornax.Net.Index.Common
         /// k-gram of size (2) should be the input into a gram-index of gram-size (2).
         /// </br> 
         /// </summary>
-        /// <param name="kgram">The kgram.</param>
+        /// <param name="ngram">The kgram.</param>
         /// <param name="mainIndex">Index of the main.</param>
-        /// <returns>GramIndex of all grams in <paramref name="kgram"/>.</returns>
-        public static GramIndex SubGramIndex(KGram kgram, GramIndex mainIndex) {
+        /// <returns>GramIndex of all grams in <paramref name="ngram"/>.</returns>
+        public static GramIndex SubGramIndex(Ngram ngram, GramIndex mainIndex)
+        {
             var _sub = new GramIndex();
-            foreach (var gram in kgram.Grams) {
-                if (mainIndex.TryGetValue(gram, out ISet<string> _gramSet)) {
+            foreach (var gram in ngram.Grams)
+            {
+                if (mainIndex.TryGetValue(gram, out SortedSet<string> _gramSet))
+                {
                     _sub.Add(gram, _gramSet);
                 }
             }
@@ -96,9 +108,25 @@ namespace Fornax.Net.Index.Common
         /// <param name="firstIndex">The first index.</param>
         /// <param name="secondIndex">Index of the second.</param>
         /// <returns>GramIndex.</returns>
-        public static GramIndex Merge(GramIndex firstIndex, GramIndex secondIndex) {
+        public static GramIndex Merge(GramIndex firstIndex, GramIndex secondIndex)
+        {
             var _out = new GramIndex();
-            return (GramIndex)firstIndex.Union(secondIndex);
+
+            foreach (var item in firstIndex)
+            {
+                if (!_out.Contains(item))
+                {
+                    _out.Add(item);
+                }
+            }
+            foreach (var item in secondIndex)
+            {
+                if (!_out.Contains(item))
+                {
+                    _out.Add(item);
+                }
+            }
+            return _out;
         }
 
 
@@ -107,26 +135,33 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="index">The index to be shrunk</param>
         /// <returns>A Set of All similar words in the index.</returns>
-        public static ISet<string> IntersectOf(GramIndex index) {
+        public static ISet<string> IntersectOf(GramIndex index)
+        {
             var set = new HashSet<string>();
-            foreach (var post in index.Values) {
+            foreach (var post in index.Values)
+            {
                 set.IntersectWith(post);
             }
             return set;
         }
 
-        public static void Write(GramIndex index, FileInfo indexFile) {
+        public static void Write(GramIndex index, FileInfo indexFile)
+        {
             Contract.Requires(index != null && indexFile != null);
             if (indexFile == null) throw new ArgumentNullException(nameof(indexFile));
 
-        } 
+        }
 
-        public static GramIndex Read(FileInfo indexFile, bool AsAsync) {
+        public static GramIndex Read(FileInfo indexFile, bool AsAsync)
+        {
             Contract.Requires(indexFile != null);
             GramIndex g = null;
-            if (AsAsync) {
-                g = FornaxWriter.ReadAsync<GramIndex>(indexFile).Result;
-            }else {
+            if (AsAsync)
+            {
+                g = FornaxWriter.BufferReadAsync<GramIndex>(indexFile).Result;
+            }
+            else
+            {
                 g = FornaxWriter.Read<GramIndex>(indexFile);
             }
             Contract.Ensures(g != null);

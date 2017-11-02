@@ -1,4 +1,13 @@
-﻿/***
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Koudura Mazou
+// Created          : 10-29-2017
+//
+// Last Modified By : Koudura Mazou
+// Last Modified On : 11-01-2017
+// ***********************************************************************
+// <copyright file="SafetyFilter.cs" company="True.inc">
+/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,6 +29,10 @@
 * SOFTWARE.
 *
 **/
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
 
 using System;
 using System.Collections.Generic;
@@ -27,14 +40,16 @@ using System.Diagnostics.Contracts;
 using System.Text;
 
 using Fornax.Net.Analysis.Tokenization;
-using Fornax.Net.Util.Resources;
 using Fornax.Net.Util.System;
 using Fornax.Net.Util.Text;
 
+/// <summary>
+/// The Filters namespace.
+/// </summary>
 namespace Fornax.Net.Analysis.Filters
 {
     /// <summary>
-    /// Safe words filter providers for fornax.net
+    /// Filter provider for removal of bad/obscene/curse words from a collection of text.
     /// </summary>
     /// <seealso cref="Fornax.Net.Analysis.Filters.Filter" />
     [Serializable]
@@ -43,17 +58,20 @@ namespace Fornax.Net.Analysis.Filters
         static FornaxLanguage fornaxLanguage;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SafetyFilter"/> class.
+        /// Initializes a new instance of the <see cref="SafetyFilter" /> class
+        /// with an input text to be filtered by the specific language rule.
         /// </summary>
-        /// <param name="language">The language.</param>
-        /// <param name="text">The text.</param>
+        /// <param name="language">The language rule used to extract unsafe-words from text collection.</param>
+        /// <param name="text">The text to be filtered.</param>
         public SafetyFilter(FornaxLanguage language, string text) : base(text) {
             Contract.Requires(language != null);
             fornaxLanguage = language;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SafetyFilter"/> class.
+        /// Initializes a new instance of the <see cref="SafetyFilter" /> class
+        ///  with input text to be filtered.
+        ///  The default english language rule would be used for filtering.
         /// </summary>
         /// <param name="text">The text.</param>
         public SafetyFilter(string text) : this(FornaxLanguage.English, text) {
@@ -66,10 +84,10 @@ namespace Fornax.Net.Analysis.Filters
         /// Filters the specified collection.
         /// </summary>
         /// <param name="collection">The collection.</param>
-        /// <returns></returns>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         public override IEnumerable<string> Accepts(IEnumerable<string> collection) {
             foreach (var word in collection) {
-                if (!IsUnsafeWord(word)) {
+                if (!IsObscene(word)) {
                     yield return word;
                 }
             }
@@ -80,12 +98,12 @@ namespace Fornax.Net.Analysis.Filters
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="delimiters">The delimiters.</param>
-        /// <returns></returns>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         public override IEnumerable<string> Accepts(string text, char[] delimiters) {
             var tokenizer = new StringTokenizer(text, new string(delimiters));
             while (tokenizer.HasMoreTokens()) {
                 var token = tokenizer.CurrentToken;
-                if (!IsUnsafeWord(token)) {
+                if (!IsObscene(token)) {
                     yield return token;
                 }
             }
@@ -95,24 +113,23 @@ namespace Fornax.Net.Analysis.Filters
         /// Determines whether word is unsafe or a blacklisted word or not.
         /// </summary>
         /// <param name="word">The word.</param>
-        /// <returns>
-        ///   <c>true</c> if word is unsafe; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsUnsafeWord(string word) {
+        /// <returns><c>true</c> if word is unsafe; otherwise, <c>false</c>.</returns>
+        public static bool IsObscene(string word) {
             return Vocabs.BadWords.Contains(word.ToLower());
         }
 
         /// <summary>
-        /// Acceptses the specified delimiters.
+        /// filters the curent state input text by tokenizing the text using
+        /// the input delimiter characters.
         /// </summary>
-        /// <param name="delimiters">The delimiters.</param>
-        /// <returns></returns>
+        /// <param name="delimiters">The delimiters to be used for tokenization.</param>
+        /// <returns>filtered text</returns>
         public override string Accepts(char[] delimiters) {
             StringBuilder output = new StringBuilder();
             var tokenizer = new StringTokenizer(text, new string(delimiters));
             while (tokenizer.HasMoreTokens()) {
                 var token = tokenizer.CurrentToken;
-                if (!IsUnsafeWord(token)) {
+                if (!IsObscene(token)) {
                     output.Append(token + " ");
                 }
             }
@@ -124,9 +141,7 @@ namespace Fornax.Net.Analysis.Filters
         /// </summary>
         /// <param name="collection">The collection.</param>
         /// <param name="language">The language.</param>
-        /// <returns>
-        /// A filtered enumerable collection of input <paramref name="collection" />.
-        /// </returns>
+        /// <returns>A filtered enumerable collection of input <paramref name="collection" />.</returns>
         public override IEnumerable<string> Accepts(IEnumerable<string> collection, FornaxLanguage language) {
             var badWords = ConfigFactory.GetVocabulary(language).BadWords;
             foreach (var item in collection) {
@@ -140,12 +155,12 @@ namespace Fornax.Net.Analysis.Filters
         /// Filters the specified Tokenstream by using default language specified bad words.
         /// </summary>
         /// <param name="tokens">The tokens.</param>
-        /// <returns></returns>
+        /// <returns>TokenStream.</returns>
         public override TokenStream Accepts(TokenStream tokens) {
             IList<Token> newtokenns = new List<Token>();
             while (tokens.MoveNext()) {
                 var now = tokens.Current;
-                if (!IsUnsafeWord(now.Value)) {
+                if (!IsObscene(now.Value)) {
                     newtokenns.Add(now);
                 }
             }

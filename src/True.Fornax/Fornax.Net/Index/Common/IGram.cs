@@ -6,11 +6,7 @@
 // Last Modified By : Kodex Zone
 // Last Modified On : 10-29-2017
 // ***********************************************************************
-// <copyright file="IGrammable.cs" company="Microsoft">
-//     Copyright © Microsoft 2017
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
+// <copyright file="IGrammable.cs" company="True.Inc">
 /***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
@@ -33,6 +29,10 @@
 * SOFTWARE.
 *
 **/
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
 
 using System.Collections.Generic;
 
@@ -41,7 +41,7 @@ namespace Fornax.Net.Index.Common
     /// <summary>
     /// Gram Interface for handling (K and N) gram of texts.
     /// </summary>
-    public interface IGrammable
+    public interface IGram
     {
         /// <summary>
         /// Gets the grams of a specific text.
@@ -50,10 +50,22 @@ namespace Fornax.Net.Index.Common
         IEnumerable<string> Grams { get; }
 
         /// <summary>
-        /// Gets or sets the size of the grams.
+        /// Gets  of the grams.
         /// </summary>
         /// <value>The size.</value>
-        int Size { get; set; }
+        uint Size { get; }
+
+        /// <summary>
+        /// Gets the number of produced n-grams.
+        /// </summary>
+        /// <value>The count.</value>
+        int Count { get; }
+
+        /// <summary>
+        /// Gets the un-tokenized text.
+        /// </summary>
+        /// <value>The text.</value>
+        string Text { get; }
 
         /// <summary>
         /// Determines whether the specified <see cref="object" />, is equal to this instance.

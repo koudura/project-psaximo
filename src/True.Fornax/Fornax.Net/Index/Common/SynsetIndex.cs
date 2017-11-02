@@ -35,7 +35,7 @@ namespace Fornax.Net.Index.Common
     /// <seealso cref="ISet{T}" />
     [Serializable,ProtoContract]
     [Progress("SynsetIndex", true, Documented = true, Tested = true)]
-    public class SynsetIndex : ISet<string>, java.io.Serializable.__Interface
+    public class SynsetIndex : java.io.Serializable.__Interface , IEnumerable<string>
     {
         [ProtoMember(1)]
         private readonly ISet<string> index = new HashSet<string>();
@@ -48,7 +48,7 @@ namespace Fornax.Net.Index.Common
         /// <summary>
         /// Gets a value indicating whether the <see cref="SynsetIndex" /> is read-only.
         /// </summary>
-        public bool IsReadOnly => index.IsReadOnly;
+        internal bool IsReadOnly => index.IsReadOnly;
 
         /// <summary>
         /// Adds an element to the current set and returns a value to indicate if the element was successfully added.
@@ -57,14 +57,14 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if the element is added to the set; <see langword="false" /> if the element is already in the set.
         /// </returns>
-        public bool Add(string item) {
+        internal bool Add(string item) {
             return index.Add(item);
         }
 
         /// <summary>
         /// Removes all items from the <see cref="SynsetIndex" />.
         /// </summary>
-        public void Clear() {
+        internal void Clear() {
             index.Clear();
         }
 
@@ -75,7 +75,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if <paramref name="item" /> is found in the <see cref="SynsetIndex" />; otherwise, <see langword="false" />.
         /// </returns>
-        public bool Contains(string item) {
+        internal bool Contains(string item) {
             return index.Contains(item);
         }
 
@@ -84,7 +84,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         /// <param name="array">The one-dimensional <see cref="Array" /> that is the destination of the elements copied from <see cref="SynsetIndex" />. The <see cref="Array" /> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
-        public void CopyTo(string[] array, int arrayIndex) {
+        internal void CopyTo(string[] array, int arrayIndex) {
             index.CopyTo(array, arrayIndex);
         }
 
@@ -107,7 +107,7 @@ namespace Fornax.Net.Index.Common
         /// Removes all elements in the specified collection from the current set.
         /// </summary>
         /// <param name="other">The collection of items to remove from the set.</param>
-        public void ExceptWith(IEnumerable<string> other) {
+        internal void ExceptWith(IEnumerable<string> other) {
             index.ExceptWith(other);
         }
 
@@ -135,7 +135,7 @@ namespace Fornax.Net.Index.Common
         /// Modifies the current set so that it contains only elements that are also in a specified collection.
         /// </summary>
         /// <param name="other">The collection to compare to the current set.</param>
-        public void IntersectWith(IEnumerable<string> other) {
+        internal void IntersectWith(IEnumerable<string> other) {
             index.IntersectWith(other);
         }
 
@@ -146,7 +146,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if the current set is a proper subset of <paramref name="other" />; otherwise, <see langword="false" />.
         /// </returns>
-        public bool IsProperSubsetOf(IEnumerable<string> other) {
+        internal bool IsProperSubsetOf(IEnumerable<string> other) {
             return index.IsProperSubsetOf(other);
         }
 
@@ -157,7 +157,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if the current set is a proper superset of <paramref name="other" />; otherwise, <see langword="false" />.
         /// </returns>
-        public bool IsProperSupersetOf(IEnumerable<string> other) {
+        internal bool IsProperSupersetOf(IEnumerable<string> other) {
             return index.IsProperSupersetOf(other);
         }
 
@@ -168,7 +168,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if the current set is a subset of <paramref name="other" />; otherwise, <see langword="false" />.
         /// </returns>
-        public bool IsSubsetOf(IEnumerable<string> other) {
+        internal bool IsSubsetOf(IEnumerable<string> other) {
             return index.IsSubsetOf(other);
         }
 
@@ -179,7 +179,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if the current set is a superset of <paramref name="other" />; otherwise, <see langword="false" />.
         /// </returns>
-        public bool IsSupersetOf(IEnumerable<string> other) {
+        internal bool IsSupersetOf(IEnumerable<string> other) {
             return index.IsSupersetOf(other);
         }
 
@@ -190,7 +190,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if the current set and <paramref name="other" /> share at least one common element; otherwise, <see langword="false" />.
         /// </returns>
-        public bool Overlaps(IEnumerable<string> other) {
+        internal bool Overlaps(IEnumerable<string> other) {
             return index.Overlaps(other);
         }
 
@@ -201,7 +201,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="SynsetIndex" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.
         /// </returns>
-        public bool Remove(string item) {
+        internal bool Remove(string item) {
             return index.Remove(item);
         }
 
@@ -212,7 +212,7 @@ namespace Fornax.Net.Index.Common
         /// <returns>
         ///   <see langword="true" /> if the current set is equal to <paramref name="other" />; otherwise, false.
         /// </returns>
-        public bool SetEquals(IEnumerable<string> other) {
+        internal bool SetEquals(IEnumerable<string> other) {
             return index.SetEquals(other);
         }
 
@@ -220,7 +220,7 @@ namespace Fornax.Net.Index.Common
         /// Modifies the current set so that it contains only elements that are present either in the current set or in the specified collection, but not both.
         /// </summary>
         /// <param name="other">The collection to compare to the current set.</param>
-        public void SymmetricExceptWith(IEnumerable<string> other) {
+        internal void SymmetricExceptWith(IEnumerable<string> other) {
             index.SymmetricExceptWith(other);
         }
 
@@ -238,16 +238,8 @@ namespace Fornax.Net.Index.Common
         /// Modifies the current set so that it contains all elements that are present in the current set, in the specified collection, or in both.
         /// </summary>
         /// <param name="other">The collection to compare to the current set.</param>
-        public void UnionWith(IEnumerable<string> other) {
+        internal void UnionWith(IEnumerable<string> other) {
             index.UnionWith(other);
-        }
-
-        /// <summary>
-        /// Adds an item to the <see cref="SynsetIndex" />.
-        /// </summary>
-        /// <param name="item">The object to add to the <see cref="SynsetIndex" />.</param>
-        void ICollection<string>.Add(string item) {
-            index.Add(item);
         }
 
         /// <summary>

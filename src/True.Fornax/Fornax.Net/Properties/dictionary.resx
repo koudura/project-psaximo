@@ -145,6 +145,9 @@
   <data name="fr_voc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fr_voc.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="relevance_words" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\relevance_words.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="wn_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wn_s.pl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>

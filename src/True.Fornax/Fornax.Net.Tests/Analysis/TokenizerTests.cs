@@ -9,16 +9,7 @@ namespace Fornax.Net.Tests.Analysis
     [TestClass]
     public class TokenizerTests
     {
-        private static string Text = @"The Project Gutenberg EBook of The Time Machine, by H.G. (Herbert George) Wells (#1 in our series by
-H.G. (Herbert George) Wells ) Bookyards@gmail.com 9 oto-com
-Copyright laws are changing all over the world. Be sure to check the copyright laws for your country before
-downloading or redistributing this or any other Project Gutenberg eBook.
-This header should be the first thing seen when viewing this Project Gutenberg file. Please do not remove it.
-Do not change or edit the header without written permission.
-Please read the ""legal small print,"" and other information about the eBook 4.5. and Project Gutenberg at the
-bottom of this file. Included is important information about your specific rights and restrictions in how the file
-may be used.You can also find out about how to make a donation to Project Gutenberg, and how to get
-involved 563.0";
+        private static string Text = @"The Project Gutenberg EBook of The Time Machine -End of whiteSpace tokenizatio";
 
 
         [TestMethod]
@@ -100,8 +91,6 @@ involved 563.0";
                 var curr = tokenStream.Current;
                 Console.WriteLine($"Value_[{curr.ToString()}] , Type_[{curr.Type}], Index_[{curr.Start}]");
             }
-
-
             Assert.IsInstanceOfType(tokenStream, typeof(TokenStream));
         }
     }

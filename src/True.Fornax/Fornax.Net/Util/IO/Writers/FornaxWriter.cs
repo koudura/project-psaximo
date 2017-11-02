@@ -4,7 +4,7 @@
 // Created          : 10-26-2017
 //
 // Last Modified By : Habuto Koudura
-// Last Modified On : 10-29-2017
+// Last Modified On : 10-30-2017
 // ***********************************************************************
 // <copyright file="FornaxWriter.cs" company="Microsoft">
 //     Copyright © Microsoft 2017
@@ -152,16 +152,6 @@ namespace Fornax.Net.Util.IO.Writers
         }
 
         /// <summary>
-        /// Reads the specified file asynchronously.
-        /// </summary>
-        /// <typeparam name="TObject">The type of the t object.</typeparam>
-        /// <param name="file">The file.</param>
-        /// <returns>Task&lt;TObject&gt;.</returns>
-        public static async Task<TObject> ReadAsync<TObject>(FileInfo file) where TObject : class {
-            return await Task.Factory.StartNew(() => Read<TObject>(file));
-        }
-
-        /// <summary>
         /// Asynchronously writes the specified object via the specified open filestream to an external file on disk.
         /// </summary>
         /// <typeparam name="TObject">The type of the t object.</typeparam>
@@ -211,7 +201,7 @@ namespace Fornax.Net.Util.IO.Writers
         /// <param name="object">The object.</param>
         /// <param name="file">The file.</param>
         public static void ProtoWrite<TObject>(TObject @object, FileInfo file) where TObject : class {
-
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -224,6 +214,7 @@ namespace Fornax.Net.Util.IO.Writers
         public static void ProtoWrite<TObject>(TObject @object, Stream stream) where TObject : class {
             Contract.Requires(stream != null);
             if (stream == null) throw new ArgumentNullException(nameof(stream));
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -310,6 +301,17 @@ namespace Fornax.Net.Util.IO.Writers
         }
 
         /// <summary>
+        /// buffer read as an asynchronous operation.
+        /// </summary>
+        /// <typeparam name="TObject">The type of the t object.</typeparam>
+        /// <param name="file">The file.</param>
+        /// <returns>Task&lt;TObject&gt;.</returns>
+        public static async Task<TObject> BufferReadAsync<TObject>(FileInfo file) where TObject : class 
+        {
+            return await Task.Factory.StartNew(() => BufferRead<TObject>(file));
+        }
+
+        /// <summary>
         /// Zeroes the write.
         /// </summary>
         public static void ZeroWrite() { }
@@ -319,7 +321,7 @@ namespace Fornax.Net.Util.IO.Writers
         /// <value><c>true</c> if this instance is safe load; otherwise, <c>false</c>.</value>
         internal static bool IsSafeLoad { get; private set; }
         /// <summary>
-        /// Initializes static members of the <see cref="FornaxWriter"/> class.
+        /// Initializes static members of the <see cref="FornaxWriter" /> class.
         /// </summary>
         static FornaxWriter() {
             if (FornaxAssembly.TryResolveAllSerializers()) IsSafeLoad = true;

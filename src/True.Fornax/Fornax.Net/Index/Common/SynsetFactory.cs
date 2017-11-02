@@ -29,7 +29,7 @@ using System.Linq;
 using System.Text;
 
 using Fornax.Net.Analysis.Tools;
-using Fornax.Net.Util.Resources;
+using Fornax.Net.Properties;
 using Fornax.Net.Util.Text;
 
 namespace Fornax.Net.Index.Common
@@ -63,6 +63,7 @@ namespace Fornax.Net.Index.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="SynsetFactory"/> class.
         /// That reads the format from a synonym file.
+        /// Constructs a synonyms index from a synonyms file.
         /// </summary>
         /// <param name="filename">The filename.</param>
         public SynsetFactory(string filename) : this(new FileInfo(filename)) {

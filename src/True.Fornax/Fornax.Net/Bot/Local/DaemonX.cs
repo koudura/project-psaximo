@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Bot.Local
 {
-    class DaemonX
+    class DaemonX : ICrawlable
     {
     }
 }

@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Util.Runtime.Cache
+namespace Fornax.Net.Query
 {
-    class CacheBook
+    public class FreeTextQuery
     {
+
+        public FreeTextQuery()
+        {
+                
+        }
     }
 }

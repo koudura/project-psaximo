@@ -1,4 +1,13 @@
-﻿/***
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Koudura Mazou
+// Created          : 10-29-2017
+//
+// Last Modified By : Koudura Mazou
+// Last Modified On : 10-31-2017
+// ***********************************************************************
+// <copyright file="Soundex.cs" company="True.Inc">
+/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,6 +29,10 @@
 * SOFTWARE.
 *
 **/
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
 
 using System;
 using System.Collections.Generic;
@@ -49,24 +62,27 @@ namespace Fornax.Net.Analysis.Tools
         /// <summary>
         /// Gets the word corresponding to the soundex value.
         /// </summary>
-        /// <value>
-        /// The word.
-        /// </value>
-        [ProtoMember(1)]
+        /// <value>The word.</value>
         public string Word => token_word;
 
         /// <summary>
-        /// Gets the soundex code of <see cref="Word"/>.
+        /// Gets the soundex code of <see cref="Word" />.
         /// </summary>
-        /// <value>
-        /// The value.
-        /// </value>
-        [ProtoMember(2)]
+        /// <value>The value.</value>
         public string Value => value = Generate();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Soundex"/> class.
+        /// </summary>
+        /// <param name="word">The word.</param>
         internal Soundex(Token word) : this(word.Value) {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Soundex"/> class.
+        /// </summary>
+        /// <param name="token">The token.</param>
+        /// <exception cref="ArgumentException">token</exception>
         internal Soundex(string token) {
             Contract.Requires(token != null && token.IsWord());
             if (token == null || !token.IsWord()) throw new ArgumentException($"{nameof(token)} is not a valid word");
@@ -124,6 +140,9 @@ namespace Fornax.Net.Analysis.Tools
 
         private static readonly char[] class6 = new char[] { 'R' };
 
+        /// <summary>
+        /// The soundex table
+        /// </summary>
         internal static readonly Dictionary<char, char[]> SoundexTable = new Dictionary<char, char[]> { { '0', vowels }, { '1', class1 }, { '2', class2 }, { '3', class3 }, { '4', class4 }, { '5', class5 }, { '6', class6 } };
 
         #endregion
@@ -136,10 +155,19 @@ namespace Fornax.Net.Analysis.Tools
             return classes.First();
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString() {
             return $"Soundex[{Word} : {Value}]";
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns><c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj) {
             if (obj == null) return false;
             if (obj == this) return true;
@@ -149,6 +177,10 @@ namespace Fornax.Net.Analysis.Tools
             return false;
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
         public override int GetHashCode() {
             return value.GetHashCode();
         }

@@ -28,6 +28,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnConfig = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,14 +41,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tabHolders = new System.Windows.Forms.TabControl();
             this.mainTab = new System.Windows.Forms.TabPage();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.searchBox = new System.Windows.Forms.TextBox();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -57,10 +50,6 @@
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabHolders.SuspendLayout();
-            this.mainTab.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -104,6 +93,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnConfig);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.forwardBtn);
             this.panel2.Controls.Add(this.backBtn);
@@ -116,6 +106,22 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(850, 41);
             this.panel2.TabIndex = 0;
+            // 
+            // btnConfig
+            // 
+            this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfig.BackColor = System.Drawing.Color.SlateGray;
+            this.btnConfig.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnConfig.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfig.ForeColor = System.Drawing.Color.Gold;
+            this.btnConfig.Location = new System.Drawing.Point(600, 3);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(87, 33);
+            this.btnConfig.TabIndex = 8;
+            this.btnConfig.Text = "Config";
+            this.btnConfig.UseVisualStyleBackColor = false;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
             // panel4
             // 
@@ -132,7 +138,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Lucida Calligraphy", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Gainsboro;
             this.label2.Location = new System.Drawing.Point(90, 14);
             this.label2.Name = "label2";
@@ -144,7 +150,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("Magneto", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(14, 6);
             this.label1.Name = "label1";
@@ -220,6 +226,7 @@
             this.closeTabBtn.TabIndex = 0;
             this.closeTabBtn.Text = "X";
             this.closeTabBtn.UseVisualStyleBackColor = false;
+            this.closeTabBtn.Click += new System.EventHandler(this.closeTabBtn_Click);
             // 
             // splitter1
             // 
@@ -264,120 +271,12 @@
             this.mainTab.AutoScroll = true;
             this.mainTab.BackColor = System.Drawing.Color.Silver;
             this.mainTab.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.mainTab.Controls.Add(this.panel5);
             this.mainTab.Location = new System.Drawing.Point(4, 34);
             this.mainTab.Name = "mainTab";
             this.mainTab.Padding = new System.Windows.Forms.Padding(3);
             this.mainTab.Size = new System.Drawing.Size(840, 511);
             this.mainTab.TabIndex = 0;
             this.mainTab.Text = "New Tab";
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel5.Controls.Add(this.panel8);
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.panel7);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(830, 501);
-            this.panel5.TabIndex = 1;
-            // 
-            // panel6
-            // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 459);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(826, 38);
-            this.panel6.TabIndex = 7;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.AutoSize = true;
-            this.button1.BackColor = System.Drawing.Color.SlateGray;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.GreenYellow;
-            this.button1.Location = new System.Drawing.Point(437, 5);
-            this.button1.MinimumSize = new System.Drawing.Size(77, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 41);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // searchBox
-            // 
-            this.searchBox.AcceptsReturn = true;
-            this.searchBox.AcceptsTab = true;
-            this.searchBox.AllowDrop = true;
-            this.searchBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.searchBox.AutoCompleteCustomSource.AddRange(new string[] {
-            "Jedi",
-            "One",
-            "Money"});
-            this.searchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.searchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.searchBox.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.searchBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.searchBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBox.ForeColor = System.Drawing.Color.White;
-            this.searchBox.Location = new System.Drawing.Point(24, 11);
-            this.searchBox.MaximumSize = new System.Drawing.Size(408, 28);
-            this.searchBox.Multiline = true;
-            this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(408, 28);
-            this.searchBox.TabIndex = 2;
-            this.searchBox.WordWrap = false;
-            // 
-            // panel7
-            // 
-            this.panel7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel7.AutoSize = true;
-            this.panel7.Controls.Add(this.label3);
-            this.panel7.Controls.Add(this.label4);
-            this.panel7.Location = new System.Drawing.Point(234, 101);
-            this.panel7.MinimumSize = new System.Drawing.Size(312, 115);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(313, 115);
-            this.panel7.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Lucida Calligraphy", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Khaki;
-            this.label3.Location = new System.Drawing.Point(167, 79);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 15);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "on Fornax.Net v1.0";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Magneto", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Linen;
-            this.label4.Location = new System.Drawing.Point(20, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(267, 78);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Corvus";
-            // 
-            // panel8
-            // 
-            this.panel8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel8.Controls.Add(this.searchBox);
-            this.panel8.Controls.Add(this.button1);
-            this.panel8.Location = new System.Drawing.Point(143, 219);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(532, 202);
-            this.panel8.TabIndex = 8;
             // 
             // CorvusHome
             // 
@@ -388,6 +287,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "CorvusHome";
             this.Text = "CorvusHome";
+            this.Load += new System.EventHandler(this.CorvusHome_Load);
             this.Shown += new System.EventHandler(this.CorvusHome_Shown);
             this.panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -398,13 +298,6 @@
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.tabHolders.ResumeLayout(false);
-            this.mainTab.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -426,13 +319,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabHolders;
         private System.Windows.Forms.TabPage mainTab;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox searchBox;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Button btnConfig;
     }
 }

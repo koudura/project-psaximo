@@ -21,16 +21,6 @@ namespace Fornax.Net.Document
         /// Initializes a new instance of the <see cref="Snippet"/> class.
         /// </summary>
         /// <param name="start">The start.</param>
-        /// <param name="end">The end.</param>
-        /// <param name="document">The document.</param>
-        public Snippet(int start, int end, IDocument document) {
-            this.text = getRegion(start, end, document.Tokens);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Snippet"/> class.
-        /// </summary>
-        /// <param name="start">The start.</param>
         /// <param name="length">The length.</param>
         /// <param name="text">The text.</param>
         public Snippet(int start, int length, string text) {

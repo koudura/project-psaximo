@@ -4,9 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Util.Runtime.Logging
+namespace Fornax.Net.Analysis.Tools
 {
-    internal class Level
-    {
+
+    public enum NgramModel : byte {
+
+        Character,
+
+
+        Word
     }
+
+
 }

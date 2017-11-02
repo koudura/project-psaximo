@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Util.IO.Readers
 {
-    public sealed class ZipReader 
+    public sealed class ZipHandler 
     {
         FileInfo _zipFile;
 
-        public ZipReader(FileInfo zipfile) {
+        public ZipHandler(FileInfo zipfile) {
             _zipFile = zipfile;
         }
 

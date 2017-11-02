@@ -1,4 +1,13 @@
-﻿/***
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Koudura Mazou
+// Created          : 10-29-2017
+//
+// Last Modified By : Koudura Mazou
+// Last Modified On : 10-29-2017
+// ***********************************************************************
+// <copyright file="Filter.cs" company="Microsoft">
+/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,6 +29,10 @@
 * SOFTWARE.
 *
 **/
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
 
 using System;
 using System.Collections.Generic;
@@ -50,33 +63,39 @@ namespace Fornax.Net.Analysis.Filters
         /// <summary>
         /// Filter the specified collection.
         /// </summary>
-        /// <param name="collection">The collection.</param>
-        /// <returns></returns>
+        /// <param name="collection">The collection to be filtered.</param>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         public abstract IEnumerable<string> Accepts(IEnumerable<string> collection);
 
         /// <summary>
-        /// Filters the tokenized by <paramref name="delimiters"/> tewxt.
+        /// Filters the tokenized by <paramref name="delimiters" /> tewxt.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="delimiters">The delimiters.</param>
-        /// <returns></returns>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         public abstract IEnumerable<string> Accepts(string text, char[] delimiters);
 
         /// <summary>
         /// Filters the specified collection with a language specific rule.
         /// </summary>
-        /// <param name="collection">The collection.</param>
-        /// <param name="language">The language.</param>
-        /// <returns>A filtered enumerable collection of input <paramref name="collection"/>.</returns>
+        /// <param name="collection">The collection of text to be filtered.</param>
+        /// <param name="language">The language rule to filtering.</param>
+        /// <returns>A filtered enumerable collection of input <paramref name="collection" />.</returns>
         public abstract IEnumerable<string> Accepts(IEnumerable<string> collection, FornaxLanguage language);
 
         /// <summary>
-        /// Acceptses the specified delimiters.
+        /// filters the curent state input text by tokenizing the text using
+        /// the input delimiter characters.
         /// </summary>
-        /// <param name="delimiters">The delimiters.</param>
-        /// <returns></returns>
+        /// <param name="delimiters">The delimiters to be used for tokenization.</param>
+        /// <returns>filtered text</returns>
         public abstract string Accepts(char[] delimiters);
 
+        /// <summary>
+        /// filters the input token stream by de-lineation of the tokenstream. 
+        /// </summary>
+        /// <param name="tokens">The tokens.</param>
+        /// <returns>TokenStream.</returns>
         public abstract TokenStream Accepts(TokenStream tokens);
 
         /// <summary>
@@ -98,9 +117,7 @@ namespace Fornax.Net.Analysis.Filters
         /// Determines whether the specified <see cref="object" />, is equal to this instance.
         /// </summary>
         /// <param name="obj">The <see cref="object" /> to compare with this instance.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
-        /// </returns>
+        /// <returns><c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj) {
             return base.Equals(obj);
         }
@@ -108,9 +125,7 @@ namespace Fornax.Net.Analysis.Filters
         /// <summary>
         /// Returns a hash code for this instance.
         /// </summary>
-        /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
-        /// </returns>
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
         public override int GetHashCode() {
             return base.GetHashCode();
         }
@@ -118,9 +133,7 @@ namespace Fornax.Net.Analysis.Filters
         /// <summary>
         /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
-        /// <returns>
-        /// A <see cref="string" /> that represents this instance.
-        /// </returns>
+        /// <returns>A <see cref="string" /> that represents this instance.</returns>
         public override string ToString() {
             return base.ToString();
         }

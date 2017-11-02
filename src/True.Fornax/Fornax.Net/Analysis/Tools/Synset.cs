@@ -1,4 +1,17 @@
-﻿/***
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Koudura Mazou
+// Created          : 10-29-2017
+//
+// Last Modified By : Koudura Mazou
+// Last Modified On : 10-29-2017
+// ***********************************************************************
+// <copyright file="Synset.cs" company="Microsoft">
+//     Copyright © Microsoft 2017
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,7 +50,7 @@ namespace Fornax.Net.Analysis.Tools
     /// <summary>
     /// Represents a Synonym set for a given word retrieved from a synonym index.
     /// NOTE: If Synonym Index isnt provided and there be no existing index,
-    /// the defaut @<see cref="SynsetFactory.Default"/> would be used.
+    /// the defaut @<see cref="SynsetFactory.Default" /> would be used.
     /// </summary>
     /// <remarks>Usage: Synset synonyms = SynsetFactory.GetSynset("word");</remarks>
     [Serializable, ProtoContract]
@@ -51,8 +64,24 @@ namespace Fornax.Net.Analysis.Tools
         private readonly uint? MaxDepth = 64;
         private uint? depthOfexpansion;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Synset"/> class.
+        /// </summary>
+        /// <param name="word">The word.</param>
+        /// <param name="doe">The doe.</param>
         internal Synset(string word, uint? doe = null) : this(word, SynsetFactory.Default, doe) { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Synset"/> class.
+        /// </summary>
+        /// <param name="word">The word.</param>
+        /// <param name="index">The index.</param>
+        /// <param name="doe">The doe.</param>
+        /// <exception cref="ArgumentNullException">
+        /// word
+        /// or
+        /// index
+        /// </exception>
         internal Synset(string word, SynsetIndex index, uint? doe = null) {
             Contract.Requires(word != null && index != null);
 
@@ -62,21 +91,15 @@ namespace Fornax.Net.Analysis.Tools
         }
 
         /// <summary>
-        /// Gets the current prime word of the <see cref="Synset"/>.
+        /// Gets the current prime word of the <see cref="Synset" />.
         /// </summary>
-        /// <value>
-        /// The word at which the synonyms would be returned.
-        /// </value>
-        [ProtoMember(1)]
+        /// <value>The word at which the synonyms would be returned.</value>
         public string Word => primeWord;
 
         /// <summary>
-        /// Gets the synonyms of the current prime word(<see cref="Word"/>).
+        /// Gets the synonyms of the current prime word(<see cref="Word" />).
         /// </summary>
-        /// <value>
-        /// The synonyms of a word.
-        /// </value>
-        [ProtoMember(2)]
+        /// <value>The synonyms of a word.</value>
         public IEnumerable<string> Synonyms => synoyms = Get();
 
         private ISet<string> Get() {
@@ -111,20 +134,16 @@ namespace Fornax.Net.Analysis.Tools
         /// <summary>
         /// Returns a <see cref="string" /> that represents this instance of synonym set.
         /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance of synonym set.
-        /// </returns>
+        /// <returns>A <see cref="System.String" /> that represents this instance of synonym set.</returns>
         public override string ToString() {
             return Collections.ToString(Synonyms);
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="object" />, is equal to this <see cref="Synset"/>.
+        /// Determines whether the specified <see cref="object" />, is equal to this <see cref="Synset" />.
         /// </summary>
-        /// <param name="obj">The <see cref="object" /> to compare with this <see cref="Synset"/>.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
-        /// </returns>
+        /// <param name="obj">The <see cref="object" /> to compare with this <see cref="Synset" />.</param>
+        /// <returns><c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj) {
             if (obj is Synset) {
                 var sn = obj as Synset;
@@ -136,9 +155,7 @@ namespace Fornax.Net.Analysis.Tools
         /// <summary>
         /// Returns a hash code for this set of synonyms.
         /// </summary>
-        /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
-        /// </returns>
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
         public override int GetHashCode() {
             return Collections.GetHashCode(Synonyms);
         }

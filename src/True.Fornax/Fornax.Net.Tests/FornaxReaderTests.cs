@@ -68,13 +68,13 @@ namespace Fornax.Net.Tests
         }
 
         private static string vcf = @"test files\sample.vcf";
-        private static string pdf = @"test files\Small09.pdf";
+      //  private static string pdf = @"test files\Small09.pdf";
         private static string html = @"test files\Compression_Decompression string with C# - Stack Overflow.html";
         private static string slide = @"test files\lecture5-indexconstruction.ppt";
-        private static string doc_text = @"test files\regularexpressionssupportingdoc.docx";
-        private static string plain_txt = @"test files\stopwords.txt";
+     //   private static string doc_text = @"test files\regularexpressionssupportingdoc.docx";
+     //   private static string plain_txt = @"test files\stopwords.txt";
         private static string plain_cs = @"test files\Ranker.cs";
-        private static string sheet = @"test files\grocery.xls";
+      //  private static string sheet = @"test files\grocery.xls";
         private static string email = @"test files\test-sample-message.eml";
         private static string xml = @"test files\Fornax.Net.xml";
 

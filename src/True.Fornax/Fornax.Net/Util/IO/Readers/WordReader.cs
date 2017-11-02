@@ -38,7 +38,7 @@ namespace Fornax.Net.Util.IO.Readers
     /// A Loader for Plain-Text(.txt) Files that represent a list of stopwords.
     /// also to load stem dictionary text files.
     /// </summary>
-    [Serializable,Progress("WordListLoader", true, Documented = true, Tested = true)]
+    [Serializable, Progress("WordListLoader", true, Documented = true, Tested = true)]
     public static class WordReader
     {
         #region sync-reader
@@ -55,12 +55,14 @@ namespace Fornax.Net.Util.IO.Readers
         /// <param name="isBias">if set to <c>true</c> words are copied without any preprocessing.</param>
         /// <returns>A set of each distinct word from file.</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static HashSet<string> GetWordSet(FileInfo wordFile, bool isBias) {
+        public static HashSet<string> GetWordSet(FileInfo wordFile, bool isBias)
+        {
             Contract.Requires(wordFile != null);
             if (wordFile == null) throw new ArgumentNullException();
 
             HashSet<string> result = new HashSet<string>();
-            using (var reader = new StreamReader(wordFile.FullName, Encoding.Default, true)) {
+            using (var reader = new StreamReader(wordFile.FullName, Encoding.Default, true))
+            {
                 result = GetWordSet(reader, isBias);
             }
             return result;
@@ -80,14 +82,17 @@ namespace Fornax.Net.Util.IO.Readers
         /// A set of each distinct word from file.
         /// </returns>
         /// <exception cref="ArgumentNullException"> reader</exception>
-        public static HashSet<string> GetWordSet(TextReader reader, bool isBias) {
+        public static HashSet<string> GetWordSet(TextReader reader, bool isBias)
+        {
             Contract.Requires(reader != null);
             if (reader == null) throw new ArgumentNullException($"{nameof(reader)} is null.");
             HashSet<string> result = new HashSet<string>();
 
-            try {
+            try
+            {
                 string word = null;
-                while ((word = reader.ReadLine()) != null) {
+                while ((word = reader.ReadLine()) != null)
+                {
                     if (isBias)
                         result.Add(word.Trim());
                     else result.Add(word.ToLower().Clean(true));
@@ -105,17 +110,22 @@ namespace Fornax.Net.Util.IO.Readers
         /// <param name="wordsFile">The words file containing new words.</param>
         /// <param name="isBias">if set to <c>true</c> Text Prepocessing is disabled.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public static void Update(ref ICollection<string> wordList, FileInfo wordsFile, bool isBias) {
+        public static void Update(ref ICollection<string> wordList, FileInfo wordsFile, bool isBias)
+        {
             Contract.Requires(wordList != null && wordsFile != null);
-            if (wordList == null || wordsFile == null) {
+            if (wordList == null || wordsFile == null)
+            {
                 throw new ArgumentNullException();
             }
 
-            try {
-                using (var reader = new StreamReader(wordsFile.FullName, Encoding.Default, true)) {
+            try
+            {
+                using (var reader = new StreamReader(wordsFile.FullName, Encoding.Default, true))
+                {
                     Update(ref wordList, reader, isBias);
                 }
-            } catch (Exception ex) when (ex is ArgumentNullException || ex is ArgumentException || ex is IOException) { }
+            }
+            catch (Exception ex) when (ex is ArgumentNullException || ex is ArgumentException || ex is IOException) { }
         }
 
         /// <summary>
@@ -126,22 +136,27 @@ namespace Fornax.Net.Util.IO.Readers
         /// <param name="textReader">The text reader.</param>
         /// <param name="isBias">if set to <c>true</c> Text Prepocessing is disabled.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public static void Update(ref ICollection<string> wordList, TextReader textReader, bool isBias) {
+        public static void Update(ref ICollection<string> wordList, TextReader textReader, bool isBias)
+        {
             Contract.Requires(wordList != null && textReader != null);
-            if (wordList == null || textReader == null) {
+            if (wordList == null || textReader == null)
+            {
                 throw new ArgumentNullException();
             }
-            try {
+            try
+            {
                 ICollection<string> temp = new HashSet<string>();
 
                 string word = null;
-                while ((word = textReader.ReadLine()) != null) {
+                while ((word = textReader.ReadLine()) != null)
+                {
                     if (isBias)
                         temp.Add(word.Trim());
                     else temp.Add(word.ToLower().Clean(true));
                 }
                 wordList.AddAll(temp);
-            } catch (Exception ex) when (ex is ArgumentException || ex is ArgumentNullException || ex is IOException) { }
+            }
+            catch (Exception ex) when (ex is ArgumentException || ex is ArgumentNullException || ex is IOException) { }
         }
 
         /// <summary>
@@ -152,20 +167,26 @@ namespace Fornax.Net.Util.IO.Readers
         /// <param name="isBias">if set to <c>true</c>Text Prepocessing is disabled.</param>
         /// <returns>stem dictionary that overrules the stemming algorithm. </returns>
         /// <exception cref="ArgumentNullException">wordStemFile</exception>
-        public static IDictionary<string,string> GetStemTable(FileInfo wordStemFile, bool isBias) {
-            if (wordStemFile == null) {
+        public static IDictionary<string, string> GetStemTable(FileInfo wordStemFile, bool isBias)
+        {
+            if (wordStemFile == null)
+            {
                 throw new ArgumentNullException(nameof(wordStemFile));
             }
             IDictionary<string, string> result = new Dictionary<string, string>();
             StreamReader br = null;
             StreamReader fr = null;
 
-            try {
-                using (fr = new StreamReader(wordStemFile.FullName,Encoding.Default,true)) {
-                    using (br = new StreamReader(fr.BaseStream, fr.CurrentEncoding)) {
+            try
+            {
+                using (fr = new StreamReader(wordStemFile.FullName, Encoding.Default, true))
+                {
+                    using (br = new StreamReader(fr.BaseStream, fr.CurrentEncoding))
+                    {
                         string line;
                         char[] delim = { '\t' };
-                        while((line = br.ReadLine()) != null) {
+                        while ((line = br.ReadLine()) != null)
+                        {
                             string[] stemMap = line.Split(delim, 2);
 
                             if (isBias) result[stemMap[1]] = stemMap[0];
@@ -174,7 +195,8 @@ namespace Fornax.Net.Util.IO.Readers
                     }
                 }
             }
-            finally {
+            finally
+            {
                 if (fr != null) fr.Close();
                 if (br != null) br.Close();
             }
@@ -199,12 +221,14 @@ namespace Fornax.Net.Util.IO.Readers
         /// A set of each distinct word from file.
         /// </returns>
         /// <exception cref="ArgumentNullException">wordfile</exception>
-        public static async Task<HashSet<string>> GetWordSetAsync(FileInfo wordfile, bool isBias) {
+        public static async Task<HashSet<string>> GetWordSetAsync(FileInfo wordfile, bool isBias)
+        {
             Contract.Requires(wordfile != null);
             if (wordfile == null) throw new ArgumentNullException($"{nameof(wordfile)} is null.");
 
             HashSet<string> result = new HashSet<string>();
-            using (var reader = new StreamReader(wordfile.FullName, Encoding.Default, true)) {
+            using (var reader = new StreamReader(wordfile.FullName, Encoding.Default, true))
+            {
                 result = await GetWordSetAsync(reader, isBias);
             }
             return result;
@@ -224,13 +248,16 @@ namespace Fornax.Net.Util.IO.Readers
         /// A set of each distinct word from file.
         /// </returns>
         /// <exception cref="ArgumentNullException">reader</exception>
-        public static async Task<HashSet<string>> GetWordSetAsync(TextReader reader, bool isBias) {
+        public static async Task<HashSet<string>> GetWordSetAsync(TextReader reader, bool isBias)
+        {
             Contract.Requires(reader != null);
             if (reader == null) throw new ArgumentNullException($"{nameof(reader)} is null.");
             HashSet<string> result = new HashSet<string>();
-            try {
+            try
+            {
                 string word = null;
-                while ((word = await reader.ReadLineAsync()) != null) {
+                while ((word = await reader.ReadLineAsync()) != null)
+                {
                     if (isBias) result.Add(word);
                     else result.Add(word.ToLower().Clean(true));
                 }
@@ -248,16 +275,21 @@ namespace Fornax.Net.Util.IO.Readers
         /// <param name="isBias">if set to <c>true</c> Text Prepocessing is disabled.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static async Task<ICollection<string>> UpdateAsync(ICollection<string> wordList, FileInfo wordsFile, bool isBias) {
+        public static async Task<ICollection<string>> UpdateAsync(ICollection<string> wordList, FileInfo wordsFile, bool isBias)
+        {
             Contract.Requires(wordList != null && wordsFile != null);
-            if (wordList == null || wordsFile == null) {
+            if (wordList == null || wordsFile == null)
+            {
                 throw new ArgumentNullException();
             }
-            try {
-                using (var reader = new StreamReader(wordsFile.FullName, Encoding.Default, true)) {
+            try
+            {
+                using (var reader = new StreamReader(wordsFile.FullName, Encoding.Default, true))
+                {
                     return await UpdateAsync(wordList, reader, isBias);
                 }
-            } catch (Exception ex) when (ex is ArgumentNullException || ex is ArgumentException || ex is IOException) { return wordList; }
+            }
+            catch (Exception ex) when (ex is ArgumentNullException || ex is ArgumentException || ex is IOException) { return wordList; }
 
         }
 
@@ -270,25 +302,30 @@ namespace Fornax.Net.Util.IO.Readers
         /// <param name="isBias">if set to <c>true</c> Text Prepocessing is disabled.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static async Task<ICollection<string>> UpdateAsync(ICollection<string> wordList, TextReader reader, bool isBias) {
+        public static async Task<ICollection<string>> UpdateAsync(ICollection<string> wordList, TextReader reader, bool isBias)
+        {
             Contract.Requires(wordList != null && reader != null);
-            if (wordList == null || wordList == null) {
+            if (wordList == null || wordList == null)
+            {
                 throw new ArgumentNullException();
             }
 
 
-            try {
+            try
+            {
                 ICollection<string> temp = new HashSet<string>();
 
                 string word = null;
-                while ((word = await reader.ReadLineAsync()) != null) {
+                while ((word = await reader.ReadLineAsync()) != null)
+                {
                     if (isBias)
                         temp.Add(word.Trim());
                     else temp.Add(word.ToLower().Clean(true));
                 }
                 wordList.AddAll(temp);
                 return wordList;
-            } catch (Exception ex) when (ex is ArgumentException || ex is ArgumentNullException || ex is IOException) { return wordList; }
+            }
+            catch (Exception ex) when (ex is ArgumentException || ex is ArgumentNullException || ex is IOException) { return wordList; }
         }
 
         /// <summary>
@@ -298,29 +335,36 @@ namespace Fornax.Net.Util.IO.Readers
         /// <param name="isBias">if set to <c>true</c> Text Prepocessing is disabled.</param>
         /// <returns>stem dictionary that overrules the stemming algorithm.</returns>
         /// <exception cref="ArgumentNullException">wordStemFile</exception>
-        public static async Task<IDictionary<string, string>> GetStemTableAsync(FileInfo wordStemFile, bool isBias) {
-            if (wordStemFile == null) {
+        public static async Task<IDictionary<string, string>> GetStemTableAsync(FileInfo wordStemFile, bool isBias)
+        {
+            if (wordStemFile == null)
+            {
                 throw new ArgumentNullException(nameof(wordStemFile));
             }
             IDictionary<string, string> result = new Dictionary<string, string>();
             StreamReader br = null;
             StreamReader fr = null;
 
-            try {
-                using (fr = new StreamReader(wordStemFile.FullName, Encoding.Default, true)) {
-                    using (br = new StreamReader(fr.BaseStream, fr.CurrentEncoding)) {
+            try
+            {
+                using (fr = new StreamReader(wordStemFile.FullName, Encoding.Default, true))
+                {
+                    using (br = new StreamReader(fr.BaseStream, fr.CurrentEncoding))
+                    {
                         string line;
                         char[] delim = { '\t' };
-                        while ((line = await br.ReadLineAsync()) != null) {
+                        while ((line = await br.ReadLineAsync()) != null)
+                        {
                             string[] stemMap = line.Split(delim, 2);
-                           
+
                             if (isBias) result[stemMap[1]] = stemMap[0];
-                            else result[stemMap[1].ToLower().Clean(true)]  = stemMap[0].ToLower().Clean(true);
+                            else result[stemMap[1].ToLower().Clean(true)] = stemMap[0].ToLower().Clean(true);
                         }
                     }
                 }
             }
-            finally {
+            finally
+            {
                 if (fr != null) fr.Close();
                 if (br != null) br.Close();
             }

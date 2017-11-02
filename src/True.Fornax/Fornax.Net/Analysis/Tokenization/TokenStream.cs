@@ -35,7 +35,7 @@ namespace Fornax.Net.Analysis.Tokenization
         [ProtoMember(1)]
         private readonly EquatableList<Token> list;
         [ProtoMember(2)]
-        private IEnumerator<Token> tok;
+        private static IEnumerator<Token> tok;
 
         internal TokenStream(IEnumerable<Token> tokens) {
             list = new EquatableList<Token>(tokens);
@@ -60,8 +60,6 @@ namespace Fornax.Net.Analysis.Tokenization
         /// </value>
         public int Size => list.Count;
 
-
-
         /// <summary>
         /// Gets the element in the collection at the current position of the enumerator.
         /// </summary>
@@ -70,7 +68,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <summary>
         /// Gets the element in the collection at the current position of the enumerator.
         /// </summary>
-        object IEnumerator.Current => ((IEnumerator)tok).Current;
+        object IEnumerator.Current => tok.Current;
 
         /// <summary>
         /// Creates a new object that is a copy of the current instance.

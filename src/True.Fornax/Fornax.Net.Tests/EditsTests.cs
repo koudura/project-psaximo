@@ -11,8 +11,8 @@ namespace Fornax.Net.Tests
         public void DefaultEdits() {
 
             var def = EditFactory.Default;
-            var kvp = EditFactory.GetSimilars("anyway", def);
-
+            var kvp = EditFactory.RetrieveCommon("aaron", def);
+            
             foreach (var item in kvp) {
                 Console.WriteLine("{0} : {1}",item.Key,item.Value);
             }

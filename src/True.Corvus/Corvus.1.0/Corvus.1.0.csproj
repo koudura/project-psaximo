@@ -215,6 +215,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigWin.Designer.cs">
+      <DependentUpon>ConfigWin.cs</DependentUpon>
+    </Compile>
     <Compile Include="CorvusHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,20 +233,27 @@
     <Compile Include="PerHome.Designer.cs">
       <DependentUpon>PerHome.cs</DependentUpon>
     </Compile>
+    <Compile Include="PerResult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PerResult.Designer.cs">
+      <DependentUpon>PerResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="PerTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PerTab.Designer.cs">
       <DependentUpon>PerTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="XmlExtractor.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="XmlExtractor.cs" />
     <Compile Include="XmlExtractor.Designer.cs">
       <DependentUpon>XmlExtractor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConfigWin.resx">
+      <DependentUpon>ConfigWin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CorvusHome.resx">
       <DependentUpon>CorvusHome.cs</DependentUpon>
     </EmbeddedResource>

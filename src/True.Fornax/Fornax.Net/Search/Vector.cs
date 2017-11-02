@@ -30,7 +30,7 @@ namespace Fornax.Net.Search
     /// </summary>
     /// <seealso cref="System.Collections.Generic.IComparer{Fornax.Net.Search.Vector}" />
     [Serializable]
-    public struct Vector : IComparer<Vector> , java.io.Serializable.__Interface
+    public struct Vector : IComparable<Vector> , java.io.Serializable.__Interface
     {
         /// <summary>
         /// The values
@@ -178,10 +178,13 @@ namespace Fornax.Net.Search
         /// <paramref name="x" /> is greater than <paramref name="y" />.</returns>
         public int Compare(Vector x, Vector y) {
             Contract.Requires(x != null && y != null);
+            if (x == y) return 0;
+            return (Abs(x) > Abs(y)) ? 1 : -1;         
+        }
 
-            if (Abs(x) > Abs(y)) return 1;
-            else if (Abs(x) == Abs(y)) return 0;
-            else return -1;
+        public int CompareTo(Vector other)
+        {
+            return Compare(this, other);
         }
 
         /// <summary>
@@ -190,8 +193,8 @@ namespace Fornax.Net.Search
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
         /// <returns>The result of the operator.</returns>
-        public static bool operator ==(Vector left, Vector right) {
-            return Abs(left) == Abs(right);
+        public static bool operator == (Vector left, Vector right) {
+            return Collections.Equals(left.Value, right.Value);
         }
 
         /// <summary>
@@ -200,7 +203,7 @@ namespace Fornax.Net.Search
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
         /// <returns>The result of the operator.</returns>
-        public static bool operator !=(Vector left, Vector right) {
+        public static bool operator != (Vector left, Vector right) {
             return !(left == right);
         }
     }

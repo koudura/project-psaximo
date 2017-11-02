@@ -1,4 +1,13 @@
-﻿/***
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Koudura Mazou
+// Created          : 10-29-2017
+//
+// Last Modified By : Koudura Mazou
+// Last Modified On : 10-29-2017
+// ***********************************************************************
+// <copyright file="FastFunctions.cs" company="True.inc">
+/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,8 +30,15 @@
 *
 **/
 
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
 using System;
 
+/// <summary>
+/// The Numerics namespace.
+/// </summary>
 namespace Fornax.Net.Util.Numerics
 {
     /// <summary>
@@ -30,16 +46,20 @@ namespace Fornax.Net.Util.Numerics
     /// </summary>
     public sealed class FastFunctions
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FastFunctions"/> class.
+        /// </summary>
         internal FastFunctions() { }
 
         /// <summary>
         /// Returns the distance in kilometers between two points
-        /// specified in decimal degrees (latitude/longitude). </summary>
-        /// <param name="lat1"> Latitude of the first point. </param>
-        /// <param name="lon1"> Longitude of the first point. </param>
-        /// <param name="lat2"> Latitude of the second point. </param>
-        /// <param name="lon2"> Longitude of the second point. </param>
-        /// <returns> distance in kilometers. </returns>
+        /// specified in decimal degrees (latitude/longitude).
+        /// </summary>
+        /// <param name="lat1">Latitude of the first point.</param>
+        /// <param name="lon1">Longitude of the first point.</param>
+        /// <param name="lat2">Latitude of the second point.</param>
+        /// <param name="lon2">Longitude of the second point.</param>
+        /// <returns>distance in kilometers.</returns>
         public double Haversin(double lat1, double lon1, double lat2, double lon2) {
             double x1 = lat1 * TO_RADIANS;
             double x2 = lat2 * TO_RADIANS;
@@ -55,17 +75,15 @@ namespace Fornax.Net.Util.Numerics
 
         /// <summary>
         /// Returns the trigonometric cosine of an angle.
-        /// <para/>
+        /// <para />
         /// Error is around 1E-15.
-        /// <para/>
+        /// <para />
         /// Special cases:
-        /// <list type="bullet">
-        ///     <item><description>If the argument is <see cref="double.NaN"/> or an infinity, then the result is <see cref="double.NaN"/>.</description></item>
-        /// </list> 
+        /// <list type="bullet"><item><description>If the argument is <see cref="double.NaN" /> or an infinity, then the result is <see cref="double.NaN" />.</description></item></list>
         /// </summary>
-        /// <param name="a"> An angle, in radians. </param>
-        /// <returns> The cosine of the argument. </returns>
-        /// <seealso cref="Math.Cos(double)"/>
+        /// <param name="a">An angle, in radians.</param>
+        /// <returns>The cosine of the argument.</returns>
+        /// <seealso cref="Math.Cos(double)" />
         public double Cos(double a) {
             if (a < 0.0) {
                 a = -a;
@@ -89,18 +107,16 @@ namespace Fornax.Net.Util.Numerics
 
         /// <summary>
         /// Returns the arc sine of a value.
-        /// <para/>
+        /// <para />
         /// The returned angle is in the range <i>-pi</i>/2 through <i>pi</i>/2.
         /// Error is around 1E-7.
-        /// <para/>
+        /// <para />
         /// Special cases:
-        /// <list type="bullet">
-        ///     <item><description>If the argument is <see cref="double.NaN"/> or its absolute value is greater than 1, then the result is <see cref="double.NaN"/>.</description></item>
-        /// </list> 
+        /// <list type="bullet"><item><description>If the argument is <see cref="double.NaN" /> or its absolute value is greater than 1, then the result is <see cref="double.NaN" />.</description></item></list>
         /// </summary>
-        /// <param name="a"> the value whose arc sine is to be returned. </param>
-        /// <returns> arc sine of the argument </returns>
-        /// <seealso cref="Math.Asin(double)"/>
+        /// <param name="a">the value whose arc sine is to be returned.</param>
+        /// <returns>arc sine of the argument</returns>
+        /// <seealso cref="Math.Asin(double)" />
         public double Asin(double a) {
             bool negateResult;
             if (a < 0.0) {
@@ -137,6 +153,8 @@ namespace Fornax.Net.Util.Numerics
         /// <summary>
         /// Return an approximate value of the diameter of the earth at the given latitude, in kilometers.
         /// </summary>
+        /// <param name="latitude">The latitude.</param>
+        /// <returns>System.Double.</returns>
         public double EarthDiameter(double latitude) {
             if (double.IsNaN(latitude))
                 return double.NaN;

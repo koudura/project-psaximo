@@ -12,12 +12,58 @@ namespace Corvus._1._0
 {
     public partial class PerHome : UserControl
     {
-        public PerHome() {
+        PerTab pt;
+        private CorvusHome corvusHome;
+
+        //public PerHome() {
+
+        //}
+
+        public PerHome(CorvusHome corvusHome)
+        {
             InitializeComponent();
             Dock = DockStyle.Fill;
+            pt = new PerTab();
+            this.corvusHome = corvusHome;
         }
 
-        private void PerHome_Load(object sender, EventArgs e) {
+        internal PerTab Page => pt;
+        private void PerHome_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            if(searchBox.Text.Length > 2)
+            {
+                pt.searchBox.Text = searchBox.Text;
+                Switch(this);
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        public void Switch(PerHome home)
+        {
+            corvusHome.currentTab.Controls.Remove(home);
+            corvusHome.currentTab.Controls.Add(home.Page);
+            
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

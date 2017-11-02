@@ -46,7 +46,7 @@ using Collection = Fornax.Net.Util.Collections.Collections;
 /// The Tools namespace.
 /// </summary>
 namespace Fornax.Net.Analysis.Tools
-{
+{ 
     /// <summary>
     /// Trie Node.
     /// </summary>
@@ -60,7 +60,6 @@ namespace Fornax.Net.Analysis.Tools
         /// <summary>
         /// The children
         /// </summary>
-        [ProtoMember(1)]
         internal IDictionary<T, Node<T>> children;
         /// <summary>
         /// The eos
@@ -71,35 +70,30 @@ namespace Fornax.Net.Analysis.Tools
         /// Gets or sets a value indicating whether this <see cref="Node{T}"/> is eos.
         /// </summary>
         /// <value><c>true</c> if eos; otherwise, <c>false</c>.</value>
-        [ProtoMember(2)]
         internal bool EOS { get { return eos; } set { eos = value; } }
 
         /// <summary>
         /// Gets an <see cref="Node{T}" /> containing the keys of the <see cref="Node{T}" />.
         /// </summary>
         /// <value>The keys.</value>
-        [ProtoMember(3)]
         public ICollection<T> Keys => children.Keys;
 
         /// <summary>
         /// Gets an <see cref="ICollection" /> containing the values in the <see cref="Node{T}" />.
         /// </summary>
         /// <value>The values.</value>
-        [ProtoMember(4)]
         public ICollection<Node<T>> Values => children.Values;
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="ICollection" />.
         /// </summary>
         /// <value>The count.</value>
-        [ProtoMember(5)]
         public int Count => children.Count;
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="ICollection" /> is read-only.
         /// </summary>
         /// <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
-        [ProtoMember(6)]
         public bool IsReadOnly => children.IsReadOnly;
 
         /// <summary>

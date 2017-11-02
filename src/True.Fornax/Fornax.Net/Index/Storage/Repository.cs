@@ -1,4 +1,17 @@
-﻿
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Koudura Mazou
+// Created          : 10-29-2017
+//
+// Last Modified By : Koudura Mazou
+// Last Modified On : 10-31-2017
+// ***********************************************************************
+// <copyright file="Repository.cs" company="Microsoft">
+//     Copyright © Microsoft 2017
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
 
 
 using System;
@@ -8,6 +21,7 @@ using System.IO;
 using Fornax.Net.Document;
 using Fornax.Net.Util;
 using Fornax.Net.Util.IO;
+using Fornax.Net.Util.IO.Readers;
 using Fornax.Net.Util.IO.Writers;
 using ProtoBuf;
 
@@ -20,14 +34,11 @@ namespace Fornax.Net.Index.Storage
     [Serializable, ProtoContract]
     public abstract class Repository : java.io.Serializable.__Interface
     {
-        [ProtoMember(1)]
-        protected IEnumerable<FileInfo> _files;
-        [ProtoMember(2)]
-        protected Configuration _config;
-        [ProtoMember(3)]
+        protected static IList<FileInfo> _files;
+        protected static Configuration _config;
         protected string _repofilename;
-        [ProtoMember(4)]
         protected Corpus _corpus;
+        protected internal Extractor _protocol;
 
         /// <summary>
         /// Creates the specified files.
@@ -35,9 +46,10 @@ namespace Fornax.Net.Index.Storage
         /// <param name="files">The files.</param>
         /// <param name="type">The type.</param>
         /// <param name="config">The configuration.</param>
-        /// <returns></returns>
-        public static Repository Create(FileInfo[] files, RepositoryType type, Configuration config) {
-            if (type == RepositoryType.Local) return new FSRepository(files, config);
+        /// <returns>Repository.</returns>
+        public static Repository Create(FileInfo[] files, RepositoryType type, Configuration config, Extractor extractionProtocol = Extractor.Default)
+        {
+            if (type == RepositoryType.Local) return new FSRepository(files, config, extractionProtocol);
             return new NETRepository(files, config);
         }
 
@@ -47,9 +59,10 @@ namespace Fornax.Net.Index.Storage
         /// <param name="files">The files.</param>
         /// <param name="type">The type.</param>
         /// <param name="config">The configuration.</param>
-        /// <returns></returns>
-        public static Repository Create(string[] files, RepositoryType type, Configuration config) {
-            if (type == RepositoryType.Local) return new FSRepository(files, config);
+        /// <returns>Repository.</returns>
+        public static Repository Create(string[] files, RepositoryType type, Configuration config, Extractor extractionProtocol = Extractor.Default)
+        {
+            if (type == RepositoryType.Local) return new FSRepository(files, config, extractionProtocol);
             return new NETRepository(files, config);
         }
 
@@ -58,11 +71,11 @@ namespace Fornax.Net.Index.Storage
         /// </summary>
         /// <param name="files">The files.</param>
         /// <param name="type">The type.</param>
-        /// <param name="formats">The formats.</param>
         /// <param name="config">The configuration.</param>
-        /// <returns></returns>
-        public static Repository Create(FileWrapper[] files, RepositoryType type, FileFormat[] formats, Configuration config) {
-            if (type == RepositoryType.Local) return new FSRepository(files, config);
+        /// <returns>Repository.</returns>
+        public static Repository Create(FileWrapper[] files, RepositoryType type, Configuration config, Extractor extractionProtocol = Extractor.Default)
+        {
+            if (type == RepositoryType.Local) return new FSRepository(files, config, extractionProtocol);
             return new NETRepository(files, config);
         }
 
@@ -71,11 +84,11 @@ namespace Fornax.Net.Index.Storage
         /// </summary>
         /// <param name="directory">The directory.</param>
         /// <param name="type">The type.</param>
-        /// <param name="formats">The formats.</param>
         /// <param name="config">The configuration.</param>
-        /// <returns></returns>
-        public static Repository Create(DirectoryInfo directory, RepositoryType type, FileFormat[] formats, Configuration config) {
-            if (type == RepositoryType.Local) return new FSRepository(directory, config);
+        /// <returns>Repository.</returns>
+        public static Repository Create(DirectoryInfo directory, RepositoryType type, Configuration config, Extractor extractionProtocol = Extractor.Default)
+        {
+            if (type == RepositoryType.Local) return new FSRepository(directory, config, extractionProtocol);
             return new NETRepository(directory, config);
         }
 
@@ -83,20 +96,52 @@ namespace Fornax.Net.Index.Storage
         /// Opens the specified repo file.
         /// </summary>
         /// <param name="repoFile">The repo file.</param>
-        /// <returns></returns>
+        /// <param name="repository">The repository.</param>
+        /// <returns>
+        ///   <c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         /// <exception cref="FileLoadException">repoFile</exception>
-        public static Repository Open(FileInfo repoFile) {
-            if (IsValidRepoFile(repoFile)) {
-                return FornaxWriter.Read<FSRepository>(repoFile);
-            } else throw new FileLoadException(nameof(repoFile));
+        public static bool TryOpen(FileInfo repoFile, out Repository repository)
+        {
+            repository = null;
+            if (IsValidRepoFile(repoFile)) return false;
+            try
+            {
+                repository = FornaxWriter.Read<FSRepository>(repoFile);
+                return true;
+            }
+            catch (IOException)
+            {
+                return false;
+            }
         }
 
-        private static bool IsValidRepoFile(FileInfo repoFile) {
+        private static bool IsValidRepoFile(FileInfo repoFile)
+        {
             return repoFile.Extension.Equals(Constants.ExtRepoFile);
         }
-
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        /// <value>The configuration.</value>
         public abstract Configuration Configuration { get; }
+        /// <summary>
+        /// Gets the corpora.
+        /// </summary>
+        /// <value>The corpora.</value>
         public abstract Corpus Corpora { get; }
-        public abstract IEnumerable<IDocument> Documents { get; }
+        /// <summary>
+        /// Enumerates the documents.
+        /// </summary>
+        /// <param name="extractor">The extractor.</param>
+        /// <returns>IEnumerable&lt;IDocument&gt;.</returns>
+        internal abstract IEnumerable<IDocument> EnumerateDocuments();
+
+        /// <summary>
+        /// Gets the repository file.
+        /// </summary>
+        /// <value>The repository file.</value>
+        internal virtual FileInfo RepositoryFile => new FileInfo(_repofilename);
+
+        internal virtual Extractor Protocol => _protocol;
     }
 }

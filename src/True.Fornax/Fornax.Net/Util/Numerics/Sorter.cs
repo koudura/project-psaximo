@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fornax.Net.Util.Numerics
 {
-    internal class Sorter<T>
+   sealed class Sorter<T>
     {
         T[] array;
 

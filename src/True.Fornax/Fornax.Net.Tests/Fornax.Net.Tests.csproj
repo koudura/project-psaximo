@@ -223,6 +223,7 @@
     <Compile Include="Analysis\Tools\SynonymsTest.cs" />
     <Compile Include="Analysis\Tools\SoundexTests.cs" />
     <Compile Include="Analysis\TokenizerTests.cs" />
+    <Compile Include="Analysis\FilterTests.cs" />
     <Compile Include="FormatTests.cs" />
     <Compile Include="FornaxReaderTests.cs" />
     <Compile Include="LZ4Tests.cs" />
@@ -232,9 +233,11 @@
     <Compile Include="Tools\Node.cs" />
     <Compile Include="Tools\BufferTrie.cs" />
     <Compile Include="Tools\ClusterTrie.cs" />
+    <Compile Include="Tools\NgramTest.cs" />
     <Compile Include="TrieTests.cs" />
     <Compile Include="RegexTests.cs" />
     <Compile Include="EditsTests.cs" />
+    <Compile Include="RepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

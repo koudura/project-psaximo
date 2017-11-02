@@ -1,4 +1,13 @@
-﻿/***
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Koudura Mazou
+// Created          : 10-30-2017
+//
+// Last Modified By : Koudura Mazou
+// Last Modified On : 10-31-2017
+// ***********************************************************************
+// <copyright file="Ngram.cs" company="True.Inc">
+/***
 * Copyright (c) 2017 Koudura Ninci @True.Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,6 +29,9 @@
 * SOFTWARE.
 *
 **/
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 
 
 using System;
@@ -38,76 +50,103 @@ namespace Fornax.Net.Analysis.Tools
     /// <summary>
     /// N-Gram representation of string text.
     /// </summary>
-    /// <seealso cref="Fornax.Net.Index.Common.IGrammable" />
-    public sealed class NGram : IGrammable
+    /// <seealso cref="IGram" />
+    /// <seealso cref="java.io.Serializable.__Interface" />
+    [Serializable]
+    [Progress("Ngram", true, Documented = true, Tested = true)]
+    public sealed class Ngram : IGram, java.io.Serializable.__Interface
     {
-        private readonly string text;
-        private int size;
+        private readonly string _text;
+        private readonly string[] _grams;
+        private static uint _size;
+        private static int _count;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NGram"/> class.
-        /// Creates a n-gram collection of size 2.
+        /// Initializes a new instance of the <see cref="Ngram" /> class.
+        /// Creates a n-gram collection of a specific size(unsigned-integer).
+        /// The [NgramModel] represents the n-gram model of specification.
         /// </summary>
-        /// <param name="text">The text.</param>
-        public NGram(string text) : this(text, 2) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NGram"/> class.
-        /// Creates a n-gram collection of (<paramref name="size"/>).
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="size">The size.</param>
+        /// <param name="text">The input text.</param>
+        /// <param name="size">The size of the n-gram.</param>
+        /// <param name="model">The model specification of the n-gram.</param>
+        /// <param name="Isbounded">if set to <c>true</c> A boundary marker [#] is set to the trailing and end bounds of the input
+        /// string which reflects in the n-gram.(i.e #text# =&gt; {#t, te, ex, xt, t#}.)</param>
         /// <exception cref="ArgumentNullException">text</exception>
-        public NGram(string text, uint size) {
+        public Ngram(string text, uint size, NgramModel model, bool Isbounded = false)
+        {
             Contract.Requires(text != null);
-            this.text = text ?? throw new ArgumentNullException(nameof(text));
-            this.size = (int)size;
+
+            _text = text ?? throw new ArgumentNullException(nameof(text));
+            _size = size;
+            _grams = ConstructGrams(text, model, Isbounded);
+            _count = _grams.Length;
         }
 
-        /// <summary>
-        /// Gets the grams of a specific text.
-        /// </summary>
-        /// <value>
-        /// The grams.
-        /// </value>
-        public IEnumerable<string> Grams => GetGrams();
+        private static string[] ConstructGrams(string text, NgramModel model, bool isbounded)
+        {
+            if (isbounded) { return ConstructGrams("#" + text + "#", model); }
+            return ConstructGrams(text, model);
+        }
 
-        /// <summary>
-        /// Gets or sets the size of the grams.
-        /// </summary>
-        /// <value>
-        /// The size.
-        /// </value>
-        public int Size { get { return size; } set { size = value; } }
-
-        ISet<string> GetGrams() {
-
-            string[] list = Regex.Split(text, @"[\s\p{P}]+");
-            List<string> result = new List<string>();
-
-            int l = list.Count();
-
-            if (size > l) {
-                throw new ArgumentOutOfRangeException("n");
+        private static string[] ConstructGrams(string v, NgramModel model)
+        {
+            switch (model)
+            {
+                case NgramModel.Character:
+                    return ConstructGrams(v.ToCharArray(), true);
+                default: return ConstructGrams(Regex.Split(v, "\\s+"), false);
             }
+        }
 
-            for (int i = 0; i < l - size + 1; i++) {
-                StringBuilder sentence = new StringBuilder();
-                for (int j = i; j < i + size; j++) {
-                    sentence.AppendFormat("{0} ", list[j]);
+        private static string[] ConstructGrams<T>(T[] d_str, bool isChar)
+        {
+            int n = d_str.Length;
+            _size = (_size > n) ? (uint)n : _size;
+
+            var captures = new HashSet<string>();
+            for (int i = 0; i < n - _size + 1; i++)
+            {
+                var ctor = new StringBuilder();
+                for (int j = i; j < i + _size; j++)
+                {
+                    ctor.AppendFormat(((isChar) ? "{0}" : "{0} "), d_str[j]);
                 }
-                result.Add(sentence.ToString().TrimEnd(' '));
+                captures.Add(ctor.ToString().TrimEnd());
             }
-            return new HashSet<string>(result);
+            return captures.ToArray();
         }
+
+        /// <summary>
+        /// Gets the n-grams of a specific text.
+        /// </summary>
+        /// <value>The grams.</value>
+        public IEnumerable<string> Grams => _grams;
+
+        /// <summary>
+        /// Gets the size of the n-gram.
+        /// where n = Size.
+        /// </summary>
+        /// <value>The size.</value>
+        public uint Size => _size;
+
+        /// <summary>
+        /// Gets the raw untokenized text of the n-gram.
+        /// </summary>
+        /// <value>The text.</value>
+        public string Text => _text;
+
+        /// <summary>
+        /// Gets the number of produced n-grams.
+        /// </summary>
+        /// <value>The count.</value>
+        public int Count => _count;
 
         /// <summary>
         /// Returns a <see cref="string" /> that represents this NGram
         /// </summary>
-        /// <returns>
-        /// A <see cref="string" /> that represents this NGram.
-        /// </returns>
-        public override string ToString() {
+        /// <returns>A <see cref="string" /> that represents this NGram.</returns>
+        public override string ToString()
+        {
             return Collections.ToString(Grams);
         }
 
@@ -115,22 +154,20 @@ namespace Fornax.Net.Analysis.Tools
         /// Determines whether the specified <see cref="object" />, is equal to this Ngram.
         /// </summary>
         /// <param name="obj">The <see cref="object" /> to compare with this instance.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
-        /// </returns>
-        public override bool Equals(object obj) {
+        /// <returns><c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
-            return (obj is NGram) ? Collections.Equals(((NGram)(obj)).Grams, Grams) : false;
+            return (obj is Ngram) ? Collections.Equals(((Ngram)(obj)).Grams, Grams) : false;
         }
 
         /// <summary>
         /// Returns a hash code/finger-print for this N-Gram.
         /// </summary>
-        /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
-        /// </returns>
-        public override int GetHashCode() {
-            return (int)Adler32.Compute(text);
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        public override int GetHashCode()
+        {
+            return (int)Adler32.Compute(ToString());
         }
     }
 }
