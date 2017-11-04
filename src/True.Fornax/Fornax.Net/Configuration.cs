@@ -55,7 +55,7 @@ namespace Fornax.Net
     [Serializable, ProtoContract]
     public class Configuration : java.io.Serializable.__Interface
     {
-       
+
         private FetchAttribute fetch;
         private CachingMode caching;
         private FileFormat[] fileformats;
@@ -64,8 +64,7 @@ namespace Fornax.Net
 
         private readonly DirectoryInfo user_config_dir;
         private readonly FileInfo user_config_file;
-        private readonly string creationTime;
-
+        private string id;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Configuration"/> class.
@@ -75,17 +74,19 @@ namespace Fornax.Net
         /// <param name="fileFormats">The file formats.</param>
         /// <param name="tokenizer">The tokenizer.</param>
         /// <param name="language">The language.</param>
-        internal Configuration(FetchAttribute fetch, CachingMode caching, FileFormat[] fileFormats, Tokenizer tokenizer, FornaxLanguage language) {
+        internal Configuration(string id, FetchAttribute fetch, CachingMode caching, FileFormat[] fileFormats, Tokenizer tokenizer, FornaxLanguage language)
+        {
+            ConfigFactory.CheckId(ref id);
             this.fetch = fetch;
             this.caching = caching;
             this.language = language;
 
             var fileformatss = new HashSet<FileFormat>(fileFormats).ToArray();
             fileformats = fileformatss;
-            creationTime = DateTime.Now.ToFileTime().ToString();
-            user_config_dir = CreateUserDir();
+            this.id = id;
+            user_config_dir = TryCreate();
             user_config_file = CreateUserFile();
-            this.tokenizer = tokenizer; 
+            this.tokenizer = tokenizer;
 
             Save();
         }
@@ -98,16 +99,17 @@ namespace Fornax.Net
         /// <param name="formats">The formats.</param>
         /// <param name="tokenizer">The tokenizer.</param>
         /// <param name="language">The language.</param>
-        internal Configuration(FetchAttribute fetch, CachingMode caching, FornaxFormat formats, Tokenizer tokenizer, FornaxLanguage language)
-            : this(fetch, caching, formats.GetFormats(), tokenizer, language) {
+        internal Configuration(string id, FetchAttribute fetch, CachingMode caching, FornaxFormat formats, Tokenizer tokenizer, FornaxLanguage language)
+            : this(id, fetch, caching, formats.GetFormats(), tokenizer, language)
+        {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Configuration"/> class.
         /// </summary>
         /// <param name="tokenizer">The tokenizer.</param>
-        internal Configuration(Tokenizer tokenizer)
-            : this(FetchAttribute.Weak, CachingMode.Default, FornaxFormat.Plain, tokenizer, FornaxLanguage.English) { }
+        internal Configuration(string id, Tokenizer tokenizer)
+            : this(id, FetchAttribute.Weak, CachingMode.Default, FornaxFormat.Plain, tokenizer, FornaxLanguage.English) { }
 
         /// <summary>
         /// Gets the working directory.
@@ -121,7 +123,7 @@ namespace Fornax.Net
         /// </summary>
         /// <value>The cache mode.</value>
         /// <param name="newCachingMode"></param>
-        public CachingMode CacheMode {get { return caching; } set { caching = value; } }
+        public CachingMode CacheMode { get { return caching; } set { caching = value; } }
 
         /// <summary>
         /// Sets the specified <see cref="FetchAttribute" /> as this configs FetchAtrribute.
@@ -142,7 +144,7 @@ namespace Fornax.Net
         /// <see cref="" />
         /// </summary>
         /// <value>The identifier.</value>
-        public string ID => creationTime;
+        public string ID => id;
 
         /// <summary>
         /// Gets or sets the tokenizer.
@@ -156,12 +158,14 @@ namespace Fornax.Net
         /// <value>The formats.</value>
         internal FileFormat[] Formats => fileformats;
 
-        private DirectoryInfo CreateUserDir() {
-            var str = string.Format(@"User[{0}].config", ID);
+        private DirectoryInfo TryCreate()
+        {
+            var str = Path.Combine(Constants.BaseDirectory.FullName, string.Format(@"User[{0}].config", id));
             return Constants.GetCurrentDirectory(str);
         }
 
-        private FileInfo CreateUserFile() {
+        private FileInfo CreateUserFile()
+        {
             var loc = Path.Combine(WorkingDirectory.FullName, $"_.config");
             return new FileInfo(loc);
         }
@@ -172,16 +176,18 @@ namespace Fornax.Net
         /// ID would be changed to id of new configuration.
         /// </summary>
         /// <returns>A new  configuration with default settings and new id;</returns>
-        public Configuration Refresh() {
+        public Configuration Refresh(string newConfigId = null)
+        {
             Directory.Delete(user_config_dir.FullName);
-            return new Configuration(tokenizer);
+            return new Configuration(newConfigId, tokenizer);
         }
 
         /// <summary>
         /// Resets this configuration to fornax.net default.(<see cref="ConfigFactory.Default" />)
         /// NOTE: Id is maintained.
         /// </summary>
-        public void ResetToDefault() {
+        public void ResetToDefault()
+        {
             fetch = FetchAttribute.Weak;
             caching = CachingMode.Default;
             language = FornaxLanguage.English;
@@ -193,7 +199,8 @@ namespace Fornax.Net
         /// Adds the format.
         /// </summary>
         /// <param name="fileFormats">The file formats.</param>
-        public void AddFormat(FileFormat[] fileFormats) {
+        public void AddFormat(FileFormat[] fileFormats)
+        {
             var set = new HashSet<FileFormat>(fileFormats);
             set.AddAll(fileFormats);
             fileformats = set.ToArray();
@@ -203,7 +210,8 @@ namespace Fornax.Net
         /// Removes the format.
         /// </summary>
         /// <param name="fileFormat">The file format.</param>
-        public void RemoveFormat(FileFormat fileFormat) {
+        public void RemoveFormat(FileFormat fileFormat)
+        {
             var lst = new HashSet<FileFormat>(fileformats);
             lst.RemoveWhere(x => lst.Contains(fileFormat));
             fileformats = lst.ToArray();
@@ -212,7 +220,8 @@ namespace Fornax.Net
         /// <summary>
         /// Saves this instance.
         /// </summary>
-        public void Save() {
+        public void Save()
+        {
             FornaxWriter.Write(this, user_config_file);
         }
     }

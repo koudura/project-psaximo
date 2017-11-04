@@ -65,7 +65,7 @@ namespace Fornax.Net.Index.Common
         private static FileInfo FornaxEdits = Constants.FornaxEditFile;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EditFactory"/> class.
+        /// Initializes a new instance of the <see cref="EditFactory" /> class.
         /// </summary>
         /// <param name="edits_file">The edits file.</param>
         public EditFactory(string edits_file)
@@ -102,23 +102,41 @@ namespace Fornax.Net.Index.Common
             await FornaxWriter.WriteAsync(index, edits_file);
         }
 
+        /// <summary>
+        /// get index as an asynchronous operation.
+        /// </summary>
+        /// <returns>Task&lt;EditIndex&gt;.</returns>
         public async Task<EditIndex> GetIndexAsync()
         {
             if (edits_file.Length <= 0 || !edits_file.Exists) return new EditIndex();
             return await FornaxWriter.ReadAsync<EditIndex>(edits_file.FullName);
         }
 
+        /// <summary>
+        /// Gets the index.
+        /// </summary>
+        /// <returns>EditIndex.</returns>
         public EditIndex GetIndex()
         {
             if (edits_file.Length <= 0 || !edits_file.Exists) return new EditIndex();
             return FornaxWriter.Read<EditIndex>(edits_file.FullName);
         }
 
+        /// <summary>
+        /// Initializes the index.
+        /// </summary>
+        /// <param name="words">The words.</param>
+        /// <returns>EditIndex.</returns>
         public EditIndex InitIndex(IEnumerable<string> words)
         {
             return InitIndex(words.ToArray());
         }
 
+        /// <summary>
+        /// Initializes the index.
+        /// </summary>
+        /// <param name="words">The words.</param>
+        /// <returns>EditIndex.</returns>
         public EditIndex InitIndex(string[] words)
         {
             return InitIndex(words, edits_file);
@@ -128,6 +146,7 @@ namespace Fornax.Net.Index.Common
         /// Gets the index of the edit.
         /// </summary>
         /// <param name="words">The words.</param>
+        /// <param name="editsFile">The edits file.</param>
         /// <returns>EditIndex.</returns>
         /// <exception cref="ArgumentNullException">words</exception>
         public static EditIndex InitIndex(IEnumerable<string> words, FileInfo editsFile)
@@ -141,11 +160,12 @@ namespace Fornax.Net.Index.Common
         /// Gets the index of the edit.
         /// </summary>
         /// <param name="words">The words.</param>
+        /// <param name="editsFile">The edits file.</param>
         /// <returns>EditIndex.</returns>
         /// <exception cref="ArgumentNullException">words</exception>
         public static EditIndex InitIndex(string[] words, FileInfo editsFile)
         {
-            //Runtime of this Algorithm = (O(n!)) which is ridiculus.
+            //Runtime of this Algorithm = (O(n!)) which is ridiculous.
 
             Contract.Requires(words != null);
             if (words == null) throw new ArgumentNullException(nameof(words));
@@ -226,6 +246,45 @@ namespace Fornax.Net.Index.Common
             return setFound;
         }
 
+        /// <summary>
+        /// Retrieves the common.
+        /// </summary>
+        /// <param name="word">The word.</param>
+        /// <param name="collection">The collection.</param>
+        /// <param name="threshold">The threshold.</param>
+        /// <returns>ISet&lt;KeyValuePair&lt;System.String, System.Single&gt;&gt;.</returns>
+        /// <exception cref="ArgumentNullException">collection</exception>
+        public static ISet<KeyValuePair<string,float>> RetrieveCommon(string word, IEnumerable<string> collection, float threshold = 0.5f)
+        {
+            Contract.Requires(word != null && collection != null);
+            if (word == null || collection == null) throw new ArgumentNullException(nameof(collection));
+
+            word = word.ToLower(); var lev = new LevenshteinEdit();
+            var comparer = new EditIndex();
+           
+            var setFound = new SortedSet<KeyValuePair<string, float>>(comparer);
+            
+
+            Contract.Requires(threshold >= 0.5f);
+            if (threshold < 0.5f) { threshold = 0.5f; }
+
+            foreach (var wrd in collection)
+            {
+                var score = lev.GetDistance(word, wrd);
+                if(score >= threshold)
+                {
+                    setFound.Add(new KeyValuePair<string, float>(wrd, score));
+                }
+            }
+            return setFound;
+        }
+
+        /// <summary>
+        /// Retrieves the common.
+        /// </summary>
+        /// <param name="searchKey">The search key.</param>
+        /// <param name="threshold">The threshold.</param>
+        /// <returns>ISet&lt;KeyValuePair&lt;System.String, System.Single&gt;&gt;.</returns>
         public ISet<KeyValuePair<string, float>> RetrieveCommon(string searchKey, float threshold = 0.5f)
         {
             return RetrieveCommon(searchKey, GetIndex(), threshold);
@@ -235,6 +294,7 @@ namespace Fornax.Net.Index.Common
         /// get edit index as an asynchronous operation.
         /// </summary>
         /// <param name="words">The words.</param>
+        /// <param name="editsFile">The edits file.</param>
         /// <returns>Task&lt;EditIndex&gt;.</returns>
         public static async Task<EditIndex> InitIndexAsync(IEnumerable<string> words, FileInfo editsFile)
         {
@@ -280,7 +340,7 @@ namespace Fornax.Net.Index.Common
         /// </summary>
         static EditFactory()
         {
-            BuildFornaxEdits();
+        //    BuildFornaxEdits();
         }
     }
 

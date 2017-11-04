@@ -68,7 +68,7 @@ namespace Fornax.Net.Util
         /// <summary>
         /// The gen op brokers
         /// </summary>
-        internal const string GenOp_Brokers = " `^+=\\{};<,/[]#\t\n\r\f";
+        internal const string GenOp_Brokers = " `^+=\\{};<,/[]#\t\n\r\f\v";
         /// <summary>
         /// The query op broker
         /// </summary>
@@ -76,7 +76,7 @@ namespace Fornax.Net.Util
         /// <summary>
         /// The document op broker
         /// </summary>
-        internal const string DocOP_Broker = "-.@'_";
+        internal const string DocOP_Broker = "-.@'";
 
         /// <summary>
         /// Gets the brokers.
@@ -140,33 +140,22 @@ namespace Fornax.Net.Util
         #region fornax files
 
         /// <summary>
-        /// The fornax gram file
-        /// </summary>
-        internal static FileInfo FornaxGramFile = GetCurrentFile(BaseDirectory, "__.gmx");
-        /// <summary>
         /// The fornax edit file
         /// </summary>
-        internal static FileInfo FornaxEditFile = GetCurrentFile(BaseDirectory, "__.edx");
+        internal static FileInfo FornaxEditFile = GetCurrentFile(BaseDirectory, "_.edx");
         /// <summary>
         /// The fornax logs file
         /// </summary>
-        internal static FileInfo FornaxLogsFile = GetCurrentFile(BaseDirectory, "__.lgx");
-        /// <summary>
-        /// The fornax compressed gram file
-        /// </summary>
-        internal static FileInfo FornaxCompressedGramFile = GetCurrentFile(BaseDirectory, "__.zgmx");
+        internal static FileInfo FornaxLogsFile = GetCurrentFile(BaseDirectory, "_.lgx");
         /// <summary>
         /// The fornax trie file
         /// </summary>
-        internal static FileInfo FornaxTrieFile = GetCurrentFile(BaseDirectory, "__.trx");
+        internal static FileInfo FornaxTrieFile = GetCurrentFile(BaseDirectory, "_.trix");
         /// <summary>
         /// The fornax mod file
         /// </summary>
-        internal static FileInfo FornaxModFile = GetCurrentFile(BaseDirectory, "__.mdx");
-        /// <summary>
-        /// The fornax vocab file
-        /// </summary>
-        internal static FileInfo FornaxVocabFile = GetCurrentFile(BaseDirectory, "__.dix");
+        internal static FileInfo FornaxModFile = GetCurrentFile(BaseDirectory, "_.mdx");
+
 
         #endregion 
 

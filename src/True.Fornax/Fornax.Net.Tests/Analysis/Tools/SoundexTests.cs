@@ -21,7 +21,8 @@ namespace Fornax.Net.Tests.Analysis.Tools
             var dex3 = SoundexFactory.GetSoundex("phillz");
             Console.WriteLine($"{dex3.Word} = {dex3.Value}");
 
-            
+            var vdef = SoundexFactory.Default;
+            var acq = SoundexFactory.GetWords("touch", vdef);
         }
     }
 }

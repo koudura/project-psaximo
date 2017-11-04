@@ -53,7 +53,7 @@ namespace Fornax.Net.Index
     /// <seealso cref="System.IEquatable{Fornax.Net.Index.Term}" />
     /// <seealso cref="java.io.Serializable.__Interface" />
     [Serializable, ProtoContract]
-    public sealed class Term : IEquatable<Term>, IComparable<Term>, java.io.Serializable.__Interface
+    public sealed class Term : IEquatable<Term>, ICloneable, IComparable<Term>, java.io.Serializable.__Interface
     {
         [ProtoMember(1)]
         private readonly string term;
@@ -158,6 +158,11 @@ namespace Fornax.Net.Index
         public int CompareTo(Term other)
         {
             return term.CompareTo(other.term);
+        }
+
+        public object Clone()
+        {
+            return term.Clone();
         }
 
         /// <summary>

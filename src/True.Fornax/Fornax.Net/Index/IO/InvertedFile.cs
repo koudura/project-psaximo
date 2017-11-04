@@ -56,7 +56,17 @@ namespace Fornax.Net.Index.IO
         /// The index
         /// </summary>
         [ProtoMember(1)]
-        private readonly IDictionary<Term, Postings> index = new SortedList<Term, Postings>();
+        private readonly IDictionary<Term, Postings> index;
+
+        public InvertedFile()
+        {
+            index = new SortedList<Term, Postings>();
+        }
+
+        private InvertedFile(IDictionary<Term, Postings> index)
+        {
+            this.index = index;
+        }
 
         /// <summary>
         /// Gets or sets the <see cref="Postings" /> with the specified key.
@@ -78,10 +88,10 @@ namespace Fornax.Net.Index.IO
         internal ICollection<Postings> Values => index.Values;
 
         /// <summary>
-        /// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
+        /// Gets the number of elements contained in the <see cref="InvertedFile" />.
         /// </summary>
         /// <value>The count.</value>
-        public int Count => index.Count;
+        public int Size => index.Count;
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
@@ -114,12 +124,11 @@ namespace Fornax.Net.Index.IO
         }
 
         /// <summary>
-        /// Creates a new object that is a copy of the current instance.
+        /// Creates a new object that is a copy of the current instance of <see cref="InvertedFile"/>.
         /// </summary>
         /// <returns>A new object that is a copy of this instance.</returns>
         public object Clone() {
-            var clone = ((ICloneable)(index)).Clone();
-            return (InvertedFile)clone;
+            return new InvertedFile(index);
         }
 
         /// <summary>
@@ -150,9 +159,9 @@ namespace Fornax.Net.Index.IO
         }
 
         /// <summary>
-        /// Returns an enumerator that iterates through the collection.
+        /// Returns an enumerator that iterates through the inverted index file.
         /// </summary>
-        /// <returns>An enumerator that can be used to iterate through the collection.</returns>
+        /// <returns>An enumerator that can be used to iterate through the inverted file..</returns>
         public IEnumerator<KeyValuePair<Term, Postings>> GetEnumerator() {
             return index.GetEnumerator();
         }

@@ -80,7 +80,7 @@ namespace Fornax.Net.Index.Storage
             _repofilename = Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile);
             _corpus = InitCorpus();
 
-            Task.WaitAll(Create());
+            Task.WaitAll(CreateorUpdate());
         }
 
         /// <summary>
@@ -97,10 +97,10 @@ namespace Fornax.Net.Index.Storage
 
             _files = GetFiles(filewrappers, config.Formats);
             _config = config;
-            _repofilename = Path.Combine(config.WorkingDirectory.FullName, "_"+ Cst.ExtRepoFile);
+            _repofilename = Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile);
             _corpus = InitCorpus();
-         
-            Task.WaitAll(Create());
+
+            Task.WaitAll(CreateorUpdate());
         }
 
         /// <summary>
@@ -120,8 +120,8 @@ namespace Fornax.Net.Index.Storage
             _repofilename = Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile);
             _protocol = extractionProtocol;
             _corpus = InitCorpus();
-                
-            Task.WaitAll(Create());
+
+            Task.WaitAll(CreateorUpdate());
         }
 
 
@@ -135,11 +135,11 @@ namespace Fornax.Net.Index.Storage
         {
             _files = GetFiles(directory, config.Formats);
             _config = config;
-            _repofilename = Path.Combine(config.WorkingDirectory.FullName, "_"+ Cst.ExtRepoFile);
+            _repofilename = Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile);
             _protocol = extractionProtocol;
             _corpus = InitCorpus();
-     
-            Task.WaitAll(Create());
+
+            Task.WaitAll(CreateorUpdate());
         }
 
         private FSRepository()
@@ -150,7 +150,18 @@ namespace Fornax.Net.Index.Storage
         /// Gets the corpora.
         /// </summary>
         /// <value>The corpora.</value>
-        public override Corpus Corpora => _corpus;
+        public override Corpus Corpus => _corpus;
+
+        public override IList<IDocument> Corpora {
+            get {
+                if(_collection == null)
+                {
+                    _collection = EnumerateDocuments().ToList(); Task.WaitAll(CreateorUpdate());
+                }
+                return _collection;
+            }
+        }
+
 
         /// <summary>
         /// Gets the documents in the repository.
@@ -189,7 +200,7 @@ namespace Fornax.Net.Index.Storage
 
         private async Task<IEnumerable<FSDocument>> InitDocuments(Extractor extProt)
         {
-            return await Task.Factory.StartNew(() => YieldDocuments(extProt));          
+            return await Task.Factory.StartNew(() => YieldDocuments(extProt));
         }
 
         private static IList<FSDocument> YieldDocuments(Extractor ext)
@@ -267,9 +278,9 @@ namespace Fornax.Net.Index.Storage
             return GetFiles(files.ToArray(), formats);
         }
 
-        private async Task Create()
+        private async Task CreateorUpdate()
         {
-           await FornaxWriter.WriteAsync<Repository>(this, _repofilename);
+            await FornaxWriter.WriteAsync<Repository>(this, _repofilename);
         }
 
         /// <summary>
@@ -288,7 +299,7 @@ namespace Fornax.Net.Index.Storage
         /// <returns><c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
-            if(obj != null && obj is Repository)
+            if (obj != null && obj is Repository)
             {
                 return ((Repository)(obj)).RepositoryFile.FullName == RepositoryFile.FullName;
             }

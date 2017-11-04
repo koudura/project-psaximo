@@ -1,4 +1,17 @@
-﻿//// ***********************************************************************
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Koudura Mazou
+// Created          : 10-29-2017
+//
+// Last Modified By : Koudura Mazou
+// Last Modified On : 11-02-2017
+// ***********************************************************************
+// <copyright file="Postings.cs" company="Microsoft">
+//     Copyright © Microsoft 2017
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+//// ***********************************************************************
 //// Assembly         : Fornax.Net
 //// Author           : Kodex Zone
 //// Created          : 10-27-2017
@@ -49,11 +62,10 @@ namespace Fornax.Net.Index
     /// <summary>
     /// Postings list representation for fornax.net
     /// </summary>
+    /// <seealso cref="IEnumerable" />
     /// <seealso cref="ICloneable" />
     /// <seealso cref="Collections.Generic.IEnumerable{KeyValuePair{ulong, TermVector}}" />
-    /// <seealso cref="IComparable{Postings}" />
     /// <seealso cref="java.io.Serializable.__Interface" />
-    /// <seealso cref="IEnumerable" />
     /// <seealso cref="IComparable{Postings}" />
     /// <seealso cref="IDictionary{System.UInt64, TermVector}" />
     [Serializable]
@@ -92,6 +104,11 @@ namespace Fornax.Net.Index
             {
                 Postdictionary.Add(Docid, vector);
             }
+        }
+
+        private Postings(IDictionary<ulong, TermVector> postdictionary)
+        {
+            Postdictionary = postdictionary;
         }
 
         /// <summary>
@@ -271,7 +288,7 @@ namespace Fornax.Net.Index
         /// <returns>A new object that is a copy of this instance of postings list.</returns>
         public object Clone()
         {
-            return ((ICloneable)(Postdictionary)).Clone();
+            return new Postings(Postdictionary);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

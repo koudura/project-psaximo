@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Fornax.Net.Query;
+using Fornax.Net.Search;
 
 namespace Fornax.Net.Analysis
 {
-    class SimpleAnalyzer : Analyzer
+    public class SimpleAnalyzer : Analyzer
     {
-        public SimpleAnalyzer(SearchMode free) {
-            base.modeOfsearch = free;
+        QueryMode mode = QueryMode.Simple;
+        internal QueryType QueryType { get; private set; }
+
+        public SimpleAnalyzer(string query, SearchMode modeOfSearch, Expand modeOfExpansion)
+            : base(query, modeOfSearch, modeOfExpansion)
+        {
+
         }
 
-        public SimpleAnalyzer() { }
+        private void DetectQuery()
+        {
+            Automaton automata = new Automaton(Query);
+            QueryType = automata.GetClass();
+        }
+
     }
 }

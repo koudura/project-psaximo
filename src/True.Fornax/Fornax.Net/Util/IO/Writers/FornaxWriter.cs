@@ -115,7 +115,7 @@ namespace Fornax.Net.Util.IO.Writers
                 throw new ArgumentNullException(nameof(file));
             }
             lock (file) {
-                using (var stream = new FileStream(file.FullName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite)) {
+                using (var stream = new FileStream(file.FullName, FileMode.Create, FileAccess.Write, FileShare.ReadWrite)) {
                     Write(@object, stream);
                 }
             }

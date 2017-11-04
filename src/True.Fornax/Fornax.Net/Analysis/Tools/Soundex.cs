@@ -53,7 +53,7 @@ namespace Fornax.Net.Analysis.Tools
     /// </summary>
     [Serializable, ProtoContract]
     [Progress("Soundex", true, Documented = true, Tested = true)]
-    public sealed class Soundex
+    public sealed class Soundex : IComparable<Soundex>
     {
 
         private string token_word;
@@ -75,7 +75,8 @@ namespace Fornax.Net.Analysis.Tools
         /// Initializes a new instance of the <see cref="Soundex"/> class.
         /// </summary>
         /// <param name="word">The word.</param>
-        internal Soundex(Token word) : this(word.Value) {
+        internal Soundex(Token word) : this(word.Value)
+        {
         }
 
         /// <summary>
@@ -83,31 +84,36 @@ namespace Fornax.Net.Analysis.Tools
         /// </summary>
         /// <param name="token">The token.</param>
         /// <exception cref="ArgumentException">token</exception>
-        internal Soundex(string token) {
+        internal Soundex(string token)
+        {
             Contract.Requires(token != null && token.IsWord());
-            if (token == null || !token.IsWord()) throw new ArgumentException($"{nameof(token)} is not a valid word");
+            if (token == null) throw new ArgumentException($"{nameof(token)} is not a valid word");
 
-            token_word = token.ToUpper();
+            token_word = (token.IsWord()) ? token.ToUpper() : "";
         }
 
         /// <summary>
         /// Generates this the soundex code for a word.
         /// </summary>
         /// <returns>the 4-char soundex code for <see cref="Word"/>.</returns>
-        private string Generate() {
+        private string Generate()
+        {
             char[] text = token_word.ToCharArray();
 
             //step 1 - map to soundex table
-            for (int i = 1; i < text.Length; i++) {
+            for (int i = 1; i < text.Length; i++)
+            {
                 text[i] = Digit(text[i]);
             }
 
             //step 2- remove dualities
             StringBuilder temp_text = new StringBuilder();
             temp_text.Append(text[0]);
-            for (int i = 1; i < text.Length - 1; i++) {
+            for (int i = 1; i < text.Length - 1; i++)
+            {
                 int j = i; char rep = text[i];
-                while ((j < text.Length - 1) && text[j] == text[j + 1]) {
+                while ((j < text.Length - 1) && text[j] == text[j + 1])
+                {
                     rep = text[j];
                     j++;
                 }
@@ -116,7 +122,7 @@ namespace Fornax.Net.Analysis.Tools
             }
 
             //step3- shift zeroes
-            var temp = temp_text.ToString().ToCharArray(); 
+            var temp = temp_text.ToString().ToCharArray();
             Arrays.RemoveAll(ref temp, '0');
             var f = new string(temp).PadRight(5, '0');
 
@@ -147,20 +153,22 @@ namespace Fornax.Net.Analysis.Tools
 
         #endregion
 
-        private char Digit(char ch) {
+        private char Digit(char ch)
+        {
             ch = Char.ToUpper(ch);
             var classes = from vals in SoundexTable
                           where vals.Value.Contains(ch)
                           select vals.Key;
-            return classes.First();
+            return classes.FirstOrDefault();
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
-        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
-        public override string ToString() {
-            return $"Soundex[{Word} : {Value}]";
+        /// <returns>A <see cref="string" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            return $"Soundex[{Word} :: {Value}]";
         }
 
         /// <summary>
@@ -168,10 +176,12 @@ namespace Fornax.Net.Analysis.Tools
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
         /// <returns><c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             if (obj == this) return true;
-            if(obj is Soundex) {
+            if (obj is Soundex)
+            {
                 return (((Soundex)obj).value.Equals(value));
             }
             return false;
@@ -181,8 +191,20 @@ namespace Fornax.Net.Analysis.Tools
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return value.GetHashCode();
+        }
+
+        /// <summary>
+        /// Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+        /// </summary>
+        /// <param name="other">An object to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings: Value Meaning Less than zero This instance precedes <paramref name="other" /> in the sort order.  Zero This instance occurs in the same position in the sort order as <paramref name="other" />. Greater than zero This instance follows <paramref name="other" /> in the sort order.</returns>
+        public int CompareTo(Soundex other)
+        {
+            return Value.CompareTo(other.Value);
+
         }
     }
 }

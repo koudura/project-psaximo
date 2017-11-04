@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Fornax.Net.Query;
+using Fornax.Net.Search;
 
 namespace Fornax.Net.Analysis
 {
     class AdvancedAnalyzer : Analyzer
     {
 
-        public AdvancedAnalyzer(SearchMode modeOfsearch) {
-            base.modeOfsearch = modeOfsearch;
+        public AdvancedAnalyzer(string query, SearchMode modeOfsearch, Expand expansionRule)
+            : base(query, modeOfsearch, expansionRule)
+        {
+
         }
 
 

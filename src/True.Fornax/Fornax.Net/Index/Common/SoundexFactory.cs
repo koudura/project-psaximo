@@ -30,8 +30,11 @@ using System.Threading.Tasks;
 
 using Fornax.Net.Analysis.Tools;
 using Fornax.Net.Common.Similarity;
-using Fornax.Net.Properties;
+using Fornax.Net.Util.IO.Writers;
+using Fornax.Net.Util.System;
 using Fornax.Net.Util.Text;
+
+using Cst = Fornax.Net.Util.Constants;
 using Token = Fornax.Net.Analysis.Tokenization.Token;
 
 namespace Fornax.Net.Index.Common
@@ -48,6 +51,7 @@ namespace Fornax.Net.Index.Common
         ICollection<string> words;
         bool isCollection;
         private static SoundexIndex @default;
+        private readonly static FileInfo soundexFile = Cst.GetCurrentFile(Cst.BaseDirectory, "_.snx");
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SoundexFactory"/> class.
@@ -99,14 +103,7 @@ namespace Fornax.Net.Index.Common
         public static SoundexIndex Default => @default = InitAsync().Result;
 
         private static SoundexIndex Init() {
-            @default = new SoundexIndex();
-            StringTokenizer tokenizer = new StringTokenizer(dictionary.en_voc);
-            while (tokenizer.HasMoreTokens()) {
-                string token = tokenizer.CurrentToken;
-                var sound = new Soundex(token);
-                Add(token, sound, ref @default);
-            }
-            return @default;
+            return GetIndex(ConfigFactory.GetVocabulary(FornaxLanguage.English).Dictionary);
         }
 
         private static async Task<SoundexIndex> InitAsync() {
@@ -165,7 +162,9 @@ namespace Fornax.Net.Index.Common
         /// The Soundex index of the <paramref name="words" />.
         /// </returns>
         public static async Task<SoundexIndex> GetIndexAsync(IEnumerable<string> w) {
-            return await Task.Factory.StartNew(() => GetIndex(w));
+            var ind = await Task.Factory.StartNew(() => GetIndex(w));
+            Task.WaitAll(WriteAsync(ind));
+            return ind;
         }
 
         private static void Add(string word, Soundex sound, ref SoundexIndex index) {
@@ -227,6 +226,25 @@ namespace Fornax.Net.Index.Common
                 return index[soundex];
             } else { return new List<string>(); }
         }
+
+
+        /// <summary>
+        /// Gets All words that have a common soundex code.
+        /// i.e all words that have a phonetic mismatch possibility.
+        /// </summary>
+        /// <param name="word">The word.</param>
+        /// <param name="index">The index.</param>
+        /// <returns>IList&lt;System.String&gt;.</returns>
+        /// <exception cref="ArgumentNullException">soundex</exception>
+        public static IList<string> GetWords(string word, SoundexIndex index)
+        {
+            Contract.Requires(word != null);
+            if (word == null) throw new ArgumentNullException(nameof(word));
+            return GetWords(new Soundex(word), index);
+        }
+
+
+
 
         /// <summary>
         /// Returns the score for which two words sound alike.
@@ -303,6 +321,16 @@ namespace Fornax.Net.Index.Common
                 return true;
             }
             return false;
+        }
+
+        public static async Task<SoundexIndex> ReadAsync()
+        {
+            return await FornaxWriter.ReadAsync<SoundexIndex>(soundexFile.FullName);
+        }
+
+        public static async Task WriteAsync(SoundexIndex index)
+        {
+            await FornaxWriter.WriteAsync(index, soundexFile);
         }
 
         /// <summary>

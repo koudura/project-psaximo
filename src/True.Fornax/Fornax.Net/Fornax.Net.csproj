@@ -266,7 +266,6 @@
     <Compile Include="Analysis\AdvancedAnalyzer.cs" />
     <Compile Include="Analysis\Analyzer.cs" />
     <Compile Include="Analysis\Automaton.cs" />
-    <Compile Include="Analysis\Explanation.cs" />
     <Compile Include="Analysis\Filters\Filter.cs" />
     <Compile Include="Analysis\Filters\LinksFilter.cs" />
     <Compile Include="Analysis\Filters\OperatorsFilter.cs" />
@@ -279,6 +278,7 @@
     <Compile Include="Analysis\Tokenization\CharTokenizer.cs" />
     <Compile Include="Analysis\Tokenization\enum.cs" />
     <Compile Include="Analysis\Tokenization\NumericTokenizer.cs" />
+    <Compile Include="Analysis\Tokenization\PerFieldTokenizer.cs" />
     <Compile Include="Analysis\Tokenization\Token.cs" />
     <Compile Include="Analysis\Tokenization\Tokenizer.cs" />
     <Compile Include="Analysis\Tokenization\TokenStream.cs" />
@@ -331,12 +331,11 @@
     <Compile Include="Index\Common\SynsetFactory.cs" />
     <Compile Include="Index\Common\SynsetIndex.cs" />
     <Compile Include="Index\Enums.cs" />
-    <Compile Include="Index\IO\IndexCompressor.cs" />
+    <Compile Include="Index\IO\IndexSearcher.cs" />
     <Compile Include="Index\IO\IndexFactory.cs" />
     <Compile Include="Index\IO\InvertedFile.cs" />
     <Compile Include="Index\IO\Segment.cs" />
     <Compile Include="Index\Postings.cs" />
-    <Compile Include="Index\PostingsFactory.cs" />
     <Compile Include="Index\Storage\FSRepository.cs" />
     <Compile Include="Index\Storage\NETRepository.cs" />
     <Compile Include="Index\Storage\Repository.cs" />
@@ -352,12 +351,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dictionary.resx</DependentUpon>
     </Compile>
-    <Compile Include="Query\Enums.cs" />
-    <Compile Include="Query\FornaxQuery.cs" />
-    <Compile Include="Query\FreeTextQuery.cs" />
-    <Compile Include="Query\Query.cs" />
-    <Compile Include="Query\QueryBuilder.cs" />
-    <Compile Include="Search\IndexSearcher.cs" />
+    <Compile Include="Search\Enums.cs" />
+    <Compile Include="Search\FornaxQuery.cs" />
+    <Compile Include="Search\FreeTextQuery.cs" />
+    <Compile Include="Search\Query.cs" />
+    <Compile Include="Search\QueryBuilder.cs" />
+    <Compile Include="Search\Ranker.cs" />
+    <Compile Include="Search\WildCardQuery.cs" />
     <Compile Include="Search\Vector.cs" />
     <Compile Include="Search\Weight.cs" />
     <Compile Include="Util\Collections\Arrays.cs" />
@@ -565,30 +565,6 @@
     <EmbeddedResource Include="Lib\protobuf-net.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Content Include="Lib\system\System.AppContext.dll" />
-    <Content Include="Lib\system\System.Console.dll" />
-    <Content Include="Lib\system\System.Diagnostics.Tracing.dll" />
-    <Content Include="Lib\system\System.Globalization.Calendars.dll" />
-    <Content Include="Lib\system\System.IO.Compression.dll" />
-    <Content Include="Lib\system\System.IO.Compression.ZipFile.dll" />
-    <Content Include="Lib\system\System.IO.dll" />
-    <Content Include="Lib\system\System.IO.FileSystem.dll" />
-    <Content Include="Lib\system\System.IO.FileSystem.Primitives.dll" />
-    <Content Include="Lib\system\System.Linq.dll" />
-    <Content Include="Lib\system\System.Linq.Expressions.dll" />
-    <Content Include="Lib\system\System.Net.Http.dll" />
-    <Content Include="Lib\system\System.Net.Sockets.dll" />
-    <Content Include="Lib\system\System.Reflection.dll" />
-    <Content Include="Lib\system\System.Runtime.dll" />
-    <Content Include="Lib\system\System.Runtime.Extensions.dll" />
-    <Content Include="Lib\system\System.Runtime.InteropServices.dll" />
-    <Content Include="Lib\system\System.Runtime.InteropServices.RuntimeInformation.dll" />
-    <Content Include="Lib\system\System.Security.Cryptography.Algorithms.dll" />
-    <Content Include="Lib\system\System.Security.Cryptography.Encoding.dll" />
-    <Content Include="Lib\system\System.Security.Cryptography.Primitives.dll" />
-    <Content Include="Lib\system\System.Security.Cryptography.X509Certificates.dll" />
-    <Content Include="Lib\system\System.Text.RegularExpressions.dll" />
-    <Content Include="Lib\system\System.Xml.ReaderWriter.dll" />
     <EmbeddedResource Include="Lib\tika\TikaOnDotNet.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>

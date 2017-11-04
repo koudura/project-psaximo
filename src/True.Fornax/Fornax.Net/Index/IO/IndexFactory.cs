@@ -38,15 +38,11 @@ namespace Fornax.Net.Index.IO
         /// <summary>
         /// The inverted index
         /// </summary>
-        private InvertedFile invertedIndex;
+        private InvertedFile _invertedIndex;
         /// <summary>
         /// The corpus
         /// </summary>
-        private Corpus corpus;
-        /// <summary>
-        /// The file
-        /// </summary>
-        private readonly FileInfo file;
+        private Repository _repo;
         /// <summary>
         /// The configuration
         /// </summary>
@@ -59,35 +55,18 @@ namespace Fornax.Net.Index.IO
         /// <param name="file">The file.</param>
         /// <param name="config">The configuration.</param>
         /// <exception cref="ArgumentNullException">file</exception>
-        public IndexFactory(FileInfo file, Configuration config)
+        public IndexFactory(Configuration config)
         {
-            Contract.Requires(file != null);
-            this.file = file ?? throw new ArgumentNullException(nameof(file));
+            Contract.Requires(config != null);
+            _config = config ?? throw new ArgumentNullException(nameof(config));
 
-            invertedIndex = GetInvertedFile(file).Result;
-            corpus = GetCorpus(file).Result;
+            var load = LoadAsync(config).Result;
+
+            _repo = load.Repository;
+            _invertedIndex = load.Index;
             _config = config;
         }
 
-        /// <summary>
-        /// Gets the corpus from disk.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <returns>Task&lt;Corpus&gt;.</returns>
-        public static async Task<Corpus> GetCorpus(FileInfo file)
-        {
-            return await FornaxWriter.BufferReadAsync<Corpus>(file);
-        }
-
-        /// <summary>
-        /// Gets the inverted file from disk.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <returns>Task&lt;InvertedFile&gt;.</returns>
-        public static async Task<InvertedFile> GetInvertedFile(FileInfo file)
-        {
-            return await FornaxWriter.BufferReadAsync<InvertedFile>(file);
-        }
 
         /// <summary>
         /// Adds the specified TokenStream to a specified inverted index through a document {given document id}.
@@ -217,7 +196,7 @@ namespace Fornax.Net.Index.IO
         /// <param name="index">The index to be Updated.</param>
         public static void Add(Repository repository, InvertedFile index)
         {
-            foreach (var doc in repository.EnumerateDocuments())
+            foreach (var doc in repository.Corpora)
             {
                 Add(doc, index, repository.Configuration);
             }
@@ -234,13 +213,13 @@ namespace Fornax.Net.Index.IO
         /// <exception cref="ArgumentNullException">index
         /// or
         /// document</exception>
-        public static void Delete(IDocument document, InvertedFile index)
+        public static void Delete(IDocument document, InvertedFile index, Repository repository)
         {
             Contract.Requires(document != null && index != null);
             if (index == null) throw new ArgumentNullException(nameof(index));
             if (document == null) throw new ArgumentNullException(nameof(document));
 
-            Delete(document.ID, index);
+            Delete(document.ID, index, repository);
         }
 
         /// <summary>
@@ -250,7 +229,7 @@ namespace Fornax.Net.Index.IO
         /// <param name="index">The index.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         /// <exception cref="ArgumentNullException">index</exception>
-        public static bool Delete(ulong DocId, InvertedFile index)
+        public static bool Delete(ulong DocId, InvertedFile index, Repository repo)
         {
             Contract.Requires(index != null);
             if (index == null) throw new ArgumentNullException(nameof(index));
@@ -267,6 +246,10 @@ namespace Fornax.Net.Index.IO
                     break;
                 }
             }
+            if (repo.Corpus.ContainsKey(DocId))
+            {
+                repo.Corpus.Remove(DocId);
+            }
 
             return found;
         }
@@ -277,9 +260,9 @@ namespace Fornax.Net.Index.IO
         /// <param name="document">The document.</param>
         /// <param name="index">The index.</param>
         /// <returns>Task.</returns>
-        public static async Task DeleteAsync(IDocument document, InvertedFile index)
+        public static async Task DeleteAsync(IDocument document, InvertedFile index, Repository repository)
         {
-            await Task.Factory.StartNew(async () => await DeleteAsync(document.ID, index));
+            await Task.Factory.StartNew(async () => await DeleteAsync(document.ID, index, repository));
         }
 
         /// <summary>
@@ -288,10 +271,33 @@ namespace Fornax.Net.Index.IO
         /// <param name="DocId">The document identifier.</param>
         /// <param name="index">The index.</param>
         /// <returns>Task.</returns>
-        public static async Task DeleteAsync(ulong DocId, InvertedFile index)
+        public static async Task DeleteAsync(ulong DocId, InvertedFile index, Repository repo)
         {
-            await Task.Factory.StartNew(() => Delete(DocId, index));
+            await Task.Factory.StartNew(() => Delete(DocId, index, repo));
         }
+
+        /// <summary>
+        /// Wipes the specified document from the specified user config repository
+        /// , corpus and index. If no index or repository is found in configuration 
+        ///  no wiping occurs has there is nothing found to wipe.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="config">The configuration which holds all repository and index of current working user.</param>
+        public static void Wipe(IDocument document, Configuration config)
+        {
+            if (document == null || config == null) throw new ArgumentNullException("null values are disallowed.");
+            if (config.WorkingDirectory.Exists)
+            {
+                if (IndexRepoExists(Path.Combine(config.WorkingDirectory.FullName, "_.inx"), Path.Combine(config.WorkingDirectory.FullName, "_.repx")))
+                {
+                    var load = LoadAsync(config).Result;
+                    var repository = load.Repository;
+                    var index = load.Index;
+                    Task.WaitAll(DeleteAsync(document, index, repository));
+                }
+            }
+        }
+
 
         #endregion
 
@@ -357,7 +363,7 @@ namespace Fornax.Net.Index.IO
                     }
                     else
                     {
-                        index.Add(_tv.Key,postingsList);
+                        index.Add(_tv.Key, postingsList);
                     }
                 }
             }
@@ -390,6 +396,12 @@ namespace Fornax.Net.Index.IO
             }
         }
         #endregion
+
+
+        internal static bool IndexRepoExists(string indexPath, string repoPath)
+        {
+            return File.Exists(repoPath) && File.Exists(indexPath);
+        }
 
         /// <summary>
         /// Saves the specified configuration.
@@ -446,11 +458,26 @@ namespace Fornax.Net.Index.IO
         public static (InvertedFile Index, Repository Repository) Load(string configID)
         {
             var str = string.Format(@"User[{0}].config", configID);
-            var inx = FornaxWriter.Read<InvertedFile>(Path.Combine(Constants.BaseDirectory.FullName, str, "_.inx"));
-            var repo = FornaxWriter.Read<Repository>(Path.Combine(Constants.BaseDirectory.FullName, str, "_.repx"));
-            return (inx, repo);
+            var dir_str = Path.Combine(Constants.BaseDirectory.FullName, str);
+            if (Directory.Exists(dir_str))
+            {
+                var inx = FornaxWriter.Read<InvertedFile>(Path.Combine(dir_str, "_.inx"));
+                var repo = FornaxWriter.Read<Repository>(Path.Combine(dir_str, "_.repx"));
+                return (inx, repo);
+            }
+            return (null, null);
         }
 
+
+        public static ISet<ulong> Retrieve(Term term, InvertedFile index)
+        {
+            ISet<ulong> foundIds = new SortedSet<ulong>();
+            if (index.TryGetValue(term, out Postings val))
+            {
+                foundIds.AddAll(val.Keys);
+            }
+            return foundIds;
+        }
 
     }
 }

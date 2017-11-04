@@ -21,7 +21,7 @@ namespace Fornax.Net.Tests.Analysis.Tools
         }
 
         [TestMethod]
-        public void NaiveSynset() {
+       public void NaiveSynset() {
             string word4 = "naive";
             printSynonyms(word4);
         }
@@ -34,7 +34,7 @@ namespace Fornax.Net.Tests.Analysis.Tools
 
         
         public void  printSynonyms(string word) {
-            var synonym1 = SynsetFactory.GetSynset(word,15);
+            var synonym1 = SynsetFactory.GetSynset(word,1);
 
             foreach (var item in synonym1.Synonyms) {
                 Console.WriteLine(item);

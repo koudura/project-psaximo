@@ -189,7 +189,7 @@ namespace Fornax.Net.Util.Text
         /// </returns>
         public static bool IsWord(this string str) {
             foreach (var ch in str.ToCharArray()) {
-                if (!char.IsLetter(ch)) return false;
+                if (!(char.IsLetter(ch) || ch == '_')) return false;
             }
             return true;
         }

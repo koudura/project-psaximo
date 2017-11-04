@@ -35,6 +35,8 @@
 
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// The Numerics namespace.
@@ -171,6 +173,21 @@ namespace Fornax.Net.Util.Numerics
                 mult = 0.5d;
             }
             return mult * Math.Log((1.0d + a) / (1.0d - a));
+        }
+
+        /// <summary>
+        /// Calculates the Jaccards coefficient similarity measure between two sets.
+        /// the closer to 1, the more similar the sets are.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="set1">The set1.</param>
+        /// <param name="set2">The set2.</param>
+        /// <returns>System.Single score representing the jaccard score. </returns>
+        public float JaccardCoefficient<T>(ISet<T> set1 , ISet<T> set2)
+        {
+            float unionNum = set1.Union(set2).Count();
+            float intersectNum = set1.Intersect(set2).Count();
+            return intersectNum / unionNum;
         }
 
     }

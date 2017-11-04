@@ -49,13 +49,15 @@ namespace Fornax.Net.Index
     /// Represents a positional posting of a term and all its relative position of
     /// occurence.
     /// </summary>
+    /// <seealso cref="System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{Fornax.Net.Index.Term, Fornax.Net.Search.Vector}}" />
+    /// <seealso cref="System.ICloneable" />
     /// <seealso cref="System.Collections.Generic.IDictionary{Term, Vector}" />
     /// <seealso cref="System.Collections.Generic.IDictionary{Term, ISet{long}}" />
     /// <seealso cref="java.io.Serializable.__Interface" />
     /// <seealso cref="System.Collections.Generic.IDictionary{Term, ISet{ulong}}" />
     /// <seealso cref="System.Collections.Generic.IEnumerable{Term}" />
     [Serializable, ProtoContract]
-    public class TermVector : IEnumerable<KeyValuePair<Term,Vector>>, java.io.Serializable.__Interface
+    public class TermVector : IEnumerable<KeyValuePair<Term,Vector>>, ICloneable ,java.io.Serializable.__Interface
     {
         /// <summary>
         /// The true vector
@@ -80,8 +82,13 @@ namespace Fornax.Net.Index
             true_vector.Add(term, new Vector(set));
         }
 
+        private TermVector(IDictionary<Term, Vector> true_vector)
+        {
+            this.true_vector = true_vector;
+        }
+
         /// <summary>
-        /// Gets or sets the <see cref="Vector"/> with the specified key.
+        /// Gets or sets the <see cref="Vector" /> with the specified key.
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns>Vector.</returns>
@@ -172,7 +179,7 @@ namespace Fornax.Net.Index
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>An enumerator that can be used to iterate through the collection.</returns>
-       public IEnumerator<KeyValuePair<Term, Vector>> GetEnumerator()
+        public IEnumerator<KeyValuePair<Term, Vector>> GetEnumerator()
         {
             return true_vector.GetEnumerator();
         }
@@ -216,6 +223,15 @@ namespace Fornax.Net.Index
         IEnumerator IEnumerable.GetEnumerator()
         {
             return true_vector.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>A new object that is a copy of this instance.</returns>
+        public object Clone()
+        {
+            return new TermVector(true_vector);
         }
     }
 }

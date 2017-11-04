@@ -30,7 +30,7 @@ namespace Fornax.Net.Search
     /// </summary>
     /// <seealso cref="System.Collections.Generic.IComparer{Fornax.Net.Search.Vector}" />
     [Serializable]
-    public struct Vector : IComparable<Vector> , java.io.Serializable.__Interface
+    public struct Vector : IComparable<Vector>, ICloneable, java.io.Serializable.__Interface
     {
         /// <summary>
         /// The values
@@ -46,7 +46,8 @@ namespace Fornax.Net.Search
         /// Initializes a new instance of the <see cref="Vector" /> struct.
         /// </summary>
         /// <param name="fieldValues">The field values.</param>
-        public Vector(ICollection<double> fieldValues) {
+        public Vector(ICollection<double> fieldValues)
+        {
             values = fieldValues.ToList();
         }
 
@@ -54,7 +55,8 @@ namespace Fornax.Net.Search
         /// Initializes a new instance of the <see cref="Vector" /> struct.
         /// </summary>
         /// <param name="fieldValues">The field values.</param>
-        public Vector(params double[] fieldValues) {
+        public Vector(params double[] fieldValues)
+        {
             values = new List<double>(fieldValues);
         }
 
@@ -62,7 +64,8 @@ namespace Fornax.Net.Search
         /// Initializes a new instance of the <see cref="Vector"/> struct.
         /// </summary>
         /// <param name="fieldValues">The field values.</param>
-        public Vector(ISet<double> fieldValues) {
+        public Vector(ISet<double> fieldValues)
+        {
             values = fieldValues.ToList();
         }
 
@@ -99,9 +102,11 @@ namespace Fornax.Net.Search
         /// </summary>
         /// <param name="vector">The vector.</param>
         /// <returns>System.Decimal.</returns>
-        public static double Abs(Vector vector) {
+        public static double Abs(Vector vector)
+        {
             double acc = 0;
-            foreach (double item in vector.Value) {
+            foreach (double item in vector.Value)
+            {
                 acc += item * item;
             }
             return Math.Sqrt(acc);
@@ -113,9 +118,11 @@ namespace Fornax.Net.Search
         /// <param name="v1">The v1.</param>
         /// <param name="v2">The v2.</param>
         /// <returns>System.Decimal.</returns>
-        public static double DotProduct(Vector v1, Vector v2) {
+        public static double DotProduct(Vector v1, Vector v2)
+        {
             double acc = 0;
-            for (int i = 0; i < v1.Value.Count(); i++) {
+            for (int i = 0; i < v1.Value.Count(); i++)
+            {
                 acc += v1.Value[i] * v2.Value[i];
             }
             return acc;
@@ -127,7 +134,8 @@ namespace Fornax.Net.Search
         /// <param name="v1">The v1.</param>
         /// <param name="v2">The v2.</param>
         /// <returns>System.Decimal.</returns>
-        public static double Similarity(Vector v1, Vector v2) {
+        public static double Similarity(Vector v1, Vector v2)
+        {
             return DotProduct(v1, v2) / (Abs(v1) * Abs(v2));
         }
 
@@ -137,7 +145,8 @@ namespace Fornax.Net.Search
         /// <param name="v1">The v1.</param>
         /// <param name="v2">The v2.</param>
         /// <returns>System.Single.</returns>
-        public static float Coefficient(Vector v1, Vector v2) {
+        public static float Coefficient(Vector v1, Vector v2)
+        {
             var setv1 = new HashSet<double>(v1.Value);
             var setv2 = new HashSet<double>(v2.Value);
 
@@ -151,9 +160,11 @@ namespace Fornax.Net.Search
         /// </summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns><c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
-            if (obj is Vector) {
+            if (obj is Vector)
+            {
                 return ((Vector)(obj)) == this;
             }
             return false;
@@ -163,7 +174,8 @@ namespace Fornax.Net.Search
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return Collections.GetHashCode(Value);
         }
 
@@ -176,15 +188,21 @@ namespace Fornax.Net.Search
         /// <paramref name="x" /> is less than <paramref name="y" />.Zero
         /// <paramref name="x" /> equals <paramref name="y" />.Greater than zero
         /// <paramref name="x" /> is greater than <paramref name="y" />.</returns>
-        public int Compare(Vector x, Vector y) {
+        public int Compare(Vector x, Vector y)
+        {
             Contract.Requires(x != null && y != null);
             if (x == y) return 0;
-            return (Abs(x) > Abs(y)) ? 1 : -1;         
+            return (Abs(x) > Abs(y)) ? 1 : -1;
         }
 
         public int CompareTo(Vector other)
         {
             return Compare(this, other);
+        }
+
+        public object Clone()
+        {
+            return new Vector(fieldValues: values);
         }
 
         /// <summary>
@@ -193,7 +211,8 @@ namespace Fornax.Net.Search
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
         /// <returns>The result of the operator.</returns>
-        public static bool operator == (Vector left, Vector right) {
+        public static bool operator ==(Vector left, Vector right)
+        {
             return Collections.Equals(left.Value, right.Value);
         }
 
@@ -203,7 +222,8 @@ namespace Fornax.Net.Search
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
         /// <returns>The result of the operator.</returns>
-        public static bool operator != (Vector left, Vector right) {
+        public static bool operator !=(Vector left, Vector right)
+        {
             return !(left == right);
         }
     }

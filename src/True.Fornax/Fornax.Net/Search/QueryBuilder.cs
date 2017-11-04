@@ -4,14 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Query
+namespace Fornax.Net.Search
 {
-    public class FreeTextQuery
+    class QueryBuilder
     {
-
-        public FreeTextQuery()
-        {
-                
-        }
     }
 }

@@ -34,6 +34,7 @@
 // <summary></summary>
 // ***********************************************************************
 
+using System;
 using Fornax.Net.Analysis.Tokenization;
 using Fornax.Net.Index;
 

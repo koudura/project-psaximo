@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fornax.Net.Index
+namespace Fornax.Net.Search
 {
-    public sealed class PostingsFactory
+    class Ranker
     {
     }
 }

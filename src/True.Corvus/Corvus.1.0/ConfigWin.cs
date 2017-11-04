@@ -11,6 +11,7 @@ using Fornax.Net.Util.System;
 using Fornax.Net.Index.Storage;
 using Fornax.Net.Util.IO.Readers;
 using Fornax.Net.Index;
+using System.Drawing;
 
 namespace Corvus._1._0
 {
@@ -53,28 +54,28 @@ namespace Corvus._1._0
         private void btnIndex_Click(object sender, EventArgs e)
         {
 
-            ICollection selected = lsbxExt.SelectedItems;
-            if (selected.Count == 0)
-            {
-                select = new string[lsbxExt.Items.Count];
-                int selectIndex = 0;
-                foreach (var item in lsbxExt.Items)
-                {
-                    select[selectIndex] = "." + ((string)item).ToLower();
-                    selectIndex++;
-                }
-            }
-            else
-            {
+            //ICollection selected = lsbxExt.SelectedItems;
+            //if (selected.Count == 0)
+            //{
+            //    select = new string[lsbxExt.Items.Count];
+            //    int selectIndex = 0;
+            //    foreach (var item in lsbxExt.Items)
+            //    {
+            //        select[selectIndex] = "." + ((string)item).ToLower();
+            //        selectIndex++;
+            //    }
+            //}
+            //else
+            //{
 
-                select = new string[selected.Count];
-                int selectIndex = 0;
-                foreach (var item in selected)
-                {
-                    select[selectIndex] = "." + ((string)item).ToLower();
-                    selectIndex++;
-                }
-            }
+            //    select = new string[selected.Count];
+            //    int selectIndex = 0;
+            //    foreach (var item in selected)
+            //    {
+            //        select[selectIndex] = "." + ((string)item).ToLower();
+            //        selectIndex++;
+            //    }
+            //}
 
 
             //DocDirectory dir = new DocDirectory(new DirectoryInfo(txtFolder.Text));
@@ -89,6 +90,7 @@ namespace Corvus._1._0
             //Task.Delay(3000);
             //this.Hide();
             Hide();
+            indexUpdateNote.ShowBalloonTip(2000);
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -104,7 +106,42 @@ namespace Corvus._1._0
 
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
 
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private static bool mouseDown;
+        private static Point lastLoc;
+
+        private void ConfigWin_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLoc = e.Location;
+        }
+
+        private void ConfigWin_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+        private void ConfigWin_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                Location = new Point((Location.X - lastLoc.X) + e.X, (Location.Y - lastLoc.Y) + e.Y);
+                Update();
+            }
+        }
+
+        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

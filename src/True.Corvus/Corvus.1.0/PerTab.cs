@@ -76,5 +76,10 @@ namespace Corvus._1._0
         {
 
         }
+
+        private void btnSearch_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

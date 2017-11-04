@@ -36,7 +36,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <summary>
         /// Represents any email in a field of text.
         /// </summary>
-        Email = 1, //regex match ([\\w]+@[\\w]+\.[\\w]+]
+        Link = 1, //regex match ([\\w]+@[\\w]+\.[\\w]+]
 
         /// <summary>
         /// Represents any date in a field of text.
@@ -62,7 +62,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <summary>
         /// Represents any [link|uri|path] string in a field of text.
         /// </summary>
-        Link = 6, //must be uri.wellformeduristring
+        Path = 6, //must be uri.wellformeduristring
 
         /// <summary>
         /// Represents any set or singlenton operator(s) (i.e non-word symbols) in a field of text.

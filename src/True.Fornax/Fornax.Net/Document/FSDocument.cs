@@ -1,37 +1,37 @@
-﻿// ***********************************************************************
-// Assembly         : Fornax.Net
-// Author           : Koudura Mazou
-// Created          : 10-29-2017
-//
-// Last Modified By : Koudura Mazou
-// Last Modified On : 10-31-2017
-// ***********************************************************************
-// <copyright file="FSDocument.cs" company="True.Inc">
-/***
-* Copyright (c) 2017 Koudura Ninci @True.Inc
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-* 
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-* 
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*
-**/
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
+﻿//// ***********************************************************************
+//// Assembly         : Fornax.Net
+//// Author           : Koudura Mazou
+//// Created          : 10-29-2017
+////
+//// Last Modified By : Koudura Mazou
+//// Last Modified On : 10-31-2017
+//// ***********************************************************************
+//// <copyright file="FSDocument.cs" company="True.Inc">
+/////***
+//* Copyright (c) 2017 Koudura Ninci @True.Inc
+//*
+//* Permission is hereby granted, free of charge, to any person obtaining a copy
+//* of this software and associated documentation files (the "Software"), to deal
+//* in the Software without restriction, including without limitation the rights
+//* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//* copies of the Software, and to permit persons to whom the Software is
+//* furnished to do so, subject to the following conditions:
+//* 
+//* The above copyright notice and this permission notice shall be included in all
+//* copies or substantial portions of the Software.
+//* 
+//* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//* SOFTWARE.
+//*
+//**/
+//// </copyright>
+//// <summary></summary>
+//// ***********************************************************************
 
 
 using System;
@@ -59,7 +59,7 @@ namespace Fornax.Net.Document
     /// file-system disk then processes it and converts it to a recognizable format
     /// for fornax.
     /// </summary>
-    /// <seealso cref="Fornax.Net.Document.IDocument" />
+    /// <seealso cref="IDocument" />
     /// <seealso cref="java.io.Serializable.__Interface" />
     [Serializable, ProtoContract]
     public class FSDocument : IDocument, java.io.Serializable.__Interface
@@ -97,34 +97,8 @@ namespace Fornax.Net.Document
             _name = Path.GetFileNameWithoutExtension(doc.FullName);
             docId = Adler32.Compute(doc.FullName);
             _snippet = CreateSnippet(tokens);
-            terms = GetTerms(ref tokens, language);
+            terms = GetTerms(tokens, language);
         }
-
-        private static TermVector GetTerms(ref TokenStream tokens, FornaxLanguage language)
-        {
-            var stops = new StopsFilter(language);
-            var filtered  = stops.Accepts(tokens);
-            var termv = new TermVector();
-
-            while (filtered.MoveNext())
-            {
-                var d = filtered.Current;               
-                var t = new Term(d, language);
-
-                if (termv.TryGetValue(t, out Vector taVect))
-                {
-                    taVect.Value.Add(d.Start);
-                }
-                else
-                {
-                    var vector = new Vector();
-                    vector.Value.Add(d.Start);
-                    termv.Add(t, vector);
-                }
-            }
-            return termv;
-        }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FSDocument" /> class.
@@ -194,8 +168,37 @@ namespace Fornax.Net.Document
         /// <returns>Snippet.</returns>
         internal Snippet CreateSnippet(TokenStream tokens)
         {
-            return new Snippet(0, ((tokens.Size) > 100) ? 100 : tokens.Size , tokens);
+            return new Snippet(0, ((tokens.Size) > 100) ? 100 : tokens.Size, tokens);
         }
+
+        internal static TermVector GetTerms(TokenStream tokens, FornaxLanguage language)
+        {
+            var stops = new StopsFilter(language);
+            var filtered = stops.Accepts(tokens);
+            var termv = new TermVector();
+
+            while (filtered.MoveNext())
+            {
+                var d = filtered.Current;
+                if (d.Type != TokenAttribute.Unknown)
+                {
+                    var t = new Term(d, language);
+
+                    if (termv.TryGetValue(t, out Vector taVect))
+                    {
+                        taVect.Value.Add(d.Start);
+                    }
+                    else
+                    {
+                        var vector = new Vector();
+                        vector.Value.Add(d.Start);
+                        termv.Add(t, vector);
+                    }
+                }
+            }
+            return termv;
+        }
+
 
         private static async Task<TokenStream> GetContent(Tokenizer tokenizer, Extractor ext, string path)
         {
@@ -217,7 +220,7 @@ namespace Fornax.Net.Document
             return await Task.Factory.StartNew(() => GetTok(tempTok, text));
         }
 
-        private static Tokenizer GetTok(Tokenizer tempTok, string txt)
+        internal static Tokenizer GetTok(Tokenizer tempTok, string txt)
         {
             if (tempTok is CharTokenizer)
             {
@@ -234,10 +237,15 @@ namespace Fornax.Net.Document
                 var numTok = new NumericTokenizer();
                 return (numTok.text == string.Empty) ? new NumericTokenizer(txt) : new NumericTokenizer(numTok.text);
             }
-            else
+            else if (tempTok is WhitespaceTokenizer)
             {
                 var wsTok = new WhitespaceTokenizer();
                 return (wsTok.text == string.Empty) ? new WhitespaceTokenizer(txt) : new WhitespaceTokenizer(wsTok.text);
+            }
+            else
+            {
+                var wsTok = new PerFieldTokenizer();
+                return (wsTok.text == string.Empty) ? new PerFieldTokenizer(txt) : new PerFieldTokenizer(wsTok.text);
             }
         }
         private static async Task<string> GetText(Extractor ext, string path)

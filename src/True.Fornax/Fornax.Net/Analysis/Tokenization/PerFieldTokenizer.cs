@@ -1,25 +1,17 @@
-﻿/***
-* Copyright (c) 2017 Koudura Ninci @True.Inc
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-* 
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-* 
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*
-**/
+﻿// ***********************************************************************
+// Assembly         : Fornax.Net
+// Author           : Koudura Mazou
+// Created          : 11-03-2017
+//
+// Last Modified By : Koudura Mazou
+// Last Modified On : 11-03-2017
+// ***********************************************************************
+// <copyright file="PerFieldTokenizer.cs" company="Microsoft">
+//     Copyright © Microsoft 2017
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
 
 using System;
 using System.Collections.Generic;
@@ -30,71 +22,81 @@ using Fornax.Net.Util;
 using Fornax.Net.Util.Text;
 using ProtoBuf;
 
+/// <summary>
+/// The Tokenization namespace.
+/// </summary>
 namespace Fornax.Net.Analysis.Tokenization
 {
     /// <summary>
-    /// Bias (Context-Sensitive) tokenizer that tokenizes a body of text with respect to the form and
-    /// type of text.
+    /// Class PerFieldTokenizer. This class cannot be inherited.
+    /// This Tokenizer inherits the operations of the bias and numeric tokenizer.
+    /// being context-sensitive , tokenization of text a much more neater than the bias tokenizer.
+    /// all numbers are also treated as delimiters for tokenization.
     /// </summary>
+    /// <seealso cref="Fornax.Net.Analysis.Tokenization.Tokenizer" />
     /// <seealso cref="Tokenization.Tokenizer" />
-    /// <seealso cref="ITokenizer" />
     [Serializable, ProtoContract]
-    public sealed class BiasTokenizer : Tokenizer, ITokenizer
+    public sealed class PerFieldTokenizer : Tokenizer
     {
-        [ProtoMember(3)]
+        [ProtoMember(1)]
         StringTokenizer tokenizer;
-        [ProtoMember(4)]
-        internal static string Delimiters = " `^+={};<,[]#\t\n\r\f\v&/|\":*?%!>[]$~()";
+        /// <summary>
+        /// The delimiters
+        /// </summary>
+        [ProtoMember(2)]
+        internal static string Delimiters = " .`^+={};<,/[]#\t\n\r\f\v&|\":*?%!>[]$~()0123456789\\@";
 
         /// <summary>
         /// Returns the value as the <code>NextToken</code> method, except that its declared value is
         /// <see cref="object" /> rather than <see cref="string" />.
         /// </summary>
+        /// <value>The current element.</value>
         public override object CurrentElement => Filter(((string)tokenizer.CurrentElement));
 
         /// <summary>
         /// Returns the current token from this whitespace tokenizer.
         /// </summary>
+        /// <value>The current token.</value>
         public override string CurrentToken => Filter(tokenizer.CurrentToken);
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BiasTokenizer"/> class.
+        /// Initializes a new instance of the <see cref="PerFieldTokenizer" /> class.
         /// Default delimiters are used, and delimiters are not returned as string.
         /// </summary>
         /// <param name="text">The text to be tokenized.</param>
-        public BiasTokenizer(string text) : this(text, false)
+        public PerFieldTokenizer(string text) : this(text, false)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BiasTokenizer"/> class.
+        /// Initializes a new instance of the <see cref="PerFieldTokenizer" /> class.
         /// Default delimiters are used.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="returnDelim">if set to <c>true</c> delimiters are returned as token.</param>
-        public BiasTokenizer(string text, bool returnDelim) : this(text, Delimiters, returnDelim)
+        public PerFieldTokenizer(string text, bool returnDelim) : this(text, Delimiters, returnDelim)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BiasTokenizer"/> class.
+        /// Initializes a new instance of the <see cref="PerFieldTokenizer" /> class.
         /// Sets the text to be tokenized to <c>string.Empty</c>
         /// Recommended reinitialization before real use.
         /// </summary>
-        public BiasTokenizer() : base()
+        public PerFieldTokenizer() : base()
         {
             tokenizer = new StringTokenizer(text);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BiasTokenizer"/> class.
-        /// NOTE: The delimiters must be properly stated in line with the rules of 
+        /// Initializes a new instance of the <see cref="PerFieldTokenizer" /> class.
+        /// NOTE: The delimiters must be properly stated in line with the rules of
         /// a context-sensitive grammar.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="delimiters">The delimiters.</param>
         /// <param name="returnDelim">if set to <c>true</c> [return delimiter].</param>
-        public BiasTokenizer(string text, string delimiters, bool returnDelim) : base(text, returnDelim)
+        public PerFieldTokenizer(string text, string delimiters, bool returnDelim) : base(text, returnDelim)
         {
             Delimiters = delimiters;
             tokenizer = new StringTokenizer(text, Delimiters, returnDelim);
@@ -104,9 +106,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// Calculates the number of times that this tokenizer's <code>NextToken</code> method can be called before
         /// it generates an exception. The current position is not advanced.
         /// </summary>
-        /// <returns>
-        /// the number of tokens remaining in the string using the current delimiter set. <seealso cref="CurrentToken" />.
-        /// </returns>
+        /// <returns>the number of tokens remaining in the string using the current delimiter set. <seealso cref="CurrentToken" />.</returns>
         public override int CountTokens()
         {
             return tokenizer.CountTokens();
@@ -115,9 +115,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <summary>
         /// Returns the same value as the <see cref="HasMoreTokens()" /> method.
         /// </summary>
-        /// <returns>
-        ///   <c>true</c> if there are more tokens; otherwise, <c>false</c>.
-        /// </returns>
+        /// <returns><c>true</c> if there are more tokens; otherwise, <c>false</c>.</returns>
         public override bool HasMoreElements()
         {
             return tokenizer.HasMoreElements();
@@ -128,10 +126,8 @@ namespace Fornax.Net.Analysis.Tokenization
         /// If this method returns <c>true</c>, then a subsequent call to <see cref="NextToken" />
         /// wil successfully return a token.
         /// </summary>
-        /// <returns>
-        /// <c>true</c> if and only if there is at least one token in the string after the current position
-        /// ; otherwise, <c>false</c>.
-        /// </returns>
+        /// <returns><c>true</c> if and only if there is at least one token in the string after the current position
+        /// ; otherwise, <c>false</c>.</returns>
         public override bool HasMoreTokens()
         {
             return tokenizer.HasMoreTokens();
@@ -140,24 +136,21 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <summary>
         /// Gets the tokenstream of tokens .
         /// </summary>
-        /// <returns>
-        /// Token stream of tokens by this tokenizer.
-        /// </returns>
+        /// <returns>Token stream of tokens by this tokenizer.</returns>
         public override TokenStream GetTokens()
         {
             return new TokenStream(Tokenizer());
         }
 
         /// <summary>
-        /// Tokenizers this instance.
+        /// Tokenizes this instance.
         /// </summary>
         /// <returns></returns>
-        
         IEnumerable<Token> Tokenizer()
         {
-            string regex = (returnDelim1) ? @"[\S]+" : @"[A-Za-z0-9_.\\@]+";
+            string regex = (returnDelim1) ? @"[\S]+" : @"[A-Za-z_]+";
             var strbuilder = new StringBuilder();
-            var tkner = new BiasTokenizer(text, Delimiters, returnDelim1);
+            var tkner = new PerFieldTokenizer(text, Delimiters, returnDelim1);
 
             while (tkner.HasMoreTokens())
             {
@@ -183,13 +176,6 @@ namespace Fornax.Net.Analysis.Tokenization
         {
             wrd = wrd.Trim(Constants.DocOP_Broker.ToCharArray());
             string wrrrd = Regex.Replace(wrd, @"[\-\']+", "");
-            if (wrrrd.Contains(".") && !Double.TryParse(wrrrd, out double n))
-            {
-                if (!Uri.IsWellFormedUriString(wrrrd, UriKind.Absolute) && !Token.IsEmail(wrrrd))
-                {
-                    wrrrd = Regex.Replace(wrrrd, "[.]+", "");
-                }
-            }
             return wrrrd;
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Fornax.Net.Query;
+using Fornax.Net.Search;
 
 namespace Fornax.Net.Analysis
 {
@@ -13,18 +13,17 @@ namespace Fornax.Net.Analysis
     public abstract class Analyzer
     {
         protected SearchMode modeOfsearch;
-        internal virtual Explanation Rule => GetExplanation(this);
-        internal virtual QueryType TypeOfQuery { get; private set; }
+        protected Expand expansionRule;
+        protected readonly string _query;
 
-        internal static QueryMode GetMode(Analyzer anna) {
-            if (anna is AdvancedAnalyzer) return QueryMode.Advanced;
-            else if (anna is StandardAnalyzer) return QueryMode.Standard;
-            else return QueryMode.Simple;
+        protected Analyzer(string query,SearchMode modeOfsearch, Expand expansionRule) {
+            _query = query;
+            this.modeOfsearch = modeOfsearch;
+            this.expansionRule = expansionRule;
         }
 
-        private Explanation GetExplanation(Analyzer anal) {
-            return new Explanation(GetMode(anal), modeOfsearch);
-        }
-        
+        public virtual string Query => _query;
+
+        public QueryType QueryType { get; internal set; }
     }
 }

@@ -36,8 +36,8 @@ namespace Fornax.Net.Index.Common
     /// Representation of the SoundexIndex for indexing soundex of words,
     /// Otherwise called Phonetic similarity index.
     /// </summary>
-    /// <seealso cref="System.Collections.Generic.IDictionary{Fornax.Net.Analysis.Tools.Soundex, System.Collections.Generic.IList{System.String}}" />
-    /// <seealso cref="System.IDisposable" />
+    /// <seealso cref="System.Collections.Generic.IDictionary{Soundex, IList{string}}" />
+    /// <seealso cref="IDisposable" />
     /// <remarks>This idea owes its
     /// origins to work in international police departments from the early 20th century, 
     /// seeking to match names for wanted criminals despite the names being

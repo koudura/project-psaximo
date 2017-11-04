@@ -33,6 +33,8 @@ using Fornax.Net.Util.Text;
 using Fornax.Net.Util.System;
 
 using StringSet = System.Collections.Specialized.StringCollection;
+using System;
+using System.Threading.Tasks;
 
 namespace Fornax.Net
 {
@@ -64,9 +66,20 @@ namespace Fornax.Net
         /// <param name="language">The language.</param>
         /// <param name="fileFormats">The file formats.</param>
         /// <returns></returns>
-        public static Configuration GetConfiguration(FetchAttribute fetchattribute, CachingMode cacheMode, FornaxLanguage language, Tokenizer tokenizer, params FileFormat[] fileFormats) {
+        public static Configuration GetConfiguration(string config_id, FetchAttribute fetchattribute, CachingMode cacheMode, FornaxLanguage language, Tokenizer tokenizer, params FileFormat[] fileFormats)
+        {
+            CheckId(ref config_id);
             if (fileFormats.Length <= 0) { fileFormats[0] = FileFormat.Txt; }
-            return new Configuration(fetchattribute, cacheMode, fileFormats, tokenizer, language);
+            return new Configuration(config_id, fetchattribute, cacheMode, fileFormats, tokenizer, language);
+        }
+
+        internal static void CheckId(ref string config_id)
+        {
+            if (string.IsNullOrEmpty(config_id) || string.IsNullOrWhiteSpace(config_id))
+            {
+                config_id = def_id;
+            }
+
         }
 
         /// <summary>
@@ -74,10 +87,14 @@ namespace Fornax.Net
         /// This Returns Configuration with Default settings.
         /// </summary>
         /// <returns>Configuration for fornax.net</returns>
-        public static Configuration Default => GetConfiguration(new CharTokenizer());
+        public static Configuration Default => GetConfiguration(@def_id, new CharTokenizer());
 
-        static Configuration GetConfiguration(Tokenizer tokenizer) {
-            return new Configuration(tokenizer);
+        private static readonly string @def_id = "default";
+
+        static Configuration GetConfiguration(string config_id, Tokenizer tokenizer)
+        {
+            CheckId(ref config_id);
+            return new Configuration(config_id, tokenizer);
         }
 
         /// <summary>
@@ -88,8 +105,10 @@ namespace Fornax.Net
         /// <param name="language">The language.</param>
         /// <param name="fileFormatCategory">The file format category.</param>
         /// <returns>A Configuatio for fornax.net</returns>
-        public static Configuration GetConfiguration(FetchAttribute fetchAttribute, CachingMode cachingMode, FornaxLanguage language, Tokenizer tokenizer, FornaxFormat fileFormatCategory) {
-            return new Configuration(fetchAttribute, cachingMode, fileFormatCategory, tokenizer, language);
+        public static Configuration GetConfiguration(string config_id, FetchAttribute fetchAttribute, CachingMode cachingMode, FornaxLanguage language, Tokenizer tokenizer, FornaxFormat fileFormatCategory)
+        {
+            CheckId(ref config_id);
+            return new Configuration(config_id, fetchAttribute, cachingMode, fileFormatCategory, tokenizer, language);
         }
 
         /// <summary>
@@ -99,16 +118,20 @@ namespace Fornax.Net
         /// <returns></returns>
         /// <exception cref="FileNotFoundException">ID</exception>
         /// <exception cref="FileLoadException">ID</exception>
-        public static Configuration OpenConfiguration(string ID) {
+        public static Configuration OpenConfiguration(string ID)
+        {
             var pattern = new FileInfo(Path.Combine(Constants.BaseDirectory.FullName, $"User[{ID}].config", "_.config"));
-            try {
+            try
+            {
                 if (pattern.Exists)
                     return FornaxWriter.Read<Configuration>(pattern);
                 else throw new FileNotFoundException($"Configuration data with {nameof(ID)} = {ID} does not exist;");
-            } catch { throw new FileLoadException($"Configuration data withh {nameof(ID)} = {ID} is probably corrupted."); }
+            }
+            catch { throw new FileLoadException($"Configuration data withh {nameof(ID)} = {ID} is probably corrupted."); }
         }
 
-        public static void SaveSettings() {
+        public static void SaveSettings()
+        {
             config.Default.Save();
         }
 
@@ -117,11 +140,36 @@ namespace Fornax.Net
         /// </summary>
         /// <param name="language">The language.</param>
         /// <returns></returns>
-        public static Vocabulary GetVocabulary(FornaxLanguage language) {
+        public static Vocabulary GetVocabulary(FornaxLanguage language)
+        {
             return new Vocabulary(language);
         }
 
-        static ConfigFactory() {
+        public static bool DeleteConfiguration(Configuration config)
+        {
+            bool disposing = true;
+            try
+            {
+                while (disposing)
+                {
+                    if (!config.WorkingDirectory.Exists) disposing = false;
+                    else
+                    {
+                        config.Language = null;
+                        config.Tokenizer = null;
+                        Task.WaitAll(Task.Run(() => config.WorkingDirectory.Delete(true)));
+                    }
+                }
+            }
+            catch (IOException)
+            {
+                disposing = false;
+            }
+            return disposing;
+        }
+
+        static ConfigFactory()
+        {
 
             FornaxFormatTable = new Dictionary<FornaxFormat, StringSet>
         {

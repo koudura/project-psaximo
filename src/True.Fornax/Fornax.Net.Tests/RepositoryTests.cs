@@ -21,13 +21,13 @@ namespace Fornax.Net.Tests
 
 
             var lang = FornaxLanguage.English;
-            var tokenizer = new BiasTokenizer();
+            var tokenizer = new PerFieldTokenizer();
 
-            var config = ConfigFactory.GetConfiguration(FetchAttribute.Weak, CachingMode.Dynamic, lang, tokenizer, new FileFormat[] { FileFormat.Txt, FileFormat.Pdf });
-
+            var config = ConfigFactory.GetConfiguration("Copora@Inc",FetchAttribute.Weak, CachingMode.Dynamic, lang, tokenizer, new FileFormat[] { FileFormat.Txt, FileFormat.Pdf });
             var repo = Repository.Create(dir, RepositoryType.Local, config, Extractor.Default);
 
             InvertedFile file = new InvertedFile();
+            
             IndexFactory.Add(repo, file);
             IndexFactory.Save(config, file);
         }
@@ -35,11 +35,11 @@ namespace Fornax.Net.Tests
         [TestMethod]
         public void FSRepositoryLoadTest1()
         {
-            string sampleId = "131540593337143598";
+            string sampleId = "Copora@Inc";
             var load = IndexFactory.Load(sampleId);
             foreach (var item in load.Index)
             {
-                System.Console.Write($"{item.Key.ToString()} :[ ");
+                System.Console.Write($"{item.Key.ToString()} Type[{item.Key.Token.Type}] :[ ");
                 foreach (var post in item.Value)
                 {
                     System.Console.Write($"{post.Key}, ");
@@ -49,7 +49,7 @@ namespace Fornax.Net.Tests
             var corp = load.Repository.Corpora;
             foreach (var item in corp)
             {
-                System.Console.WriteLine($"{item.Key} : {item.Value}");
+                System.Console.WriteLine($"{item.Capture} \n: {item.ID} \n {item.Link} \n {item.Terms.Count}");
             }
         }
     }

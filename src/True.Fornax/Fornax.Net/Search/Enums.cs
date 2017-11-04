@@ -25,7 +25,7 @@ using Fornax.Net.Index;
 using Fornax.Net.Index.Storage;
 using Fornax.Net.Util;
 
-namespace Fornax.Net.Query
+namespace Fornax.Net.Search
 {
     #region Query Enumerations 
 

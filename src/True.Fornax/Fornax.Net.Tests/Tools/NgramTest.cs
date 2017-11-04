@@ -1,5 +1,6 @@
 ﻿using System;
 using Fornax.Net.Analysis.Tools;
+using Fornax.Net.Index.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Fornax.Net.Tests.Tools
@@ -52,8 +53,32 @@ namespace Fornax.Net.Tests.Tools
             {
                 Console.WriteLine(gram);
             }
-            Assert.AreEqual(4,(int)ngram.Size);
+            Assert.AreEqual(4, (int)ngram.Size);
 
+        }
+
+        [TestMethod]
+        public void BuildBigram()
+        {
+            var bi = GramFactory.Default_BiGram;
+            
+            string query = "weihgt"; //
+            var ngram = new Ngram(query, 2, NgramModel.Character, true);
+                  
+            var sub = GramFactory.SubGramIndex(ngram, bi);
+            var common = GramFactory.IntersectOf(sub);
+            var close = EditFactory.RetrieveCommon(query, common, 0.6f);
+            int i = 0;
+            foreach (var item in close)
+            {
+                Console.WriteLine($"{item}");
+                //foreach (var worrd in item.Value)
+                //{
+                //    Console.Write($" ,{worrd}");
+                //}
+                //Console.WriteLine("].\n");
+            }
+            Assert.IsNotNull(sub);
         }
     }
 }

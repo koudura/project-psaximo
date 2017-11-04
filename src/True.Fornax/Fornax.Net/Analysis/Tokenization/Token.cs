@@ -151,7 +151,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <param name="type">The type.</param>
         internal Token(string token, string text, TokenAttribute type = TokenAttribute.Unknown)
         {
-            startoffset = text.IndexOf(token);
+            startoffset = text.IndexOf(token); 
             endoffset = startoffset + token.Length - 1;
             value = token;
             flags = Adler.Compute(value);
@@ -172,7 +172,7 @@ namespace Fornax.Net.Analysis.Tokenization
             }
             else if (IsEmail(value))
             {
-                attrib = TokenAttribute.Email;
+                attrib = TokenAttribute.Link;
             }
             else if (DateTime.TryParse(value, out DateTime res))
             {
@@ -190,9 +190,9 @@ namespace Fornax.Net.Analysis.Tokenization
             {
                 attrib = TokenAttribute.Operator;
             }
-            else if (Uri.IsWellFormedUriString(value, UriKind.Absolute))
+            else if (Uri.IsWellFormedUriString(value, UriKind.RelativeOrAbsolute))
             {
-                attrib = TokenAttribute.Link;
+                attrib = TokenAttribute.Path;
             }
             return attrib;
         }
@@ -221,11 +221,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <returns><c>true</c> if the specified value is acronym; otherwise, <c>false</c>.</returns>
         internal static bool IsAcronym(string value)
         {
-            if (Regex.IsMatch(value, @"(^[A-Z]+[.][A-Z]+[.]$)|(^[A-Z]+[.][A-Z]+[.][A-Z]+$)|(^[A-Z]+[.][A-Z]+[.][A-Z]+[.][A-Z]$)", RegexOptions.Compiled))
-            {
-                return true;
-            }
-            return false;
+            return (Regex.IsMatch(value, @"([A-Z]+[.][A-Z]+[.])|([A-Z]+[.][A-Z]+[.][A-Z]+)|([A-Z]+[.][A-Z]+[.][A-Z]+[.][A-Z])", RegexOptions.IgnorePatternWhitespace));
         }
 
         /// <summary>
@@ -235,7 +231,7 @@ namespace Fornax.Net.Analysis.Tokenization
         /// <returns><c>true</c> if the specified value is email; otherwise, <c>false</c>.</returns>
         internal static bool IsEmail(string value)
         {
-            return ((Regex.IsMatch(value, @"^[\w]+@[\w]+[.][a-z0-9]+$", RegexOptions.Compiled) ||
+            return ((Regex.IsMatch(value, @"(^[\w]+@[\w]+[.][a-z0-9]+$)|(^[\w]+[.][\w]+[.][a-z0-9]+$)", RegexOptions.Compiled) ||
                 (Regex.IsMatch(value, @"^[\w]+[.][a-z0-9]+$", RegexOptions.Compiled))));
         }
 
