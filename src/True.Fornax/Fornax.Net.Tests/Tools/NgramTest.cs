@@ -62,7 +62,7 @@ namespace Fornax.Net.Tests.Tools
         {
             var bi = GramFactory.Default_BiGram;
             
-            string query = "weihgt"; //
+            string query = "moning"; //
             var ngram = new Ngram(query, 2, NgramModel.Character, true);
                   
             var sub = GramFactory.SubGramIndex(ngram, bi);

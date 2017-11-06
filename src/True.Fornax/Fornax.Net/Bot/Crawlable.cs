@@ -9,7 +9,7 @@ namespace Fornax.Net.Bot
     [AttributeUsage(AttributeTargets.Class , Inherited = false, AllowMultiple = true)]
     sealed class Crawlable : Attribute
     {
-        protected Crawlable() {
+        public Crawlable() {
         }
     }
 }

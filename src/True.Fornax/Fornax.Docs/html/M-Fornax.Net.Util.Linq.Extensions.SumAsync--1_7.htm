@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"[]>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="save" content="history" />
+    <title>SumAsync(TSource) Method (IQueryable(TSource), Expression(Func(TSource, Nullable(Double))), CancellationToken)</title>
+    <link rel="stylesheet" type="text/css" href="../styles/lightweight.css" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" />
+    <link rel="stylesheet" type="text/css" href="../styles/lw-code.css" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" />
+    <script type="text/javascript" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" src="../scripts/languageSelector.js"> </script>
+    <meta name="container" content="Fornax.Net.Util.Linq" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" />
+    <meta name="file" content="M-Fornax.Net.Util.Linq.Extensions.SumAsync--1_7" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" />
+    <meta name="guid" content="M-Fornax.Net.Util.Linq.Extensions.SumAsync--1_7" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt" />
+    <xml xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+      <MSHelp:Attr Name="AssetID" Value="M:Fornax.Net.Util.Linq.Extensions.SumAsync``1(IQueryable{``0},Expression{Func{``0, System.Nullable{System.Double}}},CancellationToken)" />
+      <MSHelp:TOCTitle Title="SumAsync(TSource) Method (IQueryable(TSource), Expression(Func(TSource, Nullable(Double))), CancellationToken)" />
+      <MSHelp:RLTitle Title="Extensions.SumAsync(TSource) Method (IQueryable(TSource), Expression(Func(TSource, Nullable(Double))), CancellationToken) (Fornax.Net.Util.Linq)" />
+      <MSHelp:Keyword Index="A" Term="M:Fornax.Net.Util.Linq.Extensions.SumAsync``1(IQueryable{``0},Expression{Func{``0, System.Nullable{System.Double}}},CancellationToken)" />
+      <MSHelp:Attr Name="APIType" Value="Managed" />
+      <MSHelp:Attr Name="APILocation" Value="Fornax.Net.dll" />
+      <MSHelp:Attr Name="APIName" Value="Fornax.Net.Util.Linq.Extensions.SumAsync" />
+      <MSHelp:Attr Name="DevLang" Value="CSharp" />
+      <MSHelp:Attr Name="DevLang" Value="VB" />
+      <MSHelp:Attr Name="Locale" Value="en-us" />
+      <MSHelp:Attr Name="TopicType" Value="kbSyntax" />
+      <MSHelp:Attr Name="TopicType" Value="apiref" />
+      <MSHelp:Attr Name="Abstract" Value="Asynchronously computes the sum of the sequence of nullable values that is obtained by invoking a projection function on each element of the input sequence." />
+      <MSHelp:Attr Name="AssemblyVersion" Value="" />
+    </xml>
+  </head>
+  <body>
+    <div class="header" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+      <table class="headerBar cl_lightweight_topnav_slice" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="leftSection cl_lightweight_header_leftSection_wave leftSectionImageClusterOverride" />
+            <td class="rightSection cl_lightweight_header_rightSection_wave rightSectionImageClusterOverride">
+              <div class="tabContainer">Fornax.Net Help</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="contentPlaceHolder" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+      <div class="content">
+        <div class="topicContainer">
+          <div class="topic">
+            <p class="majorTitle" />
+            <h1 class="title">Extensions<span class="languageSpecificText"><span class="cs">.</span><span class="vb">.</span><span class="cpp">::</span><span class="nu">.</span><span class="fs">.</span></span>SumAsync<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span><span class="typeparameter">TSource</span><span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span> Method (IQueryable<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span><span class="typeparameter">TSource</span><span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span>, Expression<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span>Func<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span><span class="typeparameter">TSource</span>, Nullable<span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span>Double<span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span><span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span><span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span>, CancellationToken)</h1>
+            <div id="mainSection">
+              <div id="mainBody">
+                <div class="summary">
+   Asynchronously computes the sum of the sequence of nullable <a href="http://msdn.microsoft.com/en-us/library/system.double.aspx" target="_blank">Double</a> values that is obtained by invoking a projection function on each element of the input sequence.
+   </div>
+                <p />
+    <b>Namespace:</b> 
+   <a href="N-Fornax.Net.Util.Linq.htm">Fornax.Net.Util.Linq</a><br />
+    <b>Assembly:</b>
+   <span sdata="assembly">Fornax.Net</span> (in Fornax.Net.dll)<div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">Syntax</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="syntaxSection"><!----></a><div class="CodeSnippetContainer"><div class="CodeSnippetContainerTabs"><div class="CodeSnippetContainerTabLeft"><!----></div><div class="CodeSnippetContainerTabFirst CSharpTab" id="CSharpTabId" style="background:white;border-bottom-color:white"><a href="javascript:setActiveTab('CodeSnippetContainerCode','CSharpCode','CSharpTabId');" title="C#">C#</a></div><div class="CodeSnippetContainerTab VisualBasicTab" id="VisualBasicTabId"><a href="javascript:setActiveTab('CodeSnippetContainerCode','VisualBasicCode','VisualBasicTabId');" title="Visual Basic">VB</a></div><div class="CodeSnippetContainerTab ManagedCPlusPlusTab" id="ManagedCPlusPlusTabId"><a href="javascript:setActiveTab('CodeSnippetContainerCode','ManagedCPlusPlusCode','ManagedCPlusPlusTabId');" title="Visual C++">C++</a></div><div class="CodeSnippetContainerTabRight"><!----></div></div><div class="CodeSnippetContainerCodeCollection"><div class="CodeSnippetToolBar"><div class="CodeSnippetToolBarText" /></div><div class="CodeSnippetContainerCode CSharpCode"><pre xml:space="preserve" class="libCScode"><span class="keyword">public</span> <span class="keyword">static</span> <span class="nolink">Task</span>&lt;<a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx" target="_blank">Nullable</a>&lt;<a href="http://msdn.microsoft.com/en-us/library/system.double.aspx" target="_blank">double</a>&gt;&gt; <span class="identifier">SumAsync</span>&lt;TSource&gt;(
+	<a href="http://msdn.microsoft.com/en-us/library/bb351562.aspx" target="_blank">IQueryable</a>&lt;TSource&gt; <span class="parameter">source</span>,
+	<a href="http://msdn.microsoft.com/en-us/library/bb335710.aspx" target="_blank">Expression</a>&lt;<span class="nolink">Func</span>&lt;TSource, <a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx" target="_blank">Nullable</a>&lt;<a href="http://msdn.microsoft.com/en-us/library/system.double.aspx" target="_blank">double</a>&gt;&gt;&gt; <span class="parameter">selector</span>,
+	<span class="nolink">CancellationToken</span> <span class="parameter">cancellationToken</span>
+)
+</pre></div><div class="CodeSnippetContainerCode VisualBasicCode"><pre xml:space="preserve" class="libCScode"><span class="keyword">Public</span> <span class="keyword">Shared</span> <span class="keyword">Function</span> <span class="identifier">SumAsync</span>(<span class="keyword">Of</span> TSource) ( _
+	<span class="parameter">source</span> <span class="keyword">As</span> <a href="http://msdn.microsoft.com/en-us/library/bb351562.aspx" target="_blank">IQueryable</a>(<span class="keyword">Of</span> TSource), _
+	<span class="parameter">selector</span> <span class="keyword">As</span> <a href="http://msdn.microsoft.com/en-us/library/bb335710.aspx" target="_blank">Expression</a>(<span class="keyword">Of</span> <span class="nolink">Func</span>(<span class="keyword">Of</span> TSource, <a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx" target="_blank">Nullable</a>(<span class="keyword">Of</span> <a href="http://msdn.microsoft.com/en-us/library/system.double.aspx" target="_blank">Double</a>))), _
+	<span class="parameter">cancellationToken</span> <span class="keyword">As</span> <span class="nolink">CancellationToken</span> _
+) <span class="keyword">As</span> <span class="nolink">Task</span>(<span class="keyword">Of</span> <a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx" target="_blank">Nullable</a>(<span class="keyword">Of</span> <a href="http://msdn.microsoft.com/en-us/library/system.double.aspx" target="_blank">Double</a>))</pre></div><div class="CodeSnippetContainerCode ManagedCPlusPlusCode"><pre xml:space="preserve" class="libCScode"><span class="keyword">public</span>:
+<span class="keyword">generic</span>&lt;<span class="keyword">typename</span> TSource&gt;
+<span class="keyword">static</span> <span class="nolink">Task</span>&lt;<a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx" target="_blank">Nullable</a>&lt;<a href="http://msdn.microsoft.com/en-us/library/system.double.aspx" target="_blank">double</a>^&gt;&gt;^ <span class="identifier">SumAsync</span>(
+	<a href="http://msdn.microsoft.com/en-us/library/bb351562.aspx" target="_blank">IQueryable</a>&lt;TSource&gt;^ <span class="parameter">source</span>, 
+	<a href="http://msdn.microsoft.com/en-us/library/bb335710.aspx" target="_blank">Expression</a>&lt;<span class="nolink">Func</span>&lt;TSource, <a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx" target="_blank">Nullable</a>&lt;<a href="http://msdn.microsoft.com/en-us/library/system.double.aspx" target="_blank">double</a>^&gt;&gt;^&gt;^ <span class="parameter">selector</span>, 
+	<span class="nolink">CancellationToken</span>^ <span class="parameter">cancellationToken</span>
+)</pre></div></div></div><h4 class="subHeading">Type Parameters</h4><dl><dt><span class="parameterItalic">TSource</span></dt><dd>The type of the elements of <span class="parameterItalic">source</span>.</dd></dl><div id="parameters"><h4 class="subHeading">Parameters</h4><dl paramName="source"><dt><span class="parameterItalic">source</span></dt><dd>Type: <a href="http://msdn.microsoft.com/en-us/library/bb351562.aspx" target="_blank">IQueryable</a><span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span><span class="selflink"><span class="typeparam">TSource</span></span><span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span><br />A sequence of values of type <span class="typeparameter">TSource</span>.</dd></dl><dl paramName="selector"><dt><span class="parameterItalic">selector</span></dt><dd>Type: <a href="http://msdn.microsoft.com/en-us/library/bb335710.aspx" target="_blank">Expression</a><span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span><span class="nolink">Func</span><span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span><span class="selflink"><span class="typeparam">TSource</span></span>, <a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx" target="_blank">Nullable</a><span class="languageSpecificText"><span class="cs">&lt;</span><span class="vb">(Of </span><span class="cpp">&lt;</span><span class="nu">(</span><span class="fs">&lt;'</span></span><a href="http://msdn.microsoft.com/en-us/library/system.double.aspx" target="_blank">Double</a><span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span><span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span><span class="languageSpecificText"><span class="cs">&gt;</span><span class="vb">)</span><span class="cpp">&gt;</span><span class="nu">)</span><span class="fs">&gt;</span></span><br />A projection function to apply to each element.</dd></dl><dl paramName="cancellationToken"><dt><span class="parameterItalic">cancellationToken</span></dt><dd>Type: <span class="nolink">CancellationToken</span><br />The optional <a href="http://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken.aspx" target="_blank">CancellationToken</a> which can be used to cancel this task.</dd></dl></div><h4 class="subHeading">Return Value</h4>
+   A task that returns the sum of the projected values.
+   </div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">Exceptions</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="exceptionsSection"><!----></a><div class="tableSection"><table width="100%" cellspacing="0" cellpadding="5" frame="lhs"><tr><th class="exceptionNameColumn">Exception</th><th class="exceptionConditionColumn">Condition</th></tr><tr><td><a href="http://msdn.microsoft.com/en-us/library/system.argumentnullexception.aspx" target="_blank">ArgumentNullException</a></td><td><span class="parameterItalic">source</span> or <span class="parameterItalic">selector</span> is null.</td></tr></table></div></div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">See Also</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="seeAlsoSection"><!----></a><div class="seeAlsoStyle"><a href="T-Fornax.Net.Util.Linq.Extensions.htm">Extensions Class</a></div><div class="seeAlsoStyle"><a href="Overload-Fornax.Net.Util.Linq.Extensions.SumAsync.htm">SumAsync Overload</a></div><div class="seeAlsoStyle"><a href="N-Fornax.Net.Util.Linq.htm">Fornax.Net.Util.Linq Namespace</a></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div id="footer" class="footerContainer">
+          <div class="footerLogoContainer">
+            <div style="margin-top:5px">
+              <span class="customCopyrightFooter" />
+            </div>
+            <div style="margin-top:5px" class="copyrightFooter">
+              <a href="http://submain.com/fwlink/gd-help/generated/">Created with evaluation copy of GhostDoc Pro. Click here to purchase and remove this link.</a>
+            </div>
+            <div> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

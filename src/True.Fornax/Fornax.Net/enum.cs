@@ -225,37 +225,4 @@ namespace Fornax.Net {
     }
 
     #endregion
-
-    #region  Misc Enumerations
-
-    /// <summary>
-    /// Sorter enum for sorting a collection of documents.
-    /// </summary>
-    [Serializable]
-    public enum SortBy
-    {
-
-        /// <summary>
-        /// Sort by The relevance to query. 
-        /// This is the default Sort mode.
-        /// </summary>
-        Relevance,
-        /// <summary>
-        /// Sort by the date last Modified.
-        /// </summary>
-        Modified,
-        /// <summary>
-        /// Sort by the date of creation.
-        /// </summary>
-        Date,
-        /// <summary>
-        /// Sort lexographically by the name or title.
-        /// </summary>
-        Name,
-        /// <summary>
-        /// Sort by the length or size.
-        /// </summary>
-        Size
-    }
-    #endregion
 }

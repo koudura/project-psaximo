@@ -35,11 +35,9 @@ namespace Corvus._1._0
 
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
-            if(searchBox.Text.Length > 2)
-            {
-                pt.searchBox.Text = searchBox.Text;
+
                 Switch(this);
-            }
+                pt.searchBox.Text = searchBox.Text;
 
         }
 

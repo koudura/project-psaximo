@@ -93,7 +93,7 @@ namespace Fornax.Net.Tests
 
 
         public async Task GetTrie() {
-            trie =  await FornaxWriter.BufferReadAsync<BufferTrie>(trie_file);
+           // trie =  await FornaxWriter.BufferReadAsync<BufferTrie>(trie_file);
         }
     }
 }

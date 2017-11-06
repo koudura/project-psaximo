@@ -23,19 +23,19 @@ namespace Fornax.Net.Tests
             var lang = FornaxLanguage.English;
             var tokenizer = new PerFieldTokenizer();
 
-            var config = ConfigFactory.GetConfiguration("Copora@Inc",FetchAttribute.Weak, CachingMode.Dynamic, lang, tokenizer, new FileFormat[] { FileFormat.Txt, FileFormat.Pdf });
+            var config = ConfigFactory.GetConfiguration("JpgRepo",FetchAttribute.Weak, CachingMode.Dynamic, lang, tokenizer, new FileFormat[] { FileFormat.Txt, FileFormat.Pdf , FileFormat.Jpg});
             var repo = Repository.Create(dir, RepositoryType.Local, config, Extractor.Default);
 
             InvertedFile file = new InvertedFile();
             
             IndexFactory.Add(repo, file);
-            IndexFactory.Save(config, file);
+            IndexFactory.Save(config, file, repo);
         }
 
         [TestMethod]
         public void FSRepositoryLoadTest1()
         {
-            string sampleId = "Copora@Inc";
+            string sampleId = "JpgRepo";
             var load = IndexFactory.Load(sampleId);
             foreach (var item in load.Index)
             {
@@ -46,10 +46,13 @@ namespace Fornax.Net.Tests
                 }
                 System.Console.Write("]\n");
             }
-            var corp = load.Repository.Corpora;
-            foreach (var item in corp)
+            var snips = load.Repository.Snippets;
+            var corp = load.Repository.Corpus;
+
+            foreach (var doc in corp)
             {
-                System.Console.WriteLine($"{item.Capture} \n: {item.ID} \n {item.Link} \n {item.Terms.Count}");
+                var id = doc.Key;
+                System.Console.WriteLine($"{id} :  [{Path.GetExtension(doc.Value)}]_{doc.Value}\n");
             }
         }
     }

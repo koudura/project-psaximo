@@ -180,6 +180,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -227,6 +228,13 @@
     <Compile Include="CorvusHome.Designer.cs">
       <DependentUpon>CorvusHome.cs</DependentUpon>
     </Compile>
+    <Compile Include="Daemon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Daemon.Designer.cs">
+      <DependentUpon>Daemon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Deus.cs" />
     <Compile Include="PerHome.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -260,6 +268,9 @@
     <EmbeddedResource Include="PerHome.resx">
       <DependentUpon>PerHome.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PerResult.resx">
+      <DependentUpon>PerResult.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PerTab.resx">
       <DependentUpon>PerTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -287,6 +298,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\corvuslib\corvuslib.csproj">
+      <Project>{52ebf10c-6639-4076-ba4e-256552eeb3e0}</Project>
+      <Name>corvuslib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -24,7 +24,9 @@ namespace Corvus._1._0
         internal TabPage currentTab => tabHolders.SelectedTab;
         private void CorvusHome_Shown(object sender, EventArgs e) {
             cfg = new ConfigWin();
+            Deus.ConfigWin = cfg;
             btnConfig.PerformClick();
+           
         }
 
         private void newTabBtn_Click(object sender, EventArgs e) {

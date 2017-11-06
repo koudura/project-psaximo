@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Fornax.Net" GeneratedClassName="config">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Fornax.Net.Properties" GeneratedClassName="config">
   <Profiles />
   <Settings>
     <Setting Name="resources_dir" Type="System.String" Scope="Application">
@@ -222,6 +222,21 @@
     </Setting>
     <Setting Name="Fornax_Lang1" Type="System.Globalization.CultureInfo" Scope="Application">
       <Value Profile="(Default)">en</Value>
+    </Setting>
+    <Setting Name="InnerResources" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">..\..\Resources\ </Value>
+    </Setting>
+    <Setting Name="BigramFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\Resources\_02.gmx</Value>
+    </Setting>
+    <Setting Name="TrigramFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\Resources\_03.gmx</Value>
+    </Setting>
+    <Setting Name="QuadgramFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\Resources\_04.gmx</Value>
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

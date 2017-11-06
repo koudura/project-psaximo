@@ -38,10 +38,12 @@ namespace Fornax.Net.Index.Storage
     public abstract class Repository : java.io.Serializable.__Interface
     {
         protected static IList<FileInfo> _files;
-        protected IList<IDocument> _collection;
+        protected static SnippetsFile _snipets;
+
         protected static Configuration _config;
-        protected string _repofilename;
         protected Corpus _corpus;
+
+        protected string _repofilename;
         protected internal Extractor _protocol;
 
         /// <summary>
@@ -73,13 +75,14 @@ namespace Fornax.Net.Index.Storage
         }
 
         /// <summary>
-        /// Creates the specified files.
+        /// Creates a new Fornax repository using the specified file-wrappers.
+        /// (<see cref="FileWrapper" />).
         /// </summary>
-        /// <param name="files">The files.</param>
-        /// <param name="type">The type.</param>
-        /// <param name="config">The configuration.</param>
-        /// <param name="extractionProtocol">The extraction protocol.</param>
-        /// <returns>Repository.</returns>
+        /// <param name="files">The files in the repository.</param>
+        /// <param name="type">The type of repository.</param>
+        /// <param name="config">The configuration of the repository.</param>
+        /// <param name="extractionProtocol">The extraction protocol to be used for file extraction.</param>
+        /// <returns>Fornax Repository.</returns>
         public static Repository Create(FileWrapper[] files, RepositoryType type, Configuration config, Extractor extractionProtocol = Extractor.Default)
         {
             if (type == RepositoryType.Local) return new FSRepository(files, config, extractionProtocol);
@@ -87,12 +90,13 @@ namespace Fornax.Net.Index.Storage
         }
 
         /// <summary>
-        /// Creates the specified directory.
+        /// Creates a new Fornax repository from files in a given file-system directory.
+        /// (<see cref="DirectoryInfo"/>).
         /// </summary>
-        /// <param name="directory">The directory.</param>
-        /// <param name="type">The type.</param>
-        /// <param name="config">The configuration.</param>
-        /// <param name="extractionProtocol">The extraction protocol.</param>
+        /// <param name="directory">The directory from which to enumerate files in repository.</param>
+        /// <param name="type">The type of repository.</param>
+        /// <param name="config">The configuration of the repository.</param>
+        /// <param name="extractionProtocol">The extraction protocol to be used for file extraction.</param>
         /// <returns>Repository.</returns>
         public static Repository Create(DirectoryInfo directory, RepositoryType type, Configuration config, Extractor extractionProtocol = Extractor.Default)
         {
@@ -126,13 +130,13 @@ namespace Fornax.Net.Index.Storage
         {
             return repoFile.Extension.Equals(Constants.ExtRepoFile);
         }
-       
+
         /// <summary>
         /// Gets the configuration.
         /// </summary>
         /// <value>The configuration.</value>
         public abstract Configuration Configuration { get; }
-      
+
         /// <summary>
         /// Gets the corpus re
         /// </summary>
@@ -143,7 +147,7 @@ namespace Fornax.Net.Index.Storage
         /// Gets the corpora of documents in the repository.
         /// </summary>
         /// <value>The corpora.</value>
-        public abstract IList<IDocument> Corpora { get; }
+       internal abstract IEnumerable<IDocument> Corpora { get; }
 
         /// <summary>
         /// Enumerates the documents.
@@ -162,5 +166,8 @@ namespace Fornax.Net.Index.Storage
         /// </summary>
         /// <value>The protocol.</value>
         internal virtual Extractor Protocol => _protocol;
+
+        public virtual SnippetsFile Snippets => _snipets;
+
     }
 }

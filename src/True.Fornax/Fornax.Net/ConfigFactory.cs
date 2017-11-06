@@ -46,16 +46,11 @@ namespace Fornax.Net
 
         #region dir-configs
         internal static IReadOnlyDictionary<FornaxFormat, StringSet> FornaxFormatTable { get; private set; }
-
-        internal static CultureInfo english = config.Default.Fornax_Lang1;
-        internal static CultureInfo french = config.Default.Fornax_Lang2;
-        internal static CultureInfo current = config.Default.Language;
-
         internal static StringSet UserDefinedFormats => config.Default.USER_DEFINED ?? throw new FornaxException();
 
-        internal static bool IsSafeSearchable = config.Default.QueryIsSafeSearch;
-        internal static bool IsExpandable = config.Default.QueryIsExpand;
-        internal static bool IsAutoCorrectable = config.Default.QueryAutoCorrect;
+        internal static string bigramPath = config.Default.BigramFile;
+        internal static string trigramPath = config.Default.TrigramFile;
+        internal static string quadgramPath = config.Default.QuadgramFile;
         #endregion
 
         /// <summary>
@@ -90,8 +85,10 @@ namespace Fornax.Net
         public static Configuration Default => GetConfiguration(@def_id, new CharTokenizer());
 
         private static readonly string @def_id = "default";
+        internal static readonly CultureInfo english = config.Default.Fornax_Lang1;
+        internal static readonly CultureInfo french = config.Default.Fornax_Lang2;
 
-        static Configuration GetConfiguration(string config_id, Tokenizer tokenizer)
+        public static Configuration GetConfiguration(string config_id, Tokenizer tokenizer)
         {
             CheckId(ref config_id);
             return new Configuration(config_id, tokenizer);

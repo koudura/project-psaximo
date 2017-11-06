@@ -51,6 +51,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+using Fornax.Net.Search;
 using Fornax.Net.Util.Collections;
 
 /// <summary>
@@ -64,17 +65,17 @@ namespace Fornax.Net.Index
     /// </summary>
     /// <seealso cref="IEnumerable" />
     /// <seealso cref="ICloneable" />
-    /// <seealso cref="Collections.Generic.IEnumerable{KeyValuePair{ulong, TermVector}}" />
+    /// <seealso cref="Collections.Generic.IEnumerable{KeyValuePair{ulong,Vector}}" />
     /// <seealso cref="java.io.Serializable.__Interface" />
     /// <seealso cref="IComparable{Postings}" />
-    /// <seealso cref="IDictionary{System.UInt64, TermVector}" />
+    /// <seealso cref="IDictionary{System.UInt64, Vector}" />
     [Serializable]
-    public class Postings : IEnumerable , IComparable<Postings>, ICloneable, java.io.Serializable.__Interface
+    public class Postings : IEnumerable, IComparable<Postings>, ICloneable, java.io.Serializable.__Interface
     {
         /// <summary>
         /// The postdictionary
         /// </summary>
-        private readonly IDictionary<ulong, TermVector> Postdictionary = new SortedList<ulong, TermVector>();
+        private readonly IDictionary<ulong, Vector> Postdictionary = new SortedList<ulong, Vector>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Postings" /> class.
@@ -82,10 +83,10 @@ namespace Fornax.Net.Index
         /// <param name="term">The term.</param>
         /// <param name="Docid">The docid.</param>
         /// <param name="init_position">The initialize position.</param>
-        internal Postings(Term term, ulong Docid, long init_position)
+        internal Postings(ulong Docid, long init_position)
         {
-            Postdictionary = new SortedList<ulong, TermVector> {
-                { Docid, new TermVector(term,init_position) }
+            Postdictionary = new SortedList<ulong, Vector> {
+                { Docid, new Vector(init_position) }
             };
         }
 
@@ -94,9 +95,9 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="Docid">The docid.</param>
         /// <param name="vector">The vector.</param>
-        internal Postings(ulong Docid, TermVector vector)
+        internal Postings(ulong Docid, Vector vector)
         {
-            if (Postdictionary.TryGetValue(Docid, out TermVector vect))
+            if (Postdictionary.TryGetValue(Docid, out Vector vect))
             {
                 Postdictionary[Docid] = vector;
             }
@@ -106,41 +107,41 @@ namespace Fornax.Net.Index
             }
         }
 
-        private Postings(IDictionary<ulong, TermVector> postdictionary)
+        private Postings(IDictionary<ulong, Vector> postdictionary)
         {
             Postdictionary = postdictionary;
         }
 
         /// <summary>
-        /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys of the <see cref="T:System.Collections.Generic.IDictionary`2" />.
+        /// Gets an <see cref="ICollection" /> containing the keys of the <see cref="IDictionary" />.
         /// </summary>
         /// <value>The keys.</value>
         internal ICollection<ulong> Keys => Postdictionary.Keys;
 
         /// <summary>
-        /// Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in the <see cref="T:System.Collections.Generic.IDictionary`2" />.
+        /// Gets an <see cref=" ICollection`1" /> containing the values in the <see cref="IDictionary" />.
         /// </summary>
         /// <value>The values.</value>
-        internal ICollection<TermVector> Values => Postdictionary.Values;
+        internal ICollection<Vector> Values => Postdictionary.Values;
 
         /// <summary>
-        /// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
+        /// Gets the number of elements contained in the <see cref=" ICollection`1" />.
         /// </summary>
         /// <value>The count.</value>
         public int Count => Postdictionary.Count;
 
         /// <summary>
-        /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
+        /// Gets a value indicating whether the <see cref=" ICollection`1" /> is read-only.
         /// </summary>
         /// <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
         internal bool IsReadOnly => Postdictionary.IsReadOnly;
 
         /// <summary>
-        /// Gets or sets the <see cref="TermVector" /> with the specified key.
+        /// Gets or sets the <see cref="Vector" /> with the specified key.
         /// </summary>
         /// <param name="key">The key.</param>
-        /// <returns>TermVector.</returns>
-        public TermVector this[ulong key] { get => Postdictionary[key]; set => Postdictionary[key] = value; }
+        /// <returns>Vector.</returns>
+        public Vector this[ulong key] { get => Postdictionary[key]; set => Postdictionary[key] = value; }
 
         /// <summary>
         /// Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
@@ -159,7 +160,7 @@ namespace Fornax.Net.Index
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
         /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
-        public IEnumerator<KeyValuePair<ulong, TermVector>> GetEnumerator()
+        public IEnumerator<KeyValuePair<ulong, Vector>> GetEnumerator()
         {
             return Postdictionary.GetEnumerator();
         }
@@ -195,30 +196,30 @@ namespace Fornax.Net.Index
         }
 
         /// <summary>
-        /// Determines whether the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the specified key.
+        /// Determines whether the <see cref="IDictionary" /> contains an element with the specified key.
         /// </summary>
-        /// <param name="key">The key to locate in the <see cref="T:System.Collections.Generic.IDictionary`2" />.</param>
-        /// <returns><see langword="true" /> if the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the key; otherwise, <see langword="false" />.</returns>
+        /// <param name="key">The key to locate in the <see cref="IDictionary" />.</param>
+        /// <returns><see langword="true" /> if the <see cref="IDictionary" /> contains an element with the key; otherwise, <see langword="false" />.</returns>
         internal bool ContainsKey(ulong key)
         {
             return Postdictionary.ContainsKey(key);
         }
 
         /// <summary>
-        /// Adds an element with the provided key and value to the <see cref="T:System.Collections.Generic.IDictionary`2" />.
+        /// Adds an element with the provided key and value to the <see cref="IDictionary" />.
         /// </summary>
         /// <param name="key">The object to use as the key of the element to add.</param>
         /// <param name="value">The object to use as the value of the element to add.</param>
-        internal void Add(ulong key, TermVector value)
+        internal void Add(ulong key, Vector value)
         {
             Postdictionary.Add(key, value);
         }
 
         /// <summary>
-        /// Removes the element with the specified key from the <see cref="T:System.Collections.Generic.IDictionary`2" />.
+        /// Removes the element with the specified key from the <see cref="IDictionary" />.
         /// </summary>
         /// <param name="key">The key of the element to remove.</param>
-        /// <returns><see langword="true" /> if the element is successfully removed; otherwise, <see langword="false" />.  This method also returns <see langword="false" /> if <paramref name="key" /> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2" />.</returns>
+        /// <returns><see langword="true" /> if the element is successfully removed; otherwise, <see langword="false" />.  This method also returns <see langword="false" /> if <paramref name="key" /> was not found in the original <see cref="IDictionary" />.</returns>
         internal bool Remove(ulong key)
         {
             return Postdictionary.Remove(key);
@@ -229,23 +230,23 @@ namespace Fornax.Net.Index
         /// </summary>
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value" /> parameter. This parameter is passed uninitialized.</param>
-        /// <returns><see langword="true" /> if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the specified key; otherwise, <see langword="false" />.</returns>
-        internal bool TryGetValue(ulong key, out TermVector value)
+        /// <returns><see langword="true" /> if the object that implements <see cref="IDictionary" /> contains an element with the specified key; otherwise, <see langword="false" />.</returns>
+        internal bool TryGetValue(ulong key, out Vector value)
         {
             return Postdictionary.TryGetValue(key, out value);
         }
 
         /// <summary>
-        /// Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1" />.
+        /// Adds an item to the <see cref="ICollection" />.
         /// </summary>
-        /// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
-        internal void Add(KeyValuePair<ulong, TermVector> item)
+        /// <param name="item">The object to add to the <see cref="ICollection" />.</param>
+        internal void Add(KeyValuePair<ulong, Vector> item)
         {
             Postdictionary.Add(item);
         }
 
         /// <summary>
-        /// Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1" />.
+        /// Removes all items from the <see cref="ICollection" />.
         /// </summary>
         internal void Clear()
         {
@@ -253,31 +254,31 @@ namespace Fornax.Net.Index
         }
 
         /// <summary>
-        /// Determines whether the <see cref="T:System.Collections.Generic.ICollection`1" /> contains a specific value.
+        /// Determines whether the <see cref="ICollection" /> contains a specific value.
         /// </summary>
-        /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
-        /// <returns><see langword="true" /> if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />.</returns>
-        internal bool Contains(KeyValuePair<ulong, TermVector> item)
+        /// <param name="item">The object to locate in the <see cref="ICollection" />.</param>
+        /// <returns><see langword="true" /> if <paramref name="item" /> is found in the <see cref="ICollection" />; otherwise, <see langword="false" />.</returns>
+        internal bool Contains(KeyValuePair<ulong, Vector> item)
         {
             return Postdictionary.Contains(item);
         }
 
         /// <summary>
-        /// Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1" /> to an <see cref="T:System.Array" />, starting at a particular <see cref="T:System.Array" /> index.
+        /// Copies the elements of the <see cref="ICollection" /> to an <see cref="Array" />, starting at a particular <see cref="Array" /> index.
         /// </summary>
-        /// <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from <see cref="T:System.Collections.Generic.ICollection`1" />. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
+        /// <param name="array">The one-dimensional <see cref="Array" /> that is the destination of the elements copied from <see cref="ICollection" />. The <see cref="Array" /> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
-        internal void CopyTo(KeyValuePair<ulong, TermVector>[] array, int arrayIndex)
+        internal void CopyTo(KeyValuePair<ulong, Vector>[] array, int arrayIndex)
         {
             Postdictionary.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
-        /// Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1" />.
+        /// Removes the first occurrence of a specific object from the <see cref="ICollection" />.
         /// </summary>
-        /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
-        /// <returns><see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
-        internal bool Remove(KeyValuePair<ulong, TermVector> item)
+        /// <param name="item">The object to remove from the <see cref="ICollection" />.</param>
+        /// <returns><see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref=" ICollection`1" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref=" ICollection`1" />.</returns>
+        internal bool Remove(KeyValuePair<ulong, Vector> item)
         {
             return Postdictionary.Remove(item);
         }

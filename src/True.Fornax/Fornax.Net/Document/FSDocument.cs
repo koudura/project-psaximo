@@ -70,7 +70,7 @@ namespace Fornax.Net.Document
 
         private static string _path;
         private static string _name;
-        private Snippet _snippet;
+        private static Snippet _capture;
 
         /// <summary>
         /// Gets the terms.
@@ -96,7 +96,6 @@ namespace Fornax.Net.Document
             _path = doc.FullName;
             _name = Path.GetFileNameWithoutExtension(doc.FullName);
             docId = Adler32.Compute(doc.FullName);
-            _snippet = CreateSnippet(tokens);
             terms = GetTerms(tokens, language);
         }
 
@@ -144,7 +143,7 @@ namespace Fornax.Net.Document
         /// Gets or sets a capture snippet for this document.
         /// </summary>
         /// <value>The capture.</value>
-        public Snippet Capture { get { return _snippet; } internal set { _snippet = value; } }
+        public Snippet Capture => _capture;
 
         /// <summary>
         /// Gets the fornax.net recognizable extension format of this document.
@@ -166,9 +165,9 @@ namespace Fornax.Net.Document
         /// </summary>
         /// <param name="tokens">The tokens.</param>
         /// <returns>Snippet.</returns>
-        internal Snippet CreateSnippet(TokenStream tokens)
+        internal static Snippet CreateSnippet(string text)
         {
-            return new Snippet(0, ((tokens.Size) > 100) ? 100 : tokens.Size, tokens);
+            return new Snippet(((text.Length) > 100) ? 100 : text.Length, text);
         }
 
         internal static TermVector GetTerms(TokenStream tokens, FornaxLanguage language)
@@ -186,13 +185,13 @@ namespace Fornax.Net.Document
 
                     if (termv.TryGetValue(t, out Vector taVect))
                     {
-                        taVect.Value.Add(d.Start);
+                        taVect.Value.Add(t.Token.Start);
                     }
                     else
                     {
-                        var vector = new Vector();
-                        vector.Value.Add(d.Start);
-                        termv.Add(t, vector);
+                        var v = new Vector();
+                        v.Value.Add(t.Token.Start);
+                        termv.Add(t, v);
                     }
                 }
             }
@@ -212,6 +211,8 @@ namespace Fornax.Net.Document
         private static async Task<Tokenizer> getTokenizer(Tokenizer tokenizer, Extractor extractor, string path)
         {
             var txt = await GetText(extractor, path);
+            _capture = CreateSnippet(txt);
+
             return GetTok(tokenizer, string.Format("{0} {1}", txt, _name));
         }
 
@@ -248,6 +249,7 @@ namespace Fornax.Net.Document
                 return (wsTok.text == string.Empty) ? new PerFieldTokenizer(txt) : new PerFieldTokenizer(wsTok.text);
             }
         }
+
         private static async Task<string> GetText(Extractor ext, string path)
         {
             FornaxReader reader = new FornaxReader(path);
@@ -276,13 +278,12 @@ namespace Fornax.Net.Document
         private static async Task<string> CompileTextTika(FornaxReader reader)
         {
             var read = await reader.TikaReadAsync();
-            var sbuilder = new StringBuilder();
+            var sbuilder = new StringBuilder(read.Text);
             foreach (var str in read.Metadata)
             {
-                sbuilder.AppendFormat("{0} : {1}\n", str.Key, str.Value);
+                sbuilder.AppendFormat("\n{0} : {1}\n", str.Key, str.Value);
             }
-            sbuilder.Append("\n").Append(read.Text);
-            Console.WriteLine(sbuilder.ToString());
+            sbuilder.Append("\n");
             return sbuilder.ToString();
         }
 
@@ -291,7 +292,7 @@ namespace Fornax.Net.Document
             if (format.GetFornaxFormat() == FornaxFormat.Email)
             {
                 var txt = await reader.ToxyEmailReadAsync();
-                return (txt.Attributes + txt.Text);
+                return (txt.Text + txt.Attributes);
             }
             else
             {

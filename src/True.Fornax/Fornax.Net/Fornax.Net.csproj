@@ -28,6 +28,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DCSoft.RTF, Version=1.0.0.13760, Culture=neutral, PublicKeyToken=2e40e961ea876340, processorArchitecture=MSIL">
@@ -319,6 +321,7 @@
     <Compile Include="Document\IDocument.cs" />
     <Compile Include="Document\NetDocument.cs" />
     <Compile Include="Document\Snippet.cs" />
+    <Compile Include="Document\SnippetsFile.cs" />
     <Compile Include="enum.cs" />
     <Compile Include="FileFormat.cs" />
     <Compile Include="Index\Common\EditFactory.cs" />
@@ -345,15 +348,22 @@
     <Compile Include="Lib\libraries.Designer.cs" />
     <Compile Include="Progress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\config.Designer.cs" />
+    <Compile Include="Properties\config.cs" />
+    <Compile Include="Properties\config1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>config.settings</DependentUpon>
+    </Compile>
     <Compile Include="Properties\dictionary.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dictionary.resx</DependentUpon>
     </Compile>
+    <Compile Include="Search\DocResult.cs" />
     <Compile Include="Search\Enums.cs" />
     <Compile Include="Search\FornaxQuery.cs" />
     <Compile Include="Search\FreeTextQuery.cs" />
+    <Compile Include="Search\HitList.cs" />
     <Compile Include="Search\Query.cs" />
     <Compile Include="Search\QueryBuilder.cs" />
     <Compile Include="Search\Ranker.cs" />
@@ -444,12 +454,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Architecture.cd" />
     <None Include="Common\SandBox\user.plugins" />
     <EmbeddedResource Include="Lib\toxy\policy.2.0.taglib-sharp.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <None Include="Properties\config.settings" />
+    <None Include="Properties\config.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>config1.Designer.cs</LastGenOutput>
+    </None>
     <EmbeddedResource Include="Resources\wn_s.pl" />
+    <EmbeddedResource Include="Resources\_02.gmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\_03.gmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\_04.gmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="ZeroFormatterAnalyzer.json" />
   </ItemGroup>
   <ItemGroup>

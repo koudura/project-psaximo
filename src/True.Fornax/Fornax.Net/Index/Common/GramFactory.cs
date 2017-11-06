@@ -4,7 +4,7 @@
 // Created          : 10-29-2017
 //
 // Last Modified By : Koudura Mazou
-// Last Modified On : 10-31-2017
+// Last Modified On : 11-05-2017
 // ***********************************************************************
 // <copyright file="GramFactory.cs" company="Microsoft">
 //     Copyright © Microsoft 2017
@@ -19,6 +19,7 @@ using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Fornax.Net.Analysis.Tokenization;
 using Fornax.Net.Analysis.Tools;
 using Fornax.Net.Util;
@@ -38,24 +39,58 @@ namespace Fornax.Net.Index.Common
     public static class GramFactory
     {
         private static readonly DirectoryInfo fornaxGrams = Constants.GetCurrentDirectory("grams");
-        private static readonly string bigramPath = Path.Combine(fornaxGrams.FullName, "_02.gmx");
-        private static readonly string trigramPath = Path.Combine(fornaxGrams.FullName, "_03.gmx");
-        private static readonly string quadrogramPath = Path.Combine(fornaxGrams.FullName, "_04.gmx");
+        private static readonly string bigramPath = Path.Combine(Constants.BaseDirectory.FullName, "grams", "_02.gmx");
+        private static readonly string trigramPath = Path.Combine(Constants.BaseDirectory.FullName, "grams", "_03.gmx");
+        private static readonly string quadrogramPath = Path.Combine(Constants.BaseDirectory.FullName, "grams", "_04.gmx");
 
+        private static GramIndex bigram;
+        private static GramIndex quadgram;
+        private static GramIndex trigram;
 
-        public static GramIndex Default_BiGram => ReadGram(bigramPath);
-        public static GramIndex Default_TriGram => ReadGram(trigramPath);
-        public static GramIndex Default_QuadroGram => ReadGram(quadrogramPath);
+        /// <summary>
+        /// Gets the default bi gram.
+        /// </summary>
+        /// <value>The default bi gram.</value>
+        public static GramIndex Default_BiGram => bigram ?? (bigram = ReadGram(bigramPath));
+      
+        /// <summary>
+        /// Gets the default tri gram.
+        /// </summary>
+        /// <value>The default tri gram.</value>
+        public static GramIndex Default_TriGram => trigram ?? (trigram = ReadGram(trigramPath));
+     
+        /// <summary>
+        /// Gets the default quadro gram.
+        /// </summary>
+        /// <value>The default quadro gram.</value>
+        public static GramIndex Default_QuadroGram => quadgram ?? (quadgram = ReadGram(quadrogramPath));
 
+        /// <summary>
+        /// Reads the gram.
+        /// </summary>
+        /// <param name="pathTogramfile">The path togramfile.</param>
+        /// <returns>GramIndex.</returns>
         public static GramIndex ReadGram(string pathTogramfile)
         {
             return FornaxWriter.ReadAsync<GramIndex>(pathTogramfile).Result;
         }
 
-        public static void InitBigram()
+        /// <summary>
+        /// Initializes the default grams.
+        /// </summary>
+        /// <param name="bound">The bound.</param>
+        public static void InitDefaultGrams(uint bound)
         {
-            var trigram = GetNgramIndex(ConfigFactory.GetVocabulary(FornaxLanguage.English).Dictionary, 4, NgramModel.Character);
-            Task.WaitAll(FornaxWriter.WriteAsync(trigram, quadrogramPath));
+            bound = (bound < 2) ? 2 : (bound > 4) ? 4 : bound;
+
+            for (uint i = 2; i <= bound; i++)
+            {
+                var gram = GetNgramIndex(ConfigFactory.GetVocabulary(FornaxLanguage.English).Dictionary, i, NgramModel.Character);
+                string path = (i == 2) ? bigramPath : (i == 3) ? trigramPath : quadrogramPath;
+                Task.WaitAll(FornaxWriter.WriteAsync(gram, path));
+            }
+          
+            
         }
 
         /// <summary>
@@ -208,17 +243,17 @@ namespace Fornax.Net.Index.Common
         /// <param name="indexFile">The index file.</param>
         /// <param name="AsAsync">if set to <c>true</c> [as asynchronous].</param>
         /// <returns>GramIndex.</returns>
-        public static GramIndex Read(FileInfo indexFile, bool AsAsync)
+        public static GramIndex[] Read(FileInfo indexFile, bool AsAsync)
         {
             Contract.Requires(indexFile != null);
-            GramIndex g = null;
+            GramIndex[] g = null;
             if (AsAsync)
             {
                 g = FornaxWriter.BufferReadAsync<GramIndex>(indexFile).Result;
             }
             else
             {
-                g = FornaxWriter.Read<GramIndex>(indexFile);
+                g = FornaxWriter.BufferRead<GramIndex>(indexFile);
             }
             Contract.Ensures(g != null);
             return g;
@@ -226,10 +261,7 @@ namespace Fornax.Net.Index.Common
 
         static GramFactory()
         {
-            if (!File.Exists(quadrogramPath))
-            {
-                InitBigram();
-            }
+         
         }
 
     }

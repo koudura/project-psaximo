@@ -48,23 +48,26 @@
             // 
             // snippetLabel
             // 
-            this.snippetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.snippetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.snippetLabel.BackColor = System.Drawing.Color.DimGray;
             this.snippetLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.snippetLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.snippetLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.snippetLabel.Location = new System.Drawing.Point(4, 27);
             this.snippetLabel.Name = "snippetLabel";
-            this.snippetLabel.Size = new System.Drawing.Size(609, 103);
+            this.snippetLabel.Size = new System.Drawing.Size(609, 137);
             this.snippetLabel.TabIndex = 1;
-            this.snippetLabel.Text = "cytfcgshgcvhgc  gdjgscsdcjsdhgvcsdjcj  cshcvjsvjhsjcsd hcsjhcvjhsd sdhjcdsjcjds c" +
-    "v shcjsdhvbcfjhdscjhsdcjhsvcjhsjchvjcvsdj";
+            this.snippetLabel.Text = "Lorem ipsum dolor sit amet";
             // 
             // linkLabel
             // 
-            this.linkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.linkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.linkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel.LinkColor = System.Drawing.Color.Aqua;
             this.linkLabel.Location = new System.Drawing.Point(3, 10);
             this.linkLabel.Name = "linkLabel";
             this.linkLabel.Size = new System.Drawing.Size(609, 17);
@@ -77,6 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Controls.Add(this.panel1);
             this.Name = "PerResult";
             this.Size = new System.Drawing.Size(619, 179);

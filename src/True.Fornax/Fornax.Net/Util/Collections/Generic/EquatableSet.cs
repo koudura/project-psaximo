@@ -309,10 +309,6 @@ namespace Fornax.Net.Util.Collections.Generic
         /// </returns>
         /// <exception cref="ArgumentNullException">other</exception>
         public virtual bool Equals(ISet<T> other) {
-            if (other == null) {
-                throw new ArgumentNullException(nameof(other));
-            }
-
             return Collections.Equals(this, other);
         }
 
@@ -357,10 +353,6 @@ namespace Fornax.Net.Util.Collections.Generic
         /// is the same as this one.</returns>
         /// <exception cref="ArgumentNullException">collection</exception>
         public override bool Equals(object obj) {
-            if (obj == null) {
-                throw new ArgumentNullException(nameof(obj));
-            }
-
             if (!(obj is ISet<T>)) {
                 return false;
             }

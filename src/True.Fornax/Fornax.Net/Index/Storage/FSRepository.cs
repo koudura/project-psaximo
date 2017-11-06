@@ -4,34 +4,47 @@
 // Created          : 10-29-2017
 //
 // Last Modified By : Koudura Mazou
-// Last Modified On : 10-31-2017
+// Last Modified On : 11-05-2017
 // ***********************************************************************
-// <copyright file="FSRepository.cs" company="True.Inc">
-/***
-* Copyright (c) 2017 Koudura Ninci @True.Inc
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-* 
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-* 
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*
-**/
+// <copyright file="FSRepository.cs" company="Microsoft">
+//     Copyright © Microsoft 2017
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+////// ***********************************************************************
+////// Assembly         : Fornax.Net
+////// Author           : Koudura Mazou
+////// Created          : 10-29-2017
+//////
+////// Last Modified By : Koudura Mazou
+////// Last Modified On : 10-31-2017
+////// ***********************************************************************
+////// <copyright file="FSRepository.cs" company="True.Inc">
+/////***
+////* Copyright (c) 2017 Koudura Ninci @True.Inc
+////*
+////* Permission is hereby granted, free of charge, to any person obtaining a copy
+////* of this software and associated documentation files (the "Software"), to deal
+////* in the Software without restriction, including without limitation the rights
+////* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+////* copies of the Software, and to permit persons to whom the Software is
+////* furnished to do so, subject to the following conditions:
+////* 
+////* The above copyright notice and this permission notice shall be included in all
+////* copies or substantial portions of the Software.
+////* 
+////* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+////* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+////* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+////* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+////* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+////* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+////* SOFTWARE.
+////*
+////**/
+////// </copyright>
+////// <summary></summary>
+////// ***********************************************************************
 
 
 using System;
@@ -51,12 +64,16 @@ using ProtoBuf;
 using Cst = Fornax.Net.Util.Constants;
 using FSDocument = Fornax.Net.Document.FSDocument;
 
+/// <summary>
+/// The Storage namespace.
+/// </summary>
 namespace Fornax.Net.Index.Storage
 {
     /// <summary>
     /// Files System Repository.
     /// </summary>
     /// <seealso cref="Fornax.Net.Index.Storage.Repository" />
+    /// <seealso cref="Repository" />
     /// <seealso cref="java.io.Serializable.__Interface" />
     /// <seealso cref="Repository" />
     [Serializable, ProtoContract]
@@ -76,9 +93,7 @@ namespace Fornax.Net.Index.Storage
             if (files == null) throw new ArgumentNullException(nameof(files));
 
             _files = GetFiles(files, config.Formats);
-            _config = config;
-            _repofilename = Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile);
-            _corpus = InitCorpus();
+            InstantiateAll(config, Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile), extractionProtocol, InitCorpus());
 
             Task.WaitAll(CreateorUpdate());
         }
@@ -96,9 +111,7 @@ namespace Fornax.Net.Index.Storage
             if (filewrappers == null) throw new ArgumentNullException(nameof(filewrappers));
 
             _files = GetFiles(filewrappers, config.Formats);
-            _config = config;
-            _repofilename = Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile);
-            _corpus = InitCorpus();
+            InstantiateAll(config, Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile), extractionProtocol, InitCorpus());
 
             Task.WaitAll(CreateorUpdate());
         }
@@ -116,10 +129,7 @@ namespace Fornax.Net.Index.Storage
             if (fileNames == null) throw new ArgumentNullException(nameof(fileNames));
 
             _files = GetFiles(fileNames, config.Formats);
-            _config = config;
-            _repofilename = Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile);
-            _protocol = extractionProtocol;
-            _corpus = InitCorpus();
+            InstantiateAll(config, Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile), extractionProtocol, InitCorpus());
 
             Task.WaitAll(CreateorUpdate());
         }
@@ -131,13 +141,14 @@ namespace Fornax.Net.Index.Storage
         /// <param name="directory">The directory.</param>
         /// <param name="config">The configuration.</param>
         /// <param name="extractionProtocol">The extraction protocol.</param>
+        /// <exception cref="ArgumentNullException">directory</exception>
         internal FSRepository(DirectoryInfo directory, Configuration config, Extractor extractionProtocol = Extractor.Default)
         {
+            Contract.Requires(directory != null);
+            if (directory == null) throw new ArgumentNullException(nameof(directory));
+
             _files = GetFiles(directory, config.Formats);
-            _config = config;
-            _repofilename = Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile);
-            _protocol = extractionProtocol;
-            _corpus = InitCorpus();
+            InstantiateAll(config, Path.Combine(config.WorkingDirectory.FullName, "_" + Cst.ExtRepoFile), extractionProtocol, InitCorpus());
 
             Task.WaitAll(CreateorUpdate());
         }
@@ -147,32 +158,17 @@ namespace Fornax.Net.Index.Storage
         }
 
         /// <summary>
-        /// Gets the corpora.
+        /// Gets the corpus representing the collection of document id's to
+        /// files.
         /// </summary>
         /// <value>The corpora.</value>
         public override Corpus Corpus => _corpus;
 
-        public override IList<IDocument> Corpora {
-            get {
-                if(_collection == null)
-                {
-                    _collection = EnumerateDocuments().ToList(); Task.WaitAll(CreateorUpdate());
-                }
-                return _collection;
-            }
-        }
-
-
         /// <summary>
-        /// Gets the documents in the repository.
+        /// Gets the corpora of documents in the repository.
         /// </summary>
-        /// <param name="extractor">The extractor.</param>
-        /// <returns>IEnumerable&lt;IDocument&gt;.</returns>
-        /// <value>The documents.</value>
-        internal override IEnumerable<IDocument> EnumerateDocuments()
-        {
-            return InitDocuments(_protocol).Result;
-        }
+        /// <value>The corpora.</value>
+        internal override IEnumerable<IDocument> Corpora => EnumerateDocuments();
 
         /// <summary>
         /// Gets the configuration of the repository.
@@ -187,32 +183,53 @@ namespace Fornax.Net.Index.Storage
         /// <value>The repository file.</value>
         internal override FileInfo RepositoryFile => base.RepositoryFile;
 
+        /// <summary>
+        /// Gets the snippets.
+        /// </summary>
+        /// <value>The snippets.</value>
+        public override SnippetsFile Snippets => _snipets;
+
         #region workers
-        private Corpus InitCorpus()
+
+        private void InstantiateAll(Configuration config, string filename, Extractor ext, Corpus corp)
         {
-            Corpus corp = new Corpus();
-            foreach (var item in _files)
-            {
-                corp.Add(new KeyValuePair<ulong, string>(Adler32.Compute(item.FullName), item.FullName));
-            }
-            return corp;
+            _config = config;
+            _repofilename = filename;
+            _protocol = ext;
+            _corpus = corp;
+            _snipets = new SnippetsFile();
+        }
+
+        /// <summary>
+        /// Gets the documents in the repository.
+        /// </summary>
+        /// <returns>IEnumerable&lt;IDocument&gt;.</returns>
+        /// <value>The documents.</value>
+        internal override IEnumerable<IDocument> EnumerateDocuments()
+        {
+            return InitDocuments(_protocol).Result;
         }
 
         private async Task<IEnumerable<FSDocument>> InitDocuments(Extractor extProt)
         {
-            return await Task.Factory.StartNew(() => YieldDocuments(extProt));
+            var set = await Task.Factory.StartNew(() => YieldDocuments(extProt));
+            Task.WaitAll(CreateorUpdate());
+            return set;
         }
 
-        private static IList<FSDocument> YieldDocuments(Extractor ext)
+        private IList<FSDocument> YieldDocuments(Extractor ext)
         {
             IList<FSDocument> acquired = new List<FSDocument>();
             foreach (var file in _files)
             {
-                acquired.Add(new FSDocument(file, _config.Tokenizer, _config.Language, ext));
+                var doc = new FSDocument(file, _config.Tokenizer, _config.Language, ext);
+                _snipets.Add(doc.ID, doc.Capture);
+                acquired.Add(doc);
             }
             return acquired;
         }
 
+        #region files enumertors
         private static IList<FileInfo> GetFiles(DirectoryInfo directory, FileFormat[] formats)
         {
             IList<FileInfo> gotten = new List<FileInfo>();
@@ -277,8 +294,21 @@ namespace Fornax.Net.Index.Storage
             }
             return GetFiles(files.ToArray(), formats);
         }
+        #endregion
 
-        private async Task CreateorUpdate()
+        #region repo handles
+
+        private Corpus InitCorpus()
+        {
+            Corpus corp = new Corpus();
+            foreach (var item in _files)
+            {
+                corp.Add(new KeyValuePair<ulong, string>(Adler32.Compute(item.FullName), item.FullName));
+            }
+            return corp;
+        }
+
+        internal async Task CreateorUpdate()
         {
             await FornaxWriter.WriteAsync<Repository>(this, _repofilename);
         }
@@ -314,6 +344,7 @@ namespace Fornax.Net.Index.Storage
         {
             return (int)Adler32.Compute(ToString());
         }
+        #endregion
 
         #endregion
     }

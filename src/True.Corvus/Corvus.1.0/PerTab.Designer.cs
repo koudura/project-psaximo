@@ -35,8 +35,10 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lbltime = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
             this.SuspendLayout();
@@ -69,8 +71,9 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.Gray;
+            this.panel6.BackColor = System.Drawing.Color.DimGray;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.lbltime);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel6.Location = new System.Drawing.Point(0, 524);
             this.panel6.Name = "panel6";
@@ -177,6 +180,17 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Corvus";
             // 
+            // lbltime
+            // 
+            this.lbltime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbltime.AutoSize = true;
+            this.lbltime.ForeColor = System.Drawing.Color.Aqua;
+            this.lbltime.Location = new System.Drawing.Point(10, 10);
+            this.lbltime.Name = "lbltime";
+            this.lbltime.Size = new System.Drawing.Size(16, 13);
+            this.lbltime.TabIndex = 0;
+            this.lbltime.Text = "...";
+            // 
             // PerTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,6 +205,8 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.PerTab_Paint);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -211,5 +227,6 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbltime;
     }
 }

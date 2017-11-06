@@ -10,6 +10,7 @@ using Fornax.Net.Index.Storage;
 
 namespace Fornax.Net.Search
 {
+    [Serializable]
     public abstract class FornaxQuery
     {
         protected readonly string query;

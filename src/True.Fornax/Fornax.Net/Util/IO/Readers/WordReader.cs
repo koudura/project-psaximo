@@ -198,7 +198,6 @@ namespace Fornax.Net.Util.IO.Readers
             finally
             {
                 if (fr != null) fr.Close();
-                if (br != null) br.Close();
             }
             return result;
         }

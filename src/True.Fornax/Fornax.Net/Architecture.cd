@@ -1,0 +1,1262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Fornax.Net.Analysis.AdvancedAnalyzer" Collapsed="true">
+    <Position X="0.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Analysis\AdvancedAnalyzer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Analyzer" Collapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAgAAAAAAAAAAAAABgAAAAAACAAAAA=</HashCode>
+      <FileName>Analysis\Analyzer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Automaton" Collapsed="true">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAEAQVQAAAABASCEIAAgAMEFIAAABEwAA=</HashCode>
+      <FileName>Analysis\Automaton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.SimpleAnalyzer" Collapsed="true">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAACAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Analysis\SimpleAnalyzer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.StandardAnalyzer" Collapsed="true">
+    <Position X="5.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Analysis\StandardAnalyzer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Filters.Filter" Collapsed="true">
+    <Position X="1.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgQAAAAAAAAAAAIAIAAAAAAAAAAA=</HashCode>
+      <FileName>Analysis\Filters\Filter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Filters.LinksFilter" Collapsed="true">
+    <Position X="22.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Analysis\Filters\LinksFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Filters.OperatorsFilter" Collapsed="true">
+    <Position X="28" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Analysis\Filters\OperatorsFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Filters.RobotsFilter" Collapsed="true">
+    <Position X="22.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Analysis\Filters\RobotsFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Filters.SafetyFilter" Collapsed="true">
+    <Position X="0.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAABQAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Analysis\Filters\SafetyFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Filters.StopsFilter" Collapsed="true">
+    <Position X="2.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAEkQAAAAAAAAAACIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Analysis\Filters\StopsFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tokenization.BiasTokenizer" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAgAAAAIAAAAAJAAAIAAgAAAAAIAAIE=</HashCode>
+      <FileName>Analysis\Tokenization\BiasTokenizer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tokenization.CharTokenizer" Collapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAgAAAAIAAAAAIAAAAAAgAAgAAIAAIE=</HashCode>
+      <FileName>Analysis\Tokenization\CharTokenizer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tokenization.NumericTokenizer" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACQAAAAAAAAAAAAAIAAAAAIAAAAAAgAAgAAIAAIE=</HashCode>
+      <FileName>Analysis\Tokenization\NumericTokenizer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tokenization.PerFieldTokenizer" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAgAAAAIAAAAAJAAAIAAgAAAAAIAAIE=</HashCode>
+      <FileName>Analysis\Tokenization\PerFieldTokenizer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tokenization.Token" Collapsed="true">
+    <Position X="31.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAIAACAAAAQUgAAAAADAAAABAKAABQAgAAAAJAQ=</HashCode>
+      <FileName>Analysis\Tokenization\Token.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tokenization.Tokenizer" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAIAAAAIIgAAAAAIAAIE=</HashCode>
+      <FileName>Analysis\Tokenization\Tokenizer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tokenization.TokenStream" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAACAAhAAEiACAAAgAAAAAAIAAoAAAAAAAABA=</HashCode>
+      <FileName>Analysis\Tokenization\TokenStream.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tokenization.WhitespaceTokenizer" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACQAAAAAAAAAAAAAIAAAAAIAAAAAAgAAgAAIAAIE=</HashCode>
+      <FileName>Analysis\Tokenization\WhitespaceTokenizer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tools.BufferTrie" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAACAEgAAgAAAAAAEAAIAAAAAAAAAgAAA=</HashCode>
+      <FileName>Analysis\Tools\BufferTrie.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tools.ClusterTrie" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAACAEgAAgAAAAAAEAAIAAAAAAAAAgAAA=</HashCode>
+      <FileName>Analysis\Tools\ClusterTrie.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tools.FornaxLevenshteinEdit" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAEkAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Analysis\Tools\FornaxLevenshteinEdit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tools.FornaxStemmer" Collapsed="true">
+    <Position X="11.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYIBABAACAADgAEgAAABEIARAAACJEAAAKAABAIAAA=</HashCode>
+      <FileName>Analysis\Tools\FornaxStemmer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tools.NaiveTrie" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Analysis\Tools\NaiveTrie.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tools.Ngram" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAkgAAAAAQAAAAABIAIAACADAIAAAA=</HashCode>
+      <FileName>Analysis\Tools\Ngram.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tools.Node&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAABAAEABQUiAAEBAQAAAAAAIAEAAAgAABQIAA=</HashCode>
+      <FileName>Analysis\Tools\Node.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tools.Soundex" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAQAAAgQEgAAAQAEAEAAAAKAAAAAgAEAAAAA=</HashCode>
+      <FileName>Analysis\Tools\Soundex.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Analysis.Tools.Synset" Collapsed="true">
+    <Position X="22.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAEAAAAAAAAABABEgAIAACAAAAAAAoAAAAAAAAABAAI=</HashCode>
+      <FileName>Analysis\Tools\Synset.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Bot.Crawlable" Collapsed="true">
+    <Position X="22.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bot\Crawlable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Bot.Local.DaemonX" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bot\Local\DaemonX.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Bot.Local.FornaxDaemon" Collapsed="true">
+    <Position X="22.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAEACAAAACAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Bot\Local\FornaxDaemon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Bot.Net.Altair" Collapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bot\Net\Altair.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Common.SandBox.Contrib" Collapsed="true">
+    <Position X="17.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Common.SandBox.ContribPathsHandler" Collapsed="true">
+    <Position X="19.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\SandBox\ContribPathsHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Common.Similarity.JaroWinklerEdit" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAABAAAAAAAAEgAAAAAAAAAAAAKAAAAAgAAAAAAA=</HashCode>
+      <FileName>Common\Similarity\JaroWinklerEdit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Common.Similarity.LevenshteinEdit" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAEgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Similarity\LevenshteinEdit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Common.Similarity.NGramEdit" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAEgAAAAAAAAAAAAIAAEAAAAAAAAAA=</HashCode>
+      <FileName>Common\Similarity\NGramEdit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Common.Snowball.en.PorterStemmer" Collapsed="true">
+    <Position X="11.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIIBABAAAAADkAEAAAARMIAgAAACAFAoQEBCAMAAAA=</HashCode>
+      <FileName>Common\Snowball\en\PorterStemmer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Common.Snowball.fr.FrenchStemmer" Collapsed="true">
+    <Position X="15.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAABAAgAAAgGhCCAABABAIUAAAgACEgQQBQABgAAAA=</HashCode>
+      <FileName>Common\Snowball\fr\FrenchStemmer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.ConfigFactory" Collapsed="true">
+    <Position X="31.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAIAAAAAAEAACgAAAAICECAAAAAAQAgABAABAQAAA=</HashCode>
+      <FileName>ConfigFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Configuration" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAIAQKABAgAgAQABoAEABAAAAAQAAAAgAABQAEwA=</HashCode>
+      <FileName>Configuration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.FormatExt" Collapsed="true">
+    <Position X="17.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAggAAAAAAAAAAAAAAABAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>FileFormat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Progress" Collapsed="true">
+    <Position X="31.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAIgAAACAAAAAAAAAQAIAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Progress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Document.Corpus" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAICAAAAAAAEABAQCAAABAQAAAAAAAAEAAAgAABQIAA=</HashCode>
+      <FileName>Document\Corpus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Document.FSDocument" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAKEAAACgCiAAMgAAAiAQAAghAAoAAADAAQAIABAA=</HashCode>
+      <FileName>Document\FSDocument.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Document.NetDocument" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAgAAAAEAAAAQAAAqIAAAADDAAQAABAEA=</HashCode>
+      <FileName>Document\NetDocument.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Document.Snippet" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAADQEgEAAAAAAAAAAAIAMAAAAAAAAAiA=</HashCode>
+      <FileName>Document\Snippet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Document.SnippetsFile" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAAAEABAUiAAABBQAAAAAAIAEAAAgAABQIBA=</HashCode>
+      <FileName>Document\SnippetsFile.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Index.Common.EditFactory" Collapsed="true">
+    <Position X="17.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgAAAIAAAAAAEQIgEAIAAAAAAAAABAAAAAAEACAEA=</HashCode>
+      <FileName>Index\Common\EditFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Index.Common.EditIndex" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAACAEABAUiAAABAQAAAAAAIAEAABgEABQIAA=</HashCode>
+      <FileName>Index\Common\EditIndex.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Index.Common.GramFactory" Collapsed="true">
+    <Position X="21" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAQAACEgAAAAAEiQBQAAQAAAAQCAAEAGEA=</HashCode>
+      <FileName>Index\Common\GramFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Index.Common.GramIndex" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAAAEABBUiAAABAQAAAAAAIAEAAAgAABQIBA=</HashCode>
+      <FileName>Index\Common\GramIndex.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Index.Common.SoundexFactory" Collapsed="true">
+    <Position X="15.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACIggAgIAAAAACBUgAAEIAggAAgAIaAAACACACACAAA=</HashCode>
+      <FileName>Index\Common\SoundexFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Index.Common.SoundexIndex" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAACAEABAUiAAABAQAQAAAAIAEAAAgAABQIAA=</HashCode>
+      <FileName>Index\Common\SoundexIndex.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Index.Common.SynsetFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAACAEAAEEIAAgAAAAgQAAECECAAABBAA=</HashCode>
+      <FileName>Index\Common\SynsetFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Index.Common.SynsetIndex" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAoAABBAACBAQBBUgAAABAQAAAAAAKAEAgAAAABRIAA=</HashCode>
+      <FileName>Index\Common\SynsetIndex.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Index.Postings" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAAAEABQQiACABgQAAAAAAIAEAQAgAABQJzA=</HashCode>
+      <FileName>Index\Postings.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Index.Term" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAACAQEgAAAAAAAAAAQAIAAAAAAAAABEBA=</HashCode>
+      <FileName>Index\Term.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Index.TermVector" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAAAEABAQKAAABAQAAAAgAAAEAAAgAABQIBA=</HashCode>
+      <FileName>Index\TermVector.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Index.IO.IndexFactory" Collapsed="true">
+    <Position X="31.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAgIIiAAAAAAAAAAAACAEAAIEAAAAAgAEIAAAAAIA=</HashCode>
+      <FileName>Index\IO\IndexFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Index.IO.IndexSearcher" Collapsed="true">
+    <Position X="14" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIAAAAAAhACAABAgAAIAQAAAAAAAAAAAAEBAABACAAA=</HashCode>
+      <FileName>Index\IO\IndexSearcher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Index.IO.InvertedFile" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAAAEgBAQCAAABAAAAAAAAAAEAAAgAABRIBA=</HashCode>
+      <FileName>Index\IO\InvertedFile.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Index.IO.Segment" Collapsed="true">
+    <Position X="24.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Index\IO\Segment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Index.Storage.FSRepository" Collapsed="true">
+    <Position X="8.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEACAQAAAAAEwAASAAAAAAAAgIAAgAAAEAgAAgA=</HashCode>
+      <FileName>Index\Storage\FSRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Fornax.Net.Index.Storage.NETRepository" Collapsed="true">
+    <Position X="10.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAQAQAAAEgAASAAAAAAAAAIAAgAAAgAAAAgA=</HashCode>
+      <FileName>Index\Storage\NETRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Index.Storage.Repository" Collapsed="true">
+    <Position X="9.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAIAEAAAQAAAgAQAAASAABAAACAAEAAgIABAAAAEgA=</HashCode>
+      <FileName>Index\Storage\Repository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Fornax.Net.Lib.Dependency" Collapsed="true">
+    <Position X="31.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ggIEBDJAHBIBUMSB0wKieEqIECXjCkqAIgTGgIPEhGA=</HashCode>
+      <FileName>Lib\Dependency.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Lib.libraries" Collapsed="true">
+    <Position X="21" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQACJRSEBQAAU4QEDkQDmAJEgYACSABkYAg4icBSDIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Properties.config" Collapsed="true">
+    <Position X="29.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIAAIVQKCIAIA4AEQBAAICAAoigFIAAQAIQAGEJACgA=</HashCode>
+      <FileName>Properties\config.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Properties.dictionary" Collapsed="true">
+    <Position X="14" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIQAAAQQAABAAAIAAABJEAABAQAAAAAAAAAAIAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Search.DocResult" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgwAAAAAAAAAAAAAAAACAAAAAAAAEAA=</HashCode>
+      <FileName>Search\DocResult.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Search.QExt" Collapsed="true">
+    <Position X="14" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Search.FornaxQuery" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCAAAAAgAAAAAAAAAAAAAAAQAIAAAAQAIAAABAAA=</HashCode>
+      <FileName>Search\FornaxQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Search.FreeTextQuery" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Search\FreeTextQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Search.HitList" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAAAEABAUiAAABAQAAAQAAIAEAABgAABQIBA=</HashCode>
+      <FileName>Search\HitList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Search.Query" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search\Query.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Search.QueryBuilder" Collapsed="true">
+    <Position X="15.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search\QueryBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Search.Ranker" Collapsed="true">
+    <Position X="17.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search\Ranker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Search.Vector" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAwAAAAAAAAAQAgAAAAAAAAEAAAKAAAABgAAAAAjA=</HashCode>
+      <FileName>Search\Vector.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Search.Weight" Collapsed="true">
+    <Position X="21" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAEAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search\Weight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Search.WildCardQuery" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search\WildCardQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Collections.Arrays" Collapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgIQABAACgAAAEhAAACAAAAAQICIAAKAASAAAABAA=</HashCode>
+      <FileName>Util\Collections\Arrays.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Collections.Collections" Collapsed="true">
+    <Position X="28" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAACAAAAQAAAAEgGAAAAAAAAAAAIEAAAAmAAAAEAQ=</HashCode>
+      <FileName>Util\Collections\Collections.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Collections.Equatable" Collapsed="true">
+    <Position X="22.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Collections\Equatable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Collections.Generic.LurchTable&lt;TKey, TValue&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CE5AA0QBACAFwxUgeAYAFRSBAAkAhEAEIACgIlFAATA=</HashCode>
+      <FileName>Util\Collections\Generic\Enumerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.Collections.Generic.EquatableList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAkAAAAAAABAUiAAABAQAAAAAAIAECAAAAABQIjA=</HashCode>
+      <FileName>Util\Collections\Generic\EquatableList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.Collections.Generic.EquatableSet&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAoAABBAACBAQBBUgAQABAQAIAAAAKAEAgAAAABQIjA=</HashCode>
+      <FileName>Util\Collections\Generic\EquatableSet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.Collections.Generic.HashUtilities" Collapsed="true">
+    <Position X="26.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Util\Collections\Generic\HashUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Collections.Generic.LurchCorruptionException" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAIAA=</HashCode>
+      <FileName>Util\Collections\Generic\LurchCorruptionException.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.Collections.Generic.ObservableList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAIEAAAAAAABAQCAAAJAQAAAAAwAAECAAACABQIAA=</HashCode>
+      <FileName>Util\Collections\Generic\ObservableList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.Collections.Generic.SubList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAkSAAAAAABAQiCAABAQAAAAAAIAECAAAAABQIiE=</HashCode>
+      <FileName>Util\Collections\Generic\SubList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.Constants" Collapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EwQAQAIJCCCQA7kQAAAMAQDhAAhJBBRxpyhCAgGAoAA=</HashCode>
+      <FileName>Util\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.FornaxException" Collapsed="true">
+    <Position X="8.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAgAEgAAAAAAgQAAAAJAAAAAAIBAAAAA=</HashCode>
+      <FileName>Util\FornaxException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.Compression.GZIPCompressor" Collapsed="true">
+    <Position X="24.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\IO\Compression\GZIPCompressor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.Compression.LZ4Compressor" Collapsed="true">
+    <Position X="28" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAABAAAAAAAACAAAAAAAAAAUAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\IO\Compression\LZ4Compressor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.FileWrapper" Collapsed="true">
+    <Position X="15.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAEAAAABABAAABAAAA=</HashCode>
+      <FileName>Util\IO\FileWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.FornaxAssembly" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAWgAAAACKBAMCAogABAUQGgAAGAIAAiCAAgAAABEk=</HashCode>
+      <FileName>Util\IO\FornaxAssembly.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.FornaxAssemblyException" Collapsed="true">
+    <Position X="21" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\IO\FornaxAssemblyException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.FornaxFileException" Collapsed="true">
+    <Position X="8.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\IO\FornaxFileException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.FornaxFormatException" Collapsed="true">
+    <Position X="24.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\IO\FornaxFormatException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.Readers.BufferedReaderWrapper" Collapsed="true">
+    <Position X="21" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAEAAAAAAAAAJAAACAAAAAA=</HashCode>
+      <FileName>Util\IO\Readers\BufferedReaderWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.Readers.NamespaceDoc" Collapsed="true">
+    <Position X="15.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\IO\Readers\doc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.Readers.FornaxReader" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAQAAAAAAIAQgAAZHIVAAAAAAAAABkAoAACEEAA=</HashCode>
+      <FileName>Util\IO\Readers\FornaxReader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.Readers.WordReader" Collapsed="true">
+    <Position X="22.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAgAAAAAAAAAAAAAAAAAgAKAAAAAAAAAA=</HashCode>
+      <FileName>Util\IO\Readers\WordReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.Readers.ZipHandler" Collapsed="true">
+    <Position X="24.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAQAAAAgIAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\IO\Readers\ZipHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.IO.Writers.FornaxWriter" Collapsed="true">
+    <Position X="14" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEgAAEAAAAAAIAAAAAgAIAgCAAAIAACABAAAAEAAAA=</HashCode>
+      <FileName>Util\IO\Writers\FornaxWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Linq.Extensions" Collapsed="true">
+    <Position X="28" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EUBAiIAIAgSQCgAVgQRACCAQqgqBJgAIIAAARQJEEAk=</HashCode>
+      <FileName>Util\Linq\LinqExt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Numerics.FastFunctions" Collapsed="true">
+    <Position X="14" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AUAKDgEABCAQAAIAAlABgqkBIoEEAGAAAAAAAKAIgJI=</HashCode>
+      <FileName>Util\Numerics\FastFunctions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Numerics.Functions" Collapsed="true">
+    <Position X="19.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAQAAAAAAAAAAAAAAAAAAAoAAAAAAQAAAAAAACA=</HashCode>
+      <FileName>Util\Numerics\Functions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Numerics.Maths" Collapsed="true">
+    <Position X="29.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAgAAIAAIAAABAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Numerics\Maths.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Numerics.Number" Collapsed="true">
+    <Position X="24.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EBAAQBgggAgAgEAAABAAIAAoAAgAAAAAAAACCBCBJAE=</HashCode>
+      <FileName>Util\Numerics\Number.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Numerics.Sorter&lt;T&gt;" Collapsed="true">
+    <Position X="29.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAIgAgAAAAAAAQAAAAEBBAAAAAAA=</HashCode>
+      <FileName>Util\Numerics\Sorter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Numerics.Sorts" Collapsed="true">
+    <Position X="31.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Numerics\Sorts.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Security.Cryptography.Adler32" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Security\Cryptography\Adler32.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Security.Cryptography.CRC32" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAAAABRAAAAAAAAAAAAAIIAAAAAAAgCgAAAAA=</HashCode>
+      <FileName>Util\Security\Cryptography\CRC32.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.Security.Cryptography.CRC64" Collapsed="true">
+    <Position X="5.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQBBAABCQQBChAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Util\Security\Cryptography\CRC64.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Security.Cryptography.CRC64Iso" Collapsed="true">
+    <Position X="5.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Security\Cryptography\CRC64Iso.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Security.Cryptography.Default" Collapsed="true">
+    <Position X="29.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Util\Security\Cryptography\Default.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Security.Cryptography.Elf32" Collapsed="true">
+    <Position X="21" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAABAABCAQACgACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Security\Cryptography\Elf32.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Security.Cryptography.Murmur3_x86" Collapsed="true">
+    <Position X="31.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Security\Cryptography\Murmur3_x86.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.System.CultureContext" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAIAIAEAAAABAAAABAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Util\System\CultureContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.System.Extensions" Collapsed="true">
+    <Position X="31.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAABIAAAAAAAAAICAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\System\Extensions.Assembly.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.System.FornaxLanguage" Collapsed="true">
+    <Position X="26.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAgAAAAEAAAAAAAABQAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Util\System\FornaxLanguage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.System.Resource" Collapsed="true">
+    <Position X="21" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAAAAAAAAFAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\System\Resource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Text.Character" Collapsed="true">
+    <Position X="24.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAUBABAAIAgAiEgABACAECBQBAAKAIAkopoAiEAmE=</HashCode>
+      <FileName>Util\Text\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Text.HexEncoder" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAgAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Util\Text\HexEncoder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.Text.Extensions" Collapsed="true">
+    <Position X="29.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BACAAAAAAAAAAAAACAAAAAAAAABBAAAQAAgAAAABwAA=</HashCode>
+      <FileName>Util\Text\StringExt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Text.StringTokenizer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAwAAAgkAAAAAEACIIgAAAAIgCCgAAYAAIE=</HashCode>
+      <FileName>Util\Text\StringTokenizer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.Text.Unicode" Collapsed="true">
+    <Position X="15.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAIAAAAAAACAQAAAAAACgAAAAQAAAAAAAAIAEAAA=</HashCode>
+      <FileName>Util\Text\Unicode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Text.Vocabulary" Collapsed="true">
+    <Position X="19.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEBAAAAECAAAAiAAgAAAAEAAABABAFAAAAAAAACAAA=</HashCode>
+      <FileName>Util\Text\Vocabulary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fornax.Net.Util.Threading.FornaxThread" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAQACAIACgEgACBABQAAAAAAKAAQAQABAgCAio=</HashCode>
+      <FileName>Util\Threading\FornaxThread.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Fornax.Net.Util.Threading.ReentrantLock" Collapsed="true">
+    <Position X="19.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAQAAAAAAAQAAIgAAACAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Util\Threading\ReentrantLock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Fornax.Net.Analysis.Tools.ITrie&lt;T&gt;" Collapsed="true">
+    <Position X="15.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAEgAAAAAAAAAEAAIAAAAAAAAAgAAA=</HashCode>
+      <FileName>Analysis\Tools\ITrie.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Bot.ICrawlable" Collapsed="true">
+    <Position X="15.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bot\ICrawlable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Common.Similarity.IEditDistance" Collapsed="true">
+    <Position X="19.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Similarity\IEditDistance.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Document.IDocument" Collapsed="true">
+    <Position X="17.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAgAAEgAAAAAQAAAgAAIAAABAAQAAAAAA=</HashCode>
+      <FileName>Document\IDocument.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Index.Common.IGram" Collapsed="true">
+    <Position X="24.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAkgAAAAAQAAAAAAIAAAAAACAAAAAA=</HashCode>
+      <FileName>Index\Common\IGram.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.Collections.Generic.ICreateOrUpdateValue&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="8.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Collections\Generic\ICreateOrUpdateValue.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.Collections.Generic.ICreateValue&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Collections\Generic\ICreateValue.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.Collections.Generic.IRemoveValue&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="28" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Collections\Generic\IRemoveValue.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.Collections.Generic.ISubList&lt;T&gt;" Collapsed="true">
+    <Position X="31.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAEQAAAAAABAQiAAABAQAAAAAAIAACAAAAABQIAA=</HashCode>
+      <FileName>Util\Collections\Generic\ISubList.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.Collections.Generic.IUpdateValue&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Collections\Generic\IUpdateValue.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.IO.Readers.IReader" Collapsed="true">
+    <Position X="26.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAIAQgAAZFIAAAAAAAAAABkAAAACEEAA=</HashCode>
+      <FileName>Util\IO\Readers\IReader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.IO.Writers.IWritable&lt;TObject&gt;" Collapsed="true">
+    <Position X="17.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAIEAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\IO\Writers\IWritable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.Security.ICheckSum" Collapsed="true">
+    <Position X="14" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Util\Security\ICheckSum.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.Security.IEncoder" Collapsed="true">
+    <Position X="21" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Util\Security\IEncoder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.Text.IEncoder" Collapsed="true">
+    <Position X="22.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Util\Text\IEncoder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.Text.ITokenizer" Collapsed="true">
+    <Position X="14" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAgAAAAAIAAIE=</HashCode>
+      <FileName>Util\Text\ITokenizer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fornax.Net.Util.Threading.IRunnable" Collapsed="true">
+    <Position X="29.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Util\Threading\IRunnable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Fornax.Net.Analysis.Tokenization.TokenAttribute" Collapsed="true">
+    <Position X="28" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAIAAEAAAABAAAAAAAABAAAAQAAAKBA=</HashCode>
+      <FileName>Analysis\Tokenization\enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Analysis.Tools.NgramModel" Collapsed="true">
+    <Position X="15.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Analysis\Tools\enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.CachingMode" Collapsed="true">
+    <Position X="15.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAIAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.FetchAttribute" Collapsed="true">
+    <Position X="21" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAIAAAAA=</HashCode>
+      <FileName>enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.TraversalMode" Collapsed="true">
+    <Position X="29.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAIAAAEAAAAACAAAAA=</HashCode>
+      <FileName>enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.CacheType" Collapsed="true">
+    <Position X="14" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.FornaxFormat" Collapsed="true">
+    <Position X="28" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAQAEAAAAAKAAACAAAABAAAoAACAAABAQ=</HashCode>
+      <FileName>enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.FileFormat" Collapsed="true">
+    <Position X="24.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JAAADAQIAgEgKAAAAQBACAAIGCABVWIACEAAgACAWkk=</HashCode>
+      <FileName>FileFormat.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Index.IndexMode" Collapsed="true">
+    <Position X="29.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAQAAAAAQAAAAAAAAAACA=</HashCode>
+      <FileName>Index\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Index.FieldScope" Collapsed="true">
+    <Position X="22.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAEIAABAAAAAAAAAAAEABAQAAAAAAAAA=</HashCode>
+      <FileName>Index\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Index.Zone" Collapsed="true">
+    <Position X="31.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAgAAAAAEAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Index\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Index.RepositoryType" Collapsed="true">
+    <Position X="21" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Index\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Search.SearchMode" Collapsed="true">
+    <Position X="22.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAEAAAI=</HashCode>
+      <FileName>Search\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Search.QueryMode" Collapsed="true">
+    <Position X="17.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIQAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Search\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Search.QueryType" Collapsed="true">
+    <Position X="19.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQQgABAAAABAAAAEBAIAAAAAAAAQAAAAAAAI=</HashCode>
+      <FileName>Search\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Search.Expand" Collapsed="true">
+    <Position X="17.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAgAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Search\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Search.Suggestion" Collapsed="true">
+    <Position X="26.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Search.SortBy" Collapsed="true">
+    <Position X="24.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAABAAAAQAAAAAAAABAAAAACAAAAA=</HashCode>
+      <FileName>Search\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Util.Collections.Generic.ListOperation" Collapsed="true">
+    <Position X="31.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAEAAAAAABAAAAAAABAAAAAAAAAAACAAAAABAAAA=</HashCode>
+      <FileName>Util\Collections\Generic\enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Util.Collections.Generic.LurchOrder" Collapsed="true">
+    <Position X="14" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAABAAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
+      <FileName>Util\Collections\Generic\enum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Util.IO.FornaxDependency" Collapsed="true">
+    <Position X="26.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAABAAEAAAAgAAAAAAA=</HashCode>
+      <FileName>Util\IO\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fornax.Net.Util.IO.Readers.Extractor" Collapsed="true">
+    <Position X="19.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAIAAAABAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Util\IO\Readers\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="Fornax.Net.Util.Collections.Generic.KeyValueUpdate&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="15.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Collections\Generic\LurchTable.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="Fornax.Net.Util.Collections.Generic.KeyValuePredicate&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="14" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Collections\Generic\LurchTable.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

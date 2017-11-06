@@ -214,7 +214,6 @@ namespace Fornax.Net.Index.Common
 
                     lineNum++;
                 }
-                reader.Close();
             }
             Indexx(word2nums, num2words);
         }

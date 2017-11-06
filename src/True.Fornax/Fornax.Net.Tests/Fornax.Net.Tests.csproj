@@ -238,6 +238,7 @@
     <Compile Include="RegexTests.cs" />
     <Compile Include="EditsTests.cs" />
     <Compile Include="RepositoryTests.cs" />
+    <Compile Include="QueryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

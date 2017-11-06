@@ -14,10 +14,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /// <summary>
 /// The Document namespace.
@@ -27,7 +23,7 @@ namespace Fornax.Net.Document
     /// <summary>
     /// Class Corpus.
     /// </summary>
-    /// <seealso cref="System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.UInt64, System.String}}" />
+    /// <seealso cref="System.Collections.Generic.IEnumerable{KeyValuePair{ulong, string}}" />
     /// <seealso cref="System.Collections.Generic.IDictionary{System.UInt64, System.String}" />
     /// <seealso cref="java.io.Serializable.__Interface" />
     [Serializable]
@@ -41,7 +37,7 @@ namespace Fornax.Net.Document
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns>System.String.</returns>
-        internal string this[ulong key] { get => corpus[key]; set => corpus[key] = value; }
+        public string this[ulong key] { get => corpus[key]; set => corpus[key] = value; }
 
 
         /// <summary>
@@ -54,7 +50,7 @@ namespace Fornax.Net.Document
         /// Gets the values.
         /// </summary>
         /// <value>The values.</value>
-        internal ICollection<string> Values => corpus.Values;
+        public ICollection<string> Values => corpus.Values;
 
         /// <summary>
         /// Gets the count.

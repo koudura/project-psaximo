@@ -5,6 +5,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fornax.Net.Util.IO;
 using Fornax.Net.Util.IO.Readers;
 using System.Threading.Tasks;
+using Fornax.Net.Document;
+using Fornax.Net.Util.IO.Writers;
+using System.IO;
 
 namespace Fornax.Net.Tests
 {
@@ -14,7 +17,8 @@ namespace Fornax.Net.Tests
     [TestClass]
     public class FornaxReaderTests
     {
-        public FornaxReaderTests() {
+        public FornaxReaderTests()
+        {
             //
             // TODO: Add constructor logic here
             //
@@ -58,7 +62,8 @@ namespace Fornax.Net.Tests
         #endregion
 
         [TestMethod]
-        public void TikaExtractHtml() {
+        public void TikaExtractHtml()
+        {
             string htmlfile = @"C# Corner _ Looking for Something_.html";
             // FileWrapper wrapp = new FileWrapper(htmlfile);
             FornaxReader reader = new FornaxReader(htmlfile);
@@ -68,18 +73,19 @@ namespace Fornax.Net.Tests
         }
 
         private static string vcf = @"test files\sample.vcf";
-      //  private static string pdf = @"test files\Small09.pdf";
+        //  private static string pdf = @"test files\Small09.pdf";
         private static string html = @"test files\Compression_Decompression string with C# - Stack Overflow.html";
         private static string slide = @"test files\lecture5-indexconstruction.ppt";
-     //   private static string doc_text = @"test files\regularexpressionssupportingdoc.docx";
-     //   private static string plain_txt = @"test files\stopwords.txt";
+        //   private static string doc_text = @"test files\regularexpressionssupportingdoc.docx";
+        //   private static string plain_txt = @"test files\stopwords.txt";
         private static string plain_cs = @"test files\Ranker.cs";
-      //  private static string sheet = @"test files\grocery.xls";
+        //  private static string sheet = @"test files\grocery.xls";
         private static string email = @"test files\test-sample-message.eml";
         private static string xml = @"test files\Fornax.Net.xml";
 
         //[TestMethod]
-        public void ToxySlide() {
+        public void ToxySlide()
+        {
 
             FornaxReader reader = new FornaxReader(slide);
             var @out = reader.ToxySlideRead();
@@ -89,7 +95,8 @@ namespace Fornax.Net.Tests
         }
 
         [TestMethod]
-        public void Toxydom() {
+        public void Toxydom()
+        {
             FornaxReader reader = new FornaxReader(html);
             var res = reader.ToxyDomRead();
             Console.WriteLine(res.InnerText);
@@ -98,7 +105,8 @@ namespace Fornax.Net.Tests
         }
 
         [TestMethod]
-        public void Toxyvcf() {
+        public void Toxyvcf()
+        {
             FornaxReader reader = new FornaxReader(vcf);
             var @out = reader.ToxyVCardRead();
             Console.WriteLine(@out.Attributes);
@@ -106,14 +114,16 @@ namespace Fornax.Net.Tests
         }
 
         [TestMethod]
-        public void bufferRead() {
+        public void bufferRead()
+        {
             FornaxReader reader = new FornaxReader(plain_cs);
             var @out = reader.BufferRead();
             Console.WriteLine(@out);
         }
 
         [TestMethod]
-        public void ToxyEmail() {
+        public void ToxyEmail()
+        {
             FornaxReader reader = new FornaxReader(email);
             var @out = reader.ToxyEmailRead();
             Console.WriteLine(@out.Attributes);
@@ -121,23 +131,60 @@ namespace Fornax.Net.Tests
         }
 
         [TestMethod]
-        public void Xmled() {
+        public void Xmled()
+        {
             FornaxReader reader = new FornaxReader(xml);
             var @out = reader.XmlRead();
             Console.WriteLine(@out);
 
         }
 
-       
-        public async Task XmlAsync() {
+
+        public async Task XmlAsync()
+        {
             FornaxReader reader = new FornaxReader(xml);
             var stt = await reader.XmlReadAsync();
             Console.WriteLine(stt);
         }
 
         [TestMethod]
-        public void Xmlasinc() {
+        public void Xmlasinc()
+        {
             Task.WaitAll(XmlAsync());
+        }
+
+        private string text = @"
+There are two more subtle benefits of compression. The first is increased
+useof caching.Searchsystems usesome parts ofthe dictionary andtheindex
+much more than others. For example, if we cache the postings list of a fre-
+quently used query term t, then the computations necessary for responding
+to the one-term query t can be entirely done in memory.With compression,
+we can fit a lot more information into main memory. Instead of having to
+expend a disk seek when processing a query with t, we instead access its
+postings list in memory and decompress it. As we will see below, there are
+simple and efficient decompression methods, so that the penalty of having to
+decompress the postings list is small.As a result, we are able to decrease the
+response time of the IR system substantially.Because memory is a more ex-
+pensive resource than disk space, increased speed owing to caching – rather
+than decreased space requirements – is often the prime motivator for com-
+pression.";
+        static string Path = @"..\_.snippets";
+
+        [TestMethod]
+        public void BufferedWriter()
+        {
+            
+            var file = new FileInfo(Path);
+            var snippet = new Snippet(100, text);
+            Console.WriteLine(snippet.ToString());
+            FornaxWriter.BufferWrite(snippet,Path, true);
+        }
+
+        [TestMethod]
+        public void BufferedReader()
+        {
+            var snip = FornaxWriter.BufferRead<Snippet>(Path);
+            Console.WriteLine(snip.ToString());
         }
     }
 }

@@ -28,14 +28,15 @@ namespace Fornax.Net.Search
     /// <summary>
     /// Vector of points.
     /// </summary>
-    /// <seealso cref="System.Collections.Generic.IComparer{Fornax.Net.Search.Vector}" />
+    /// <seealso cref="System.Collections.Generic.IComparer{Vector}" />
     [Serializable]
-    public struct Vector : IComparable<Vector>, ICloneable, java.io.Serializable.__Interface
+    public class Vector : IComparable<Vector>, ICloneable, java.io.Serializable.__Interface
     {
         /// <summary>
         /// The values
         /// </summary>
-        private static IList<double> values = new List<double>();
+        private IList<double> values;
+
         /// <summary>
         /// Gets the value.
         /// </summary>
@@ -48,7 +49,7 @@ namespace Fornax.Net.Search
         /// <param name="fieldValues">The field values.</param>
         public Vector(ICollection<double> fieldValues)
         {
-            values = fieldValues.ToList();
+            values = new List<double>(fieldValues);
         }
 
         /// <summary>
@@ -60,13 +61,18 @@ namespace Fornax.Net.Search
             values = new List<double>(fieldValues);
         }
 
+        public Vector()
+        {
+            values = new List<double>();
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Vector"/> struct.
         /// </summary>
         /// <param name="fieldValues">The field values.</param>
         public Vector(ISet<double> fieldValues)
         {
-            values = fieldValues.ToList();
+            values = new List<double>(fieldValues);
         }
 
 

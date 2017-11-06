@@ -46,7 +46,9 @@ namespace Fornax.Net.Index.Storage
 
         public override Corpus Corpus => throw new NotImplementedException();
 
-        public override IList<IDocument> Corpora => throw new NotImplementedException();
+        internal override IEnumerable<IDocument> Corpora => throw new NotImplementedException();
+
+        public override SnippetsFile Snippets => throw new NotImplementedException();
 
         internal override FileInfo RepositoryFile => base.RepositoryFile;
 

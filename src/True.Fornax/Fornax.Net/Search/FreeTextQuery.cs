@@ -12,6 +12,7 @@ namespace Fornax.Net.Search
 {
     public class FreeTextQuery : FornaxQuery
     {
+        public TokenStream Tokens => _tokens;
 
         public FreeTextQuery(string query, Configuration config)
             : this(new SimpleAnalyzer(query, SearchMode.Free, Expand.Default), config)
