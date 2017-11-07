@@ -9,6 +9,9 @@ using Fornax.Net.Index.IO;
 using Fornax.Net.Search;
 using Fornax.Net.Util.Security.Cryptography;
 using System.Linq;
+using Fornax.Net.Analysis.Tools;
+using Fornax.Net.Index.Common;
+using System.Threading;
 
 namespace Corvus._1._0
 {
@@ -65,8 +68,32 @@ namespace Corvus._1._0
 
         private void searchBox_TextChanged_1(object sender, EventArgs e)
         {
-            searchBox.Focus();
+            if (chkCorrect.Checked)
+            {
+                var t = searchBox.Text;
+                if (t.Contains(" "))
+                {
+                    var tt = t.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    t = (tt.Length > 1) ? tt[tt.Length - 1] : t;
+                }
+                searchBox.AutoCompleteCustomSource = Task.Run(() =>  GenerationSuggetion(t, 0.6f)).Result;
 
+            }
+        }
+        public static AutoCompleteStringCollection GenerationSuggetion(string text, float threshold)
+        {
+            var count = new AutoCompleteStringCollection();
+            var ngram = new Ngram(text, 2, NgramModel.Character, true);
+
+            var sub = GramFactory.SubGramIndex(ngram, Deus.Corrector);
+            var common = GramFactory.IntersectOf(sub);
+            var close = EditFactory.RetrieveCommon(text, common, threshold);
+
+            foreach (var found in close)
+            {
+                count.Add(found.Key);
+            }
+            return count;
         }
 
         private void PerTab_DragOver(object sender, DragEventArgs e)
@@ -114,6 +141,11 @@ namespace Corvus._1._0
                 if (item.Key == Adler32.Compute(fullname)) return item.Value;
             }
             return new Snippet(2, "Document content not found..");
+        }
+
+        private void searchBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }

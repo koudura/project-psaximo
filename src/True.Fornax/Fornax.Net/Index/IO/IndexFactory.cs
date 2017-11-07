@@ -46,6 +46,7 @@ using Fornax.Net.Search;
 using Fornax.Net.Util;
 using Fornax.Net.Util.IO.Writers;
 using Fornax.Net.Util.Linq;
+using Fornax.Net.Util.Security.Cryptography;
 
 /// <summary>
 /// The IO namespace.
@@ -63,19 +64,16 @@ namespace Fornax.Net.Index.IO
         /// </summary>
         /// <value>The index.</value>
         public InvertedFile Index { get; private set; }
-
         /// <summary>
         /// Gets the repository.
         /// </summary>
         /// <value>The repository.</value>
         public Repository Repository { get; private set; }
-
         /// <summary>
         /// The configuration
         /// </summary>
         /// <value>The configuration.</value>
         public Configuration Configuration { get; private set; }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IndexFactory" /> class.
@@ -93,7 +91,6 @@ namespace Fornax.Net.Index.IO
             Repository = load.Repository;
             Index = load.Index;
         }
-
 
         /// <summary>
         /// Adds the specified TokenStream to a specified inverted index through a document {given document id}.
@@ -231,6 +228,25 @@ namespace Fornax.Net.Index.IO
         }
 
         #region deletion
+        /// <summary>
+        /// Deletes the specified document from a specified index.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="index">The index.</param>
+        /// <param name="repository">The repository of the index.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        /// <exception cref="ArgumentNullException">index
+        /// or
+        /// document</exception>
+        public static bool Delete(FileInfo document,InvertedFile index, Repository repository)
+        {
+            Contract.Requires(document != null && index != null && repository != null);
+            if (index == null) throw new ArgumentNullException(nameof(index));
+            if (document == null) throw new ArgumentNullException(nameof(document));
+            if (repository == null) throw new ArgumentNullException(nameof(repository));
+
+            return Delete(Adler32.Compute(document.FullName), index, repository);
+        }
 
         /// <summary>
         /// Deletes the specified document from a specified index.
@@ -356,8 +372,6 @@ namespace Fornax.Net.Index.IO
         public static void Update(ref InvertedFile index, Postings postingsList, Term term)
         {
             Contract.Requires(postingsList != null && index != null);
-            if (index == null) throw new ArgumentNullException(nameof(index));
-            if (postingsList == null) throw new ArgumentNullException(nameof(postingsList));
 
             if (index.TryGetValue(term, out Postings ind_post))
             {
@@ -379,6 +393,45 @@ namespace Fornax.Net.Index.IO
             }
 
         }
+
+        /// <summary>
+        /// Updates the specified currrent repository with a new repository.
+        /// </summary>
+        /// <param name="currrentRepo">The currrent repo.</param>
+        /// <param name="newRepo">The new repo.</param>
+        /// <exception cref="ArgumentNullException">
+        /// currrentRepo
+        /// or
+        /// newRepo
+        /// </exception>
+        public static void Update(ref Repository currrentRepo, Repository newRepo)
+        {
+            if (currrentRepo == null) throw new ArgumentNullException(nameof(currrentRepo));
+            if (newRepo == null) throw new ArgumentNullException(nameof(newRepo));
+
+            foreach (var nrp in newRepo.Corpus)
+            {
+                if (currrentRepo.Corpus.TryGetValue(nrp.Key, out string value))
+                {
+                    value = nrp.Value;
+                }
+                else
+                {
+                    currrentRepo.Corpus.Add(nrp.Key, nrp.Value);
+                }
+            }
+            foreach (var snips in newRepo.Snippets)
+            {
+                if(currrentRepo.Snippets.TryGetValue(snips.Key, out Snippet snip))
+                {
+                    snip = snips.Value;
+                }
+                else
+                {
+                    currrentRepo.Snippets.Add(snips.Key, snips.Value);
+                }
+            }
+        }
         #endregion
 
         internal static bool IndexRepoExists(string indexPath, string repoPath)
@@ -397,6 +450,7 @@ namespace Fornax.Net.Index.IO
             FornaxWriter.Write(repo, repo.RepositoryFile);
             FornaxWriter.Write(index, inxFile);
         }
+
 
         /// <summary>
         /// save as an asynchronous operation.

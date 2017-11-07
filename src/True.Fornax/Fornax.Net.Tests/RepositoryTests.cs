@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
 using Fornax.Net.Analysis.Tokenization;
 using Fornax.Net.Index;
 using Fornax.Net.Index.IO;
@@ -54,6 +57,38 @@ namespace Fornax.Net.Tests
                 var id = doc.Key;
                 System.Console.WriteLine($"{id} :  [{Path.GetExtension(doc.Value)}]_{doc.Value}\n");
             }
+        }
+
+        [TestMethod]
+        public void ConfigRepoTest() {
+            var configIds = Directory.EnumerateDirectories(@"C:\Users\Koudura Mazou\AppData\Roaming\Fornax","User[*].config", SearchOption.TopDirectoryOnly);
+            foreach (var item in configIds)
+            {
+                var id = item.Substring(item.IndexOf("[", item.Length - item.IndexOf("]")));
+                System.Console.WriteLine(id);
+            }
+            System.Console.WriteLine("\n\n");
+            IList<string> ids = new List<string>();
+            foreach (var item in configIds)
+            {
+                if (!item.Contains("(clone)"))
+                {
+                    var start = item.IndexOf("[");
+                    var end = item.LastIndexOf("]");
+                    var id = new StringBuilder();
+                    for (int i = start + 1; i < end; i++)
+                    {
+                        id.Append(item[i]);
+                    }
+                    System.Console.WriteLine(id.ToString());
+                    ids.Add(id.ToString().Trim());
+                }
+
+            }
+
+
+            System.Console.WriteLine(Path.GetFileName(@"C:\Users\Koudura Mazou\AppData\Roaming\Fornax"));
+
         }
     }
 }

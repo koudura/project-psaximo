@@ -36,11 +36,17 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.configSelector = new System.Windows.Forms.DomainUpDown();
+            this.BtnloadConfig = new System.Windows.Forms.Button();
+            this.loadSplit = new System.Windows.Forms.Splitter();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TxtconfigId = new System.Windows.Forms.TextBox();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.rbtnLoadChoice = new System.Windows.Forms.RadioButton();
+            this.rbtnCreateChoice = new System.Windows.Forms.RadioButton();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.extensionsBox = new System.Windows.Forms.GroupBox();
             this.Rtfcheck = new System.Windows.Forms.CheckBox();
             this.Pptcheck = new System.Windows.Forms.CheckBox();
@@ -67,13 +73,16 @@
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtFolder = new System.Windows.Forms.TextBox();
             this.fbDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.indexWorker = new System.ComponentModel.BackgroundWorker();
             this.indexUpdateNote = new System.Windows.Forms.NotifyIcon(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.updateWorker = new System.ComponentModel.BackgroundWorker();
+            this.OpenConfigWorker = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.extensionsBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,13 +107,13 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.progressBar1.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.progressBar1.Location = new System.Drawing.Point(3, 409);
+            this.progressBar1.Location = new System.Drawing.Point(0, 423);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(541, 13);
+            this.progressBar1.Size = new System.Drawing.Size(550, 5);
             this.progressBar1.Step = 1;
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 6;
             // 
             // panel2
@@ -114,11 +123,14 @@
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Location = new System.Drawing.Point(3, 37);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(398, 366);
+            this.panel2.Size = new System.Drawing.Size(398, 380);
             this.panel2.TabIndex = 5;
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.groupBox3);
@@ -126,17 +138,19 @@
             this.panel3.Controls.Add(this.extensionsBox);
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(390, 358);
+            this.panel3.Size = new System.Drawing.Size(390, 372);
             this.panel3.TabIndex = 8;
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox3.Location = new System.Drawing.Point(3, 260);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(378, 91);
+            this.groupBox3.Size = new System.Drawing.Size(378, 105);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Indexing";
@@ -144,11 +158,15 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.configSelector);
+            this.groupBox2.Controls.Add(this.BtnloadConfig);
+            this.groupBox2.Controls.Add(this.loadSplit);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.TxtconfigId);
+            this.groupBox2.Controls.Add(this.btnCreate);
+            this.groupBox2.Controls.Add(this.panel4);
+            this.groupBox2.Controls.Add(this.splitter1);
+            this.groupBox2.Controls.Add(this.panel5);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
@@ -163,67 +181,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label2.Location = new System.Drawing.Point(7, 16);
+            this.label2.Location = new System.Drawing.Point(8, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(187, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Select existing configuration.";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.button2.Enabled = false;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.DarkRed;
-            this.button2.Location = new System.Drawing.Point(118, 132);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 22);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "create";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(7, 90);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(163, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = " Create new configuration.";
-            // 
-            // textBox1
-            // 
-            this.textBox1.AcceptsReturn = true;
-            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.ForeColor = System.Drawing.SystemColors.Info;
-            this.textBox1.Location = new System.Drawing.Point(6, 109);
-            this.textBox1.MaxLength = 12;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(206, 20);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.textBox1, "Configuration Id");
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.DarkRed;
-            this.button1.Location = new System.Drawing.Point(120, 58);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 25);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "select";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // configSelector
             // 
@@ -232,16 +194,144 @@
             this.configSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.configSelector.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.configSelector.ForeColor = System.Drawing.SystemColors.Info;
-            this.configSelector.Items.Add("default");
-            this.configSelector.Location = new System.Drawing.Point(6, 32);
+            this.configSelector.Location = new System.Drawing.Point(11, 98);
             this.configSelector.Name = "configSelector";
             this.configSelector.ReadOnly = true;
-            this.configSelector.Size = new System.Drawing.Size(207, 20);
+            this.configSelector.Size = new System.Drawing.Size(200, 20);
+            this.configSelector.Sorted = true;
             this.configSelector.TabIndex = 0;
-            this.configSelector.Text = "...";
             this.configSelector.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.configSelector.Wrap = true;
             this.configSelector.SelectedItemChanged += new System.EventHandler(this.domainUpDown1_SelectedItemChanged);
+            // 
+            // BtnloadConfig
+            // 
+            this.BtnloadConfig.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.BtnloadConfig.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnloadConfig.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnloadConfig.ForeColor = System.Drawing.Color.DarkRed;
+            this.BtnloadConfig.Location = new System.Drawing.Point(59, 124);
+            this.BtnloadConfig.Name = "BtnloadConfig";
+            this.BtnloadConfig.Size = new System.Drawing.Size(94, 29);
+            this.BtnloadConfig.TabIndex = 1;
+            this.BtnloadConfig.Text = "select";
+            this.BtnloadConfig.UseVisualStyleBackColor = false;
+            this.BtnloadConfig.Click += new System.EventHandler(this.BtnloadConfig_Click);
+            // 
+            // loadSplit
+            // 
+            this.loadSplit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.loadSplit.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.loadSplit.Enabled = false;
+            this.loadSplit.Location = new System.Drawing.Point(3, 65);
+            this.loadSplit.Name = "loadSplit";
+            this.loadSplit.Size = new System.Drawing.Size(214, 94);
+            this.loadSplit.TabIndex = 10;
+            this.loadSplit.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label1.Location = new System.Drawing.Point(8, 172);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(163, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = " Create new configuration.";
+            // 
+            // TxtconfigId
+            // 
+            this.TxtconfigId.AcceptsReturn = true;
+            this.TxtconfigId.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TxtconfigId.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.TxtconfigId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TxtconfigId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtconfigId.ForeColor = System.Drawing.SystemColors.Info;
+            this.TxtconfigId.Location = new System.Drawing.Point(12, 191);
+            this.TxtconfigId.MaxLength = 12;
+            this.TxtconfigId.Name = "TxtconfigId";
+            this.TxtconfigId.Size = new System.Drawing.Size(197, 20);
+            this.TxtconfigId.TabIndex = 2;
+            this.TxtconfigId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.TxtconfigId, "Configuration Id");
+            this.TxtconfigId.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.btnCreate.Enabled = false;
+            this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCreate.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreate.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnCreate.Location = new System.Drawing.Point(65, 215);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(94, 29);
+            this.btnCreate.TabIndex = 4;
+            this.btnCreate.Text = "create";
+            this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.rbtnLoadChoice);
+            this.panel4.Controls.Add(this.rbtnCreateChoice);
+            this.panel4.Location = new System.Drawing.Point(7, 14);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(207, 37);
+            this.panel4.TabIndex = 8;
+            // 
+            // rbtnLoadChoice
+            // 
+            this.rbtnLoadChoice.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnLoadChoice.AutoSize = true;
+            this.rbtnLoadChoice.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.rbtnLoadChoice.FlatAppearance.CheckedBackColor = System.Drawing.Color.Tomato;
+            this.rbtnLoadChoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnLoadChoice.ForeColor = System.Drawing.Color.Beige;
+            this.rbtnLoadChoice.Location = new System.Drawing.Point(8, 6);
+            this.rbtnLoadChoice.Name = "rbtnLoadChoice";
+            this.rbtnLoadChoice.Size = new System.Drawing.Size(43, 25);
+            this.rbtnLoadChoice.TabIndex = 6;
+            this.rbtnLoadChoice.Text = "Load";
+            this.rbtnLoadChoice.UseVisualStyleBackColor = true;
+            this.rbtnLoadChoice.CheckedChanged += new System.EventHandler(this.rbtnLoadChoice_CheckedChanged);
+            // 
+            // rbtnCreateChoice
+            // 
+            this.rbtnCreateChoice.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnCreateChoice.AutoSize = true;
+            this.rbtnCreateChoice.Checked = true;
+            this.rbtnCreateChoice.FlatAppearance.BorderColor = System.Drawing.Color.SeaGreen;
+            this.rbtnCreateChoice.FlatAppearance.CheckedBackColor = System.Drawing.Color.SeaGreen;
+            this.rbtnCreateChoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnCreateChoice.ForeColor = System.Drawing.Color.Beige;
+            this.rbtnCreateChoice.Location = new System.Drawing.Point(137, 6);
+            this.rbtnCreateChoice.Name = "rbtnCreateChoice";
+            this.rbtnCreateChoice.Size = new System.Drawing.Size(55, 25);
+            this.rbtnCreateChoice.TabIndex = 7;
+            this.rbtnCreateChoice.TabStop = true;
+            this.rbtnCreateChoice.Text = "Create";
+            this.rbtnCreateChoice.UseVisualStyleBackColor = true;
+            this.rbtnCreateChoice.CheckedChanged += new System.EventHandler(this.rbtnCreateChoice_CheckedChanged);
+            // 
+            // splitter1
+            // 
+            this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitter1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter1.Location = new System.Drawing.Point(3, 159);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(214, 89);
+            this.splitter1.TabIndex = 9;
+            this.splitter1.TabStop = false;
+            // 
+            // panel5
+            // 
+            this.panel5.Location = new System.Drawing.Point(6, 69);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(208, 90);
+            this.panel5.TabIndex = 11;
             // 
             // extensionsBox
             // 
@@ -267,7 +357,7 @@
             this.extensionsBox.Controls.Add(this.Txtcheck);
             this.extensionsBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.extensionsBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extensionsBox.ForeColor = System.Drawing.Color.PowderBlue;
+            this.extensionsBox.ForeColor = System.Drawing.Color.Beige;
             this.extensionsBox.Location = new System.Drawing.Point(3, 3);
             this.extensionsBox.Name = "extensionsBox";
             this.extensionsBox.Size = new System.Drawing.Size(154, 251);
@@ -280,7 +370,7 @@
             this.Rtfcheck.AutoSize = true;
             this.Rtfcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Rtfcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rtfcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Rtfcheck.ForeColor = System.Drawing.Color.Beige;
             this.Rtfcheck.Location = new System.Drawing.Point(90, 226);
             this.Rtfcheck.Name = "Rtfcheck";
             this.Rtfcheck.Size = new System.Drawing.Size(44, 18);
@@ -293,7 +383,7 @@
             this.Pptcheck.AutoSize = true;
             this.Pptcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Pptcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pptcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Pptcheck.ForeColor = System.Drawing.Color.Beige;
             this.Pptcheck.Location = new System.Drawing.Point(15, 226);
             this.Pptcheck.Name = "Pptcheck";
             this.Pptcheck.Size = new System.Drawing.Size(44, 18);
@@ -306,7 +396,7 @@
             this.Emlcheck.AutoSize = true;
             this.Emlcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Emlcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Emlcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Emlcheck.ForeColor = System.Drawing.Color.Beige;
             this.Emlcheck.Location = new System.Drawing.Point(90, 203);
             this.Emlcheck.Name = "Emlcheck";
             this.Emlcheck.Size = new System.Drawing.Size(44, 18);
@@ -319,7 +409,7 @@
             this.Xlsxcheck.AutoSize = true;
             this.Xlsxcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Xlsxcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Xlsxcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Xlsxcheck.ForeColor = System.Drawing.Color.Beige;
             this.Xlsxcheck.Location = new System.Drawing.Point(15, 203);
             this.Xlsxcheck.Name = "Xlsxcheck";
             this.Xlsxcheck.Size = new System.Drawing.Size(51, 18);
@@ -332,7 +422,7 @@
             this.Xlscheck.AutoSize = true;
             this.Xlscheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Xlscheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Xlscheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Xlscheck.ForeColor = System.Drawing.Color.Beige;
             this.Xlscheck.Location = new System.Drawing.Point(90, 180);
             this.Xlscheck.Name = "Xlscheck";
             this.Xlscheck.Size = new System.Drawing.Size(44, 18);
@@ -345,7 +435,7 @@
             this.Pngcheck.AutoSize = true;
             this.Pngcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Pngcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pngcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Pngcheck.ForeColor = System.Drawing.Color.Beige;
             this.Pngcheck.Location = new System.Drawing.Point(15, 180);
             this.Pngcheck.Name = "Pngcheck";
             this.Pngcheck.Size = new System.Drawing.Size(44, 18);
@@ -358,7 +448,7 @@
             this.Jpgcheck.AutoSize = true;
             this.Jpgcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Jpgcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Jpgcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Jpgcheck.ForeColor = System.Drawing.Color.Beige;
             this.Jpgcheck.Location = new System.Drawing.Point(90, 157);
             this.Jpgcheck.Name = "Jpgcheck";
             this.Jpgcheck.Size = new System.Drawing.Size(44, 18);
@@ -371,7 +461,7 @@
             this.Mp4check.AutoSize = true;
             this.Mp4check.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Mp4check.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Mp4check.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Mp4check.ForeColor = System.Drawing.Color.Beige;
             this.Mp4check.Location = new System.Drawing.Point(15, 157);
             this.Mp4check.Name = "Mp4check";
             this.Mp4check.Size = new System.Drawing.Size(44, 18);
@@ -384,7 +474,7 @@
             this.Mp3check.AutoSize = true;
             this.Mp3check.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Mp3check.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Mp3check.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Mp3check.ForeColor = System.Drawing.Color.Beige;
             this.Mp3check.Location = new System.Drawing.Point(90, 134);
             this.Mp3check.Name = "Mp3check";
             this.Mp3check.Size = new System.Drawing.Size(44, 18);
@@ -397,7 +487,7 @@
             this.Javacheck.AutoSize = true;
             this.Javacheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Javacheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Javacheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Javacheck.ForeColor = System.Drawing.Color.Beige;
             this.Javacheck.Location = new System.Drawing.Point(15, 134);
             this.Javacheck.Name = "Javacheck";
             this.Javacheck.Size = new System.Drawing.Size(51, 18);
@@ -410,7 +500,7 @@
             this.Vcfcheck.AutoSize = true;
             this.Vcfcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Vcfcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Vcfcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Vcfcheck.ForeColor = System.Drawing.Color.Beige;
             this.Vcfcheck.Location = new System.Drawing.Point(90, 111);
             this.Vcfcheck.Name = "Vcfcheck";
             this.Vcfcheck.Size = new System.Drawing.Size(44, 18);
@@ -423,7 +513,7 @@
             this.Pdfcheck.AutoSize = true;
             this.Pdfcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Pdfcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pdfcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Pdfcheck.ForeColor = System.Drawing.Color.Beige;
             this.Pdfcheck.Location = new System.Drawing.Point(15, 111);
             this.Pdfcheck.Name = "Pdfcheck";
             this.Pdfcheck.Size = new System.Drawing.Size(44, 18);
@@ -436,7 +526,7 @@
             this.DocXcheck.AutoSize = true;
             this.DocXcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DocXcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DocXcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.DocXcheck.ForeColor = System.Drawing.Color.Beige;
             this.DocXcheck.Location = new System.Drawing.Point(90, 88);
             this.DocXcheck.Name = "DocXcheck";
             this.DocXcheck.Size = new System.Drawing.Size(51, 18);
@@ -449,7 +539,7 @@
             this.Cscheck.AutoSize = true;
             this.Cscheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Cscheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cscheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Cscheck.ForeColor = System.Drawing.Color.Beige;
             this.Cscheck.Location = new System.Drawing.Point(90, 65);
             this.Cscheck.Name = "Cscheck";
             this.Cscheck.Size = new System.Drawing.Size(37, 18);
@@ -464,7 +554,7 @@
             this.Xmlcheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Xmlcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Xmlcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Xmlcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Xmlcheck.ForeColor = System.Drawing.Color.Beige;
             this.Xmlcheck.Location = new System.Drawing.Point(90, 42);
             this.Xmlcheck.Name = "Xmlcheck";
             this.Xmlcheck.Size = new System.Drawing.Size(44, 18);
@@ -477,7 +567,7 @@
             this.Pptxcheck.AutoSize = true;
             this.Pptxcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Pptxcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pptxcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Pptxcheck.ForeColor = System.Drawing.Color.Beige;
             this.Pptxcheck.Location = new System.Drawing.Point(90, 19);
             this.Pptxcheck.Name = "Pptxcheck";
             this.Pptxcheck.Size = new System.Drawing.Size(51, 18);
@@ -490,7 +580,7 @@
             this.Doccheck.AutoSize = true;
             this.Doccheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Doccheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Doccheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Doccheck.ForeColor = System.Drawing.Color.Beige;
             this.Doccheck.Location = new System.Drawing.Point(15, 88);
             this.Doccheck.Name = "Doccheck";
             this.Doccheck.Size = new System.Drawing.Size(44, 18);
@@ -503,7 +593,7 @@
             this.Csvcheck.AutoSize = true;
             this.Csvcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Csvcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Csvcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Csvcheck.ForeColor = System.Drawing.Color.Beige;
             this.Csvcheck.Location = new System.Drawing.Point(15, 65);
             this.Csvcheck.Name = "Csvcheck";
             this.Csvcheck.Size = new System.Drawing.Size(44, 18);
@@ -516,7 +606,7 @@
             this.Htmlcheck.AutoSize = true;
             this.Htmlcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Htmlcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Htmlcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Htmlcheck.ForeColor = System.Drawing.Color.Beige;
             this.Htmlcheck.Location = new System.Drawing.Point(15, 42);
             this.Htmlcheck.Name = "Htmlcheck";
             this.Htmlcheck.Size = new System.Drawing.Size(51, 18);
@@ -533,7 +623,7 @@
             this.Txtcheck.Enabled = false;
             this.Txtcheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Txtcheck.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txtcheck.ForeColor = System.Drawing.Color.SkyBlue;
+            this.Txtcheck.ForeColor = System.Drawing.Color.Beige;
             this.Txtcheck.Location = new System.Drawing.Point(15, 19);
             this.Txtcheck.Name = "Txtcheck";
             this.Txtcheck.Size = new System.Drawing.Size(44, 18);
@@ -557,7 +647,7 @@
             this.btnIndex.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnIndex.Font = new System.Drawing.Font("Consolas", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIndex.ForeColor = System.Drawing.Color.DarkRed;
-            this.btnIndex.Location = new System.Drawing.Point(407, 359);
+            this.btnIndex.Location = new System.Drawing.Point(407, 373);
             this.btnIndex.Name = "btnIndex";
             this.btnIndex.Size = new System.Drawing.Size(137, 44);
             this.btnIndex.TabIndex = 2;
@@ -600,12 +690,12 @@
             // 
             this.fbDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
-            // backgroundWorker1
+            // indexWorker
             // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            this.indexWorker.WorkerReportsProgress = true;
+            this.indexWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.indexWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.indexWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // indexUpdateNote
             // 
@@ -620,6 +710,19 @@
             // 
             this.toolTip1.BackColor = System.Drawing.Color.Gray;
             // 
+            // updateWorker
+            // 
+            this.updateWorker.WorkerReportsProgress = true;
+            this.updateWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.updateWorker_DoWork);
+            this.updateWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.updateWorker_RunWorkerCompleted);
+            // 
+            // OpenConfigWorker
+            // 
+            this.OpenConfigWorker.WorkerReportsProgress = true;
+            this.OpenConfigWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.OpenConfigWorker_DoWork);
+            this.OpenConfigWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.OpenConfigWorker_ProgressChanged);
+            this.OpenConfigWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.OpenConfigWorker_RunWorkerCompleted);
+            // 
             // ConfigWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -627,12 +730,15 @@
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(579, 457);
             this.Controls.Add(this.panel1);
+            this.ForeColor = System.Drawing.Color.MediumSeaGreen;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.HelpButton = true;
             this.Name = "ConfigWin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ConfigWin";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfigWin_FormClosing);
+            this.Load += new System.EventHandler(this.ConfigWin_Load);
+            this.Shown += new System.EventHandler(this.ConfigWin_Shown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ConfigWin_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ConfigWin_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ConfigWin_MouseUp);
@@ -642,6 +748,8 @@
             this.panel3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.extensionsBox.ResumeLayout(false);
             this.extensionsBox.PerformLayout();
             this.ResumeLayout(false);
@@ -684,12 +792,20 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DomainUpDown configSelector;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox TxtconfigId;
+        private System.Windows.Forms.Button BtnloadConfig;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
-        internal System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnCreate;
+        internal System.ComponentModel.BackgroundWorker indexWorker;
+        private System.ComponentModel.BackgroundWorker updateWorker;
+        private System.Windows.Forms.RadioButton rbtnCreateChoice;
+        private System.Windows.Forms.RadioButton rbtnLoadChoice;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Splitter loadSplit;
+        private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.Panel panel5;
+        private System.ComponentModel.BackgroundWorker OpenConfigWorker;
     }
 }

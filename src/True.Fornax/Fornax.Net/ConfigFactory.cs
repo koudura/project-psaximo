@@ -35,6 +35,8 @@ using Fornax.Net.Util.System;
 using StringSet = System.Collections.Specialized.StringCollection;
 using System;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Text;
 
 namespace Fornax.Net
 {
@@ -164,6 +166,28 @@ namespace Fornax.Net
             }
             return disposing;
         }
+
+        /// <summary>
+        /// Loads all the current existing configurations created by previous fornax entries.
+        /// </summary>
+        /// <returns>IEnumerable&lt;System.String&gt; of the configuration ids.</returns>
+        public static IEnumerable<string> LoadExistingConfigurations()
+        {
+            var configIds = Directory.EnumerateDirectories(Constants.BaseDirectory.FullName,"User[*].config", SearchOption.TopDirectoryOnly);
+            foreach (var item in configIds)
+            {
+                if (!item.Contains("(clone)"))
+                {
+                    var id = new StringBuilder();
+                    for (int i = item.IndexOf("[") + 1; i < item.LastIndexOf("]"); i++)
+                    {
+                        id.Append(item[i]);
+                    }
+                    yield return id.ToString().Trim();
+                }
+            }
+        }
+
 
         static ConfigFactory()
         {

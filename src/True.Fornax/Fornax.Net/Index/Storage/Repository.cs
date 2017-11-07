@@ -147,7 +147,7 @@ namespace Fornax.Net.Index.Storage
         /// Gets the corpora of documents in the repository.
         /// </summary>
         /// <value>The corpora.</value>
-       internal abstract IEnumerable<IDocument> Corpora { get; }
+        internal abstract IEnumerable<IDocument> Corpora { get; }
 
         /// <summary>
         /// Enumerates the documents.
@@ -162,11 +162,15 @@ namespace Fornax.Net.Index.Storage
         internal virtual FileInfo RepositoryFile => new FileInfo(_repofilename);
 
         /// <summary>
-        /// Gets the protocol.
+        /// Gets the protocol of extraction.
         /// </summary>
         /// <value>The protocol.</value>
         internal virtual Extractor Protocol => _protocol;
 
+        /// <summary>
+        /// Gets the snippets for each document in corpus.
+        /// </summary>
+        /// <value>The snippets.</value>
         public virtual SnippetsFile Snippets => _snipets;
 
     }

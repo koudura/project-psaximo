@@ -28,6 +28,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.lbltime = new System.Windows.Forms.Label();
             this.panResult = new System.Windows.Forms.FlowLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.searchBox = new System.Windows.Forms.TextBox();
@@ -35,7 +36,7 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.lbltime = new System.Windows.Forms.Label();
+            this.chkCorrect = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -80,6 +81,17 @@
             this.panel6.Size = new System.Drawing.Size(785, 36);
             this.panel6.TabIndex = 7;
             // 
+            // lbltime
+            // 
+            this.lbltime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbltime.AutoSize = true;
+            this.lbltime.ForeColor = System.Drawing.Color.Aqua;
+            this.lbltime.Location = new System.Drawing.Point(10, 10);
+            this.lbltime.Name = "lbltime";
+            this.lbltime.Size = new System.Drawing.Size(16, 13);
+            this.lbltime.TabIndex = 0;
+            this.lbltime.Text = "...";
+            // 
             // panResult
             // 
             this.panResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -99,6 +111,7 @@
             this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel8.Controls.Add(this.chkCorrect);
             this.panel8.Controls.Add(this.searchBox);
             this.panel8.Controls.Add(this.btnSearch);
             this.panel8.Location = new System.Drawing.Point(174, 10);
@@ -108,15 +121,9 @@
             // 
             // searchBox
             // 
-            this.searchBox.AcceptsReturn = true;
-            this.searchBox.AcceptsTab = true;
             this.searchBox.AllowDrop = true;
             this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBox.AutoCompleteCustomSource.AddRange(new string[] {
-            "Jedi",
-            "One",
-            "Money"});
             this.searchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.searchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.searchBox.BackColor = System.Drawing.SystemColors.WindowFrame;
@@ -124,12 +131,12 @@
             this.searchBox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBox.ForeColor = System.Drawing.Color.White;
             this.searchBox.Location = new System.Drawing.Point(9, 12);
-            this.searchBox.Multiline = true;
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(592, 28);
+            this.searchBox.Size = new System.Drawing.Size(592, 27);
             this.searchBox.TabIndex = 2;
             this.searchBox.WordWrap = false;
             this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged_1);
+            this.searchBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_KeyPress);
             // 
             // btnSearch
             // 
@@ -180,16 +187,18 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Corvus";
             // 
-            // lbltime
+            // chkCorrect
             // 
-            this.lbltime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbltime.AutoSize = true;
-            this.lbltime.ForeColor = System.Drawing.Color.Aqua;
-            this.lbltime.Location = new System.Drawing.Point(10, 10);
-            this.lbltime.Name = "lbltime";
-            this.lbltime.Size = new System.Drawing.Size(16, 13);
-            this.lbltime.TabIndex = 0;
-            this.lbltime.Text = "...";
+            this.chkCorrect.AutoSize = true;
+            this.chkCorrect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.chkCorrect.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCorrect.ForeColor = System.Drawing.Color.GreenYellow;
+            this.chkCorrect.Location = new System.Drawing.Point(9, 58);
+            this.chkCorrect.Name = "chkCorrect";
+            this.chkCorrect.Size = new System.Drawing.Size(87, 20);
+            this.chkCorrect.TabIndex = 7;
+            this.chkCorrect.Text = "Check Text";
+            this.chkCorrect.UseVisualStyleBackColor = true;
             // 
             // PerTab
             // 
@@ -228,5 +237,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbltime;
+        private System.Windows.Forms.CheckBox chkCorrect;
     }
 }

@@ -151,8 +151,8 @@ namespace Fornax.Net.Index
         /// <exception cref="NotImplementedException"></exception>
         public int CompareTo(Postings other)
         {
-            if (other > this) return -1;
-            if (this > other) return 1;
+            if (other.Count > Count) return -1;
+            if (Count > other.Count) return 1;
             else return 0;
         }
 
@@ -295,77 +295,6 @@ namespace Fornax.Net.Index
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)Postdictionary).GetEnumerator();
-        }
-
-        /// <summary>
-        /// Implements the operator ==.
-        /// </summary>
-        /// <param name="left">The left.</param>
-        /// <param name="right">The right.</param>
-        /// <returns>The result of the operator.</returns>
-        public static bool operator ==(Postings left, Postings right)
-        {
-            if (ReferenceEquals(left, null))
-            {
-                return ReferenceEquals(right, null);
-            }
-
-            return left.Postdictionary.Equals(right.Postdictionary);
-        }
-
-        /// <summary>
-        /// Implements the operator !=.
-        /// </summary>
-        /// <param name="left">The left.</param>
-        /// <param name="right">The right.</param>
-        /// <returns>The result of the operator.</returns>
-        public static bool operator !=(Postings left, Postings right)
-        {
-            return !(left == right);
-        }
-
-        /// <summary>
-        /// Implements the operator &lt;.
-        /// </summary>
-        /// <param name="left">The left.</param>
-        /// <param name="right">The right.</param>
-        /// <returns>The result of the operator.</returns>
-        public static bool operator <(Postings left, Postings right)
-        {
-            return left.Count < right.Count;
-        }
-
-        /// <summary>
-        /// Implements the operator &lt;=.
-        /// </summary>
-        /// <param name="left">The left.</param>
-        /// <param name="right">The right.</param>
-        /// <returns>The result of the operator.</returns>
-        public static bool operator <=(Postings left, Postings right)
-        {
-            return (left < right || left == right);
-        }
-
-        /// <summary>
-        /// Implements the operator &gt;.
-        /// </summary>
-        /// <param name="left">The left.</param>
-        /// <param name="right">The right.</param>
-        /// <returns>The result of the operator.</returns>
-        public static bool operator >(Postings left, Postings right)
-        {
-            return left.Count > right.Count;
-        }
-
-        /// <summary>
-        /// Implements the operator &gt;=.
-        /// </summary>
-        /// <param name="left">The left.</param>
-        /// <param name="right">The right.</param>
-        /// <returns>The result of the operator.</returns>
-        public static bool operator >=(Postings left, Postings right)
-        {
-            return (left > right || left == right);
         }
     }
 }

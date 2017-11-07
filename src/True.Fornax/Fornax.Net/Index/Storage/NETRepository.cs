@@ -44,13 +44,14 @@ namespace Fornax.Net.Index.Storage
 
         public override Configuration Configuration => throw new NotImplementedException();
 
-        public override Corpus Corpus => throw new NotImplementedException();
-
         internal override IEnumerable<IDocument> Corpora => throw new NotImplementedException();
 
         public override SnippetsFile Snippets => throw new NotImplementedException();
 
         internal override FileInfo RepositoryFile => base.RepositoryFile;
+
+        public override Corpus Corpus { get; }
+
 
         public override bool Equals(object obj)
         {

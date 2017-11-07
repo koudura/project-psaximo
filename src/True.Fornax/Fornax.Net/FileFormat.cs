@@ -218,7 +218,7 @@ namespace Fornax.Net
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        internal static string GetString(this FileFormat format) {
+        public static string GetString(this FileFormat format) {
             return format.ToString().Trim().ToLower().Insert(0, ".");
         }
 
