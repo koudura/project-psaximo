@@ -19,7 +19,7 @@ namespace Corvus._1._0
 
         public PerResult(string header, string snippet)
         {
-
+            Anchor = AnchorStyles.Left & AnchorStyles.Right;
             Header = header;
             Snippet = snippet;
             InitializeComponent();

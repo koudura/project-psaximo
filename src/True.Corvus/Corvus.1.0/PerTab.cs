@@ -129,18 +129,29 @@ namespace Corvus._1._0
             panResult.Controls.Clear();
             foreach (var item in Results)
             {
-                panResult.Controls.Add(new PerResult($"{item.Document.FullName}", $"[{item.Document.Extension}]\n {GetSnipes(Deus.ConfigWin.repo, item.Document.FullName)}"));
+                if (chkSnippets.Checked)
+                {
+                    panResult.Controls.Add(new PerResult($"{item.Document.FullName}", $"[{item.Document.Extension}]\n {GetSnipes(Deus.ConfigWin.repo, item.Document.FullName)}"));
+                }
+                else
+                {
+                    panResult.Controls.Add(new PerResult($"{item.Document.FullName}", $"[{item.Document.Extension}]\n {item.Document.FullName}"));
+                }
+               
             }
         }
 
         private Snippet GetSnipes(Repository repo, string fullname)
         {
             var snf = repo.Snippets;
-            foreach (var item in snf)
+            if(snf != null)
             {
-                if (item.Key == Adler32.Compute(fullname)) return item.Value;
+                foreach (var item in snf)
+                {
+                    if (item.Key == Adler32.Compute(fullname)) return item.Value;
+                }
             }
-            return new Snippet(2, "Document content not found..");
+            return new Snippet(4, "Document content Not found..");
         }
 
         private void searchBox_KeyPress(object sender, KeyPressEventArgs e)

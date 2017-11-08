@@ -31,12 +31,13 @@
             this.lbltime = new System.Windows.Forms.Label();
             this.panResult = new System.Windows.Forms.FlowLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.chkCorrect = new System.Windows.Forms.CheckBox();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.chkCorrect = new System.Windows.Forms.CheckBox();
+            this.chkSnippets = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -111,6 +112,7 @@
             this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel8.Controls.Add(this.chkSnippets);
             this.panel8.Controls.Add(this.chkCorrect);
             this.panel8.Controls.Add(this.searchBox);
             this.panel8.Controls.Add(this.btnSearch);
@@ -118,6 +120,19 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(608, 95);
             this.panel8.TabIndex = 8;
+            // 
+            // chkCorrect
+            // 
+            this.chkCorrect.AutoSize = true;
+            this.chkCorrect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.chkCorrect.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCorrect.ForeColor = System.Drawing.Color.GreenYellow;
+            this.chkCorrect.Location = new System.Drawing.Point(9, 58);
+            this.chkCorrect.Name = "chkCorrect";
+            this.chkCorrect.Size = new System.Drawing.Size(87, 20);
+            this.chkCorrect.TabIndex = 7;
+            this.chkCorrect.Text = "Check Text";
+            this.chkCorrect.UseVisualStyleBackColor = true;
             // 
             // searchBox
             // 
@@ -187,18 +202,18 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Corvus";
             // 
-            // chkCorrect
+            // chkSnippets
             // 
-            this.chkCorrect.AutoSize = true;
-            this.chkCorrect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.chkCorrect.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkCorrect.ForeColor = System.Drawing.Color.GreenYellow;
-            this.chkCorrect.Location = new System.Drawing.Point(9, 58);
-            this.chkCorrect.Name = "chkCorrect";
-            this.chkCorrect.Size = new System.Drawing.Size(87, 20);
-            this.chkCorrect.TabIndex = 7;
-            this.chkCorrect.Text = "Check Text";
-            this.chkCorrect.UseVisualStyleBackColor = true;
+            this.chkSnippets.AutoSize = true;
+            this.chkSnippets.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.chkSnippets.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSnippets.ForeColor = System.Drawing.Color.SteelBlue;
+            this.chkSnippets.Location = new System.Drawing.Point(102, 60);
+            this.chkSnippets.Name = "chkSnippets";
+            this.chkSnippets.Size = new System.Drawing.Size(70, 20);
+            this.chkSnippets.TabIndex = 8;
+            this.chkSnippets.Text = "Snippets";
+            this.chkSnippets.UseVisualStyleBackColor = true;
             // 
             // PerTab
             // 
@@ -238,5 +253,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbltime;
         private System.Windows.Forms.CheckBox chkCorrect;
+        private System.Windows.Forms.CheckBox chkSnippets;
     }
 }

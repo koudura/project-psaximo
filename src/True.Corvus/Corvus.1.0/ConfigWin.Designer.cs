@@ -306,7 +306,7 @@
             this.rbtnCreateChoice.FlatAppearance.CheckedBackColor = System.Drawing.Color.SeaGreen;
             this.rbtnCreateChoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnCreateChoice.ForeColor = System.Drawing.Color.Beige;
-            this.rbtnCreateChoice.Location = new System.Drawing.Point(137, 6);
+            this.rbtnCreateChoice.Location = new System.Drawing.Point(143, 6);
             this.rbtnCreateChoice.Name = "rbtnCreateChoice";
             this.rbtnCreateChoice.Size = new System.Drawing.Size(55, 25);
             this.rbtnCreateChoice.TabIndex = 7;

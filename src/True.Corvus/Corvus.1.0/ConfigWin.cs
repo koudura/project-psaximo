@@ -211,8 +211,8 @@ namespace Corvus._1._0
                 var nrepo = Repository.Create(newfiles.ToArray(), RepositoryType.Local, newconfig);
 
                 Task.WaitAll(IndexFactory.AddAsync(nrepo, newind));
-                Task.WaitAll(Task.Run(() => IndexFactory.Update(ref index, newind)));
-                Task.WaitAll(Task.Run(() => IndexFactory.Update(ref repo, nrepo)));
+                IndexFactory.Update(ref index, newind);
+                IndexFactory.Update(ref repo, nrepo);
 
                 Task.WaitAll(IndexFactory.SaveAsync(config, index, repo));
             }

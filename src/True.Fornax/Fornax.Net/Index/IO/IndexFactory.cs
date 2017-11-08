@@ -411,6 +411,7 @@ namespace Fornax.Net.Index.IO
 
             foreach (var nrp in newRepo.Corpus)
             {
+
                 if (currrentRepo.Corpus.TryGetValue(nrp.Key, out string value))
                 {
                     value = nrp.Value;
