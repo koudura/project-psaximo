@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:Corvus._2._0"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+    <Grid Margin="0,0,-144,-146" HorizontalAlignment="Left" Width="661">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500*"/>
+            <ColumnDefinition Width="500*"/>
+            <ColumnDefinition Width="395*"/>
+        </Grid.ColumnDefinitions>
+
     </Grid>
 </Window>

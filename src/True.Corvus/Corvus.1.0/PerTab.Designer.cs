@@ -31,13 +31,13 @@
             this.lbltime = new System.Windows.Forms.Label();
             this.panResult = new System.Windows.Forms.FlowLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.chkSnippets = new System.Windows.Forms.CheckBox();
             this.chkCorrect = new System.Windows.Forms.CheckBox();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.chkSnippets = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -80,7 +80,7 @@
             this.panel6.Location = new System.Drawing.Point(0, 524);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(785, 36);
-            this.panel6.TabIndex = 7;
+            this.panel6.TabIndex = 3;
             // 
             // lbltime
             // 
@@ -121,6 +121,19 @@
             this.panel8.Size = new System.Drawing.Size(608, 95);
             this.panel8.TabIndex = 8;
             // 
+            // chkSnippets
+            // 
+            this.chkSnippets.AutoSize = true;
+            this.chkSnippets.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.chkSnippets.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSnippets.ForeColor = System.Drawing.Color.SteelBlue;
+            this.chkSnippets.Location = new System.Drawing.Point(102, 60);
+            this.chkSnippets.Name = "chkSnippets";
+            this.chkSnippets.Size = new System.Drawing.Size(70, 20);
+            this.chkSnippets.TabIndex = 8;
+            this.chkSnippets.Text = "Snippets";
+            this.chkSnippets.UseVisualStyleBackColor = true;
+            // 
             // chkCorrect
             // 
             this.chkCorrect.AutoSize = true;
@@ -136,6 +149,7 @@
             // 
             // searchBox
             // 
+            this.searchBox.AcceptsReturn = true;
             this.searchBox.AllowDrop = true;
             this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -148,7 +162,7 @@
             this.searchBox.Location = new System.Drawing.Point(9, 12);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(592, 27);
-            this.searchBox.TabIndex = 2;
+            this.searchBox.TabIndex = 1;
             this.searchBox.WordWrap = false;
             this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged_1);
             this.searchBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchBox_KeyPress);
@@ -201,19 +215,6 @@
             this.label4.Size = new System.Drawing.Size(112, 33);
             this.label4.TabIndex = 0;
             this.label4.Text = "Corvus";
-            // 
-            // chkSnippets
-            // 
-            this.chkSnippets.AutoSize = true;
-            this.chkSnippets.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.chkSnippets.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkSnippets.ForeColor = System.Drawing.Color.SteelBlue;
-            this.chkSnippets.Location = new System.Drawing.Point(102, 60);
-            this.chkSnippets.Name = "chkSnippets";
-            this.chkSnippets.Size = new System.Drawing.Size(70, 20);
-            this.chkSnippets.TabIndex = 8;
-            this.chkSnippets.Text = "Snippets";
-            this.chkSnippets.UseVisualStyleBackColor = true;
             // 
             // PerTab
             // 

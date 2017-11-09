@@ -68,6 +68,7 @@ namespace Corvus._1._0
 
         private void searchBox_TextChanged_1(object sender, EventArgs e)
         {
+
             if (chkCorrect.Checked)
             {
                 var t = searchBox.Text;
@@ -76,7 +77,7 @@ namespace Corvus._1._0
                     var tt = t.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     t = (tt.Length > 1) ? tt[tt.Length - 1] : t;
                 }
-                searchBox.AutoCompleteCustomSource = Task.Run(() =>  GenerationSuggetion(t, 0.6f)).Result;
+                searchBox.AutoCompleteCustomSource = GenerationSuggetion(t, 0.6f);
 
             }
         }
@@ -85,8 +86,7 @@ namespace Corvus._1._0
             var count = new AutoCompleteStringCollection();
             var ngram = new Ngram(text, 2, NgramModel.Character, true);
 
-            var sub = GramFactory.SubGramIndex(ngram, Deus.Corrector);
-            var common = GramFactory.IntersectOf(sub);
+            var common = GramFactory.IntersectOf(GramFactory.SubGramIndex(ngram, Deus.Corrector));
             var close = EditFactory.RetrieveCommon(text, common, threshold);
 
             foreach (var found in close)
@@ -116,10 +116,13 @@ namespace Corvus._1._0
             double start = Environment.TickCount;
             Task.Factory.StartNew(() =>
             {
-                FreeTextQuery ftq = new FreeTextQuery(searchBox.Text.Trim(), Deus.ConfigWin.config);
+                var q = searchBox.Text.Split(); //test line
+                var query = (searchBox.Text.Trim().Contains(" ")) ? searchBox.Text.Trim() : q[q.Length - 1];
+                
+                FreeTextQuery ftq = new FreeTextQuery((chkCorrect.Checked) ? Check(query) : query, Deus.ConfigWin.config);
                 IndexSearcher searcher = new IndexSearcher(ftq, Deus.ConfigWin.index, Deus.ConfigWin.repo);
 
-                Results = searcher.GetResults(SortBy.Relevance);
+                Results = searcher.GetResults(SortBy.Size);
             }).Wait();
 
             double end = Environment.TickCount;
@@ -137,14 +140,26 @@ namespace Corvus._1._0
                 {
                     panResult.Controls.Add(new PerResult($"{item.Document.FullName}", $"[{item.Document.Extension}]\n {item.Document.FullName}"));
                 }
-               
+
             }
         }
+
+        private string Check(string text)
+        {
+            var ngram = new Ngram(text, 2, NgramModel.Character, true);
+
+            var sub = GramFactory.SubGramIndex(ngram, Deus.Corrector);
+            var common = GramFactory.IntersectOf(sub);
+            var close = EditFactory.RetrieveCommon(text, common, 0.6f);
+
+            return (close == null || close.Count == 0) ? text : close.First().Key;
+        }
+
 
         private Snippet GetSnipes(Repository repo, string fullname)
         {
             var snf = repo.Snippets;
-            if(snf != null)
+            if (snf != null)
             {
                 foreach (var item in snf)
                 {
@@ -156,7 +171,10 @@ namespace Corvus._1._0
 
         private void searchBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
         }
     }
 }

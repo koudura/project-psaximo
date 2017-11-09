@@ -42,7 +42,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(638, 179);
+            this.panel1.Size = new System.Drawing.Size(622, 179);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -58,7 +58,7 @@
             this.snippetLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.snippetLabel.Location = new System.Drawing.Point(4, 27);
             this.snippetLabel.Name = "snippetLabel";
-            this.snippetLabel.Size = new System.Drawing.Size(619, 137);
+            this.snippetLabel.Size = new System.Drawing.Size(603, 137);
             this.snippetLabel.TabIndex = 1;
             this.snippetLabel.Text = "Lorem ipsum dolor sit amet";
             // 
@@ -72,7 +72,7 @@
             this.linkLabel.LinkColor = System.Drawing.Color.Aqua;
             this.linkLabel.Location = new System.Drawing.Point(3, 10);
             this.linkLabel.Name = "linkLabel";
-            this.linkLabel.Size = new System.Drawing.Size(628, 17);
+            this.linkLabel.Size = new System.Drawing.Size(612, 17);
             this.linkLabel.TabIndex = 0;
             this.linkLabel.TabStop = true;
             this.linkLabel.Text = "alakazam";
@@ -86,7 +86,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Controls.Add(this.panel1);
             this.Name = "PerResult";
-            this.Size = new System.Drawing.Size(638, 179);
+            this.Size = new System.Drawing.Size(622, 179);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
