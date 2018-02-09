@@ -176,5 +176,10 @@ namespace Corvus._1._0
                 btnSearch.PerformClick();
             }
         }
+
+        private void panResult_Paint(object sender, PaintEventArgs e)
+        {
+             
+        }
     }
 }
