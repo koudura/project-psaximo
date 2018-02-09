@@ -155,7 +155,7 @@ namespace Fornax.Net.Tests
 
         private string text = @"
 There are two more subtle benefits of compression. The first is increased
-useof caching.Searchsystems usesome parts ofthe dictionary andtheindex
+use of caching.Searchsystems usesome parts of the dictionary andtheindex
 much more than others. For example, if we cache the postings list of a fre-
 quently used query term t, then the computations necessary for responding
 to the one-term query t can be entirely done in memory.With compression,

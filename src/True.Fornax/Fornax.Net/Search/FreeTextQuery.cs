@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Fornax.Net.Analysis;
+﻿using Fornax.Net.Analysis;
 using Fornax.Net.Analysis.Tokenization;
 using Fornax.Net.Document;
-using Fornax.Net.Index;
+
+
 
 namespace Fornax.Net.Search
 {
