@@ -13,9 +13,7 @@ namespace Fornax.Net.Search
         private static TermVector _terms;
 
         private WildCardQuery(string query, Configuration config)
-            : this(new AdvancedAnalyzer(query, SearchMode.Free, Expand.Default), config)
-        {
-        }
+            : this(new AdvancedAnalyzer(query, SearchMode.Free, Expand.Default), config) { }
 
         private WildCardQuery(AdvancedAnalyzer analyzer, Configuration config)
             : base(analyzer, config)

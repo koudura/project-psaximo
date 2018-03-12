@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Fornax.Net.Index.Common;
+﻿using Fornax.Net.Index.Common;
 
 namespace Corvus._1._0
 {

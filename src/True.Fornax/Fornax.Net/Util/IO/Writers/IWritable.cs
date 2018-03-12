@@ -19,17 +19,20 @@ namespace Fornax.Net.Util.IO.Writers
         /// <param name="filename">The filename.</param>
         /// <returns></returns>
         TObject ReadInstance(string filename);
+
         /// <summary>
         /// Writes the instance.
         /// </summary>
         /// <param name="filename">The filename.</param>
         /// <param name="obj">The object.</param>
         void WriteInstance(string filename, TObject obj);
+
         /// <summary>
         /// Writes to temporary.
         /// </summary>
         /// <param name="object">The object.</param>
         void WriteToTemp(TObject @object);
+
         /// <summary>
         /// Reads from temporary.
         /// </summary>

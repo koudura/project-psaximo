@@ -106,6 +106,7 @@
             this.panResult.Size = new System.Drawing.Size(775, 407);
             this.panResult.TabIndex = 9;
             this.panResult.WrapContents = false;
+            this.panResult.Paint += new System.Windows.Forms.PaintEventHandler(this.panResult_Paint);
             // 
             // panel8
             // 

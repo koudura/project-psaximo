@@ -102,6 +102,7 @@ namespace Fornax.Net
         internal Configuration(string id, FetchAttribute fetch, CachingMode caching, FornaxFormat formats, Tokenizer tokenizer, FornaxLanguage language)
             : this(id, fetch, caching, formats.GetFormats(), tokenizer, language)
         {
+       
         }
 
         /// <summary>

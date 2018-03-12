@@ -99,7 +99,7 @@ namespace Fornax.Net.Index
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Term" /> class.
-        /// Seciying the language to use to convert the token to stem.
+        /// Specifying the language to use to convert the token to stem.
         /// </summary>
         /// <param name="token">The token.</param>
         /// <param name="language">The language.</param>

@@ -79,7 +79,7 @@ namespace Fornax.Net.Index.Storage
     [Serializable, ProtoContract]
     public sealed class FSRepository : Repository, java.io.Serializable.__Interface
     {
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="FSRepository" /> class.
         /// </summary>

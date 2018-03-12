@@ -24,19 +24,17 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 
 using Fornax.Net.Analysis.Tokenization;
 using Fornax.Net.Properties;
 using Fornax.Net.Util;
 using Fornax.Net.Util.IO.Writers;
-using Fornax.Net.Util.Text;
 using Fornax.Net.Util.System;
+using Fornax.Net.Util.Text;
 
 using StringSet = System.Collections.Specialized.StringCollection;
-using System;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Text;
 
 namespace Fornax.Net
 {
